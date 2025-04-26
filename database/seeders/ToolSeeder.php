@@ -12,6 +12,7 @@ class ToolSeeder extends Seeder
         $pages = [  
             [
                 'page_name' => 'word-character-counter',
+                'category' => 'Text Utilities',
                 'meta_title' => 'Word and Character Counter - Toolzy',
                 'meta_description' => 'Use Toolzy’s Word and Character Counter to quickly calculate the number of words and characters in your text. Perfect for writing, editing, and content analysis.',
                 'json_ld' => json_encode([
@@ -24,6 +25,7 @@ class ToolSeeder extends Seeder
             ],     
             [
                 'page_name' => 'text-case-converter',
+                'category' => 'Text Utilities',
                 'meta_title' => 'Text Case Converter - Change Text to Uppercase, Lowercase, and More - Toolzy',
                 'meta_description' => 'Instantly convert your text to uppercase, lowercase, sentence case, capitalized case, or toggle case with Toolzy’s free Text Case Converter. Easy, fast, and online.',
                 'json_ld' => json_encode([
@@ -34,18 +36,19 @@ class ToolSeeder extends Seeder
                     'description' => 'Use Toolzy’s Text Case Converter to quickly switch your text between uppercase, lowercase, capitalized case, sentence case, and toggle case. Simplify your text formatting easily.',
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ], 
-            // [
-            //     'page_name' => 'remove-duplicate-lines',
-            //     'meta_title' => 'Remove Duplicate Lines from Text - Toolzy',
-            //     'meta_description' => 'Easily remove duplicate lines from any text with Toolzy’s online Duplicate Line Remover. Fast, simple, and effective for cleaning up your text.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@type' => 'WebPage',
-            //         'name' => 'Remove Duplicate Lines Tool - Toolzy',
-            //         'url' => url('/tools/remove-duplicate-lines'),
-            //         'description' => 'Toolzy’s Remove Duplicate Lines Tool helps you clean up your text by deleting repeated lines quickly and easily.',
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],                                                                
+            [
+                'page_name' => 'remove-duplicate-lines',
+                'category' => 'Text Utilities',
+                'meta_title' => 'Remove Duplicate Lines from Text - Toolzy',
+                'meta_description' => 'Easily remove duplicate lines from any text with Toolzy’s online Duplicate Line Remover. Fast, simple, and effective for cleaning up your text.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Remove Duplicate Lines Tool - Toolzy',
+                    'url' => url('/tools/remove-duplicate-lines'),
+                    'description' => 'Toolzy’s Remove Duplicate Lines Tool helps you clean up your text by deleting repeated lines quickly and easily.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                                
         ];
 
         foreach ($pages as $page) {

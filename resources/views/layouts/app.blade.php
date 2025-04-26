@@ -43,14 +43,12 @@
     <title>{{ $metaTitle ?? config('app.name', 'Toolzy') }}</title>
 
     {{-- Favicon --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-
-    {{-- Preload Critical CSS --}}
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
 
     {{-- Custom Styles --}}
+    <link rel="preload" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" media="screen">
+    <noscript><link rel="stylesheet" href="http://127.0.0.1:8000/bootstrap/css/bootstrap.min.css" media="screen"></noscript>
     <style>
         html { scroll-behavior: smooth; }
         .breadcrumb { --bs-breadcrumb-divider: '›';background-color: #f8f9fa;padding: 0.75rem 1rem;border-radius: 0.5rem;box-shadow: 0 1px 3px rgba(0,0,0,0.1);font-size: 0.95rem; }
@@ -69,7 +67,13 @@
             margin-left: 10px;
             color: #333; /* Optional: color of the pipe */
         }
-
+        .hover-shadow {
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .hover-shadow:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
@@ -126,7 +130,7 @@
     </footer>
 
     {{-- Bootstrap Bundle JS --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="http://127.0.0.1:8000/bootstrap/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
 </body>
 </html>
