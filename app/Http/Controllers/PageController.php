@@ -11,13 +11,7 @@ class PageController extends Controller
     {
         $slug = strtolower(trim($slug, '/'));
         $page_name = $slug === '' ? 'home' : $slug;
-
-        if (!view()->exists('static.'.$page_name)) {
-            abort(404);
-        }
-
         $data = PageHelper::pageMetadataAndBreadcrumbs($slug);
-
-        return view('static.'.$page_name, $data);
+        return view($data['page_type'].'.'.$page_name, $data);
     }  
 }

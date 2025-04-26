@@ -76,6 +76,7 @@ class PageHelper
             ],
             'jsonldBreadcrumbs' => json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             'breadcrumbs' => $uiBreadcrumbs,
+            'page_type' => $metadata->page_type,
         ];
     }
 }

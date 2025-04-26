@@ -12,6 +12,7 @@
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
     {{-- SEO Meta --}}
     <meta name="description" content="{{ $metaDescription ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.' }}">
     <meta name="keywords" content="online tools, free tools, Toolzy, calculator, converter, generators, productivity tools, web utilities">
@@ -34,8 +35,8 @@
     <title>{{ $metaTitle ?? config('app.name', 'Toolzy') }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     {{-- Preload Critical CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="preload" as="style" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"></noscript>
     {{-- Load Non-Essential CSS After Page Load --}}
     <!-- <script>
         window.onload = function() {
@@ -46,13 +47,13 @@
         };
     </script> -->
     {{-- Deferred CSS Example --}}
-    <link href="https://cdn.jsdelivr.net/npm/your-non-critical-styles.css" rel="stylesheet" media="print" id="deferred-css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/your-non-critical-styles.css" rel="stylesheet" media="print" id="deferred-css">
     <script>
         window.onload = function() {
             var link = document.getElementById('deferred-css');
             link.media = 'all';
         };
-    </script>
+    </script> -->
     {{-- Custom Styles --}}
     <style>
         /* Global smooth scroll */
