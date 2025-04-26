@@ -16,7 +16,7 @@
         <!-- Search Bar -->
         <div class="mb-4 text-center">
             <form method="GET" action="{{ route('home') }}">
-                <div class="input-group input-group-lg mx-auto" style="max-width: 600px;">
+                <div class="input-group input-group-lg mx-auto max-width-600">
                     <label for="tool-search" class="visually-hidden">Search Tools</label>
                     <input type="text" id="tool-search" class="form-control form-control-lg border-primary" name="search" placeholder="Search tools..." value="{{ request()->query('search') }}">
                     <button class="btn btn-primary btn-lg" type="submit">Search</button>

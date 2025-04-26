@@ -63,7 +63,8 @@
         footer a:hover { color: #0d6efd !important; }
         .navbar-brand:hover { opacity: 0.85; transition: opacity 0.3s ease; }
         .hover-shadow:hover { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);transition: box-shadow 0.3s ease; }
-</style>
+        .max-width-600 { max-width: 600px;  }
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
     {{-- Navbar --}}
@@ -73,9 +74,6 @@
                 <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2">
                 Toolzy
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </div>
     </nav>
 
@@ -104,5 +102,6 @@
 
     {{-- Bootstrap Bundle JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    @stack('scripts')
 </body>
 </html>

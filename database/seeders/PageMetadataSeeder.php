@@ -105,7 +105,20 @@ class PageMetadataSeeder extends Seeder
                     'url' => url('/word-character-counter'),
                     'description' => 'Toolzy’s Word and Character Counter helps you calculate word and character counts instantly. Useful for writers, editors, and anyone in need of text analysis.',
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],                                              
+            ],     
+            [
+                'page_name' => 'text-case-converter',
+                'page_type' => 'tools',
+                'meta_title' => 'Text Case Converter - Change Text to Uppercase, Lowercase, and More | Toolzy',
+                'meta_description' => 'Instantly convert your text to uppercase, lowercase, sentence case, capitalized case, or toggle case with Toolzy’s free Text Case Converter. Easy, fast, and online.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Text Case Converter - Free Online Text Formatter | Toolzy',
+                    'url' => url('/text-case-converter'),
+                    'description' => 'Use Toolzy’s Text Case Converter to quickly switch your text between uppercase, lowercase, capitalized case, sentence case, and toggle case. Simplify your text formatting easily.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                     
         ];
 
         foreach ($pages as $page) {
