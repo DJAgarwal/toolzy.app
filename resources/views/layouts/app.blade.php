@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- SEO Meta --}}
-    <meta name="description" content="{{ $metaDescription ?? 'default Discover the best natural and safe products in India, analyzed by ingredients and trusted reviews.' }}">
+    <meta name="description" content="{{ $metaDescription ?? 'Discover the best natural and safe products in India, analyzed by ingredients and trusted reviews.' }}">
     <meta name="keywords" content="natural products, safe skincare, ingredient check, India, shampoo, ayurvedic, paraben free, chemical free">
     <meta name="author" content="NaturalProductsIndia">
     {{-- Canonical URL --}}
@@ -32,6 +32,7 @@
     <meta name="twitter:creator" content="{{ $twitter['creator'] ?? '' }}">
     {{-- Title --}}
     <title>{{ $metaTitle ?? config('app.name', 'Toolzy') }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
     {{-- Preload Critical CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="preload" as="style" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,54 +53,101 @@
             link.media = 'all';
         };
     </script>
+    {{-- Custom Styles --}}
     <style>
-    .breadcrumb {
-    --bs-breadcrumb-divider: '›';
-}
-.hover-link:hover {
-        color: #0d6efd !important; /* Bootstrap primary color */
-        text-decoration: underline;
-        transition: all 0.2s ease-in-out;
-    }
-</style>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-primary fs-4" href="{{ url('/') }}">
-            <img src="{{ asset('images/logo.png') }}" alt="Toolzy Logo" style="height: 32px;" class="me-2">
-            Toolzy
-        </a>
+        /* Global smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-    {{-- UI Breadcrumbs --}}
+        /* Breadcrumb styles */
+        .breadcrumb {
+            --bs-breadcrumb-divider: '›';
+            background-color: #f8f9fa;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-size: 0.95rem;
+        }
+
+        /* Hover link styling */
+        .hover-link {
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .hover-link:hover {
+            color: #0d6efd !important;
+            text-decoration: underline;
+        }
+
+        /* Navbar tweaks */
+        .navbar-brand img {
+            height: 36px;
+        }
+
+        .navbar {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Main content spacing */
+        main.container {
+            min-height: 70vh;
+        }
+
+        /* Footer tweaks */
+        footer {
+            font-size: 0.9rem;
+        }
+
+        footer a:hover {
+            color: #0d6efd !important;
+        }
+
+        /* Smooth hover effect for logo */
+        .navbar-brand:hover {
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    {{-- Navbar --}}
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2">
+                Toolzy
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    {{-- Breadcrumb --}}
     @include('components.ui-breadcrumbs')
-    <!-- Main Content -->
-    <main class="container py-4">
+    {{-- Main Content --}}
+    <main class="container py-5">
         @yield('content')
     </main>
-    <!-- Footer -->
-    <footer class="bg-white text-center text-muted border-top mt-5 pt-4 pb-3">
-    <div class="container">
-        <p class="mb-2 fw-semibold text-dark">&copy; {{ date('Y') }} <span class="text-primary">Toolzy</span>. All rights reserved.</p>
-        
-        <div class="d-flex flex-wrap justify-content-center gap-3 small mb-2">
-            <a href="{{ url('/about') }}" class="text-decoration-none text-muted hover-link">About</a>
-            <a href="{{ url('/contact') }}" class="text-decoration-none text-muted hover-link">Contact</a>
-            <a href="{{ url('/disclaimer') }}" class="text-decoration-none text-muted hover-link">Disclaimer</a>
-            <a href="{{ url('/privacy-policy') }}" class="text-decoration-none text-muted hover-link">Privacy Policy</a>
-            <a href="{{ url('/terms-and-conditions') }}" class="text-decoration-none text-muted hover-link">Terms & Conditions</a>
+    {{-- Footer --}}
+    <footer class="bg-white text-center text-muted border-top mt-auto pt-4 pb-3">
+        <div class="container">
+            <p class="mb-2 fw-semibold text-dark">&copy; {{ date('Y') }} <span class="text-primary">Toolzy</span>. All rights reserved.</p>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-3 small mb-2">
+                <a href="{{ url('/about') }}" class="text-decoration-none text-muted hover-link">About</a>
+                <a href="{{ url('/contact') }}" class="text-decoration-none text-muted hover-link">Contact</a>
+                <a href="{{ url('/disclaimer') }}" class="text-decoration-none text-muted hover-link">Disclaimer</a>
+                <a href="{{ url('/privacy-policy') }}" class="text-decoration-none text-muted hover-link">Privacy Policy</a>
+                <a href="{{ url('/terms-and-conditions') }}" class="text-decoration-none text-muted hover-link">Terms & Conditions</a>
+            </div>
+
+            <div class="small text-secondary">Toolzy.app — Free online tools for everyone.</div>
         </div>
+    </footer>
 
-        <div class="small text-secondary">Toolzy.app — Free online tools for everyone.</div>
-    </div>
-</footer>
-
+    {{-- Bootstrap Bundle JS --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
