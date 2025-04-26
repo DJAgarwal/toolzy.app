@@ -32,7 +32,7 @@
                     <div class="card-body text-center p-4">
                         <h5 class="card-title mb-3 fw-bold">{{ $tool->meta_title }}</h5>
                         <p class="card-text text-muted mb-4">{{ $tool->meta_description }}</p>
-                        <a href="{{ url('/' . $tool->page_name) }}" class="btn btn-outline-primary btn-lg">Use Tool</a>
+                        <a href="{{ url('/tools/' . $tool->page_name) }}" class="btn btn-outline-primary btn-lg">Use Tool</a>
                     </div>
                 </div>
             </div>

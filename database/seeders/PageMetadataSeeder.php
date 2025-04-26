@@ -96,7 +96,7 @@ class PageMetadataSeeder extends Seeder
             [
                 'page_name' => 'word-character-counter',
                 'page_type' => 'tools',
-                'meta_title' => 'Word and Character Counter - Toolzy',
+                'meta_title' => 'Word and Character Counter | Toolzy',
                 'meta_description' => 'Use Toolzy’s Word and Character Counter to quickly calculate the number of words and characters in your text. Perfect for writing, editing, and content analysis.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
