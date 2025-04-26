@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JsonldSchema;
 use App\Models\PageMetadata;
 
 class SitemapController extends Controller
 {
     public function index()
     {
-        $products = [];
-        // $products = Product::all(); // You can add other models too
         $pages = PageMetadata::all();
-        $content = view('sitemap', compact('products', 'pages'));
-        return response()->view('sitemap', compact('products'))
+        return response()->view('sitemap', compact('pages'))
         ->header('Content-Type', 'application/xml');
     }
 
