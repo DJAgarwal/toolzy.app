@@ -10,12 +10,13 @@
             </div>
 
             <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                <button class="btn btn-primary" onclick="convertText('uppercase')">UPPERCASE</button>
-                <button class="btn btn-primary" onclick="convertText('lowercase')">lowercase</button>
+                <button class="btn btn-primary" onclick="convertText('uppercase')">UPPER CASE</button>
+                <button class="btn btn-primary" onclick="convertText('lowercase')">lower case</button>
                 <button class="btn btn-primary" onclick="convertText('sentencecase')">Sentence case</button>
                 <button class="btn btn-primary" onclick="convertText('capitalizedcase')">Capitalized Case</button>
                 <button class="btn btn-primary" onclick="convertText('togglecase')">tOGGLE cASE</button>
-            </div>
+                <button class="btn btn-primary" onclick="convertText('alternatecase')">aLtErNaTe CaSe</button>
+                </div>
 
             <div class="mb-5">
                 <button class="btn btn-success w-100" onclick="copyText()">Copy Converted Text</button>
@@ -69,6 +70,9 @@ function convertText(type) {
             break;
         case 'togglecase':
             text = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+            break;
+        case 'alternatecase':
+            text = text.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('');
             break;
     }
 

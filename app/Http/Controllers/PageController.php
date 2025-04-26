@@ -12,6 +12,9 @@ class PageController extends Controller
         $slug = strtolower(trim($slug, '/'));
         $page_name = $slug === '' ? 'home' : $slug;
         $data = PageHelper::pageMetadataAndBreadcrumbs($slug);
-        return view($data['page_type'].'.'.$page_name, $data);
-    }  
+
+        $viewFolder = $data['page_type'] === 'tools' ? 'tools' : 'static';
+
+        return view($viewFolder . '.' . $page_name, $data);
+    }
 }

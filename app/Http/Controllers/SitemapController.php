@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PageMetadata;
+use App\Models\StaticPage;
 
 class SitemapController extends Controller
 {
     public function index()
     {
-        $pages = PageMetadata::all();
-        return response()->view('sitemap', compact('pages'))
+        $pages = StaticPage::all();
+        $tools = Tools::all();
+        return response()->view('sitemap', compact('pages','tools'))
         ->header('Content-Type', 'application/xml');
     }
 

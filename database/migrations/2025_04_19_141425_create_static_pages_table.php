@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('page_metadata', function (Blueprint $table) {
+        Schema::create('static_pages', function (Blueprint $table) {
             $table->id();
             $table->string('page_name')->unique();
-            $table->string('page_type')->nullable();
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
@@ -23,7 +22,7 @@ return new class extends Migration
         });
 
         Artisan::call('db:seed', [
-            '--class' => 'PageMetadataSeeder',
+            '--class' => 'StaticPageSeeder',
             '--force' => true
         ]);
     }

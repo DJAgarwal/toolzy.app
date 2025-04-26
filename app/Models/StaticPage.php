@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PageMetadata extends Model
+class StaticPage extends Model
 {
     //
 }

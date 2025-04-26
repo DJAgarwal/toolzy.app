@@ -3,7 +3,8 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\URL;
-use App\Models\PageMetadata;
+use App\Models\StaticPage;
+use App\Models\Tool;
 
 class PageHelper
 {
@@ -14,7 +15,17 @@ class PageHelper
             $slug = '';
         }
         $page_name = $slug === '' ? 'home' : $slug;
-        $metadata = PageMetadata::where('page_name', $page_name)->first();
+
+        // Try StaticPage first
+        $metadata = StaticPage::where('page_name', $page_name)->first();
+        $page_type = 'static';
+
+        // If not found in StaticPage, try Tool
+        if (!$metadata) {
+            $metadata = Tool::where('page_name', $page_name)->first();
+            $page_type = 'tools';
+        }
+
         $segments = ($slug && $slug !== '') ? explode('/', $slug) : [];
         $breadcrumbs = [];
 
@@ -56,6 +67,7 @@ class PageHelper
         })->toArray();
 
         return [
+            'page_type' => $page_type,
             'metaTitle' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
             'metaDescription' => $metadata->meta_description ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.',
             'metaKeywords' => $metadata->meta_keywords ?? 'online tools, free tools, Toolzy, calculators, converters, productivity tools, web utilities',
@@ -76,7 +88,6 @@ class PageHelper
             ],
             'jsonldBreadcrumbs' => json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             'breadcrumbs' => $uiBreadcrumbs,
-            'page_type' => $metadata->page_type,
         ];
     }
 }

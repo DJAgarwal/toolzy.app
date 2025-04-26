@@ -14,4 +14,12 @@
             <priority>0.8</priority>
         </url>
     @endforeach
+    @foreach ($tools as $tool)
+        <url>
+            <loc>{{ url($tool->page_name) }}</loc>
+            <lastmod>{{ $tool->updated_at->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+        </url>
+    @endforeach
 </urlset>
