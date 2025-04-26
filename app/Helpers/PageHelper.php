@@ -64,14 +64,14 @@ class PageHelper
                 'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
                 'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
                 'url' => url()->current(),
-                'image' => asset('images/logo.png'),
+                'image' => asset('images/logo.webp'),
                 'type' => 'website'
             ],
             'twitter' => [
                 'card' => 'summary_large_image',
                 'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
                 'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
-                'image' => asset('images/logo.png'),
+                'image' => asset('images/logo.webp'),
                 'creator' => '@Toolzy'
             ],
             'jsonldBreadcrumbs' => json_encode($breadcrumbSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),

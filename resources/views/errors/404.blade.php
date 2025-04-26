@@ -10,7 +10,7 @@
     <style>
         body {
             margin: 0;
-            background-color: #f0fff4;
+            background-color: #ffffff; /* Toolzy's background color */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             align-items: center;
@@ -32,23 +32,21 @@
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
-
-       
         .message h1 {
             font-size: 28px;
-            color: #2d3748;
+            color: #0d6efd;
             margin-bottom: 8px;
         }
 
         .message p {
             font-size: 16px;
-            color: #4a5568;
+            color: #6c757d;
             margin-bottom: 24px;
         }
 
         .home-button {
             padding: 12px 24px;
-            background-color: #38a169;
+            background-color: #0d6efd;
             color: white;
             font-weight: bold;
             border: none;
@@ -58,7 +56,7 @@
         }
 
         .home-button:hover {
-            background-color: #2f855a;
+            background-color: #0056b3;
         }
     </style>
 </head>
