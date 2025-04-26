@@ -86,7 +86,19 @@ class StaticPageSeeder extends Seeder
                         ]
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
-            ],                                                             
+            ],  
+            [
+                'page_name' => 'tools',
+                'meta_title' => 'Free Online Tools - Toolzy',
+                'meta_description' => 'Discover a wide range of free online tools at Toolzy, designed to simplify your daily tasks — calculators, converters, productivity utilities, and more.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Free Online Tools - Toolzy',
+                    'url' => url('/tools'),
+                    'description' => 'Explore a collection of free online tools to help with tasks like calculations, conversions, and much more at Toolzy.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                                       
         ];
 
         foreach ($pages as $page) {

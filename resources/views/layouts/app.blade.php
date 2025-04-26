@@ -64,18 +64,43 @@
         .navbar-brand:hover { opacity: 0.85; transition: opacity 0.3s ease; }
         .hover-shadow:hover { box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);transition: box-shadow 0.3s ease; }
         .max-width-600 { max-width: 600px;  }
+        .nav-item:not(:last-child) .nav-link::after {
+            content: "|";
+            margin-left: 10px;
+            color: #333; /* Optional: color of the pipe */
+        }
+
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
-    {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2">
-                Toolzy
-            </a>
-        </div>
-    </nav>
+    {{-- Header --}}
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2" width="40" height="40">
+                    Toolzy
+                </a>
+                
+                <!-- Toggler for mobile view -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="{{ url('/') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="{{ url('/tools') }}">More Tools</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     {{-- Breadcrumb --}}
     @include('components.ui-breadcrumbs')
