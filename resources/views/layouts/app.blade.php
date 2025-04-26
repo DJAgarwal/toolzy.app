@@ -13,9 +13,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- SEO Meta --}}
-    <meta name="description" content="{{ $metaDescription ?? 'Discover the best natural and safe products in India, analyzed by ingredients and trusted reviews.' }}">
-    <meta name="keywords" content="natural products, safe skincare, ingredient check, India, shampoo, ayurvedic, paraben free, chemical free">
-    <meta name="author" content="NaturalProductsIndia">
+    <meta name="description" content="{{ $metaDescription ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.' }}">
+    <meta name="keywords" content="online tools, free tools, Toolzy, calculator, converter, generators, productivity tools, web utilities">
+    <meta name="author" content="Toolzy">
+
     {{-- Canonical URL --}}
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}" />
     {{-- Open Graph / Social Sharing --}}
