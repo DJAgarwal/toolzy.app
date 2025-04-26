@@ -32,7 +32,18 @@
         @yield('content')
     </main>
 
-    <footer class="text-center py-3 border-top">
+    <footer class="bg-light text-center text-muted py-4 mt-5">
+    <div class="container">
+        <p class="mb-2">&copy; {{ date('Y') }} Toolzy. All rights reserved.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <a href="{{ url('/about') }}" class="text-decoration-none text-muted">About</a>
+            <a href="{{ url('/contact') }}" class="text-decoration-none text-muted">Contact</a>
+            <a href="{{ url('/disclaimer') }}" class="text-decoration-none text-muted">Disclaimer</a>
+            <a href="{{ url('/privacy-policy') }}" class="text-decoration-none text-muted">Privacy Policy</a>
+            <a href="{{ url('/terms-and-conditions') }}" class="text-decoration-none text-muted">Terms & Conditions</a>
+        </div>
+    </div>
+
         <p class="mb-0 small">© {{ date('Y') }} Toolzy.app — Free online tools for everyone</p>
     </footer>
 </body>

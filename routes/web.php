@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{HomeController,PageController,SitemapController};
 
-Route::get('/', function () {
-    $meta = [
-        'title' => 'Toolzy - Free Online Tools for Everyone',
-        'description' => 'Toolzy.app gives you instant access to free tools like PDF to Word, image compressor, word counter and more — no limits.',
-        'keywords' => 'online tools, pdf to word, image compression, QR code generator, word counter, free tools'
-    ];
-    return view('home', compact('meta'));
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', fn () => redirect()->route('home'));
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', function () {
+    return response()->view('static.robots')->header('Content-Type', 'text/plain');
+})->name('robots');
+Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '[a-z0-9\-]+')->name('page.show');

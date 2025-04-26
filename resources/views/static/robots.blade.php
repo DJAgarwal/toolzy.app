@@ -1,8 +1,11 @@
 User-agent: *
+Disallow:
+
+
+User-agent: *
 Disallow: /admin/
 Disallow: /login/
 Disallow: /logout/
 Disallow: /dashboard/
 Disallow: /user/
-
-Sitemap: https://toolzy.app/sitemap.xml
+Sitemap: {{ url('/sitemap.xml') }}
