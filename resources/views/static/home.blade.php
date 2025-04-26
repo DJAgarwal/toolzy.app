@@ -3,39 +3,46 @@
 @section('content')
 <div class="bg-light py-5">
     <div class="container text-center">
-        <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy</h1>
-        <p class="lead text-muted">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
-        <a href="#tools" class="btn btn-primary btn-lg mt-3">Explore Tools</a>
+        <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy</h1> {{-- current line --}}
+        <p class="lead text-muted">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p> {{-- current line --}}
+        <a href="#tools" class="btn btn-primary btn-lg mt-3">Explore Tools</a> {{-- current line --}}
     </div>
 </div>
 
 <div class="py-5" id="tools">
     <div class="container">
         <h2 class="text-center mb-4">Popular Tools</h2>
-        <div class="row g-4">
-        <div class="mb-4">
+
+        <!-- Search Bar -->
+        <div class="mb-4 text-center">
             <form method="GET" action="{{ route('home') }}">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search tools..." value="{{ request()->query('search') }}">
-                    <button class="btn btn-primary" type="submit">Search</button>
+                <div class="input-group input-group-lg mx-auto" style="max-width: 600px;">
+                    <label for="tool-search" class="visually-hidden">Search Tools</label>
+                    <input type="text" id="tool-search" class="form-control form-control-lg border-primary" name="search" placeholder="Search tools..." value="{{ request()->query('search') }}">
+                    <button class="btn btn-primary btn-lg" type="submit">Search</button>
                 </div>
             </form>
         </div>
-        @foreach ($tools as $tool)
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ $tool->meta_title }}</h5>
-                        <p class="card-text text-muted">{{ $tool->meta_description }}</p>
-                        <a href="{{ url('/' . $tool->page_name) }}" class="btn btn-outline-primary mt-2">Use Tool</a>
+
+        <!-- Tools Cards -->
+        <div class="row g-4">
+            @foreach ($tools as $tool)
+            <div class="col-12 col-md-4">
+                <div class="card h-100 border-0 shadow-lg hover-shadow">
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title mb-3 fw-bold">{{ $tool->meta_title }}</h5>
+                        <p class="card-text text-muted mb-4">{{ $tool->meta_description }}</p>
+                        <a href="{{ url('/' . $tool->page_name) }}" class="btn btn-outline-primary btn-lg">Use Tool</a>
                     </div>
                 </div>
             </div>
-        @endforeach
-        <div class="d-flex justify-content-center">
+            @endforeach
+        </div>
+
+        {{-- Pagination --}}
+        <div class="d-flex justify-content-center mt-4">
             {{ $tools->links() }}
         </div>
-    </div>
     </div>
 </div>
 

@@ -22,6 +22,12 @@
 <script>
     function countText() {
         const text = document.getElementById('textInput').value;
+        if (text.trim() === "") {
+            document.getElementById('wordCount').textContent = 0;
+            document.getElementById('charCount').textContent = 0;
+            return;
+        }
+
         const words = text.trim().split(/\s+/).filter(word => word.length > 0);
         const characters = text.replace(/\s/g, '');
         document.getElementById('wordCount').textContent = words.length;
