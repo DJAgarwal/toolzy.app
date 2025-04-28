@@ -48,7 +48,20 @@ class ToolSeeder extends Seeder
                     'url' => url('/tools/remove-duplicate-lines'),
                     'description' => 'Toolzy’s Remove Duplicate Lines Tool helps you clean up your text by deleting repeated lines quickly and easily.',
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],                                                                
+            ], 
+            [
+                'page_name' => 'random-password-generator',
+                'category' => 'Text Utilities',
+                'meta_title' => 'Random Password Generator - Toolzy',
+                'meta_description' => 'Generate strong, secure random passwords with Toolzy’s free online Password Generator. Perfect for improving your online security quickly and easily.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Random Password Generator - Toolzy',
+                    'url' => url('/tools/random-password-generator'),
+                    'description' => 'Toolzy’s Random Password Generator creates strong and secure passwords instantly to help keep your online accounts safe and protected.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                                           
         ];
 
         foreach ($pages as $page) {
