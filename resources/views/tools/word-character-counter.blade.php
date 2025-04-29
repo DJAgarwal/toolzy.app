@@ -27,53 +27,12 @@
             Reading Time: <span id="readingTime">0</span> min
         </div>
     </div>
-    <div class="mt-5">
-        <h2 class="h4 fw-bold mb-3">What is a Word Counter?</h2>
-        <p class="text-muted">
-            A word counter is a simple yet powerful tool designed to quickly calculate the number of words, characters, sentences, and paragraphs in any given text. Whether you're a student working on an assignment, a content writer optimizing articles for SEO, or someone managing social media posts within character limits, a word counter helps you stay accurate and efficient.
-        </p>
-        <p class="text-muted">
-            By using our free Word and Character Counter tool, you can effortlessly track your writing metrics in real-time. No downloads, no limitations — just paste your text and get instant results. Perfect for essays, blog posts, tweets, reports, and everything in between.
-        </p>
-    </div>
-    <div class="mt-5">
-    <h2 class="h4 fw-bold mb-3">Frequently Asked Questions</h2>
-
-    <div class="mb-4">
-        <h3 class="h6 fw-semibold">How accurate is this Word Counter?</h3>
-        <p class="text-muted">
-            Our word counter tool is highly accurate and updates results instantly as you type or paste text. It counts words, characters (with and without spaces), sentences, and paragraphs in real-time.
-        </p>
-    </div>
-
-    <div class="mb-4">
-        <h3 class="h6 fw-semibold">Can I use this tool for academic essays?</h3>
-        <p class="text-muted">
-            Absolutely! Students, researchers, and teachers can all use our tool to check the length of essays, reports, or any academic writing projects without any limits.
-        </p>
-    </div>
-
-    <div class="mb-4">
-        <h3 class="h6 fw-semibold">Is there any limit on how much text I can paste?</h3>
-        <p class="text-muted">
-            No, there are no limits! You can paste as much text as you want and get instant word and character counts. Our tool is completely free and unlimited.
-        </p>
-    </div>
-
-    <div class="mb-4">
-        <h3 class="h6 fw-semibold">Does this tool count spaces in characters?</h3>
-        <p class="text-muted">
-            Yes, we show both counts — characters with spaces and characters without spaces — so you can choose based on your needs.
-        </p>
-    </div>
-
-    <div class="mb-4">
-        <h3 class="h6 fw-semibold">Can I use this word counter on mobile devices?</h3>
-        <p class="text-muted">
-            Yes, our word counter is fully responsive and works perfectly on smartphones, tablets, and desktop computers.
-        </p>
-    </div>
-</div>
+    <section class="my-5">
+            @include('components.what-is')
+        </section>
+        <section class="my-5">
+            @include('components.faq')
+        </section>
 
 </div>
 @endsection

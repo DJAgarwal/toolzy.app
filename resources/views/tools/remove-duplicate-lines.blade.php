@@ -18,28 +18,12 @@
             <textarea id="outputText" class="form-control" rows="10" placeholder="Result will appear here..." readonly></textarea>
         </div>
 
-        <div class="mt-5">
-            <h2>What is Remove Duplicate Lines Tool?</h2>
-            <p>
-                The Remove Duplicate Lines tool allows you to quickly clean up any repeated lines from a block of text. Whether you're working with large data, code snippets, lists, or any repetitive text, this tool makes it effortless to get clean, unique lines. No downloads or software installation needed — everything works online instantly.
-            </p>
-        </div>
-
-        <div class="mt-5">
-            <h2>FAQs about Removing Duplicate Lines</h2>
-
-            <h5 class="mt-4">How does this tool remove duplicate lines?</h5>
-            <p>It automatically compares each line of text and removes any line that appears more than once.</p>
-
-            <h5 class="mt-4">Is my data safe?</h5>
-            <p>Yes, everything happens directly in your browser. We do not store or see your text.</p>
-
-            <h5 class="mt-4">Can I use this tool for large text files?</h5>
-            <p>Yes, you can paste large blocks of text. However, very huge files might slow down your browser slightly.</p>
-
-            <h5 class="mt-4">Does it change the order of lines?</h5>
-            <p>No, it keeps the first occurrence and removes later duplicates, maintaining your original order.</p>
-        </div>
+        <section class="my-5">
+        @include('components.what-is')
+        </section>
+        <section class="my-5">
+            @include('components.faq')
+        </section>
     </div>
 </section>
 @endsection
