@@ -19,7 +19,7 @@ class ToolsController extends Controller
     public function index()
     {
         $data = PageHelper::pageMetadataAndBreadcrumbs('tools');
-        $tools = Tool::all();
+        $tools = Tool::all()->groupBy('category');
         return view('static.tools', array_merge($data, ['tools' => $tools]));
     }
 
