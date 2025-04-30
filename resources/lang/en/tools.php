@@ -348,5 +348,92 @@ return [
         ],
     ],
 ],
+'image-converter' => [
+    'question' => 'What is Image Converter by Toolzy',
+    'description' => [
+        'Toolzy’s Image Converter is a simple yet powerful online tool that allows you to convert image files from one format to another effortlessly. Whether you need to convert JPG to PNG, PNG to WebP, or any other combination, this tool makes it easy and fast.',
+        'You can choose from popular formats like JPG, PNG, WebP, BMP, and more. The tool works directly in your browser without requiring installation or registration, ensuring privacy and efficiency for your file conversions.'
+    ],
+    'faqs' => [
+        [
+            'question' => 'Which image formats are supported by Toolzy’s Image Converter?',
+            'answer' => 'Toolzy’s Image Converter currently supports JPG, PNG, WebP, BMP, and GIF formats. We plan to add more formats based on user demand.'
+        ],
+        [
+            'question' => 'Is it safe to convert images using Toolzy?',
+            'answer' => 'Yes, it is completely safe. All conversions happen in your browser, and no images are uploaded to any server, ensuring your privacy is protected.'
+        ],
+        [
+            'question' => 'Do I need to install any software?',
+            'answer' => 'No installation is needed. Toolzy’s Image Converter is fully browser-based and works on desktop, tablet, and mobile devices.'
+        ],
+        [
+            'question' => 'Can I convert multiple images at once?',
+            'answer' => 'Currently, the tool supports converting one image at a time to keep things simple and fast. Batch conversion support may be added in future updates.'
+        ],
+        [
+            'question' => 'Will the image quality be affected after conversion?',
+            'answer' => 'Toolzy’s Image Converter preserves the original quality as much as possible during conversion. Some formats may allow optional compression in future versions.'
+        ],
+    ],
+],
+'pdf-converter' => [
+    'question' => 'What is PDF Converter?',
+    'description' => [
+        'Toolzy’s PDF Converter is a versatile online tool that allows you to convert PDF files to various formats and vice versa. Whether you want to turn a JPG image into a PDF, convert a PDF into editable Word or Excel documents, or extract images from a PDF, this tool makes it fast, secure, and easy.',
+        'With support for multiple file types, Toolzy’s PDF Converter is ideal for students, professionals, and anyone who frequently works with digital documents. No software installation is required — just upload, convert, and download your file in seconds.'
+    ],
+    'faqs' => [
+        [
+            'question' => 'What file types can I convert using this PDF Converter?',
+            'answer' => 'You can convert PDFs to JPG, PNG, Word (DOCX), Excel (XLSX), and vice versa. Toolzy is constantly expanding its features to support more file formats in the future.'
+        ],
+        [
+            'question' => 'Is it safe to upload my documents to Toolzy?',
+            'answer' => 'Yes, Toolzy prioritizes user privacy. Your uploaded files are never stored permanently and are deleted shortly after conversion to ensure your data stays secure.'
+        ],
+        [
+            'question' => 'Do I need to install any software?',
+            'answer' => 'No, Toolzy’s PDF Converter is entirely web-based. You don’t need to download or install anything. Just visit the page, upload your file, and convert it instantly.'
+        ],
+        [
+            'question' => 'Can I convert multiple PDFs at once?',
+            'answer' => 'Currently, Toolzy supports one file per conversion to keep things simple and fast. However, batch conversion support is coming soon.'
+        ],
+        [
+            'question' => 'Is this tool free to use?',
+            'answer' => 'Yes, Toolzy’s PDF Converter is completely free with no hidden costs. You can use it as many times as you need without signing up.'
+        ],
+    ],
+],
+'image-compressor' => [
+    'question' => 'What is an Image Compressor?',
+    'description' => [
+        'An image compressor is a tool that reduces the file size of images without significantly affecting their quality. Compressing images helps in faster web page loading, saving storage space, and making image uploads more efficient.',
+        'Toolzy’s Image Compressor allows you to upload multiple images at once and choose your preferred compression target (like 50KB, 100KB, etc.). It supports popular image formats like JPG, PNG, and WebP, and is perfect for optimizing images for websites, emails, and mobile devices.'
+    ],
+    'faqs' => [
+        [
+            'question' => 'Why should I compress my images?',
+            'answer' => 'Compressing images reduces their file size, which improves website speed, reduces bandwidth usage, and saves storage space on your devices or servers.'
+        ],
+        [
+            'question' => 'Does Toolzy reduce image quality while compressing?',
+            'answer' => 'Toolzy’s Image Compressor uses smart algorithms to minimize file size while retaining as much image quality as possible. In most cases, the visual difference is negligible.'
+        ],
+        [
+            'question' => 'What image formats are supported?',
+            'answer' => 'You can compress images in JPG, JPEG, PNG, and WebP formats using Toolzy’s Image Compressor.'
+        ],
+        [
+            'question' => 'Can I compress multiple images at once?',
+            'answer' => 'Yes, Toolzy allows you to upload and compress multiple images simultaneously, saving you time and effort.'
+        ],
+        [
+            'question' => 'Can I set a specific target file size?',
+            'answer' => 'Yes, Toolzy lets you select a desired output size, such as 50KB, 100KB, 500KB, or even up to 5MB, depending on your needs.'
+        ],
+    ],
+],
 
 ];

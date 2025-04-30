@@ -11,6 +11,47 @@ class ToolSeeder extends Seeder
     {
         $pages = [  
             [
+                'page_name' => 'image-converter',
+                'category' => 'File Utilities',
+                'meta_title' => 'Online Image Converter - Toolzy',
+                'meta_description' => 'Convert images to different formats (JPG, PNG, WebP, BMP, and more) instantly with Toolzy’s free Image Converter. Fast, secure, and easy to use.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Online Image Converter - Toolzy',
+                    'url' => url('/tools/image-converter'),
+                    'description' => 'Toolzy’s Online Image Converter lets you convert images between popular formats like JPG, PNG, WebP, and BMP with ease. No signup required.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            [
+                'page_name' => 'image-compressor',
+                'category' => 'Image Utilities',
+                'meta_title' => 'Image Compressor Online - Toolzy',
+                'meta_description' => 'Compress images online for free with Toolzy. Reduce image file sizes without losing quality. Supports JPEG, PNG, WebP and more.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'Image Compressor Online - Toolzy',
+                    'url' => url('/tools/image-compressor'),
+                    'description' => 'Toolzy’s Image Compressor helps you reduce image file size online quickly and efficiently. Compress multiple images while maintaining quality. Ideal for web use, email, and uploads.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            
+            [
+                'page_name' => 'pdf-converter',
+                'category' => 'File Utilities',
+                'meta_title' => 'PDF Converter - Convert Files to and from PDF Online | Toolzy',
+                'meta_description' => 'Use Toolzy’s free PDF Converter to easily convert files to and from PDF format. Supports JPG, Word, Excel, and more. Fast, secure, and online.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@type' => 'WebPage',
+                    'name' => 'PDF Converter - Toolzy',
+                    'url' => url('/tools/pdf-converter'),
+                    'description' => 'Toolzy’s online PDF Converter lets you convert PDFs to JPG, Word, Excel, and other formats — or convert those files back to PDF. 100% free and user-friendly.',
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            
+            [
                 'page_name' => 'pdf-file-merger',
                 'category' => 'File Utilities',
                 'meta_title' => 'PDF File Merger - Merge PDF Files Online Free | Toolzy',

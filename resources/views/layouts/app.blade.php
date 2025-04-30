@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     {{-- Dynamic JSON-LD Schema Injection --}}
-    @if (!empty($jsonld))
-        <script type="application/ld+json">{!! $jsonld !!}</script>
-    @endif
+    @if (!empty($jsonld))<script type="application/ld+json">{!! $jsonld !!}</script>@endif
 
     {{-- Dynamic Breadcrumb JSON-LD --}}
-    @if (!empty($jsonldBreadcrumbs))
-        <script type="application/ld+json">{!! $jsonldBreadcrumbs !!}</script>
-    @endif
+    @if (!empty($jsonldBreadcrumbs))<script type="application/ld+json">{!! $jsonldBreadcrumbs !!}</script>@endif
 
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
