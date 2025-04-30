@@ -16,9 +16,9 @@ class HomeController extends Controller
         if ($searchQuery) {
             $tools = Tool::where('meta_title', 'LIKE', "%{$searchQuery}%")
                 ->orWhere('meta_description', 'LIKE', "%{$searchQuery}%")
-                ->paginate(10);
+                ->paginate(9);
         } else {
-            $tools = Tool::paginate(10);
+            $tools = Tool::paginate(9);
         }
 
         return view('static.home', array_merge($data, ['tools' => $tools]));

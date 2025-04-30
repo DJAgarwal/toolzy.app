@@ -145,295 +145,295 @@ return [
             ],
         ],
     ],
-'text-to-slug-generator' => [
-    'question' => 'What is Text to Slug Generator',
-    'description' => [
-        'A Text to Slug Generator is an online tool that helps convert your text into an SEO-friendly URL slug. A URL slug is the part of the web address that comes after the domain name. It is typically a simplified version of your title, making it easy to read and understand, which can improve search engine optimization (SEO).',
-        'With this tool, you can easily transform any text into a clean, readable, and SEO-optimized slug by removing special characters, spaces, and capital letters. This is particularly useful for creating user-friendly URLs for blog posts, product pages, or any content that requires easy access and visibility.'
+    'text-to-slug-generator' => [
+        'question' => 'What is Text to Slug Generator',
+        'description' => [
+            'A Text to Slug Generator is an online tool that helps convert your text into an SEO-friendly URL slug. A URL slug is the part of the web address that comes after the domain name. It is typically a simplified version of your title, making it easy to read and understand, which can improve search engine optimization (SEO).',
+            'With this tool, you can easily transform any text into a clean, readable, and SEO-optimized slug by removing special characters, spaces, and capital letters. This is particularly useful for creating user-friendly URLs for blog posts, product pages, or any content that requires easy access and visibility.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Why should I use a Text to Slug Generator?',
+                'answer' => 'Using a Text to Slug Generator helps in creating clean, readable, and SEO-friendly URLs. It ensures your URLs are optimized for better visibility in search engines and easier sharing across platforms.'
+            ],
+            [
+                'question' => 'What is a URL slug?',
+                'answer' => 'A URL slug is the part of the URL that identifies a particular page or post in a user-friendly way. It typically includes keywords and is often a shortened version of the title, separated by hyphens.'
+            ],
+            [
+                'question' => 'How do slugs affect SEO?',
+                'answer' => 'SEO-friendly slugs are crucial for improving search engine rankings. They provide clear, concise, and relevant information about the page content, which helps search engines index and rank your page better.'
+            ],
+            [
+                'question' => 'Can I use this tool for any type of text?',
+                'answer' => 'Yes, you can use the Text to Slug Generator for any type of text. Whether it’s a blog post title, product name, or any content that needs a clean URL, this tool can convert it into a perfect slug.'
+            ],
+            [
+                'question' => 'Does the tool handle special characters?',
+                'answer' => 'Yes, the tool automatically removes special characters, spaces, and capital letters, ensuring that the final slug is clean, readable, and suitable for use in URLs.'
+            ],
+        ],
     ],
+    'qr-code-generator' => [
+        'question' => 'What is a QR Code Generator?',
+        'description' => [
+            'A QR Code Generator is a tool that allows you to create QR codes. These are two-dimensional barcodes that can store various types of information, such as website URLs, text, phone numbers, or even Wi-Fi network credentials. QR codes are scannable using smartphones or other QR code readers, making them an efficient and convenient way to share information quickly.',
+            'Toolzy’s QR Code Generator allows you to easily convert any text or URL into a QR code. Whether you need to share a website link, a product, or a contact number, our tool ensures your QR codes are ready for quick and easy scanning.'
+        ],
     'faqs' => [
         [
-            'question' => 'Why should I use a Text to Slug Generator?',
-            'answer' => 'Using a Text to Slug Generator helps in creating clean, readable, and SEO-friendly URLs. It ensures your URLs are optimized for better visibility in search engines and easier sharing across platforms.'
+            'question' => 'What can I generate with the QR Code Generator?',
+            'answer' => 'You can generate QR codes for various types of content, including URLs, text, email addresses, phone numbers, and even location coordinates. Simply input the information you want to encode, and our tool will create a scannable QR code for you.'
         ],
         [
-            'question' => 'What is a URL slug?',
-            'answer' => 'A URL slug is the part of the URL that identifies a particular page or post in a user-friendly way. It typically includes keywords and is often a shortened version of the title, separated by hyphens.'
+            'question' => 'How do I scan a QR code?',
+            'answer' => 'To scan a QR code, open the camera on your smartphone and point it at the QR code. Most smartphones will automatically recognize the QR code and provide you with a prompt to open the linked content. If your phone doesn’t recognize QR codes, you can download a QR code scanning app.'
         ],
         [
-            'question' => 'How do slugs affect SEO?',
-            'answer' => 'SEO-friendly slugs are crucial for improving search engine rankings. They provide clear, concise, and relevant information about the page content, which helps search engines index and rank your page better.'
+            'question' => 'Is there a limit to the number of characters in a QR code?',
+            'answer' => 'While there is no strict character limit, larger QR codes containing more information can become more complex and harder to scan. For URLs and text, it is recommended to keep the content concise to ensure better scannability.'
         ],
         [
-            'question' => 'Can I use this tool for any type of text?',
-            'answer' => 'Yes, you can use the Text to Slug Generator for any type of text. Whether it’s a blog post title, product name, or any content that needs a clean URL, this tool can convert it into a perfect slug.'
+            'question' => 'Can I customize the design of my QR code?',
+            'answer' => 'Currently, the tool generates standard QR codes, but you can later customize the design and appearance using third-party QR code editing tools. This includes changing colors, adding logos, and modifying shapes.'
         ],
         [
-            'question' => 'Does the tool handle special characters?',
-            'answer' => 'Yes, the tool automatically removes special characters, spaces, and capital letters, ensuring that the final slug is clean, readable, and suitable for use in URLs.'
+            'question' => 'Is it safe to use the QR Code Generator?',
+            'answer' => 'Yes, Toolzy’s QR Code Generator is completely safe to use. We do not store or track any of the information you enter into the tool. Your QR codes are generated locally on your device and are not shared with any third-party servers.'
         ],
-    ],
-],
-'qr-code-generator' => [
-    'question' => 'What is a QR Code Generator?',
-    'description' => [
-        'A QR Code Generator is a tool that allows you to create QR codes. These are two-dimensional barcodes that can store various types of information, such as website URLs, text, phone numbers, or even Wi-Fi network credentials. QR codes are scannable using smartphones or other QR code readers, making them an efficient and convenient way to share information quickly.',
-        'Toolzy’s QR Code Generator allows you to easily convert any text or URL into a QR code. Whether you need to share a website link, a product, or a contact number, our tool ensures your QR codes are ready for quick and easy scanning.'
-    ],
-'faqs' => [
-    [
-        'question' => 'What can I generate with the QR Code Generator?',
-        'answer' => 'You can generate QR codes for various types of content, including URLs, text, email addresses, phone numbers, and even location coordinates. Simply input the information you want to encode, and our tool will create a scannable QR code for you.'
-    ],
-    [
-        'question' => 'How do I scan a QR code?',
-        'answer' => 'To scan a QR code, open the camera on your smartphone and point it at the QR code. Most smartphones will automatically recognize the QR code and provide you with a prompt to open the linked content. If your phone doesn’t recognize QR codes, you can download a QR code scanning app.'
-    ],
-    [
-        'question' => 'Is there a limit to the number of characters in a QR code?',
-        'answer' => 'While there is no strict character limit, larger QR codes containing more information can become more complex and harder to scan. For URLs and text, it is recommended to keep the content concise to ensure better scannability.'
-    ],
-    [
-        'question' => 'Can I customize the design of my QR code?',
-        'answer' => 'Currently, the tool generates standard QR codes, but you can later customize the design and appearance using third-party QR code editing tools. This includes changing colors, adding logos, and modifying shapes.'
-    ],
-    [
-        'question' => 'Is it safe to use the QR Code Generator?',
-        'answer' => 'Yes, Toolzy’s QR Code Generator is completely safe to use. We do not store or track any of the information you enter into the tool. Your QR codes are generated locally on your device and are not shared with any third-party servers.'
-    ],
-]
-],
-'online-notepad' => [
-'question' => 'What is an Online Notepad?',
-    'description' => [
-        'An Online Notepad is a simple web-based tool that allows users to create, edit, and store text notes directly from their browser. You don’t need to install any software to use it—just open the tool, start writing, and save your notes.',
-        'Toolzy’s Online Notepad makes it easy for you to keep track of important ideas, make lists, and jot down quick reminders without any hassle. With features like auto-save, you can ensure your notes are always ready when you need them.',
-    ],
-    'faqs' => [
-    [
-        'question' => 'Do I need an account to use the Online Notepad?',
-        'answer' => 'No, Toolzy’s Online Notepad does not require an account. You can start writing and saving your notes instantly without the need for sign-up or login.',
-    ],
-    [
-        'question' => 'Can I access my notes from any device?',
-        'answer' => 'Yes, since the Online Notepad is web-based, you can access your notes from any device with an internet connection and a browser. Just open the tool and continue working on your notes.',
-    ],
-    [
-        'question' => 'How do I save my notes?',
-        'answer' => 'You can save your notes directly in the tool. The Online Notepad automatically saves your progress as you write, so you don’t have to worry about losing your work. You can also download your notes as a text file.',
-    ],
-    [
-        'question' => 'Can I format my notes in the Online Notepad?',
-        'answer' => 'The Online Notepad provides a simple text editor for writing your notes. Currently, there are no advanced formatting options, but you can organize your text using basic features like line breaks and lists.',
-    ],
-    [
-        'question' => 'Is the Online Notepad free to use?',
-        'answer' => 'Yes, Toolzy’s Online Notepad is completely free to use. You can write, save, and manage your notes without any cost or subscription.',
-    ],
-],
-],
-'base64-encoder-decoder' => [
-    'question' => 'What is Base64 Encoder and Decoder?',
-    'description' => [
-        'Base64 Encoder and Decoder is a tool that allows you to encode and decode data in Base64 format. Base64 encoding is a way of converting binary data (such as images or files) into an ASCII string using a set of 64 different printable characters.',
-        'This tool is useful when you need to encode binary data into text so it can be easily transmitted over text-based protocols like email or web APIs, or decode Base64 encoded strings back to their original format for further use.'
-    ],
-    'faqs' => [
-        [
-            'question' => 'What is Base64 encoding?',
-            'answer' => 'Base64 encoding is a method used to encode binary data into a text string. It represents binary data as a sequence of ASCII characters, using a set of 64 different characters. It is commonly used for encoding images, files, and other binary data for safe transmission over text-based systems like email or HTTP.'
-        ],
-        [
-            'question' => 'Why should I use Base64 encoding?',
-            'answer' => 'Base64 encoding is typically used when you need to safely transmit binary data over systems that only support text. It ensures that the data is not corrupted or misinterpreted during the transfer process. For example, email systems or URLs may not handle raw binary data well, so Base64 encoding is used to avoid issues.'
-        ],
-        [
-            'question' => 'How do I use the Base64 Encoder and Decoder tool?',
-            'answer' => 'To use the tool, simply paste the data you want to encode or decode into the respective input box. If encoding, click the "Encode" button to convert the data into a Base64 string. If decoding, click the "Decode" button to revert the Base64 string back to its original format.'
-        ],
-        [
-            'question' => 'Can I encode and decode images or files with this tool?',
-            'answer' => 'Yes, you can upload files or paste image data into the tool. The Base64 Encoder and Decoder will then encode or decode the file as needed. This is useful for embedding images directly into HTML, CSS, or JSON payloads.'
-        ],
-        [
-            'question' => 'Is Base64 encoding secure?',
-            'answer' => 'Base64 encoding is not a form of encryption and should not be relied on for securing sensitive information. It simply converts data into a text format for transmission. If security is needed, consider encrypting the data in addition to encoding it.'
-        ],
-    ],
-],
-'url-encoder-decoder' => [
-    'question' => 'What is URL Encoder and Decoder?',
-    'description' => [
-        'A URL encoder and decoder is a tool used to encode and decode text strings for use in URLs. URL encoding replaces non-alphanumeric characters with a special encoding format, making the text safe for use in URLs.',
-        'This tool helps developers by providing a quick way to encode or decode query parameters, path segments, and other URL components. It can be used to ensure that characters like spaces, special symbols, or non-ASCII characters are properly encoded or decoded when transferring data over the internet.'
-    ],
-    'faqs' => [
-        [
-            'question' => 'Why do I need to encode URLs?',
-            'answer' => 'URL encoding is necessary when certain characters like spaces, ampersands, or special symbols need to be used in URLs. It ensures that these characters are correctly interpreted by web browsers and servers without causing errors or confusion.'
-        ],
-        [
-            'question' => 'How do I decode a URL?',
-            'answer' => 'To decode a URL, simply paste the encoded URL string into the decoder input field and click "Decode." The tool will convert percent-encoded characters back into their original form.'
-        ],
-        [
-            'question' => 'What are some common URL encoded characters?',
-            'answer' => 'Some common URL-encoded characters include: "%20" for a space, "%3F" for a question mark, and "%2F" for a forward slash. These characters are replaced with their encoded equivalents to avoid conflicts with the URL structure.'
-        ],
-        [
-            'question' => 'Can this tool handle both encoding and decoding?',
-            'answer' => 'Yes, this tool can both encode and decode URLs. Simply switch between the "Encode" and "Decode" modes to use the tool for your required task.'
-        ],
-        [
-            'question' => 'Is this tool free to use?',
-            'answer' => 'Yes, Toolzy’s URL Encoder and Decoder tool is completely free to use. There are no hidden charges or restrictions.'
-        ]
     ]
-],
-'text-file-merger' => [
-    'question' => 'What is Text File Merger',
-    'description' => [
-        'A Text File Merger is a simple online tool offered by Toolzy that allows users to combine multiple files—such as plain text or code files—into one cohesive document. It’s useful when consolidating data, merging reports, or organizing content from different sources.',
-        'Toolzy’s File Merger tool works entirely in your browser, meaning no installations or registrations are required. You can upload multiple files, and with a single click, generate a downloadable file that merges all of them in order.'
     ],
-    'faqs' => [
+    'online-notepad' => [
+    'question' => 'What is an Online Notepad?',
+        'description' => [
+            'An Online Notepad is a simple web-based tool that allows users to create, edit, and store text notes directly from their browser. You don’t need to install any software to use it—just open the tool, start writing, and save your notes.',
+            'Toolzy’s Online Notepad makes it easy for you to keep track of important ideas, make lists, and jot down quick reminders without any hassle. With features like auto-save, you can ensure your notes are always ready when you need them.',
+        ],
+        'faqs' => [
         [
-            'question' => 'What types of files can I merge with Toolzy’s File Merger?',
-            'answer' => 'Toolzy’s File Merger primarily supports plain text (.txt), code files (like .html, .js, .css), and other UTF-8 encoded files. Binary files like PDFs or images are not supported for merging. Please use Toolzy’s PDF or Image File Merger for that'
+            'question' => 'Do I need an account to use the Online Notepad?',
+            'answer' => 'No, Toolzy’s Online Notepad does not require an account. You can start writing and saving your notes instantly without the need for sign-up or login.',
         ],
         [
-            'question' => 'Is it safe to use this tool for sensitive files?',
-            'answer' => 'Yes, Toolzy’s File Merger runs entirely in your browser and does not upload any files to a server. Your data never leaves your device, ensuring complete privacy and security.'
+            'question' => 'Can I access my notes from any device?',
+            'answer' => 'Yes, since the Online Notepad is web-based, you can access your notes from any device with an internet connection and a browser. Just open the tool and continue working on your notes.',
         ],
         [
-            'question' => 'Can I control the order in which files are merged?',
-            'answer' => 'Yes, the tool lets you upload and rearrange files before merging. The final output reflects the sequence you’ve chosen.'
+            'question' => 'How do I save my notes?',
+            'answer' => 'You can save your notes directly in the tool. The Online Notepad automatically saves your progress as you write, so you don’t have to worry about losing your work. You can also download your notes as a text file.',
         ],
         [
-            'question' => 'Is there a limit to how many files I can merge?',
-            'answer' => 'While there is no strict file limit, performance may vary based on your device and browser. For best results, try merging up to 20 files at a time.'
+            'question' => 'Can I format my notes in the Online Notepad?',
+            'answer' => 'The Online Notepad provides a simple text editor for writing your notes. Currently, there are no advanced formatting options, but you can organize your text using basic features like line breaks and lists.',
         ],
         [
-            'question' => 'What happens after merging the files?',
-            'answer' => 'Once merged, you can download the final combined file instantly as a single text file containing the contents of all uploaded files in the specified order.'
-        ],
-    ],
-],
-'pdf-file-merger' => [
-    'question' => 'What is PDF File Merger?',
-    'description' => [
-        'A PDF File Merger is a tool that allows you to combine multiple PDF documents into a single, organized file. This is especially useful when dealing with multiple reports, invoices, eBooks, or scanned pages that need to be kept together.',
-        'Toolzy’s PDF File Merger is a fast, secure, and easy-to-use solution that works right in your browser. It requires no installation or registration and supports merging multiple PDFs with just a few clicks.'
-    ],
-    'faqs' => [
-        [
-            'question' => 'Is Toolzy’s PDF File Merger free to use?',
-            'answer' => 'Yes, Toolzy’s PDF File Merger is completely free to use. You can merge multiple PDF files online without any cost or watermark.'
-        ],
-        [
-            'question' => 'Is it safe to upload my PDF files?',
-            'answer' => 'Absolutely. Toolzy does not store or access your files. All uploaded PDFs are processed securely and deleted shortly after merging.'
-        ],
-        [
-            'question' => 'How many PDF files can I merge at once?',
-            'answer' => 'You can merge as many PDF files as you like in a single session. Just select all the files you want to combine, and Toolzy will take care of the rest.'
-        ],
-        [
-            'question' => 'Do I need to install any software?',
-            'answer' => 'No installation is required. Toolzy’s PDF File Merger works entirely online through your web browser on desktop or mobile devices.'
-        ],
-        [
-            'question' => 'Will the order of PDF files be maintained?',
-            'answer' => 'Yes, Toolzy merges PDF files in the exact order you upload or arrange them. You can drag and drop files to rearrange their sequence before merging.'
+            'question' => 'Is the Online Notepad free to use?',
+            'answer' => 'Yes, Toolzy’s Online Notepad is completely free to use. You can write, save, and manage your notes without any cost or subscription.',
         ],
     ],
-],
-'image-converter' => [
-    'question' => 'What is Image Converter by Toolzy',
-    'description' => [
-        'Toolzy’s Image Converter is a simple yet powerful online tool that allows you to convert image files from one format to another effortlessly. Whether you need to convert JPG to PNG, PNG to WebP, or any other combination, this tool makes it easy and fast.',
-        'You can choose from popular formats like JPG, PNG, WebP, BMP, and more. The tool works directly in your browser without requiring installation or registration, ensuring privacy and efficiency for your file conversions.'
     ],
-    'faqs' => [
-        [
-            'question' => 'Which image formats are supported by Toolzy’s Image Converter?',
-            'answer' => 'Toolzy’s Image Converter currently supports JPG, PNG, WebP, BMP, and GIF formats. We plan to add more formats based on user demand.'
+    'base64-encoder-decoder' => [
+        'question' => 'What is Base64 Encoder and Decoder?',
+        'description' => [
+            'Base64 Encoder and Decoder is a tool that allows you to encode and decode data in Base64 format. Base64 encoding is a way of converting binary data (such as images or files) into an ASCII string using a set of 64 different printable characters.',
+            'This tool is useful when you need to encode binary data into text so it can be easily transmitted over text-based protocols like email or web APIs, or decode Base64 encoded strings back to their original format for further use.'
         ],
-        [
-            'question' => 'Is it safe to convert images using Toolzy?',
-            'answer' => 'Yes, it is completely safe. All conversions happen in your browser, and no images are uploaded to any server, ensuring your privacy is protected.'
-        ],
-        [
-            'question' => 'Do I need to install any software?',
-            'answer' => 'No installation is needed. Toolzy’s Image Converter is fully browser-based and works on desktop, tablet, and mobile devices.'
-        ],
-        [
-            'question' => 'Can I convert multiple images at once?',
-            'answer' => 'Currently, the tool supports converting one image at a time to keep things simple and fast. Batch conversion support may be added in future updates.'
-        ],
-        [
-            'question' => 'Will the image quality be affected after conversion?',
-            'answer' => 'Toolzy’s Image Converter preserves the original quality as much as possible during conversion. Some formats may allow optional compression in future versions.'
-        ],
-    ],
-],
-'pdf-converter' => [
-    'question' => 'What is PDF Converter?',
-    'description' => [
-        'Toolzy’s PDF Converter is a versatile online tool that allows you to convert PDF files to various formats and vice versa. Whether you want to turn a JPG image into a PDF, convert a PDF into editable Word or Excel documents, or extract images from a PDF, this tool makes it fast, secure, and easy.',
-        'With support for multiple file types, Toolzy’s PDF Converter is ideal for students, professionals, and anyone who frequently works with digital documents. No software installation is required — just upload, convert, and download your file in seconds.'
-    ],
-    'faqs' => [
-        [
-            'question' => 'What file types can I convert using this PDF Converter?',
-            'answer' => 'You can convert PDFs to JPG, PNG, Word (DOCX), Excel (XLSX), and vice versa. Toolzy is constantly expanding its features to support more file formats in the future.'
-        ],
-        [
-            'question' => 'Is it safe to upload my documents to Toolzy?',
-            'answer' => 'Yes, Toolzy prioritizes user privacy. Your uploaded files are never stored permanently and are deleted shortly after conversion to ensure your data stays secure.'
-        ],
-        [
-            'question' => 'Do I need to install any software?',
-            'answer' => 'No, Toolzy’s PDF Converter is entirely web-based. You don’t need to download or install anything. Just visit the page, upload your file, and convert it instantly.'
-        ],
-        [
-            'question' => 'Can I convert multiple PDFs at once?',
-            'answer' => 'Currently, Toolzy supports one file per conversion to keep things simple and fast. However, batch conversion support is coming soon.'
-        ],
-        [
-            'question' => 'Is this tool free to use?',
-            'answer' => 'Yes, Toolzy’s PDF Converter is completely free with no hidden costs. You can use it as many times as you need without signing up.'
+        'faqs' => [
+            [
+                'question' => 'What is Base64 encoding?',
+                'answer' => 'Base64 encoding is a method used to encode binary data into a text string. It represents binary data as a sequence of ASCII characters, using a set of 64 different characters. It is commonly used for encoding images, files, and other binary data for safe transmission over text-based systems like email or HTTP.'
+            ],
+            [
+                'question' => 'Why should I use Base64 encoding?',
+                'answer' => 'Base64 encoding is typically used when you need to safely transmit binary data over systems that only support text. It ensures that the data is not corrupted or misinterpreted during the transfer process. For example, email systems or URLs may not handle raw binary data well, so Base64 encoding is used to avoid issues.'
+            ],
+            [
+                'question' => 'How do I use the Base64 Encoder and Decoder tool?',
+                'answer' => 'To use the tool, simply paste the data you want to encode or decode into the respective input box. If encoding, click the "Encode" button to convert the data into a Base64 string. If decoding, click the "Decode" button to revert the Base64 string back to its original format.'
+            ],
+            [
+                'question' => 'Can I encode and decode images or files with this tool?',
+                'answer' => 'Yes, you can upload files or paste image data into the tool. The Base64 Encoder and Decoder will then encode or decode the file as needed. This is useful for embedding images directly into HTML, CSS, or JSON payloads.'
+            ],
+            [
+                'question' => 'Is Base64 encoding secure?',
+                'answer' => 'Base64 encoding is not a form of encryption and should not be relied on for securing sensitive information. It simply converts data into a text format for transmission. If security is needed, consider encrypting the data in addition to encoding it.'
+            ],
         ],
     ],
-],
-'image-compressor' => [
-    'question' => 'What is an Image Compressor?',
-    'description' => [
-        'An image compressor is a tool that reduces the file size of images without significantly affecting their quality. Compressing images helps in faster web page loading, saving storage space, and making image uploads more efficient.',
-        'Toolzy’s Image Compressor allows you to upload multiple images at once and choose your preferred compression target (like 50KB, 100KB, etc.). It supports popular image formats like JPG, PNG, and WebP, and is perfect for optimizing images for websites, emails, and mobile devices.'
+    'url-encoder-decoder' => [
+        'question' => 'What is URL Encoder and Decoder?',
+        'description' => [
+            'A URL encoder and decoder is a tool used to encode and decode text strings for use in URLs. URL encoding replaces non-alphanumeric characters with a special encoding format, making the text safe for use in URLs.',
+            'This tool helps developers by providing a quick way to encode or decode query parameters, path segments, and other URL components. It can be used to ensure that characters like spaces, special symbols, or non-ASCII characters are properly encoded or decoded when transferring data over the internet.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Why do I need to encode URLs?',
+                'answer' => 'URL encoding is necessary when certain characters like spaces, ampersands, or special symbols need to be used in URLs. It ensures that these characters are correctly interpreted by web browsers and servers without causing errors or confusion.'
+            ],
+            [
+                'question' => 'How do I decode a URL?',
+                'answer' => 'To decode a URL, simply paste the encoded URL string into the decoder input field and click "Decode." The tool will convert percent-encoded characters back into their original form.'
+            ],
+            [
+                'question' => 'What are some common URL encoded characters?',
+                'answer' => 'Some common URL-encoded characters include: "%20" for a space, "%3F" for a question mark, and "%2F" for a forward slash. These characters are replaced with their encoded equivalents to avoid conflicts with the URL structure.'
+            ],
+            [
+                'question' => 'Can this tool handle both encoding and decoding?',
+                'answer' => 'Yes, this tool can both encode and decode URLs. Simply switch between the "Encode" and "Decode" modes to use the tool for your required task.'
+            ],
+            [
+                'question' => 'Is this tool free to use?',
+                'answer' => 'Yes, Toolzy’s URL Encoder and Decoder tool is completely free to use. There are no hidden charges or restrictions.'
+            ]
+        ]
     ],
-    'faqs' => [
-        [
-            'question' => 'Why should I compress my images?',
-            'answer' => 'Compressing images reduces their file size, which improves website speed, reduces bandwidth usage, and saves storage space on your devices or servers.'
+    'text-file-merger' => [
+        'question' => 'What is Text File Merger',
+        'description' => [
+            'A Text File Merger is a simple online tool offered by Toolzy that allows users to combine multiple files—such as plain text or code files—into one cohesive document. It’s useful when consolidating data, merging reports, or organizing content from different sources.',
+            'Toolzy’s File Merger tool works entirely in your browser, meaning no installations or registrations are required. You can upload multiple files, and with a single click, generate a downloadable file that merges all of them in order.'
         ],
-        [
-            'question' => 'Does Toolzy reduce image quality while compressing?',
-            'answer' => 'Toolzy’s Image Compressor uses smart algorithms to minimize file size while retaining as much image quality as possible. In most cases, the visual difference is negligible.'
-        ],
-        [
-            'question' => 'What image formats are supported?',
-            'answer' => 'You can compress images in JPG, JPEG, PNG, and WebP formats using Toolzy’s Image Compressor.'
-        ],
-        [
-            'question' => 'Can I compress multiple images at once?',
-            'answer' => 'Yes, Toolzy allows you to upload and compress multiple images simultaneously, saving you time and effort.'
-        ],
-        [
-            'question' => 'Can I set a specific target file size?',
-            'answer' => 'Yes, Toolzy lets you select a desired output size, such as 50KB, 100KB, 500KB, or even up to 5MB, depending on your needs.'
+        'faqs' => [
+            [
+                'question' => 'What types of files can I merge with Toolzy’s File Merger?',
+                'answer' => 'Toolzy’s File Merger primarily supports plain text (.txt), code files (like .html, .js, .css), and other UTF-8 encoded files. Binary files like PDFs or images are not supported for merging. Please use Toolzy’s PDF or Image File Merger for that'
+            ],
+            [
+                'question' => 'Is it safe to use this tool for sensitive files?',
+                'answer' => 'Yes, Toolzy’s File Merger runs entirely in your browser and does not upload any files to a server. Your data never leaves your device, ensuring complete privacy and security.'
+            ],
+            [
+                'question' => 'Can I control the order in which files are merged?',
+                'answer' => 'Yes, the tool lets you upload and rearrange files before merging. The final output reflects the sequence you’ve chosen.'
+            ],
+            [
+                'question' => 'Is there a limit to how many files I can merge?',
+                'answer' => 'While there is no strict file limit, performance may vary based on your device and browser. For best results, try merging up to 20 files at a time.'
+            ],
+            [
+                'question' => 'What happens after merging the files?',
+                'answer' => 'Once merged, you can download the final combined file instantly as a single text file containing the contents of all uploaded files in the specified order.'
+            ],
         ],
     ],
-],
+    'pdf-file-merger' => [
+        'question' => 'What is PDF File Merger?',
+        'description' => [
+            'A PDF File Merger is a tool that allows you to combine multiple PDF documents into a single, organized file. This is especially useful when dealing with multiple reports, invoices, eBooks, or scanned pages that need to be kept together.',
+            'Toolzy’s PDF File Merger is a fast, secure, and easy-to-use solution that works right in your browser. It requires no installation or registration and supports merging multiple PDFs with just a few clicks.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Is Toolzy’s PDF File Merger free to use?',
+                'answer' => 'Yes, Toolzy’s PDF File Merger is completely free to use. You can merge multiple PDF files online without any cost or watermark.'
+            ],
+            [
+                'question' => 'Is it safe to upload my PDF files?',
+                'answer' => 'Absolutely. Toolzy does not store or access your files. All uploaded PDFs are processed securely and deleted shortly after merging.'
+            ],
+            [
+                'question' => 'How many PDF files can I merge at once?',
+                'answer' => 'You can merge as many PDF files as you like in a single session. Just select all the files you want to combine, and Toolzy will take care of the rest.'
+            ],
+            [
+                'question' => 'Do I need to install any software?',
+                'answer' => 'No installation is required. Toolzy’s PDF File Merger works entirely online through your web browser on desktop or mobile devices.'
+            ],
+            [
+                'question' => 'Will the order of PDF files be maintained?',
+                'answer' => 'Yes, Toolzy merges PDF files in the exact order you upload or arrange them. You can drag and drop files to rearrange their sequence before merging.'
+            ],
+        ],
+    ],
+    'image-converter' => [
+        'question' => 'What is Image Converter by Toolzy',
+        'description' => [
+            'Toolzy’s Image Converter is a simple yet powerful online tool that allows you to convert image files from one format to another effortlessly. Whether you need to convert JPG to PNG, PNG to WebP, or any other combination, this tool makes it easy and fast.',
+            'You can choose from popular formats like JPG, PNG, WebP, BMP, and more. The tool works directly in your browser without requiring installation or registration, ensuring privacy and efficiency for your file conversions.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Which image formats are supported by Toolzy’s Image Converter?',
+                'answer' => 'Toolzy’s Image Converter currently supports JPG, PNG, WebP, BMP, and GIF formats. We plan to add more formats based on user demand.'
+            ],
+            [
+                'question' => 'Is it safe to convert images using Toolzy?',
+                'answer' => 'Yes, it is completely safe. All conversions happen in your browser, and no images are uploaded to any server, ensuring your privacy is protected.'
+            ],
+            [
+                'question' => 'Do I need to install any software?',
+                'answer' => 'No installation is needed. Toolzy’s Image Converter is fully browser-based and works on desktop, tablet, and mobile devices.'
+            ],
+            [
+                'question' => 'Can I convert multiple images at once?',
+                'answer' => 'Currently, the tool supports converting one image at a time to keep things simple and fast. Batch conversion support may be added in future updates.'
+            ],
+            [
+                'question' => 'Will the image quality be affected after conversion?',
+                'answer' => 'Toolzy’s Image Converter preserves the original quality as much as possible during conversion. Some formats may allow optional compression in future versions.'
+            ],
+        ],
+    ],
+    'pdf-converter' => [
+        'question' => 'What is PDF Converter?',
+        'description' => [
+            'Toolzy’s PDF Converter is a versatile online tool that allows you to convert PDF files to various formats and vice versa. Whether you want to turn a JPG image into a PDF, convert a PDF into editable Word or Excel documents, or extract images from a PDF, this tool makes it fast, secure, and easy.',
+            'With support for multiple file types, Toolzy’s PDF Converter is ideal for students, professionals, and anyone who frequently works with digital documents. No software installation is required — just upload, convert, and download your file in seconds.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What file types can I convert using this PDF Converter?',
+                'answer' => 'You can convert PDFs to JPG, PNG, Word (DOCX), Excel (XLSX), and vice versa. Toolzy is constantly expanding its features to support more file formats in the future.'
+            ],
+            [
+                'question' => 'Is it safe to upload my documents to Toolzy?',
+                'answer' => 'Yes, Toolzy prioritizes user privacy. Your uploaded files are never stored permanently and are deleted shortly after conversion to ensure your data stays secure.'
+            ],
+            [
+                'question' => 'Do I need to install any software?',
+                'answer' => 'No, Toolzy’s PDF Converter is entirely web-based. You don’t need to download or install anything. Just visit the page, upload your file, and convert it instantly.'
+            ],
+            [
+                'question' => 'Can I convert multiple PDFs at once?',
+                'answer' => 'Currently, Toolzy supports one file per conversion to keep things simple and fast. However, batch conversion support is coming soon.'
+            ],
+            [
+                'question' => 'Is this tool free to use?',
+                'answer' => 'Yes, Toolzy’s PDF Converter is completely free with no hidden costs. You can use it as many times as you need without signing up.'
+            ],
+        ],
+    ],
+    'image-compressor' => [
+        'question' => 'What is an Image Compressor?',
+        'description' => [
+            'An image compressor is a tool that reduces the file size of images without significantly affecting their quality. Compressing images helps in faster web page loading, saving storage space, and making image uploads more efficient.',
+            'Toolzy’s Image Compressor allows you to upload multiple images at once and choose your preferred compression target (like 50KB, 100KB, etc.). It supports popular image formats like JPG, PNG, and WebP, and is perfect for optimizing images for websites, emails, and mobile devices.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Why should I compress my images?',
+                'answer' => 'Compressing images reduces their file size, which improves website speed, reduces bandwidth usage, and saves storage space on your devices or servers.'
+            ],
+            [
+                'question' => 'Does Toolzy reduce image quality while compressing?',
+                'answer' => 'Toolzy’s Image Compressor uses smart algorithms to minimize file size while retaining as much image quality as possible. In most cases, the visual difference is negligible.'
+            ],
+            [
+                'question' => 'What image formats are supported?',
+                'answer' => 'You can compress images in JPG, JPEG, PNG, and WebP formats using Toolzy’s Image Compressor.'
+            ],
+            [
+                'question' => 'Can I compress multiple images at once?',
+                'answer' => 'Yes, Toolzy allows you to upload and compress multiple images simultaneously, saving you time and effort.'
+            ],
+            [
+                'question' => 'Can I set a specific target file size?',
+                'answer' => 'Yes, Toolzy lets you select a desired output size, such as 50KB, 100KB, 500KB, or even up to 5MB, depending on your needs.'
+            ],
+        ],
+    ],
 
 ];

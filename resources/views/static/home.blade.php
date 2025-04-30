@@ -1,6 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="bg-light py-5" style="background: linear-gradient(120deg, #cce7ff, #e6f7ff);">
+<div class="container text-center">
+        <h1 class="display-5 fw-bold mb-3" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Welcome to Toolzy</h1>
+        <p class="lead text-muted" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
+        <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">
+            <i class="bi bi-search"></i> Explore Tools
+        </a>
+    </div>
+</div>
+<div class="bg-light py-5" style="background: linear-gradient(120deg, #f0f8ff, #e6f7ff);">
+    <div class="container text-center">
+        <h1 class="display-5 fw-bold mb-3" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Welcome to Toolzy</h1>
+        <p class="lead text-muted" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
+        <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">
+            <i class="bi bi-search"></i> Explore Tools
+        </a>
+    </div>
+</div>
 <div class="bg-light py-5">
     <div class="container text-center">
         <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy</h1> {{-- current line --}}
@@ -8,7 +26,6 @@
         <a href="#tools" class="btn btn-primary btn-lg mt-3">Explore Tools</a> {{-- current line --}}
     </div>
 </div>
-
 <div class="py-5" id="tools">
     <div class="container">
         <h2 class="text-center mb-4">Popular Tools</h2>
@@ -38,48 +55,89 @@
             </div>
             @endforeach
         </div>
-
         {{-- Pagination --}}
         <div class="d-flex justify-content-center mt-4">
-            {{ $tools->links() }}
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item {{ $tools->onFirstPage() ? 'disabled' : '' }}">
+                        <a class="page-link" href="{{ $tools->previousPageUrl() }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    @for ($i = 1; $i <= $tools->lastPage(); $i++)
+                        <li class="page-item {{ $tools->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $tools->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @endfor
+                    <li class="page-item {{ $tools->hasMorePages() ? '' : 'disabled' }}">
+                        <a class="page-link" href="{{ $tools->nextPageUrl() }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
 
-<div class="bg-primary text-white py-5">
+<!-- Why Choose Toolzy Section -->
+<section class="bg-primary text-white py-5">
     <div class="container text-center">
-        <h3 class="mb-3">Why Choose Toolzy?</h3>
-        <p class="mb-4">We believe in simplicity, privacy, and unlimited access to tools that just work — no ads, no tracking.</p>
-        <div class="row justify-content-center">
-            <div class="col-md-3">
-                <div class="mb-3">
-                    <i class="bi bi-lightning-charge-fill fs-1"></i>
-                    <h5 class="mt-2">Fast</h5>
-                    <p>Tools that run instantly without waiting or loading bars.</p>
+        <h2 class="fw-bold mb-3">Why Choose Toolzy?</h2>
+        <p class="lead mb-5">We believe in simplicity, privacy, and unlimited access to tools that just work + no ads, no tracking.</p>
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4 col-sm-6">
+                <div class="bg-white bg-opacity-10 p-4 rounded-4 h-100 shadow-sm transition">
+                    <div class="mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                            <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41z"/>
+                        </svg>
+                    </div>
+                    <h5 class="fw-semibold">Fast</h5>
+                    <p class="mb-0 small">Instant tools that get the job done without delay.</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="mb-3">
-                    <i class="bi bi-shield-lock-fill fs-1"></i>
-                    <h5 class="mt-2">Secure</h5>
-                    <p>No data tracking, no cookies, your input stays with you.</p>
+            <div class="col-md-4 col-sm-6">
+                <div class="bg-white bg-opacity-10 p-4 rounded-4 h-100 shadow-sm transition">
+                    <div class="mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-shield-lock" viewBox="0 0 16 16">
+                            <path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+                            <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415"/>
+                        </svg>
+                    </div>
+                    <h5 class="fw-semibold">Secure</h5>
+                    <p class="mb-0 small">Your data stays with you. No tracking. No cookies.</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="mb-3">
-                    <i class="bi bi-gem fs-1"></i>
-                    <h5 class="mt-2">Free Forever</h5>
-                    <p>No subscriptions. Every tool is 100% free to use.</p>
+            <div class="col-md-4 col-sm-6">
+                <div class="bg-white bg-opacity-10 p-4 rounded-4 h-100 shadow-sm transition">
+                    <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-infinity" viewBox="0 0 16 16">
+                        <path d="M5.68 5.792 7.345 7.75 5.681 9.708a2.75 2.75 0 1 1 0-3.916ZM8 6.978 6.416 5.113l-.014-.015a3.75 3.75 0 1 0 0 5.304l.014-.015L8 8.522l1.584 1.865.014.015a3.75 3.75 0 1 0 0-5.304l-.014.015zm.656.772 1.663-1.958a2.75 2.75 0 1 1 0 3.916z"/>
+                    </svg>
+                    </div>
+                    <h5 class="fw-semibold">Free Forever</h5>
+                    <p class="mb-0 small">All tools are 100% free. No signups or subscriptions ever.</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="py-5 bg-light">
+<!-- Closing Message Section -->
+<section class="py-5 bg-light">
     <div class="container text-center">
-        <p class="mb-1">🚀 Built with love by developers who care about simplicity.</p>
+        <p class="fs-5 mb-1">🚀 Built with ❤️ by developers who care about simplicity.</p>
         <small class="text-muted">More tools launching soon — stay tuned!</small>
     </div>
-</div>
+</section>
+
 @endsection
+@push('scripts')
+<script>
+    document.querySelector('#explore-tools-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+@endpush
