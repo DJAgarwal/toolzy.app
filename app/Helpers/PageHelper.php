@@ -35,22 +35,38 @@ class PageHelper
             'name' => 'Home',
             'item' => url('/')
         ];
-
-        $path = '';
-        foreach ($segments as $index => $segment) {
-            $path .= '/' . $segment;
-            $name = match ($segment) {
-                'about' => 'About Us',
-                'contact' => 'Contact',
-                default => ucwords(str_replace('-', ' ', $segment)),
-            };
-
+        
+        // If it's a tool, add "Tools" as part of the breadcrumb
+        if (isset($page_type) && $page_type === 'tools' && $metadata) {
             $breadcrumbs[] = [
                 '@type' => 'ListItem',
-                'position' => $index + 2,
-                'name' => $name,
-                'item' => url($path),
+                'position' => 2,
+                'name' => 'Tools',
+                'item' => url('/tools'),
             ];
+        
+            $breadcrumbs[] = [
+                '@type' => 'ListItem',
+                'position' => 3,
+                'name' => ucwords(str_replace('-', ' ', $metadata->page_name)),
+                'item' => url("/tools/{$metadata->page_name}"),
+            ];
+        } else {
+            $path = '';
+            foreach ($segments as $index => $segment) {
+                $path .= '/' . $segment;
+                $name = match ($segment) {
+                    'about' => 'About Us',
+                    'contact' => 'Contact',
+                    default => ucwords(str_replace('-', ' ', $segment)),
+                };
+                $breadcrumbs[] = [
+                    '@type' => 'ListItem',
+                    'position' => $index + 2,
+                    'name' => $name,
+                    'item' => url($path),
+                ];
+            }
         }
 
         $breadcrumbSchema = [

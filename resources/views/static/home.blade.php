@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<!-- <div class="bg-light py-5" style="background: linear-gradient(120deg, #f0f8ff, #e6f7ff);"> -->
+<!-- <div class="bg-light py-5"> -->
 <div class="bg-light py-5" style="background: linear-gradient(120deg, #cce7ff, #e6f7ff);">
 <div class="container text-center">
         <h1 class="display-5 fw-bold mb-3" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Welcome to Toolzy</h1>
@@ -8,22 +10,6 @@
         <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">
             <i class="bi bi-search"></i> Explore Tools
         </a>
-    </div>
-</div>
-<div class="bg-light py-5" style="background: linear-gradient(120deg, #f0f8ff, #e6f7ff);">
-    <div class="container text-center">
-        <h1 class="display-5 fw-bold mb-3" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Welcome to Toolzy</h1>
-        <p class="lead text-muted" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
-        <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">
-            <i class="bi bi-search"></i> Explore Tools
-        </a>
-    </div>
-</div>
-<div class="bg-light py-5">
-    <div class="container text-center">
-        <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy</h1> {{-- current line --}}
-        <p class="lead text-muted">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p> {{-- current line --}}
-        <a href="#tools" class="btn btn-primary btn-lg mt-3">Explore Tools</a> {{-- current line --}}
     </div>
 </div>
 <div class="py-5" id="tools">
@@ -136,8 +122,22 @@
 @push('scripts')
 <script>
     document.querySelector('#explore-tools-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
-});
+        e.preventDefault();
+        document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
+    });
+    window.onload = function() {
+        // Check if search query exists in the URL or if the page is not the first page
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        const page = urlParams.get('page');
+
+        // If there is a search query or pagination, scroll to the tools section
+        if (searchQuery || page) {
+            const toolsSection = document.getElementById('tools');
+            if (toolsSection) {
+                toolsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 </script>
 @endpush

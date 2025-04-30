@@ -71,6 +71,9 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="{{ url('/tools') }}">More Tools</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="{{ url('/contact') }}">Request Tool</a>
+                    </li>
                     </ul>
                 </div>
             </div>
