@@ -16,7 +16,10 @@
 
                     <div class="mb-4">
                         <label for="slugOutput" class="form-label fw-semibold">Generated Slug:</label>
-                        <input type="text" class="form-control" id="slugOutput" readonly />
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="slugOutput" readonly />
+                            <button class="btn btn-outline-secondary" type="button" onclick="copySlug()">Copy</button>
+                        </div>
                     </div>
 
                     <div class="d-grid">
@@ -41,16 +44,43 @@
 @push('scripts')
 <script>
 function generateSlug() {
-    var textInput = document.getElementById('textInput').value;
-    
-    // Replace spaces with hyphens and convert to lowercase
-    var slug = textInput.trim()
-                        .replace(/\s+/g, '-')
-                        .replace(/[^\w-]+/g, '')  // Remove special characters
-                        .toLowerCase();
+    const input = document.getElementById('textInput').value.trim();
 
-    // Set the generated slug to the output field
+    if (!input) {
+        showToast("Please enter some text to generate slug.", "danger");
+        return;
+    }
+
+    const slug = input
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '')
+        .toLowerCase();
+
     document.getElementById('slugOutput').value = slug;
+}
+
+function copySlug() {
+    const slugField = document.getElementById('slugOutput');
+    if (!slugField.value) {
+        showToast("Nothing to copy!", "danger");
+        return;
+    }
+
+    slugField.select();
+    slugField.setSelectionRange(0, 99999); // For mobile
+    navigator.clipboard.writeText(slugField.value).then(() => {
+        showToast("Slug copied to clipboard!", "success");
+    });
+}
+function showToast(message, type = "success") {
+    const toastEl = document.getElementById("mainToast");
+    const toastBody = document.getElementById("mainToastBody");
+
+    toastBody.textContent = message;
+    toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
+
+    const bsToast = new bootstrap.Toast(toastEl);
+    bsToast.show();
 }
 </script>
 @endpush

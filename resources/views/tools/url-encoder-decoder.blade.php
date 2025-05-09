@@ -9,47 +9,57 @@
             <div class="card shadow-lg border-0">
                 <div class="card-body p-4">
 
-                    <!-- URL Encoding Section -->
                     <div class="mb-4">
-                        <h5 class="fw-semibold">URL Encoder</h5>
-                        <textarea class="form-control" id="encodeInput" rows="4" placeholder="Enter text to encode..."></textarea>
-                        <button class="btn btn-primary mt-3" onclick="encodeURL()">Encode</button>
-                        <div class="mt-3">
-                            <label for="encodedOutput" class="form-label fw-semibold">Encoded Output:</label>
-                            <textarea class="form-control" id="encodedOutput" rows="4" readonly></textarea>
-                        </div>
+                        <label for="mainInput" class="form-label fw-semibold">Enter Text:</label>
+                        <textarea class="form-control" id="mainInput" rows="5" placeholder="Type or paste your text here..."></textarea>
                     </div>
 
-                    <!-- URL Decoding Section -->
-                    <div class="mb-4">
-                        <h5 class="fw-semibold">URL Decoder</h5>
-                        <textarea class="form-control" id="decodeInput" rows="4" placeholder="Enter URL encoded text..."></textarea>
-                        <button class="btn btn-primary mt-3" onclick="decodeURL()">Decode</button>
-                        <div class="mt-3">
-                            <label for="decodedOutput" class="form-label fw-semibold">Decoded Output:</label>
-                            <textarea class="form-control" id="decodedOutput" rows="4" readonly></textarea>
-                        </div>
+                    <div class="d-flex justify-content-between gap-3">
+                        <button class="btn btn-primary w-100" onclick="encodeText()">Encode</button>
+                        <button class="btn btn-secondary w-100" onclick="decodeText()">Decode</button>
+                        <button class="btn btn-outline-dark w-100" onclick="copyText()">Copy</button>
                     </div>
 
                 </div>
             </div>
         </div>
     </div>
+    <section class="my-5">
+        @include('components.what-is')
+    </section>
+    <section class="my-5">
+        @include('components.faq')
+    </section>
 </div>
 @endsection
 
 @push('scripts')
 <script>
-    function encodeURL() {
-        const input = document.getElementById('encodeInput').value;
-        const encoded = encodeURIComponent(input); // URL Encoding
-        document.getElementById('encodedOutput').value = encoded;
+    function encodeText() {
+        const inputField = document.getElementById('mainInput');
+        inputField.value = encodeURIComponent(inputField.value);
     }
 
-    function decodeURL() {
-        const input = document.getElementById('decodeInput').value;
-        const decoded = decodeURIComponent(input); // URL Decoding
-        document.getElementById('decodedOutput').value = decoded;
+    function decodeText() {
+        const inputField = document.getElementById('mainInput');
+        try {
+            inputField.value = decodeURIComponent(inputField.value);
+        } catch (e) {
+            alert('Invalid URL-encoded input!');
+        }
+    }
+
+    function copyText() {
+        const inputField = document.getElementById('mainInput');
+        if (!inputField.value) {
+            showToast("Nothing to copy!", "danger");
+            return;
+        }
+        inputField.select();
+        inputField.setSelectionRange(0, 99999); // For mobile devices
+        navigator.clipboard.writeText(inputField.value).then(() => {
+            showToast("URL copied to clipboard!", "success");
+        });
     }
 </script>
 @endpush
