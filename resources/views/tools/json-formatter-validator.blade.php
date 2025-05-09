@@ -14,6 +14,10 @@
                         <label for="jsonInput" class="form-label fw-semibold">Enter JSON Data:</label>
                         <textarea class="form-control" id="jsonInput" rows="10" placeholder="Paste your JSON data here..."></textarea>
                     </div>
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label fw-semibold">Or Upload JSON File:</label>
+                        <input type="file" id="fileUpload" class="form-control" accept=".json" onchange="uploadFile()">
+                    </div>
 
                     <!-- Buttons -->
                     <div class="mb-3 d-flex flex-wrap gap-2">
@@ -23,6 +27,7 @@
                         <button class="btn btn-secondary" onclick="copyJSON()">Copy</button>
                         <button class="btn btn-danger" onclick="clearJSON()">Clear</button>
                         <button class="btn btn-info" onclick="loadExample()">Load Example</button>
+                        <button class="btn btn-success" onclick="downloadFile()">Download JSON</button>
                     </div>
 
                     <!-- Result Section -->
@@ -35,11 +40,59 @@
             </div>
         </div>
     </div>
+    <section class="my-5">
+        @include('components.what-is')
+    </section>
+    <section class="my-5">
+        @include('components.faq')
+    </section>
 </div>
 @endsection
 
 @push('scripts')
 <script>
+    function uploadFile() {
+    const fileInput = document.getElementById('fileUpload');
+    const file = fileInput.files[0];
+
+    if (file && file.type === 'application/json') {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const fileContent = event.target.result;
+            try {
+                const json = JSON.parse(fileContent);
+                document.getElementById('jsonInput').value = JSON.stringify(json, null, 2); // Format JSON for better readability
+                toastr.success('File successfully uploaded.');
+            } catch (e) {
+                toastr.error('Invalid JSON file.');
+            }
+        };
+        reader.readAsText(file);
+    } else {
+        toastr.error('Please upload a valid JSON file.');
+    }
+}
+function downloadFile() {
+    const jsonContent = document.getElementById('jsonInput').value;
+    try {
+        // Parse to ensure it's valid JSON
+        const json = JSON.parse(jsonContent);
+
+        // Create a Blob from JSON content
+        const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+
+        // Create a link element and trigger the download
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'formatted-json.json'; // The name of the downloaded file
+        a.click();
+
+        toastr.success('File downloaded successfully.');
+    } catch (e) {
+        toastr.error('Invalid JSON data, cannot download.');
+    }
+}
+
     function formatJSON() {
         const input = document.getElementById('jsonInput').value;
         try {
