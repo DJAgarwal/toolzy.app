@@ -27,10 +27,13 @@
             </div>
         </div>
     </div>
+    <section class="my-5">
+        @include('components.what-is')
+    </section>
 
     <!-- FAQs Section -->
     <section class="my-5">
-        @include('components.faq', ['tool' => $tool])
+        @include('components.faq')
     </section>
 </div>
 @endsection

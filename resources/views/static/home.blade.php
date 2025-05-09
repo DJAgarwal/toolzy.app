@@ -117,7 +117,6 @@
         <small class="text-muted">More tools launching soon — stay tuned!</small>
     </div>
 </section>
-
 @endsection
 @push('scripts')
 <script>

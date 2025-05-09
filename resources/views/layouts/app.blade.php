@@ -72,7 +72,7 @@
                         <a class="nav-link fs-5" href="{{ url('/tools') }}">More Tools</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/contact') }}">Request Tool</a>
+                        <a class="nav-link fs-5" href="{{ url('/contact') }}">Request a Tool</a>
                     </li>
                     </ul>
                 </div>
@@ -135,15 +135,28 @@
             </div>
         </div>
     </footer>
-
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+        <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="toastBody">
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
     {{-- Bootstrap Bundle JS --}}
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script>
-    document.querySelector('#explore-tools-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
-});
-</script>
+        function showToast(message, type = 'success') {
+            const toastEl = document.getElementById('liveToast');
+            const toastBody = document.getElementById('toastBody');
+            toastBody.textContent = message;
+            toastEl.classList.remove('bg-success', 'bg-danger', 'bg-info', 'bg-warning');
+            toastEl.classList.add(`bg-${type}`);
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    </script>
 </body>
 </html>

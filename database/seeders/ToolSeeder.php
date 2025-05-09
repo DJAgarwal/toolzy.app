@@ -106,7 +106,7 @@ class ToolSeeder extends Seeder
             ],
             [
                 'page_name' => 'base64-encoder-decoder',
-                'category' => 'Developer Tools',
+                'category' => 'Developer & SEO Tools',
                 'meta_title' => 'Online Base64 Encoder and Decoder - Toolzy',
                 'meta_description' => 'Easily encode and decode Base64 with Toolzy’s free online Base64 Encoder and Decoder. Quickly convert text and files to Base64 and vice versa for secure transmission and storage.',
                 'json_ld' => json_encode([
@@ -120,7 +120,7 @@ class ToolSeeder extends Seeder
                         
             [
                 'page_name' => 'json-formatter-validator',
-                'category' => 'Developer Tools',
+                'category' => 'Developer & SEO Tools',
                 'meta_title' => 'Online JSON Formatter and Validator - Toolzy',
                 'meta_description' => 'Toolzy’s JSON Formatter and Validator helps you format and validate JSON data instantly. Ensure your JSON is properly structured and error-free with this easy-to-use online tool.',
                 'json_ld' => json_encode([
@@ -173,7 +173,7 @@ class ToolSeeder extends Seeder
             ], 
             [
                 'page_name' => 'url-encoder-decoder',
-                'category' => 'Developer Tools',
+                'category' => 'Developer & SEO Tools',
                 'meta_title' => 'Online URL Encoder and Decoder - Toolzy',
                 'meta_description' => 'Easily encode and decode URLs with Toolzy’s free online URL Encoder and Decoder tool. Simplify URL encoding and decoding for your web development needs.',
                 'json_ld' => json_encode([
@@ -187,7 +187,7 @@ class ToolSeeder extends Seeder
             
             [
                 'page_name' => 'text-to-slug-generator',
-                'category' => 'Developer Tools',
+                'category' => 'Developer & SEO Tools',
                 'meta_title' => 'Online Text to Slug Generator - Toolzy',
                 'meta_description' => 'Generate SEO-friendly slugs for your content with Toolzy’s free Text to Slug Generator. Convert your text into clean, readable slugs for better URL optimization.',
                 'json_ld' => json_encode([
