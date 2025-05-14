@@ -1,45 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">Text File Merger Tool</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <div class="card shadow border-0">
-                <div class="card-body p-4">
-
-                    <div class="mb-4">
-                        <label for="fileInput" class="form-label fw-semibold">Upload Text Files to Merge</label>
-                        <input type="file" id="fileInput" class="form-control" multiple accept=".txt,.js,.css,.html,.json,.md">
-                    </div>
-
-                    <div class="mb-3" id="fileList"></div>
-
-                    <div class="d-grid mb-3">
-                        <button class="btn btn-primary btn-lg" onclick="mergeFiles()">Merge Files</button>
-                    </div>
-
-                    <div class="d-none" id="downloadSection">
-                        <label class="form-label fw-semibold">Download Merged File:</label>
-                        <div class="input-group">
-                            <input type="text" id="fileName" class="form-control" value="merged-file.txt">
-                            <button class="btn btn-success" onclick="downloadMergedFile()">Download</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+<div class="mb-3">
+    <label for="fileInput" class="form-label fw-semibold">Upload Text Files to Merge(.txt,.js,.css,.html,.json,.md)</label>
+    <input type="file" id="fileInput" class="form-control" multiple accept=".txt,.js,.css,.html,.json,.md">
+</div>
+<div class="mb-3" id="fileList"></div>
+<div class="mb-3">
+    <button class="btn btn-primary btn-lg" onclick="mergeFiles()">Merge Files</button>
+</div>
+<div class="d-none" id="downloadSection">
+    <label class="form-label fw-semibold">Download Merged File:</label>
+    <div class="input-group">
+        <input type="text" id="fileName" class="form-control" value="merged-file.txt">
+        <button class="btn btn-success" onclick="downloadMergedFile()">Download</button>
     </div>
-
-    <section class="my-5">
-        @include('components.what-is')
-    </section>
-
-    <section class="my-5">
-        @include('components.faq')
-    </section>
 </div>
 @endsection
 

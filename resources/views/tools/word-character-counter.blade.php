@@ -1,42 +1,29 @@
 @extends('layouts.app')
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4">Word and Character Counter</h1>
-
-    <div class="mb-3">
-        <textarea id="textInput" class="form-control" rows="8" placeholder="Start typing or paste your text here..."></textarea>
+<div class="mb-3">
+    <textarea id="textInput" class="form-control" rows="8" placeholder="Start typing or paste your text here..."></textarea>
+</div>
+<div class="d-flex flex-wrap gap-3 mt-3">
+    <div class="badge bg-primary text-white p-2">
+        Words: <span id="wordCount">0</span>
     </div>
-
-    <div class="d-flex flex-wrap gap-3 mt-3">
-        <div class="badge bg-primary text-white p-2">
-            Words: <span id="wordCount">0</span>
-        </div>
-        <div class="badge bg-success text-white p-2">
-            Characters (with spaces): <span id="charCountWithSpaces">0</span>
-        </div>
-        <div class="badge bg-success text-white p-2">
-            Characters (without spaces): <span id="charCountWithoutSpaces">0</span>
-        </div>
-        <div class="badge bg-warning text-dark p-2">
-            Sentences: <span id="sentenceCount">0</span>
-        </div>
-        <div class="badge bg-info text-dark p-2">
-            Paragraphs: <span id="paragraphCount">0</span>
-        </div>
-        <div class="badge bg-secondary text-white p-2">
-            Reading Time: <span id="readingTime">0</span> min
-        </div>
+    <div class="badge bg-success text-white p-2">
+        Characters (with spaces): <span id="charCountWithSpaces">0</span>
     </div>
-    <section class="my-5">
-            @include('components.what-is')
-        </section>
-        <section class="my-5">
-            @include('components.faq')
-        </section>
-
+    <div class="badge bg-success text-white p-2">
+        Characters (without spaces): <span id="charCountWithoutSpaces">0</span>
+    </div>
+    <div class="badge bg-warning text-dark p-2">
+        Sentences: <span id="sentenceCount">0</span>
+    </div>
+    <div class="badge bg-info text-dark p-2">
+        Paragraphs: <span id="paragraphCount">0</span>
+    </div>
+    <div class="badge bg-secondary text-white p-2">
+        Reading Time: <span id="readingTime">0</span> min
+    </div>
 </div>
 @endsection
-
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {

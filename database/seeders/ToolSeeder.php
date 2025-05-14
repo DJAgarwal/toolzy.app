@@ -37,19 +37,19 @@ class ToolSeeder extends Seeder
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
             
-            [
-                'page_name' => 'pdf-converter',
-                'category' => 'PDF & Document Tools',
-                'meta_title' => 'Online PDF Converter - Toolzy',
-                'meta_description' => 'Use Toolzy’s free PDF Converter to easily convert files to and from PDF format. Supports JPG, Word, Excel, and more. Fast, secure, and online.',
-                'json_ld' => json_encode([
-                    '@context' => 'https://schema.org',
-                    '@type' => 'WebPage',
-                    'name' => 'Online PDF Converter - Toolzy',
-                    'url' => url('/tools/pdf-converter'),
-                    'description' => 'Toolzy’s online PDF Converter lets you convert PDFs to JPG, Word, Excel, and other formats — or convert those files back to PDF. 100% free and user-friendly.',
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],
+            // [
+            //     'page_name' => 'pdf-converter',
+            //     'category' => 'PDF & Document Tools',
+            //     'meta_title' => 'Online PDF Converter - Toolzy',
+            //     'meta_description' => 'Use Toolzy’s free PDF Converter to easily convert files to and from PDF format. Supports JPG, Word, Excel, and more. Fast, secure, and online.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@type' => 'WebPage',
+            //         'name' => 'Online PDF Converter - Toolzy',
+            //         'url' => url('/tools/pdf-converter'),
+            //         'description' => 'Toolzy’s online PDF Converter lets you convert PDFs to JPG, Word, Excel, and other formats — or convert those files back to PDF. 100% free and user-friendly.',
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
             
             [
                 'page_name' => 'pdf-file-merger',

@@ -1,32 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center">Image Converter - Toolzy</h1>
-
-    <div class="mb-4 text-center">
-        <input type="file" id="imageInput" accept="image/*" class="form-control d-inline-block w-auto" />
-    </div>
-
-    <div class="mb-4 text-center">
-        <label for="formatSelect" class="me-2">Convert to:</label>
-        <select id="formatSelect" class="form-select d-inline-block w-auto">
-            <option value="png">PNG</option>
-            <option value="jpeg">JPG</option>
-            <option value="webp">WebP</option>
-        </select>
-    </div>
-
-    <div class="text-center mb-4">
-        <button class="btn btn-primary" onclick="convertImage()">Convert Image</button>
-    </div>
-
-    <div id="resultContainer" class="text-center d-none">
-        <h5 class="mb-3">Converted Image:</h5>
+<div class="mb-4">
+    <input type="file" id="imageInput" accept="image/*" class="form-control d-inline-block w-auto" />
+</div>
+<div class="mb-4">
+    <label for="formatSelect" class="me-2">Convert to:</label>
+    <select id="formatSelect" class="form-select d-inline-block w-auto">
+        <option value="png">PNG</option>
+        <option value="jpeg">JPG</option>
+        <option value="webp">WebP</option>
+    </select>
+</div>
+<div class="mb-4">
+    <button class="btn btn-primary" onclick="convertImage()">Convert Image</button>
+</div>
+<div id="resultContainer" class="text-center d-none">
+    <h5 class="mb-3">Converted Image:</h5>
+    <div class="d-flex justify-content-center">
         <canvas id="imageCanvas" class="mb-3" style="max-width: 100%; display: none;"></canvas>
-        <br>
-        <a id="downloadLink" class="btn btn-success" download>Download Image</a>
     </div>
+    <a id="downloadLink" class="btn btn-success" download>Download Image</a>
 </div>
 @endsection
 

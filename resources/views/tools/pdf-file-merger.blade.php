@@ -1,31 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">PDF File Merger</h1>
-
-    <div class="card shadow-lg border-0">
-        <div class="card-body p-4">
-
             <div class="mb-3">
                 <label for="pdfFiles" class="form-label fw-semibold">Select PDF Files</label>
                 <input type="file" id="pdfFiles" class="form-control" multiple accept="application/pdf">
                 <div class="form-text">You can upload and merge multiple PDF files.</div>
             </div>
-
             <div id="fileList" class="mb-3"></div>
-
-            <div class="d-grid">
-                <button class="btn btn-primary btn-lg" onclick="mergePDFs()">Merge PDFs</button>
+            <div class="mb-3">
+                <button class="btn btn-primary" onclick="mergePDFs()">Merge PDFs</button>
             </div>
-
             <div class="mt-4" id="downloadLink" style="display: none;">
                 <a href="#" class="btn btn-success" id="mergedPdfLink" download="merged.pdf">Download Merged PDF</a>
             </div>
-
-        </div>
-    </div>
-</div>
 @endsection
 
 @push('scripts')
