@@ -1,31 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-        <div class="input-group input-group-lg mx-auto" style="max-width: 800px;">
-            <textarea id="inputText" class="form-control" rows="12" placeholder="Paste or type your text here..."></textarea>
-        </div>
+<div class="mb-3">
+    <label for="inputText" class="form-label fw-semibold">Enter or Paste Your Text:</label>
+    <textarea id="inputText" class="form-control" rows="12" placeholder="Paste or type your text here..."></textarea>
+</div>
 
-        <div class="text-center my-3">
-            <p><strong>Total lines:</strong> <span id="totalLines">0</span> |
-               <strong>Unique lines:</strong> <span id="uniqueLines">0</span></p>
-        </div>
+<div class="mb-3">
+    <p class="mb-1"><strong>Total lines:</strong> <span id="totalLines">0</span> | 
+    <strong>Unique lines:</strong> <span id="uniqueLines">0</span></p>
+</div>
 
-        <div class="text-center mb-3">
-            <div class="form-check d-inline-block mx-2">
-                <input class="form-check-input" type="checkbox" id="trimLines" checked>
-                <label class="form-check-label" for="trimLines">Trim whitespace</label>
-            </div>
-            <div class="form-check d-inline-block mx-2">
-                <input class="form-check-input" type="checkbox" id="caseSensitive">
-                <label class="form-check-label" for="caseSensitive">Case sensitive</label>
-            </div>
-        </div>
+<div class="mb-3 d-flex flex-wrap gap-3">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="trimLines" checked>
+        <label class="form-check-label fw-semibold" for="trimLines">Trim whitespace</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="caseSensitive">
+        <label class="form-check-label fw-semibold" for="caseSensitive">Case sensitive</label>
+    </div>
+</div>
 
-        <div class="text-center mb-4 d-flex flex-wrap justify-content-center gap-3">
-            <button onclick="removeDuplicates()" class="btn btn-primary">Remove Duplicates</button>
-            <button onclick="copyToClipboard()" class="btn btn-secondary">Copy to Clipboard</button>
-            <button onclick="downloadResult()" class="btn btn-success">Download Result</button>
-        </div>
+<div class="mb-3 d-flex flex-wrap gap-2">
+    <button onclick="removeDuplicates()" class="btn btn-primary">Remove Duplicates</button>
+    <button onclick="copyToClipboard()" class="btn btn-secondary">Copy to Clipboard</button>
+    <button onclick="downloadResult()" class="btn btn-success">Download Result</button>
+</div>
 @endsection
 
 @push('scripts')
@@ -78,7 +79,7 @@ function updateLineCounts() {
 
 function copyToClipboard() {
     navigator.clipboard.writeText(inputText.value).then(() => {
-        alert('Copied to clipboard!');
+        showToast('Copied to clipboard!', 'success');
     });
 }
 

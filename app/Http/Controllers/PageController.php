@@ -17,6 +17,7 @@ class PageController extends Controller
         $viewFolder = $data['page_type'] === 'tools' ? 'tools' : 'static';
         if ($viewFolder === 'tools') {
             $data['tool'] = Lang::get('tools.' . $page_name);
+            $data['isToolPage'] = true;
         }
         return view($viewFolder . '.' . $page_name, $data);
     }

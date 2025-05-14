@@ -85,7 +85,28 @@
 
     {{-- Main Content --}}
     <main class="container py-5">
+        @if (!empty($isToolPage))
+        <div class="container py-5">
+            <h1 class="mb-4 text-center fw-bold">{{ $metaTitle ?? config('app.name', 'Toolzy') }}</h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card shadow border-0">
+                        <div class="card-body p-4">
+                        @yield('content')
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section class="my-5">
+            @include('components.what-is')
+            </section>
+            <section class="my-5">
+            @include('components.faq')
+            </section>
+        </div>
+        @else
         @yield('content')
+        @endif
     </main>
     
     {{-- Footer --}}

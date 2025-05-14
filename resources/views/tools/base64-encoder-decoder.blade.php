@@ -1,62 +1,46 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">Base64 Encoder and Decoder</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <div class="card shadow-lg border-0">
-                <div class="card-body p-4">
-
-                    <!-- Controls -->
-                    <div class="mb-3">
-                        <label for="mainInput" class="form-label fw-semibold">Enter or Paste Text / Base64:</label>
-                        <textarea class="form-control" id="mainInput" rows="10" placeholder="Enter your text here..."></textarea>
-                    </div>
-
-                    <div class="mb-3 d-flex flex-wrap gap-3 align-items-center">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="eachLine">
-                            <label class="form-check-label" for="eachLine">Encode each line separately</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="wrap76">
-                            <label class="form-check-label" for="wrap76">Split into 76-character chunks(For MIME format)</label>
-                        </div>
-                    </div>
-
-                    <div class="mb-3 d-flex flex-wrap gap-2">
-                        <button class="btn btn-success" onclick="encodeBase64()">Encode</button>
-                        <button class="btn btn-secondary" onclick="decodeBase64()">Decode</button>
-                        <button class="btn btn-outline-primary" onclick="copyToClipboard()">Copy</button>
-                        <button class="btn btn-outline-dark" onclick="downloadResult()">Download (.txt)</button>
-                        <label class="btn btn-outline-info mb-0">
-                            Upload File<input type="file" hidden accept=".txt,.json" onchange="loadFromFile(event)">
-                        </label>
-                    </div>
-                    <div class="mb-4">
-    <label class="form-label fw-semibold">Encode File to Base64:</label>
-    <input type="file" class="form-control mb-2" onchange="encodeFileToBase64(this.files[0])" accept="*/*">
-</div>
-
 <div class="mb-4">
-    <label class="form-label fw-semibold">Decode Base64 to File:</label>
+    <label for="mainInput" class="form-label fw-semibold">Enter or Paste Text / Base64:</label>
+    <textarea class="form-control" id="mainInput" rows="10" placeholder="Enter your text here..."></textarea>
+</div>
+<div class="mb-4 d-flex flex-wrap gap-3 align-items-center">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="eachLine">
+        <label class="form-check-label" for="eachLine">Encode each line separately</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="wrap76">
+        <label class="form-check-label" for="wrap76">Split into 76-character chunks (MIME)</label>
+    </div>
+</div>
+<div class="mb-4 d-flex flex-wrap gap-2">
+    <button class="btn btn-success" onclick="encodeBase64()">Encode</button>
+    <button class="btn btn-secondary" onclick="decodeBase64()">Decode</button>
+    <button class="btn btn-outline-primary" onclick="copyToClipboard()">Copy</button>
+    <button class="btn btn-outline-dark" onclick="downloadResult()">Download (.txt)</button>
+    <label class="btn btn-outline-info mb-0">
+        Upload Text File
+        <input type="file" hidden accept=".txt,.json" onchange="loadFromFile(event)">
+    </label>
+</div>
+<hr>
+<div class="mb-4">
+    <label class="form-label fw-semibold">Encode Any File to Base64:</label>
+    <input type="file" class="form-control" onchange="encodeFileToBase64(this.files[0])" accept="*/*">
+</div>
+<div class="mb-4">
+    <label class="form-label fw-semibold">Decode Base64 Text to File:</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="decodedFileName" placeholder="Filename with extension (e.g., image.png)">
+        <input type="text" class="form-control" id="decodedFileName" placeholder="e.g. image.png">
         <button class="btn btn-outline-secondary" onclick="decodeBase64ToFile()">Download</button>
     </div>
 </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">History:</label>
-                        <div id="historyLog" class="bg-light p-3 border rounded" style="font-size: 0.9rem; max-height: 200px; overflow-y: auto;"></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+<hr>
+<div class="mb-3">
+    <label class="form-label fw-semibold">History Log(Stays after leaving the page):</label>
+    <div id="historyLog" class="bg-light p-3 border rounded" style="font-size: 0.9rem; max-height: 200px; overflow-y: auto;"></div>
 </div>
 @endsection
 
@@ -148,14 +132,6 @@
         const saved = localStorage.getItem('base64History');
         if (saved) document.getElementById('historyLog').innerHTML = saved;
     }
-
-    function showToast(message, type) {
-        const toast = document.getElementById("toast");
-        if (!toast) return;
-        toast.innerText = message;
-        toast.className = `toast align-items-center text-bg-${type} show`;
-        setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-    }
     function encodeFileToBase64(file) {
     if (!file) return;
 
@@ -199,8 +175,6 @@ function decodeBase64ToFile() {
         showToast("Decoding failed.", "danger");
     }
 }
-
-
-    window.onload = loadHistory;
+window.onload = loadHistory;
 </script>
 @endpush

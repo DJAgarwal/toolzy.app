@@ -1,63 +1,38 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">Text to Slug Generator - Toolzy</h1>
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-8">
-            <div class="card shadow-lg border-0">
-                <div class="card-body p-4">
-                    <div class="mb-4">
-                        <label for="textInput" class="form-label fw-semibold">Enter Text or Lines (Bulk Supported):</label>
-                        <textarea class="form-control" id="textInput" rows="4" placeholder="Enter one or more lines of text..."></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label fw-semibold">Options:</label>
-                        <div class="d-flex flex-wrap gap-3 align-items-center">
-                            <div>
-                                <label class="me-1">Separator:</label>
-                                <select id="separatorSelect" class="form-select form-select-sm d-inline-block w-auto" onchange="generateSlug()">
-                                    <option value="-">-</option>
-                                    <option value="_">_</option>
-                                    <option value=".">.</option>
-                                </select>
-                            </div>
-                            <div>
-                                <input class="form-check-input" type="checkbox" id="removeStopWords" onchange="generateSlug()">
-                                <label class="form-check-label" for="removeStopWords">Remove Stop Words(the, and, of etc.)</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Output -->
-                    <div class="mb-4">
-                        <label for="slugOutput" class="form-label fw-semibold">Generated Slugs:</label>
-                        <textarea class="form-control" id="slugOutput" rows="4" readonly></textarea>
-                    </div>
-                    <div class="d-flex flex-wrap gap-2">
-                            <!-- <button class="btn btn-primary" onclick="generateSlug()">Generate</button> -->
-                            <button class="btn btn-outline-secondary" onclick="copySlug()">Copy</button>
-                            <button class="btn btn-outline-success" onclick="downloadSlug()">Download (.txt)</button>
-                        </div>
-
-                    <!-- Slug History -->
-                    <div>
-                        <label class="form-label fw-semibold">Slug History(Stays after leaving the page):</label>
-                        <ul class="list-group" id="slugHistory"></ul>
-                    </div>
-
-                </div>
-            </div>
+<div class="mb-4">
+    <label for="textInput" class="form-label fw-semibold">Enter Text or Lines (Bulk Supported):</label>
+    <textarea class="form-control" id="textInput" rows="4" placeholder="Enter one or more lines of text..."></textarea>
+</div>
+<div class="mb-4">
+    <label class="form-label fw-semibold">Options:</label>
+    <div class="d-flex flex-wrap gap-3 align-items-center">
+        <div>
+            <label class="me-1">Separator:</label>
+            <select id="separatorSelect" class="form-select form-select-sm d-inline-block w-auto" onchange="generateSlug()">
+                <option value="-">-</option>
+                <option value="_">_</option>
+                <option value=".">.</option>
+            </select>
+        </div>
+        <div>
+            <input class="form-check-input" type="checkbox" id="removeStopWords" onchange="generateSlug()">
+            <label class="form-check-label" for="removeStopWords">Remove Stop Words(the, and, of etc.)</label>
         </div>
     </div>
-
-    <section class="my-5">
-        @include('components.what-is')
-    </section>
-
-    <section class="my-5">
-        @include('components.faq')
-    </section>
+</div>
+<div class="mb-4">
+    <label for="slugOutput" class="form-label fw-semibold">Generated Slugs:</label>
+    <textarea class="form-control" id="slugOutput" rows="4" readonly></textarea>
+</div>
+<div class="d-flex flex-wrap gap-2">
+    <button class="btn btn-outline-secondary" onclick="copySlug()">Copy</button>
+    <button class="btn btn-outline-success" onclick="downloadSlug()">Download (.txt)</button>
+</div>
+<div>
+    <label class="form-label fw-semibold">Slug History(Stays after leaving the page):</label>
+    <ul class="list-group" id="slugHistory"></ul>
 </div>
 @endsection
 @push('scripts')
@@ -132,18 +107,6 @@ function renderHistory() {
         : '<li class="list-group-item text-muted">No history yet.</li>';
 }
 
-// On page load
 renderHistory();
-
-function showToast(message, type = "success") {
-    const toastEl = document.getElementById("mainToast");
-    const toastBody = document.getElementById("mainToastBody");
-
-    toastBody.textContent = message;
-    toastEl.className = `toast align-items-center text-white bg-${type} border-0`;
-
-    const bsToast = new bootstrap.Toast(toastEl);
-    bsToast.show();
-}
 </script>
 @endpush

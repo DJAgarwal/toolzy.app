@@ -62,7 +62,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
 function mergeFiles() {
     const input = document.getElementById('fileInput');
     if (!input.files.length) {
-        alert('Please upload at least one file.');
+        showToast('Please upload at least one file.', 'danger');
         return;
     }
 
@@ -76,7 +76,7 @@ function mergeFiles() {
             filesProcessed++;
             if (filesProcessed === input.files.length) {
                 document.getElementById('downloadSection').classList.remove('d-none');
-                alert('Files merged successfully!');
+                showToast('Files merged successfully!', 'success');
             }
         };
         reader.readAsText(file);

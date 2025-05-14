@@ -1,65 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">URL Encoder and Decoder</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-10">
-            <div class="card shadow-lg border-0">
-                <div class="card-body p-4">
-
-                    <div class="mb-4">
-                        <label for="mainInput" class="form-label fw-semibold">Enter Text:</label>
-                        <textarea class="form-control" id="mainInput" rows="6" placeholder="Type or paste your text here..."></textarea>
-                    </div>
-
-                    <div class="mb-4 d-flex flex-wrap gap-3">
-                        <button class="btn btn-primary" onclick="encodeText()">Encode</button>
-                        <button class="btn btn-secondary" onclick="decodeText()">Decode</button>
-                        <button class="btn btn-outline-dark" onclick="copyText()">Copy</button>
-                        <button class="btn btn-outline-danger" onclick="clearText()">Clear</button>
-                        <button class="btn btn-outline-success" onclick="downloadResult()">Download</button>
-                        <label class="btn btn-outline-info mb-0">
-                            Upload <input type="file" hidden accept=".txt,.json" onchange="uploadFile(event)">
-                        </label>
-                    </div>
-
-                    <div class="mb-4 d-flex flex-wrap gap-4 align-items-center">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="useBase64">
-                            <label class="form-check-label" for="useBase64">Use Base64</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="encodeEachLine">
-                            <label class="form-check-label" for="encodeEachLine">Encode each line separately</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="chunk76">
-                            <label class="form-check-label" for="chunk76">Split into 76-character chunks(For MIME format)</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="fullEncode">
-                            <label class="form-check-label" for="fullEncode">Use full encode (non-standard)</label>
-                        </div>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <h5 class="fw-semibold">History Log(Stays after leaving the page):</h5>
-                    <div id="historyLog" class="bg-light p-3 rounded small" style="max-height: 200px; overflow-y: auto;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="my-5">
-        @include('components.what-is')
-    </section>
-    <section class="my-5">
-        @include('components.faq')
-    </section>
+<div class="mb-4">
+    <label for="mainInput" class="form-label fw-semibold">Enter Text:</label>
+    <textarea class="form-control" id="mainInput" rows="6" placeholder="Type or paste your text here..."></textarea>
 </div>
+<div class="mb-4 d-flex flex-wrap gap-3">
+    <button class="btn btn-primary" onclick="encodeText()">Encode</button>
+    <button class="btn btn-secondary" onclick="decodeText()">Decode</button>
+    <button class="btn btn-outline-dark" onclick="copyText()">Copy</button>
+    <button class="btn btn-outline-danger" onclick="clearText()">Clear</button>
+    <button class="btn btn-outline-success" onclick="downloadResult()">Download</button>
+    <label class="btn btn-outline-info mb-0">
+        Upload <input type="file" hidden accept=".txt,.json" onchange="uploadFile(event)">
+    </label>
+</div>
+<div class="mb-4 d-flex flex-wrap gap-4 align-items-center">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="useBase64">
+        <label class="form-check-label" for="useBase64">Use Base64</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="encodeEachLine">
+        <label class="form-check-label" for="encodeEachLine">Encode each line separately</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chunk76">
+        <label class="form-check-label" for="chunk76">Split into 76-character chunks(For MIME format)</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="fullEncode">
+        <label class="form-check-label" for="fullEncode">Use full encode (non-standard)</label>
+    </div>
+</div>
+<hr class="my-4">
+<h5 class="fw-semibold">History Log(Stays after leaving the page):</h5>
+<div id="historyLog" class="bg-light p-3 rounded small" style="max-height: 200px; overflow-y: auto;"></div>
 @endsection
 
 @push('scripts')

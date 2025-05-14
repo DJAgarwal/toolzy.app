@@ -1,35 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="container py-5">
-    <h1 class="text-center mb-4">Text Case Converter</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="mb-3">
-                <textarea id="textInput" class="form-control" rows="8" placeholder="Enter your text here..."></textarea>
-            </div>
-
-            <div class="d-flex flex-wrap gap-2 justify-content-center mb-4">
-                <button class="btn btn-primary" onclick="convertText('uppercase')">UPPER CASE</button>
-                <button class="btn btn-primary" onclick="convertText('lowercase')">lower case</button>
-                <button class="btn btn-primary" onclick="convertText('sentencecase')">Sentence case</button>
-                <button class="btn btn-primary" onclick="convertText('capitalizedcase')">Capitalized Case</button>
-                <button class="btn btn-primary" onclick="convertText('togglecase')">tOGGLE cASE</button>
-                <button class="btn btn-primary" onclick="convertText('alternatecase')">aLtErNaTe CaSe</button>
-                </div>
-
-            <div class="mb-5">
-                <button class="btn btn-success w-100" onclick="copyText()">Copy Converted Text</button>
-            </div>
-
-        <section class="my-5">
-            @include('components.what-is')
-        </section>
-        <section class="my-5">
-            @include('components.faq')
-        </section>
-        </div>
-    </div>
+<div class="mb-3">
+    <textarea id="textInput" class="form-control" rows="8" placeholder="Enter your text here..."></textarea>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-4">
+    <button class="btn btn-primary" onclick="convertText('uppercase')">UPPER CASE</button>
+    <button class="btn btn-primary" onclick="convertText('lowercase')">lower case</button>
+    <button class="btn btn-primary" onclick="convertText('sentencecase')">Sentence case</button>
+    <button class="btn btn-primary" onclick="convertText('capitalizedcase')">Capitalized Case</button>
+    <button class="btn btn-primary" onclick="convertText('togglecase')">tOGGLE cASE</button>
+    <button class="btn btn-primary" onclick="convertText('alternatecase')">aLtErNaTe CaSe</button>
+</div>
+<div class="mb-5">
+    <button class="btn btn-success" onclick="copyText()">Copy Converted Text</button>
+    <button onclick="downloadResult()" class="btn btn-success">Download Result</button>
 </div>
 @endsection
 
@@ -67,7 +51,14 @@ function copyText() {
     textArea.select();
     textArea.setSelectionRange(0, 99999); // For mobile devices
     document.execCommand('copy');
-    alert('Text copied to clipboard!');
+    showToast('Text copied to clipboard!', 'success');
+}
+function downloadResult() {
+    const blob = new Blob([textInput.value], { type: 'text/plain' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'cleaned-text.txt';
+    link.click();
 }
 </script>
 @endpush

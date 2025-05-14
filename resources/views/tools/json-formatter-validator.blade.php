@@ -1,51 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5">
-    <h1 class="mb-4 text-center fw-bold">JSON Formatter and Validator</h1>
-
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-10">
-            <div class="card shadow-lg border-0">
-                <div class="card-body p-4">
-
-                    <!-- JSON Input Section -->
-                    <div class="mb-3">
-                        <label for="jsonInput" class="form-label fw-semibold">Enter JSON Data:</label>
-                        <textarea class="form-control" id="jsonInput" rows="10" placeholder="Paste your JSON data here..."></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fileUpload" class="form-label fw-semibold">Or Upload JSON File:</label>
-                        <input type="file" id="fileUpload" class="form-control" accept=".json" onchange="uploadFile()">
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="mb-3 d-flex flex-wrap gap-2">
-                        <button class="btn btn-success" onclick="formatJSON()">Beautify</button>
-                        <button class="btn btn-warning" onclick="minifyJSON()">Minify</button>
-                        <button class="btn btn-primary" onclick="validateJSON()">Validate</button>
-                        <button class="btn btn-secondary" onclick="copyJSON()">Copy</button>
-                        <button class="btn btn-danger" onclick="clearJSON()">Clear</button>
-                        <button class="btn btn-info" onclick="loadExample()">Load Example</button>
-                        <button class="btn btn-success" onclick="downloadFile()">Download JSON</button>
-                    </div>
-
-                    <!-- Result Section -->
-                    <div class="mb-3">
-                        <h5 class="fw-semibold">Validation Result:</h5>
-                        <p id="validationResult" class="text-muted mb-0"></p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <section class="my-5">
-        @include('components.what-is')
-    </section>
-    <section class="my-5">
-        @include('components.faq')
-    </section>
+<div class="mb-3">
+    <label for="jsonInput" class="form-label fw-semibold">Enter JSON Data:</label>
+    <textarea class="form-control" id="jsonInput" rows="10" placeholder="Paste your JSON data here..."></textarea>
+</div>
+<div class="mb-3">
+    <label for="fileUpload" class="form-label fw-semibold">Or Upload JSON File:</label>
+    <input type="file" id="fileUpload" class="form-control" accept=".json" onchange="uploadFile()">
+</div>
+<div class="mb-3 d-flex flex-wrap gap-2">
+    <button class="btn btn-success" onclick="formatJSON()">Beautify</button>
+    <button class="btn btn-warning" onclick="minifyJSON()">Minify</button>
+    <button class="btn btn-primary" onclick="validateJSON()">Validate</button>
+    <button class="btn btn-secondary" onclick="copyJSON()">Copy</button>
+    <button class="btn btn-danger" onclick="clearJSON()">Clear</button>
+    <button class="btn btn-info" onclick="loadExample()">Load Example</button>
+    <button class="btn btn-success" onclick="downloadFile()">Download JSON</button>
+</div>
+<div class="mb-3">
+    <h5 class="fw-semibold">Validation Result:</h5>
+    <p id="validationResult" class="text-muted mb-0"></p>
 </div>
 @endsection
 
@@ -62,34 +37,29 @@
             try {
                 const json = JSON.parse(fileContent);
                 document.getElementById('jsonInput').value = JSON.stringify(json, null, 2); // Format JSON for better readability
-                toastr.success('File successfully uploaded.');
+                showToast('File successfully uploaded.','success');
             } catch (e) {
-                toastr.error('Invalid JSON file.');
+                showToast('Invalid JSON file.','danger');
             }
         };
         reader.readAsText(file);
     } else {
-        toastr.error('Please upload a valid JSON file.');
+        showToast('Please upload a valid JSON file.','danger');
     }
 }
 function downloadFile() {
     const jsonContent = document.getElementById('jsonInput').value;
     try {
-        // Parse to ensure it's valid JSON
         const json = JSON.parse(jsonContent);
-
-        // Create a Blob from JSON content
         const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
-
-        // Create a link element and trigger the download
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = 'formatted-json.json'; // The name of the downloaded file
         a.click();
 
-        toastr.success('File downloaded successfully.');
+        showToast('File downloaded successfully.','success');
     } catch (e) {
-        toastr.error('Invalid JSON data, cannot download.');
+        showToast('Invalid JSON data, cannot download.','danger');
     }
 }
 
@@ -157,7 +127,6 @@ function downloadFile() {
         showSuccess('Example JSON loaded.');
     }
 
-    // Toaster helpers
     function showSuccess(message) {
         showToast(message,'success');
     }

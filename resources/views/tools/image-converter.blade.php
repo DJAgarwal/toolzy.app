@@ -37,7 +37,7 @@ function convertImage() {
     const format = document.getElementById('formatSelect').value;
 
     if (!input.files.length) {
-        alert('Please upload an image first.');
+        showToast('Please upload an image first.', 'danger');
         return;
     }
 
