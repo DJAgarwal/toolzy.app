@@ -21,8 +21,8 @@
         </select>
     </div>
 
-    <div class="d-grid">
-        <button type="submit" class="btn btn-primary btn-lg">Compress Images</button>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Compress Images</button>
     </div>
 </form>
 
