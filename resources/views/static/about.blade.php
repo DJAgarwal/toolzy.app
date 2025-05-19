@@ -9,13 +9,13 @@
     <h3 class="mt-4">What We Do</h3>
     <ul>
         <li>Offer simple, user-friendly tools like <strong>image converters, PDF editors, compressors, and more</strong>.</li>
-        <li>No logins, no paywalls — our tools are <strong>unlimited, ad-free (for now), and accessible from anywhere</strong>.</li>
+        <li>No logins, no paywalls — our tools are <strong>unlimited, ad-free, and accessible from anywhere</strong>.</li>
         <li>Prioritize speed, privacy, and ease-of-use for a seamless user experience.</li>
     </ul>
 
-    <h3 class="mt-4">Why Toolzy?</h3>
-    <p>Toolzy isn’t backed by a corporation — it's built by passionate developers who value open access and clean, efficient solutions. We focus on creating tools that <em>just work</em>, so you can get things done — no fuss.</p>
-
+    <h3 class="mt-4">The Story Behind Toolzy</h3>
+    <p><strong>Toolzy</strong> is a project by me, <strong>Dheeraj Agarwal</strong>, a developer. I just wanted to make free and unlimited tools for everyone and anyone.</p>
     <p class="mt-4">Thanks for using Toolzy. We're just getting started. 🚀</p>
+    <p class="mt-4"> Dedicated to my amazing and loving wife, <strong>Ashima Agarwal</strong> ❤️ Without whom, this wouldn't be possible. I love you 🤗</p> 
 </div>
 @endsection
