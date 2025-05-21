@@ -314,6 +314,15 @@ class StaticPageSeeder extends Seeder
                                 "item"=> url("/")
                                 ],
                             ]
+                        ],
+                        [
+                            '@type' => 'WebSite',
+                            'url' => url('/'),
+                            'potentialAction' => [
+                                '@type' => 'SearchAction',
+                                'target' => url('/') . '?search={search_term_string}',
+                                'query-input' => 'required name=search_term_string'
+                            ]
                         ]
                     ]  
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
