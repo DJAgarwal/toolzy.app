@@ -7,17 +7,19 @@
         <priority>1.0</priority>
     </url>
     @foreach ($pages as $page)
+        @if ($page->page_name !== '' && $page->page_name !== 'home')
         <url>
             <loc>{{ url($page->page_name) }}</loc>
-            <lastmod>{{ $page->updated_at->toAtomString() }}</lastmod>
+            <lastmod>{{ now()->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
+    @endif
     @endforeach
     @foreach ($tools as $tool)
         <url>
-            <loc>{{ url($tool->page_name) }}</loc>
-            <lastmod>{{ $tool->updated_at->toAtomString() }}</lastmod>
+            <loc>{{ url('/tools/' . ltrim($tool->page_name, '/')) }}</loc>
+            <lastmod>{{ now()->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
