@@ -37,6 +37,8 @@ class PageHelper
                 'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
                 'url' => url()->current(),
                 'image' => asset('images/logo.webp'),
+                'locale' => 'en_US',
+                'site_name' => 'Toolzy',
                 'type' => 'website'
             ],
             'twitter' => [
@@ -44,7 +46,8 @@ class PageHelper
                 'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
                 'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
                 'image' => asset('images/logo.webp'),
-                'creator' => '@Toolzy'
+                'creator' => '@Toolzy',
+                'site' => '@Toolzy'
             ],
             'jsonld' => $metadata->json_ld ?? null,
             'breadcrumbs' => $uiBreadcrumbs,

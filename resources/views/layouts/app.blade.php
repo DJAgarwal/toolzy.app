@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RRT13ZPY7"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2RRT13ZPY7');
+    </script>
+
     {{-- Dynamic JSON-LD Schema Injection --}}
     @if (!empty($jsonld))<script type="application/ld+json">{!! $jsonld !!}</script>@endif
 
@@ -14,6 +22,10 @@
     <meta name="description" content="{{ $metaDescription ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.' }}">
     <meta name="keywords" content="online tools, free tools, Toolzy, calculator, converter, generators, productivity tools, web utilities">
     <meta name="author" content="Toolzy">
+    <meta http-equiv="content-language" content="en">
+    <meta name="geo.region" content="IN">
+    <meta name="geo.placename" content="India">
+    <meta name="distribution" content="global">
 
     {{-- Canonical URL --}}
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}" />
@@ -24,6 +36,8 @@
     <meta property="og:url" content="{{ $og['url'] ?? '' }}">
     <meta property="og:type" content="{{ $og['type'] ?? 'website' }}">
     <meta property="og:image" content="{{ $og['image'] ?? '' }}">
+    <meta property="og:locale" content="{{ $og['locale'] ?? '' }}">
+    <meta property="og:site_name" content="{{ $og['site_name'] ?? '' }}">
 
     {{-- Twitter Cards --}}
     <meta name="twitter:card" content="{{ $twitter['card'] ?? 'summary_large_image' }}">
@@ -31,6 +45,7 @@
     <meta name="twitter:description" content="{{ $twitter['description'] ?? '' }}">
     <meta name="twitter:image" content="{{ $twitter['image'] ?? '' }}">
     <meta name="twitter:creator" content="{{ $twitter['creator'] ?? '' }}">
+    <meta name="twitter:site" content="{{ $twitter['site'] ?? '' }}">
 
     {{-- Title --}}
     <title>{{ $metaTitle ?? config('app.name', 'Toolzy') }}</title>
@@ -38,11 +53,16 @@
     {{-- Favicon --}}
     <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/apple-touch-icon.png') }}">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
     {{-- Custom Styles --}}
     <link rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'" media="screen">
     <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen"></noscript>
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
     {{-- Header --}}
