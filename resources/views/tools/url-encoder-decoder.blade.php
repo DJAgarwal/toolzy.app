@@ -35,7 +35,7 @@
 </div>
 <hr class="my-4">
 <h5 class="fw-semibold">History Log(Stays after leaving the page):</h5>
-<div id="historyLog" class="bg-light p-3 rounded small" style="max-height: 200px; overflow-y: auto;"></div>
+<div id="historyLog" class="bg-light p-3 rounded small history-log"></div>
 @endsection
 
 @push('scripts')

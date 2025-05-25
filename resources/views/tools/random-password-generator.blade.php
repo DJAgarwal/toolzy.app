@@ -42,8 +42,8 @@
 </div>
 <div class="mt-4">
     <label class="form-label fw-semibold">Password Strength:</label>
-    <div class="progress rounded-pill" style="height: 10px;">
-        <div id="strengthBar" class="progress-bar bg-success" role="progressbar" style="width: 0%; transition: width 0.5s;"></div>
+    <div class="progress rounded-pill h-10">
+        <div id="strengthBar" class="progress-bar bg-success progressbar" role="progressbar"></div>
     </div>
 </div>
 <div class="row mt-4 g-2">

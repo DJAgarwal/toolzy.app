@@ -1,10 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
-<!-- <div class="bg-light py-5" style="background: linear-gradient(120deg, #f0f8ff, #e6f7ff);"> -->
-<!-- <div class="bg-light py-5"> -->
-<div class="bg-light py-5" style="background: linear-gradient(120deg, #cce7ff, #e6f7ff);">
-<div class="container text-center">
+<div class="bg-light py-5 hero-gradient" >
+    <div class="container text-center">
         <h1 class="display-5 fw-bold mb-3" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Welcome to Toolzy</h1>
         <p class="lead text-muted" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
         <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">

@@ -83,13 +83,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/') }}">Home</a>
+                        <a class="nav-link fs-5" href="{{ url('/') }}" @if(request()->is('/')) aria-current="page" @endif>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/tools') }}">More Tools</a>
+                        <a class="nav-link fs-5" href="{{ url('/tools') }}" @if(request()->is('/tools')) aria-current="page" @endif>More Tools</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/contact') }}">Request a Tool</a>
+                        <a class="nav-link fs-5" href="{{ url('/contact') }}" @if(request()->is('/contact')) aria-current="page" @endif>Request a Tool</a>
                     </li>
                     </ul>
                 </div>
