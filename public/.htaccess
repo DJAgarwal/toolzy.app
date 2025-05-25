@@ -23,3 +23,10 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none';"
+    Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+    Header set Cross-Origin-Opener-Policy "same-origin"
+    Header always set X-Frame-Options "DENY"
+</IfModule>
