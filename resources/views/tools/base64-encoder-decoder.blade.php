@@ -37,10 +37,10 @@
         <button class="btn btn-outline-secondary" onclick="decodeBase64ToFile()">Download</button>
     </div>
 </div>
-<hr>
+<hr class="my-4">
 <div class="mb-3">
     <label class="form-label fw-semibold">History Log(Stays after leaving the page):</label>
-    <div id="historyLog" class="bg-light p-3 border rounded" style="font-size: 0.9rem; max-height: 200px; overflow-y: auto;"></div>
+    <div id="historyLog" class="bg-light p-3 border rounded small history-log"></div>
 </div>
 @endsection
 

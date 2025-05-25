@@ -10,7 +10,7 @@
             <div class="mb-3">
                 <button class="btn btn-primary" onclick="mergePDFs()">Merge PDFs</button>
             </div>
-            <div class="mt-4" id="downloadLink" style="display: none;">
+            <div class="mt-4 d-none" id="downloadLink">
                 <a href="#" class="btn btn-success" id="mergedPdfLink" download="merged.pdf">Download Merged PDF</a>
             </div>
 @endsection
@@ -51,7 +51,7 @@
 
         const downloadLink = document.getElementById('mergedPdfLink');
         downloadLink.href = url;
-        document.getElementById('downloadLink').style.display = 'block';
+        document.getElementById('downloadLink').classList.remove('d-none');
     }
 </script>
 @endpush

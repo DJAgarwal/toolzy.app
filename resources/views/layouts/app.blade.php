@@ -86,10 +86,10 @@
                         <a class="nav-link fs-5" href="{{ url('/') }}" @if(request()->is('/')) aria-current="page" @endif>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/tools') }}" @if(request()->is('/tools')) aria-current="page" @endif>More Tools</a>
+                        <a class="nav-link fs-5" href="{{ url('/tools') }}" @if(request()->is('tools')) aria-current="page" @endif>More Tools</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-5" href="{{ url('/contact') }}" @if(request()->is('/contact')) aria-current="page" @endif>Request a Tool</a>
+                        <a class="nav-link fs-5" href="{{ url('/contact') }}" @if(request()->is('contact')) aria-current="page" @endif>Request a Tool</a>
                     </li>
                     </ul>
                 </div>

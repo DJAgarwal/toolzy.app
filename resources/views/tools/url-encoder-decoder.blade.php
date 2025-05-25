@@ -34,8 +34,10 @@
     </div>
 </div>
 <hr class="my-4">
-<h5 class="fw-semibold">History Log(Stays after leaving the page):</h5>
-<div id="historyLog" class="bg-light p-3 rounded small history-log"></div>
+<div class="mb-3">
+    <label class="form-label fw-semibold">History Log(Stays after leaving the page):</label>
+    <div id="historyLog" class="bg-light p-3 border rounded small history-log"></div>
+</div>
 @endsection
 
 @push('scripts')
