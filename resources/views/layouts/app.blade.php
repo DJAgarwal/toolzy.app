@@ -75,7 +75,6 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
-                    <!-- <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2" width="120" height="30"> -->
                     Toolzy
                 </a>
                 
@@ -173,7 +172,7 @@
             </div> -->
         </div>
     </footer>
-    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3">
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3" style="min-height: 80px">
         <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body" id="toastBody">

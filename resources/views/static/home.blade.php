@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="bg-light py-5 hero-gradient" >
+<div class="bg-light py-5 hero-gradient" style="min-height: 300px">
     <div class="container text-center">
         <h1 class="display-5 fw-bold mb-3 text-shadow-light">Welcome to Toolzy</h1>
         <p class="lead text-muted text-shadow-light">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
