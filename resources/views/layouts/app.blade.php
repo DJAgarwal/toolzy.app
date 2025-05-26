@@ -59,8 +59,14 @@
             this.rel = 'stylesheet';
         });
     </script>
-    <link rel="preload" href="{{ asset('css/custom.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style">
     <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
+    <script nonce="{{ $cspNonce }}">
+        const customCss = document.getElementById('custom-css');
+        customCss.addEventListener('load', function () {
+            this.rel = 'stylesheet';
+        });
+    </script>
     <link rel="manifest" href="{{ asset('manifest.json') }}" crossorigin="anonymous">
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
