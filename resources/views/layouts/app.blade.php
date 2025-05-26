@@ -77,7 +77,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
-                    <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2" width="60" height="15">
+                    <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" class="me-2" width="60" height="auto">
                     Toolzy
                 </a>
                 
