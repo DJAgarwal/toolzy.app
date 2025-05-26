@@ -8,6 +8,7 @@
     gtag('js', new Date());
     gtag('config', 'G-2RRT13ZPY7');
     </script>
+    <script nonce="{{ $cspNonce }}" defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
 
     {{-- Dynamic JSON-LD Schema Injection --}}
     @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
