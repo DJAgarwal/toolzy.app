@@ -139,3 +139,15 @@ footer a:hover {
 .navbar, .breadcrumb, .footer {
   width: 100%;
 }
+.collapse:not(.show) {
+  display: block !important;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+#tools {
+  min-height: 1600px;
+}
+#liveToast {
+  min-height: 64px;
+}
