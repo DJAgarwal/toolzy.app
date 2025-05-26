@@ -106,6 +106,12 @@ footer a:hover {
   width: 0%;
   transition: width 0.5s;
 }
+.m-h-300 {
+    min-height: 300px
+}
+.m-h-80 {
+    min-height: 80px
+}
 
 .h-10 {
   height: 10px;

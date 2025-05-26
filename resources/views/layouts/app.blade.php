@@ -174,7 +174,7 @@
             </div> -->
         </div>
     </footer>
-    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3" style="min-height: 80px">
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3 m-h-80">
         <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body" id="toastBody">
