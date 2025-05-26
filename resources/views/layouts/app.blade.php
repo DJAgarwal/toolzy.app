@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script nonce="{{ $cspNonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-2RRT13ZPY7"></script>
-    <script nonce="{{ $cspNonce }}">
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-2RRT13ZPY7');
-    </script>
-    <script nonce="{{ $cspNonce }}" defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
-
     {{-- Dynamic JSON-LD Schema Injection --}}
     @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
 
@@ -68,9 +59,9 @@
             this.rel = 'stylesheet';
         });
     </script>
-    <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen"></noscript>
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <link rel="preload" href="{{ asset('css/custom.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
+    <link rel="manifest" href="{{ asset('manifest.json') }}" crossorigin="anonymous">
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
     {{-- Header --}}
@@ -185,8 +176,15 @@
             </div>
         </div>
     </div>
-    {{-- Bootstrap Bundle JS --}}
-    <script nonce="{{ $cspNonce }}" src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script nonce="{{ $cspNonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-2RRT13ZPY7"></script>
+    <script nonce="{{ $cspNonce }}">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-2RRT13ZPY7');
+    </script>
+    <script nonce="{{ $cspNonce }}" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
+    <script nonce="{{ $cspNonce }}" defer src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script nonce="{{ $cspNonce }}">
         function showToast(message, type = 'success') {
