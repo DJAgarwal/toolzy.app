@@ -130,3 +130,6 @@ footer a:hover {
     padding: 10px 20px;
   }
 }
+.navbar, .breadcrumb, .footer {
+  width: 100%;
+}
