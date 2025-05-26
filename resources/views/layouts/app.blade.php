@@ -51,7 +51,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     {{-- Custom Styles --}}
-    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" media="screen">
+    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" fetchpriority="high" media="all">
     <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"></noscript>
     <script nonce="{{ $cspNonce }}">
         const css = document.getElementById('bootstrap-css');
@@ -59,7 +59,7 @@
             this.rel = 'stylesheet';
         });
     </script>
-    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style">
+    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style" fetchpriority="high" media="all">
     <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
     <script nonce="{{ $cspNonce }}">
         const customCss = document.getElementById('custom-css');
