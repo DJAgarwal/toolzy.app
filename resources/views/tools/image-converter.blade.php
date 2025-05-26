@@ -18,14 +18,14 @@
 <div id="resultContainer" class="text-center d-none">
     <h5 class="mb-3">Converted Image:</h5>
     <div class="d-flex justify-content-center">
-        <canvas id="imageCanvas" class="mb-3" style="max-width: 100%; display: none;"></canvas>
+        <canvas id="imageCanvas" class="mb-3 w-100 d-none"></canvas>
     </div>
     <a id="downloadLink" class="btn btn-success" download>Download Image</a>
 </div>
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 function convertImage() {
     const input = document.getElementById('imageInput');
     const format = document.getElementById('formatSelect').value;

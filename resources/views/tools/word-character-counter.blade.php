@@ -25,7 +25,7 @@
 </div>
 @endsection
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 document.addEventListener('DOMContentLoaded', function() {
     const textInput = document.getElementById('textInput');
     const wordCount = document.getElementById('wordCount');

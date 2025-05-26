@@ -56,7 +56,7 @@
 </div>            
 @endsection
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 document.addEventListener('DOMContentLoaded', () => {
     generatePassword();
 });

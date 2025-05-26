@@ -25,7 +25,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     function uploadFile() {
     const fileInput = document.getElementById('fileUpload');
     const file = fileInput.files[0];

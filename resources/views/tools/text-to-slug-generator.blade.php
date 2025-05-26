@@ -36,7 +36,7 @@
 </div>
 @endsection
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 const stopWords = new Set([
     'the', 'and', 'of', 'a', 'an', 'in', 'on', 'with', 'to', 'at', 'for', 'from', 'by', 'is', 'are', 'was', 'were', 'it', 'this', 'that'
 ]);

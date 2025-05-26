@@ -30,7 +30,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 const inputText = document.getElementById('inputText');
 const totalLines = document.getElementById('totalLines');
 const uniqueLines = document.getElementById('uniqueLines');

@@ -41,7 +41,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     function encodeText() {
         const input = document.getElementById('mainInput');
         const useBase64 = document.getElementById('useBase64').checked;

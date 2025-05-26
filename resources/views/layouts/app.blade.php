@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RRT13ZPY7"></script>
-    <script>
+    <script nonce="{{ $cspNonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-2RRT13ZPY7"></script>
+    <script nonce="{{ $cspNonce }}">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
@@ -10,7 +10,7 @@
     </script>
 
     {{-- Dynamic JSON-LD Schema Injection --}}
-    @if (!empty($jsonld))<script type="application/ld+json">{!! $jsonld !!}</script>@endif
+    @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
 
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
@@ -59,7 +59,14 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     {{-- Custom Styles --}}
-    <link rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'" media="screen">
+    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" media="screen">
+    <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"></noscript>
+    <script nonce="{{ $cspNonce }}">
+        const css = document.getElementById('bootstrap-css');
+        css.addEventListener('load', function () {
+            this.rel = 'stylesheet';
+        });
+    </script>
     <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" media="screen"></noscript>
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }}">
@@ -173,7 +180,7 @@
             </div>
         </div>
     </footer>
-    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+    <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3">
         <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body" id="toastBody">
@@ -183,9 +190,9 @@
         </div>
     </div>
     {{-- Bootstrap Bundle JS --}}
-    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script nonce="{{ $cspNonce }}" src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
-    <script>
+    <script nonce="{{ $cspNonce }}">
         function showToast(message, type = 'success') {
             const toastEl = document.getElementById('liveToast');
             const toastBody = document.getElementById('toastBody');

@@ -45,7 +45,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     function encodeBase64() {
         const textarea = document.getElementById('mainInput');
         const wrap76 = document.getElementById('wrap76').checked;

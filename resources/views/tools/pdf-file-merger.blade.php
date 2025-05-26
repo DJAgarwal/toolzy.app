@@ -16,9 +16,9 @@
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script nonce="{{ $cspNonce }}" src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 
-<script>
+<script nonce="{{ $cspNonce }}">
     const fileInput = document.getElementById('pdfFiles');
     const fileList = document.getElementById('fileList');
 

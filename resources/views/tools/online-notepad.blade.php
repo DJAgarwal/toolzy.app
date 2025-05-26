@@ -11,7 +11,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     const notepad = document.getElementById('notepad');
 
     // Load from localStorage

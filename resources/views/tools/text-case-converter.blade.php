@@ -18,7 +18,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 function convertText(type) {
     let text = document.getElementById('textInput').value;
 

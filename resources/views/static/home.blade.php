@@ -116,7 +116,7 @@
 </section>
 @endsection
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     document.querySelector('#explore-tools-btn').addEventListener('click', function(e) {
         e.preventDefault();
         document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });

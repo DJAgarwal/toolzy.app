@@ -19,7 +19,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
 let mergedContent = '';
 
 document.getElementById('fileInput').addEventListener('change', function() {

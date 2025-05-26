@@ -22,7 +22,7 @@
 @endsection
 
 @push('scripts')
-<script>
+<script nonce="{{ $cspNonce }}">
     function convertFile() {
         const type = document.getElementById('conversionType').value;
         const fileInput = document.getElementById('fileInput');
