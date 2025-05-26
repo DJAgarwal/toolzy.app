@@ -70,14 +70,14 @@
         <p class="lead mb-5">We believe in simplicity, privacy, and unlimited access to tools that just work + no ads, no tracking.</p>
         <div class="row g-4 justify-content-center">
             <div class="col-md-4 col-sm-6">
-                <div class="bg-white bg-opacity-10 p-4 rounded-4 h-100 shadow-sm transition">
+                <div class="bg-white bg-opacity-25 p-4 rounded-4 h-100 shadow-sm transition">
                     <div class="mb-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-lightning-charge" viewBox="0 0 16 16">
                             <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41z"/>
                         </svg>
                     </div>
                     <h4 class="fw-semibold">Fast</h4>
-                    <p class="mb-0 small">Instant tools that get the job done without delay.</p>
+                    <p class="mb-0 small text-white-75">Instant tools that get the job done without delay.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -89,7 +89,7 @@
                         </svg>
                     </div>
                     <h4 class="fw-semibold">Secure</h4>
-                    <p class="mb-0 small">Your data stays with you. No tracking. No cookies.</p>
+                    <p class="mb-0 small text-white-75">Your data stays with you. No tracking. No cookies.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
@@ -100,7 +100,7 @@
                     </svg>
                     </div>
                     <h4 class="fw-semibold">Free Forever</h4>
-                    <p class="mb-0 small">All tools are 100% free. No signups or subscriptions ever.</p>
+                    <p class="mb-0 small text-white-75">All tools are 100% free. No signups or subscriptions ever.</p>
                 </div>
             </div>
         </div>

@@ -80,6 +80,10 @@ footer a:hover { color: #0d6efd !important; }
 .hero-gradient {
     background: linear-gradient(120deg, #cce7ff, #e6f7ff);
 }
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.85);
+}
+
 
 /* Mobile Optimization */
 @media (max-width: 768px) {
