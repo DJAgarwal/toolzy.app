@@ -35,6 +35,7 @@ class Cors
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Authorization, Origin');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PATCH, OPTIONS, PUT, DELETE');
         $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic'; style-src 'self' 'nonce-{$nonce}'; connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; img-src 'self' https://www.google-analytics.com data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';");
+        $response->headers->set('Content-Security-Policy', "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; style-src 'self' 'nonce-{$nonce}'; connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; img-src 'self' https://www.google-analytics.com data:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';");
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
         $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('X-Frame-Options', 'DENY');
