@@ -49,6 +49,8 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     {{-- Custom Styles --}}
     <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" fetchpriority="high" media="all">
