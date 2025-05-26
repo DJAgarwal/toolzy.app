@@ -7,7 +7,7 @@
                         <a href="{{ $crumb['url'] }}" class="text-decoration-none text-primary">{{ $crumb['name'] }}</a>
                     </li>
                 @else
-                    <li class="breadcrumb-item active text-muted" aria-current="page">{{ $crumb['name'] }}</li>
+                    <li class="breadcrumb-item active text-dark" aria-current="page">{{ $crumb['name'] }}</li>
                 @endif
             @endforeach
         </ol>
