@@ -21,6 +21,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::table('static_pages', function (Blueprint $table) {
+            $table->index('page_name');
+        });
+
         Artisan::call('db:seed', [
             '--class' => 'StaticPageSeeder',
             '--force' => true

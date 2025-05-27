@@ -22,6 +22,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::table('tools', function (Blueprint $table) {
+            $table->index('page_name');
+        });
+
         Artisan::call('db:seed', [
             '--class' => 'ToolSeeder',
             '--force' => true
