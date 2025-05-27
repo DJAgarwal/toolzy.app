@@ -5,22 +5,8 @@
     @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
 
     {{-- Custom Styles --}}
-    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" fetchpriority="high" media="all">
-    <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"></noscript>
-    <script nonce="{{ $cspNonce }}">
-        const css = document.getElementById('bootstrap-css');
-        css.addEventListener('load', function () {
-            this.rel = 'stylesheet';
-        });
-    </script>
-    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style" fetchpriority="high" media="all">
-    <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
-    <script nonce="{{ $cspNonce }}">
-        const customCss = document.getElementById('custom-css');
-        customCss.addEventListener('load', function () {
-            this.rel = 'stylesheet';
-        });
-    </script>
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
