@@ -31,11 +31,7 @@
     ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
     ExpiresByType font/ttf "access plus 1 year"
     ExpiresByType font/eot "access plus 1 year"
-</IfModule>
-
-<IfModule mod_expires.c>
-  ExpiresActive On
-  
+    ExpiresByType font/otf "access plus 1 year"
 </IfModule>
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|svg)$">
@@ -43,5 +39,5 @@
   </FilesMatch>
 </IfModule>
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json application/ld+json application/xml image/svg+xml application/xhtml+xml application/rss+xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json application/ld+json application/xml image/svg+xml application/xhtml+xml application/rss+xml application/font-woff2 application/font-woff application/vnd.ms-fontobject font/ttf font/eot font/otf
 </IfModule>
