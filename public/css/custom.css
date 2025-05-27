@@ -46,85 +46,70 @@ footer a:hover {
 .hover-shadow {
     transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-
 .hover-shadow:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
   transform: translateY(-5px);
 }
-
 .mt-3 a svg {
   width: 24px;
   height: 24px;
   transition: color 0.3s ease;
 }
-
 .mt-3 a:hover svg {
   color: #007bff;
 }
-
 .transition {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .transition:hover {
   transform: translateY(-5px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
-
 .pagination .page-link {
   border-radius: 50px;
   padding: 8px 16px;
   font-size: 16px;
   color: #007bff;
 }
-
 .pagination .page-item.active .page-link {
   background-color: #007bff;
   color: white;
 }
-
 .pagination .page-item.disabled .page-link {
   color: #6c757d;
 }
-
 .btn-primary:hover {
   background-color: #0056b3;
   transform: scale(1.05);
   transition: transform 0.2s ease-in-out;
 }
-
 .history-log {
   max-height: 200px;
   overflow-y: auto;
 }
-
 .custom-border-blue {
   border-bottom: 2px solid #007bff !important;
 }
-
 .progressbar {
   width: 0%;
   transition: width 0.5s;
 }
-.m-h-300 {
-    min-height: 300px
-}
 .m-h-80 {
     min-height: 80px
 }
-
 .h-10 {
   height: 10px;
 }
-
-.hero-gradient {
-  background: linear-gradient(120deg, #cce7ff, #e6f7ff);
+.hero-lead {
+  font-size: 1.3rem;     
+  font-weight: 500;
+  color: #1e293b !important;
 }
-
-.text-white-75 {
-  color: rgba(255, 255, 255, 0.85);
+.whychoose-lead {
+  font-size: 1.2rem;     
+  font-weight: 500;
+  color: #1e293b !important;
 }
-
 @media (max-width: 768px) {
   .display-5 {
     font-size: 2rem;
@@ -145,9 +130,71 @@ footer a:hover {
   overflow: hidden;
   transition: height 0.3s ease;
 }
-#tools {
-  min-height: 1600px;
-}
 #liveToast {
   min-height: 64px;
+}
+.hero-gradient {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.bg-primary {
+  background-color: #2563eb !important;
+}
+.whychoose-card {
+  background: rgba(255, 255, 255, 0.90);
+  color: #2563eb;
+  border: 2px solid #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(30, 64, 175, 0.08);
+  transition: transform 0.15s cubic-bezier(.4,2,.3,1), box-shadow 0.15s;
+}
+.whychoose-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(30, 64, 175, 0.18);
+}
+.whychoose-card svg {
+  color: #2563eb;
+  background: rgba(37,99,235, 0.10);
+  border-radius: 50%;
+  padding: 8px;
+}
+.whychoose-card h4 {
+  color: #111827;
+}
+.whychoose-card p {
+  color: #1e293b;
+}
+@media (max-width: 767.98px) {
+  .hero-gradient {
+    min-height: 180px;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+.whychoose-section {
+  background: linear-gradient(120deg, #2563eb 0%, #1e40af 100%);
+  position: relative;
+  overflow: hidden;
+}
+.whychoose-section::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle at 40% 40%, #fff3 0%, #2563eb00 80%);
+  z-index: 0;
+  pointer-events: none;
+}
+.whychoose-section .container {
+  position: relative;
+  z-index: 1;
+  border-radius: 1.5rem;
+  background: rgba(255,255,255,0.07);
+  padding: 2.5rem 1.5rem;
+  box-shadow: 0 4px 32px rgba(30, 64, 175, 0.11);
 }
