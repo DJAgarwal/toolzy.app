@@ -26,6 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0d6efd">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     {{-- SEO Meta --}}
     <meta name="description" content="{{ $metaDescription ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.' }}">
@@ -185,11 +186,14 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'G-2RRT13ZPY7');
+        gtag('config', 'G-2RRT13ZPY7', {
+            anonymize_ip: true,
+            transport_type: 'beacon'
+        });
     </script>
     @if(config('app.env') == 'production')
     <script nonce="{{ $cspNonce }}" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
-     @endif
+    @endif
     <script nonce="{{ $cspNonce }}" defer src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script nonce="{{ $cspNonce }}">
