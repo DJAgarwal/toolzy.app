@@ -4,6 +4,23 @@
     {{-- Dynamic JSON-LD Schema Injection --}}
     @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
 
+    {{-- Custom Styles --}}
+    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" fetchpriority="high" media="all">
+    <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"></noscript>
+    <script nonce="{{ $cspNonce }}">
+        const css = document.getElementById('bootstrap-css');
+        css.addEventListener('load', function () {
+            this.rel = 'stylesheet';
+        });
+    </script>
+    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style" fetchpriority="high" media="all">
+    <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
+    <script nonce="{{ $cspNonce }}">
+        const customCss = document.getElementById('custom-css');
+        customCss.addEventListener('load', function () {
+            this.rel = 'stylesheet';
+        });
+    </script>
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,26 +66,6 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="preconnect" href="https://rsms.me/">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
-    {{-- Custom Styles --}}
-    <link id="bootstrap-css" rel="preload" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" as="style" fetchpriority="high" media="all">
-    <noscript><link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}"></noscript>
-    <script nonce="{{ $cspNonce }}">
-        const css = document.getElementById('bootstrap-css');
-        css.addEventListener('load', function () {
-            this.rel = 'stylesheet';
-        });
-    </script>
-    <link id="custom-css" rel="preload" href="{{ asset('css/custom.css') }}" as="style" fetchpriority="high" media="all">
-    <noscript><link rel="stylesheet" href="{{ asset('css/custom.css') }}"></noscript>
-    <script nonce="{{ $cspNonce }}">
-        const customCss = document.getElementById('custom-css');
-        customCss.addEventListener('load', function () {
-            this.rel = 'stylesheet';
-        });
-    </script>
     <link rel="manifest" href="{{ asset('manifest.json') }}" crossorigin="anonymous">
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
@@ -190,7 +187,9 @@
         gtag('js', new Date());
         gtag('config', 'G-2RRT13ZPY7');
     </script>
+    @if(config('app.env') == 'production')
     <script nonce="{{ $cspNonce }}" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
+     @endif
     <script nonce="{{ $cspNonce }}" defer src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @stack('scripts')
     <script nonce="{{ $cspNonce }}">
