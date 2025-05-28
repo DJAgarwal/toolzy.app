@@ -12,6 +12,28 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   font-size: 0.95rem;
 }
+
+.breadcrumb-item,
+.breadcrumb-item a {
+  color: #212529; /* Very dark gray for high contrast */
+  font-weight: 500;
+}
+
+.breadcrumb-item.active {
+  color: #111827; /* Almost black for current page */
+  font-weight: 600;
+}
+
+.breadcrumb-item a {
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb-item a:focus {
+  color: #2563eb; /* Bootstrap primary blue on hover/focus */
+  text-decoration: underline;
+}
 .hover-link {
   transition: color 0.3s ease, text-decoration 0.3s ease;
 }
@@ -124,12 +146,12 @@ footer a:hover {
 .navbar, .breadcrumb, .footer {
   width: 100%;
 }
-.collapse:not(.show) {
+/* .collapse:not(.show) {
   display: block !important;
   height: 0;
   overflow: hidden;
   transition: height 0.3s ease;
-}
+} */
 #liveToast {
   min-height: 64px;
 }
