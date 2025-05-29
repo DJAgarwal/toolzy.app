@@ -4,21 +4,32 @@
     <textarea id="textInput" class="form-control" rows="8" placeholder="Enter your text here..."></textarea>
 </div>
 <div class="d-flex flex-wrap gap-2 mb-4">
-    <button class="btn btn-primary" onclick="convertText('uppercase')">UPPER CASE</button>
-    <button class="btn btn-primary" onclick="convertText('lowercase')">lower case</button>
-    <button class="btn btn-primary" onclick="convertText('sentencecase')">Sentence case</button>
-    <button class="btn btn-primary" onclick="convertText('capitalizedcase')">Capitalized Case</button>
-    <button class="btn btn-primary" onclick="convertText('togglecase')">tOGGLE cASE</button>
-    <button class="btn btn-primary" onclick="convertText('alternatecase')">aLtErNaTe CaSe</button>
+    <button class="btn btn-primary" id="uppercaseBtn">UPPER CASE</button>
+    <button class="btn btn-primary" id="lowercaseBtn">lower case</button>
+    <button class="btn btn-primary" id="sentencecaseBtn">Sentence case</button>
+    <button class="btn btn-primary" id="capitalizedcaseBtn">Capitalized Case</button>
+    <button class="btn btn-primary" id="togglecaseBtn">tOGGLE cASE</button>
+    <button class="btn btn-primary" id="alternatecaseBtn">aLtErNaTe CaSe</button>
 </div>
 <div class="mb-5">
-    <button class="btn btn-success" onclick="copyText()">Copy Converted Text</button>
-    <button onclick="downloadResult()" class="btn btn-success">Download Result</button>
+    <button class="btn btn-success" id="copyTextBtn">Copy Converted Text</button>
+    <button id="downloadResultBtn" class="btn btn-success">Download Result</button>
 </div>
 @endsection
 
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('uppercaseBtn').addEventListener('click', function() { convertText('uppercase'); });
+    document.getElementById('lowercaseBtn').addEventListener('click', function() { convertText('lowercase'); });
+    document.getElementById('sentencecaseBtn').addEventListener('click', function() { convertText('sentencecase'); });
+    document.getElementById('capitalizedcaseBtn').addEventListener('click', function() { convertText('capitalizedcase'); });
+    document.getElementById('togglecaseBtn').addEventListener('click', function() { convertText('togglecase'); });
+    document.getElementById('alternatecaseBtn').addEventListener('click', function() { convertText('alternatecase'); });
+    document.getElementById('copyTextBtn').addEventListener('click', copyText);
+    document.getElementById('downloadResultBtn').addEventListener('click', downloadResult);
+});
+
 function convertText(type) {
     let text = document.getElementById('textInput').value;
 
@@ -53,8 +64,9 @@ function copyText() {
     document.execCommand('copy');
     showToast('Text copied to clipboard!', 'success');
 }
+
 function downloadResult() {
-    const blob = new Blob([textInput.value], { type: 'text/plain' });
+    const blob = new Blob([document.getElementById('textInput').value], { type: 'text/plain' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
     link.download = 'cleaned-text.txt';

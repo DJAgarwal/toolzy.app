@@ -33,10 +33,10 @@
     <!-- QR Code will appear here -->
 </div>
 <div class="d-flex gap-2 flex-wrap">
-    <button class="btn btn-primary btn-lg" onclick="generateQRCode()">Generate QR Code</button>
-    <button class="btn btn-outline-success" onclick="copyQRCode()">Copy to Clipboard</button>
-    <button class="btn btn-outline-dark" onclick="downloadQRCode('png')">Download PNG</button>
-    <button class="btn btn-outline-secondary" onclick="downloadQRCode('svg')">Download SVG</button>
+    <button class="btn btn-primary btn-lg" id="generateQRCodeBtn">Generate QR Code</button>
+    <button class="btn btn-outline-success" id="copyQRCodeBtn">Copy to Clipboard</button>
+    <button class="btn btn-outline-dark" id="downloadQRCodePngBtn">Download PNG</button>
+    <button class="btn btn-outline-secondary" id="downloadQRCodeSvgBtn">Download SVG</button>
 </div>
 <div class="d-grid">
 </div>
@@ -46,6 +46,13 @@
 <script nonce="{{ $cspNonce }}" src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 <script nonce="{{ $cspNonce }}">
 let qrCode = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('generateQRCodeBtn').addEventListener('click', generateQRCode);
+    document.getElementById('downloadQRCodePngBtn').addEventListener('click', function() { downloadQRCode('png'); });
+    document.getElementById('downloadQRCodeSvgBtn').addEventListener('click', function() { downloadQRCode('svg'); });
+    document.getElementById('copyQRCodeBtn').addEventListener('click', copyQRCode);
+});
 
 function generateQRCode() {
     const text = document.getElementById('qrContent').value.trim();

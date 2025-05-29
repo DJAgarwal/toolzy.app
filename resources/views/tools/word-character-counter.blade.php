@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let debounceTimer;
 
-    textInput.addEventListener('input', function() {
+    textInput.addEventListener('input', handleTextInput);
+    function handleTextInput() {
         clearTimeout(debounceTimer);
 
         debounceTimer = setTimeout(() => {
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             paragraphCount.textContent = paragraphs.length;
             readingTime.textContent = estimatedReadingTime;
         }, 300); // Debounce time (milliseconds)
-    });
+    }
 });
 </script>
 @endpush

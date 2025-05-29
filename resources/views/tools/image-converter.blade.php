@@ -13,7 +13,7 @@
     </select>
 </div>
 <div class="mb-4">
-    <button class="btn btn-primary" onclick="convertImage()">Convert Image</button>
+    <button class="btn btn-primary" id="convertImageBtn">Convert Image</button>
 </div>
 <div id="resultContainer" class="text-center d-none">
     <h5 class="mb-3">Converted Image:</h5>
@@ -26,6 +26,10 @@
 
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('convertImageBtn').addEventListener('click', convertImage);
+});
+
 function convertImage() {
     const input = document.getElementById('imageInput');
     const format = document.getElementById('formatSelect').value;

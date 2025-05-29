@@ -7,13 +7,13 @@
 </div>
 <div class="mb-3" id="fileList"></div>
 <div class="mb-3">
-    <button class="btn btn-primary btn-lg" onclick="mergeFiles()">Merge Files</button>
+    <button class="btn btn-primary btn-lg" id="mergeFilesBtn">Merge Files</button>
 </div>
 <div class="d-none" id="downloadSection">
     <label class="form-label fw-semibold">Download Merged File:</label>
     <div class="input-group">
         <input type="text" id="fileName" class="form-control" value="merged-file.txt">
-        <button class="btn btn-success" onclick="downloadMergedFile()">Download</button>
+        <button class="btn btn-success" id="downloadMergedFileBtn">Download</button>
     </div>
 </div>
 @endsection
@@ -22,7 +22,13 @@
 <script nonce="{{ $cspNonce }}">
 let mergedContent = '';
 
-document.getElementById('fileInput').addEventListener('change', function() {
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('fileInput').addEventListener('change', handleFilesChanged);
+    document.getElementById('mergeFilesBtn').addEventListener('click', mergeFiles);
+    document.getElementById('downloadMergedFileBtn').addEventListener('click', downloadMergedFile);
+});
+
+function handleFilesChanged() {
     const fileList = document.getElementById('fileList');
     fileList.innerHTML = '';
 
@@ -32,7 +38,7 @@ document.getElementById('fileInput').addEventListener('change', function() {
         item.textContent = file.name;
         fileList.appendChild(item);
     }
-});
+}
 
 function mergeFiles() {
     const input = document.getElementById('fileInput');

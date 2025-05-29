@@ -16,25 +16,25 @@
     </div>
 </div>
 <div class="mb-4 d-flex flex-wrap gap-2">
-    <button class="btn btn-success" onclick="encodeBase64()">Encode</button>
-    <button class="btn btn-secondary" onclick="decodeBase64()">Decode</button>
-    <button class="btn btn-outline-primary" onclick="copyToClipboard()">Copy</button>
-    <button class="btn btn-outline-dark" onclick="downloadResult()">Download (.txt)</button>
+    <button class="btn btn-success" id="encodeBase64Btn">Encode</button>
+    <button class="btn btn-secondary" id="decodeBase64Btn">Decode</button>
+    <button class="btn btn-outline-primary" id="copyToClipboardBtn">Copy</button>
+    <button class="btn btn-outline-dark" id="downloadResultBtn">Download (.txt)</button>
     <label class="btn btn-outline-info mb-0">
         Upload Text File
-        <input type="file" hidden accept=".txt,.json" onchange="loadFromFile(event)">
+        <input type="file" id="uploadTextFileInput" hidden accept=".txt,.json">
     </label>
 </div>
 <hr>
 <div class="mb-4">
     <label class="form-label fw-semibold">Encode Any File to Base64:</label>
-    <input type="file" class="form-control" onchange="encodeFileToBase64(this.files[0])" accept="*/*">
+    <input type="file" class="form-control" id="encodeFileInput" accept="*/*">
 </div>
 <div class="mb-4">
     <label class="form-label fw-semibold">Decode Base64 Text to File:</label>
     <div class="input-group">
         <input type="text" class="form-control" id="decodedFileName" placeholder="e.g. image.png">
-        <button class="btn btn-outline-secondary" onclick="decodeBase64ToFile()">Download</button>
+        <button class="btn btn-outline-secondary" id="decodeBase64ToFileBtn">Download</button>
     </div>
 </div>
 <hr class="my-4">
@@ -46,93 +46,107 @@
 
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
-    function encodeBase64() {
-        const textarea = document.getElementById('mainInput');
-        const wrap76 = document.getElementById('wrap76').checked;
-        const eachLine = document.getElementById('eachLine').checked;
-        let text = textarea.value.trim();
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('encodeBase64Btn').addEventListener('click', encodeBase64);
+    document.getElementById('decodeBase64Btn').addEventListener('click', decodeBase64);
+    document.getElementById('copyToClipboardBtn').addEventListener('click', copyToClipboard);
+    document.getElementById('downloadResultBtn').addEventListener('click', downloadResult);
+    document.getElementById('uploadTextFileInput').addEventListener('change', loadFromFile);
+    document.getElementById('encodeFileInput').addEventListener('change', function(e) {
+        encodeFileToBase64(e.target.files[0]);
+    });
+    document.getElementById('decodeBase64ToFileBtn').addEventListener('click', decodeBase64ToFile);
+    loadHistory();
+});
 
-        if (!text) return showToast('Please enter some text.', 'warning');
+function encodeBase64() {
+    const textarea = document.getElementById('mainInput');
+    const wrap76 = document.getElementById('wrap76').checked;
+    const eachLine = document.getElementById('eachLine').checked;
+    let text = textarea.value.trim();
 
+    if (!text) return showToast('Please enter some text.', 'warning');
+
+    let result;
+
+    if (eachLine) {
+        result = text.split('\n').map(line => btoa(line)).join('\n');
+    } else {
+        result = btoa(text);
+    }
+
+    if (wrap76) {
+        result = result.match(/.{1,76}/g).join('\n');
+    }
+
+    textarea.value = result;
+    addToHistory("Encoded");
+}
+
+function decodeBase64() {
+    const textarea = document.getElementById('mainInput');
+    const eachLine = document.getElementById('eachLine').checked;
+    let text = textarea.value.trim();
+
+    if (!text) return showToast('Please enter Base64 text.', 'warning');
+
+    try {
         let result;
 
         if (eachLine) {
-            result = text.split('\n').map(line => btoa(line)).join('\n');
+            result = text.split('\n').map(line => atob(line)).join('\n');
         } else {
-            result = btoa(text);
-        }
-
-        if (wrap76) {
-            result = result.match(/.{1,76}/g).join('\n');
+            result = atob(text.replace(/\n/g, ''));
         }
 
         textarea.value = result;
-        addToHistory("Encoded");
+        addToHistory("Decoded");
+    } catch {
+        showToast('Invalid Base64 input.', 'danger');
     }
+}
 
-    function decodeBase64() {
-        const textarea = document.getElementById('mainInput');
-        const eachLine = document.getElementById('eachLine').checked;
-        let text = textarea.value.trim();
+function copyToClipboard() {
+    const textarea = document.getElementById('mainInput');
+    textarea.select();
+    document.execCommand('copy');
+    showToast('Copied to clipboard.', 'success');
+}
 
-        if (!text) return showToast('Please enter Base64 text.', 'warning');
+function downloadResult() {
+    const content = document.getElementById('mainInput').value;
+    const blob = new Blob([content], { type: "text/plain" });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = "base64-result.txt";
+    a.click();
+}
 
-        try {
-            let result;
+function loadFromFile(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        document.getElementById('mainInput').value = e.target.result;
+    };
+    reader.readAsText(file);
+}
 
-            if (eachLine) {
-                result = text.split('\n').map(line => atob(line)).join('\n');
-            } else {
-                result = atob(text.replace(/\n/g, ''));
-            }
+function addToHistory(action) {
+    const log = document.getElementById('historyLog');
+    const time = new Date().toLocaleTimeString();
+    const snippet = document.getElementById('mainInput').value.slice(0, 100).replace(/\n/g, ' ');
+    const item = `<div>[${time}] ${action}: ${snippet}</div>`;
+    log.innerHTML = item + log.innerHTML;
+    localStorage.setItem('base64History', log.innerHTML);
+}
 
-            textarea.value = result;
-            addToHistory("Decoded");
-        } catch {
-            showToast('Invalid Base64 input.', 'danger');
-        }
-    }
+function loadHistory() {
+    const saved = localStorage.getItem('base64History');
+    if (saved) document.getElementById('historyLog').innerHTML = saved;
+}
 
-    function copyToClipboard() {
-        const textarea = document.getElementById('mainInput');
-        textarea.select();
-        document.execCommand('copy');
-        showToast('Copied to clipboard.', 'success');
-    }
-
-    function downloadResult() {
-        const content = document.getElementById('mainInput').value;
-        const blob = new Blob([content], { type: "text/plain" });
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = "base64-result.txt";
-        a.click();
-    }
-
-    function loadFromFile(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('mainInput').value = e.target.result;
-        };
-        reader.readAsText(file);
-    }
-
-    function addToHistory(action) {
-        const log = document.getElementById('historyLog');
-        const time = new Date().toLocaleTimeString();
-        const snippet = document.getElementById('mainInput').value.slice(0, 100).replace(/\n/g, ' ');
-        const item = `<div>[${time}] ${action}: ${snippet}</div>`;
-        log.innerHTML = item + log.innerHTML;
-        localStorage.setItem('base64History', log.innerHTML);
-    }
-
-    function loadHistory() {
-        const saved = localStorage.getItem('base64History');
-        if (saved) document.getElementById('historyLog').innerHTML = saved;
-    }
-    function encodeFileToBase64(file) {
+function encodeFileToBase64(file) {
     if (!file) return;
 
     const reader = new FileReader();
@@ -175,6 +189,5 @@ function decodeBase64ToFile() {
         showToast("Decoding failed.", "danger");
     }
 }
-window.onload = loadHistory;
 </script>
 @endpush

@@ -10,14 +10,14 @@
     <div class="d-flex flex-wrap gap-3 align-items-center">
         <div>
             <label class="me-1">Separator:</label>
-            <select id="separatorSelect" class="form-select form-select-sm d-inline-block w-auto" onchange="generateSlug()">
+            <select id="separatorSelect" class="form-select form-select-sm d-inline-block w-auto">
                 <option value="-">-</option>
                 <option value="_">_</option>
                 <option value=".">.</option>
             </select>
         </div>
         <div>
-            <input class="form-check-input" type="checkbox" id="removeStopWords" onchange="generateSlug()">
+            <input class="form-check-input" type="checkbox" id="removeStopWords">
             <label class="form-check-label" for="removeStopWords">Remove Stop Words(the, and, of etc.)</label>
         </div>
     </div>
@@ -27,8 +27,8 @@
     <textarea class="form-control" id="slugOutput" rows="4" readonly></textarea>
 </div>
 <div class="d-flex flex-wrap gap-2">
-    <button class="btn btn-outline-secondary" onclick="copySlug()">Copy</button>
-    <button class="btn btn-outline-success" onclick="downloadSlug()">Download (.txt)</button>
+    <button class="btn btn-outline-secondary" id="copySlugBtn">Copy</button>
+    <button class="btn btn-outline-success" id="downloadSlugBtn">Download (.txt)</button>
 </div>
 <div>
     <label class="form-label fw-semibold">Slug History(Stays after leaving the page):</label>
@@ -41,7 +41,15 @@ const stopWords = new Set([
     'the', 'and', 'of', 'a', 'an', 'in', 'on', 'with', 'to', 'at', 'for', 'from', 'by', 'is', 'are', 'was', 'were', 'it', 'this', 'that'
 ]);
 
-document.getElementById('textInput').addEventListener('input', generateSlug);
+document.addEventListener('DOMContentLoaded', function() {
+    // Event listeners for CSP compliance
+    document.getElementById('textInput').addEventListener('input', generateSlug);
+    document.getElementById('separatorSelect').addEventListener('change', generateSlug);
+    document.getElementById('removeStopWords').addEventListener('change', generateSlug);
+    document.getElementById('copySlugBtn').addEventListener('click', copySlug);
+    document.getElementById('downloadSlugBtn').addEventListener('click', downloadSlug);
+    renderHistory();
+});
 
 function generateSlug() {
     const input = document.getElementById('textInput').value.trim();
@@ -106,7 +114,5 @@ function renderHistory() {
         ? history.map(s => `<li class="list-group-item">${s}</li>`).join('')
         : '<li class="list-group-item text-muted">No history yet.</li>';
 }
-
-renderHistory();
 </script>
 @endpush

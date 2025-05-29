@@ -8,7 +8,7 @@
             </div>
             <div id="fileList" class="mb-3"></div>
             <div class="mb-3">
-                <button class="btn btn-primary" onclick="mergePDFs()">Merge PDFs</button>
+                <button class="btn btn-primary" id="mergePDFsBtn">Merge PDFs</button>
             </div>
             <div class="mt-4 d-none" id="downloadLink">
                 <a href="#" class="btn btn-success" id="mergedPdfLink" download="merged.pdf">Download Merged PDF</a>
@@ -19,8 +19,10 @@
 <script nonce="{{ $cspNonce }}" src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 
 <script nonce="{{ $cspNonce }}">
+document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('pdfFiles');
     const fileList = document.getElementById('fileList');
+    const mergePDFsBtn = document.getElementById('mergePDFsBtn');
 
     fileInput.addEventListener('change', () => {
         fileList.innerHTML = '';
@@ -28,6 +30,8 @@
             fileList.innerHTML += `<div>${i + 1}. ${file.name}</div>`;
         });
     });
+
+    mergePDFsBtn.addEventListener('click', mergePDFs);
 
     async function mergePDFs() {
         const files = fileInput.files;
@@ -53,5 +57,6 @@
         downloadLink.href = url;
         document.getElementById('downloadLink').classList.remove('d-none');
     }
+});
 </script>
 @endpush

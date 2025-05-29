@@ -23,72 +23,83 @@
 </div>
 
 <div class="mb-3 d-flex flex-wrap gap-2">
-    <button onclick="removeDuplicates()" class="btn btn-primary">Remove Duplicates</button>
-    <button onclick="copyToClipboard()" class="btn btn-secondary">Copy to Clipboard</button>
-    <button onclick="downloadResult()" class="btn btn-success">Download Result</button>
+    <button id="removeDuplicatesBtn" class="btn btn-primary">Remove Duplicates</button>
+    <button id="copyToClipboardBtn" class="btn btn-secondary">Copy to Clipboard</button>
+    <button id="downloadResultBtn" class="btn btn-success">Download Result</button>
 </div>
 @endsection
 
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
-const inputText = document.getElementById('inputText');
-const totalLines = document.getElementById('totalLines');
-const uniqueLines = document.getElementById('uniqueLines');
-const trimLinesToggle = document.getElementById('trimLines');
-const caseSensitiveToggle = document.getElementById('caseSensitive');
+document.addEventListener('DOMContentLoaded', function() {
+    const inputText = document.getElementById('inputText');
+    const totalLines = document.getElementById('totalLines');
+    const uniqueLines = document.getElementById('uniqueLines');
+    const trimLinesToggle = document.getElementById('trimLines');
+    const caseSensitiveToggle = document.getElementById('caseSensitive');
+    const removeDuplicatesBtn = document.getElementById('removeDuplicatesBtn');
+    const copyToClipboardBtn = document.getElementById('copyToClipboardBtn');
+    const downloadResultBtn = document.getElementById('downloadResultBtn');
 
-inputText.addEventListener('input', updateLineCounts);
-trimLinesToggle.addEventListener('change', updateLineCounts);
-caseSensitiveToggle.addEventListener('change', updateLineCounts);
+    inputText.addEventListener('input', updateLineCounts);
+    trimLinesToggle.addEventListener('change', updateLineCounts);
+    caseSensitiveToggle.addEventListener('change', updateLineCounts);
+    removeDuplicatesBtn.addEventListener('click', removeDuplicates);
+    copyToClipboardBtn.addEventListener('click', copyToClipboard);
+    downloadResultBtn.addEventListener('click', downloadResult);
 
-function removeDuplicates() {
-    let lines = inputText.value.split('\n');
+    function removeDuplicates() {
+        let lines = inputText.value.split('\n');
 
-    if (trimLinesToggle.checked) {
-        lines = lines.map(line => line.trim()).filter(line => line !== '');
-    }
-
-    const seen = new Set();
-    const caseSensitive = caseSensitiveToggle.checked;
-    const unique = [];
-
-    for (let line of lines) {
-        const key = caseSensitive ? line : line.toLowerCase();
-        if (!seen.has(key)) {
-            seen.add(key);
-            unique.push(line);
+        if (trimLinesToggle.checked) {
+            lines = lines.map(line => line.trim()).filter(line => line !== '');
         }
+
+        const seen = new Set();
+        const caseSensitive = caseSensitiveToggle.checked;
+        const unique = [];
+
+        for (let line of lines) {
+            const key = caseSensitive ? line : line.toLowerCase();
+            if (!seen.has(key)) {
+                seen.add(key);
+                unique.push(line);
+            }
+        }
+
+        inputText.value = unique.join('\n');
+        updateLineCounts();
     }
 
-    inputText.value = unique.join('\n');
+    function updateLineCounts() {
+        const lines = inputText.value.split('\n');
+        totalLines.textContent = lines.length;
+
+        const trimmed = trimLinesToggle.checked
+            ? lines.map(line => line.trim()).filter(line => line !== '')
+            : lines;
+
+        const caseSensitive = caseSensitiveToggle.checked;
+        const uniqueSet = new Set(trimmed.map(line => caseSensitive ? line : line.toLowerCase()));
+        uniqueLines.textContent = uniqueSet.size;
+    }
+
+    function copyToClipboard() {
+        navigator.clipboard.writeText(inputText.value).then(() => {
+            showToast('Copied to clipboard!', 'success');
+        });
+    }
+
+    function downloadResult() {
+        const blob = new Blob([inputText.value], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'cleaned-text.txt';
+        link.click();
+    }
+
+    // Initial count
     updateLineCounts();
-}
-
-function updateLineCounts() {
-    const lines = inputText.value.split('\n');
-    totalLines.textContent = lines.length;
-
-    const trimmed = trimLinesToggle.checked
-        ? lines.map(line => line.trim()).filter(line => line !== '')
-        : lines;
-
-    const caseSensitive = caseSensitiveToggle.checked;
-    const uniqueSet = new Set(trimmed.map(line => caseSensitive ? line : line.toLowerCase()));
-    uniqueLines.textContent = uniqueSet.size;
-}
-
-function copyToClipboard() {
-    navigator.clipboard.writeText(inputText.value).then(() => {
-        showToast('Copied to clipboard!', 'success');
-    });
-}
-
-function downloadResult() {
-    const blob = new Blob([inputText.value], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'cleaned-text.txt';
-    link.click();
-}
+});
 </script>
 @endpush

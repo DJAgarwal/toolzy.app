@@ -3,7 +3,7 @@
 @section('content')
 <div class="mb-4">
     <label for="passwordLength" class="form-label fw-semibold">Password Length: <span id="lengthValue" class="fw-bold">12</span></label>
-    <input type="range" class="form-range" id="passwordLength" min="4" max="50" value="12" oninput="updateLength()">
+    <input type="range" class="form-range" id="passwordLength" min="4" max="50" value="12">
 </div>
 <div class="mb-4">
     <label class="form-label fw-semibold">Characters to include:</label>
@@ -37,7 +37,7 @@
     <label class="form-label fw-semibold">Generated Password:</label>
     <div class="input-group">
         <input type="text" class="form-control" id="generatedPassword" readonly>
-        <button class="btn btn-outline-secondary" type="button" onclick="copyPassword()">Copy</button>
+        <button class="btn btn-outline-secondary" type="button" id="copyPasswordBtn">Copy</button>
     </div>
 </div>
 <div class="mt-4">
@@ -48,10 +48,10 @@
 </div>
 <div class="row mt-4 g-2">
     <div class="col-12 col-md-6 d-grid">
-        <button class="btn btn-primary" onclick="generatePassword()">Generate Password</button>
+        <button class="btn btn-primary" id="generatePasswordBtn">Generate Password</button>
     </div>
     <div class="col-12 col-md-6 d-grid">
-        <button class="btn btn-outline-secondary" onclick="downloadPassword()">Download Password(.txt)</button>
+        <button class="btn btn-outline-secondary" id="downloadPasswordBtn">Download Password(.txt)</button>
     </div>
 </div>            
 @endsection
@@ -59,9 +59,27 @@
 <script nonce="{{ $cspNonce }}">
 document.addEventListener('DOMContentLoaded', () => {
     generatePassword();
+    document.getElementById('passwordLength').addEventListener('input', updateLength);
+    document.getElementById('generatePasswordBtn').addEventListener('click', generatePassword);
+    document.getElementById('copyPasswordBtn').addEventListener('click', copyPassword);
+    document.getElementById('downloadPasswordBtn').addEventListener('click', downloadPassword);
+    [
+        'includeUppercase',
+        'includeLowercase',
+        'includeNumbers',
+        'includeSymbols',
+        'avoidAmbiguous',
+        'usePassphrase'
+    ].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('change', generatePassword);
+        }
+    });
 });
 function updateLength() {
     document.getElementById('lengthValue').innerText = document.getElementById('passwordLength').value;
+    generatePassword();
 }
 function generatePassword() {
     const length = parseInt(document.getElementById('passwordLength').value);
@@ -105,6 +123,8 @@ function generatePassword() {
 
     if (chars === '') {
         showToast('Please select at least one character type.', 'danger');
+        document.getElementById('generatedPassword').value = '';
+        updateStrength(0, '');
         return;
     }
 

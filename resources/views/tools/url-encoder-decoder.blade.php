@@ -6,13 +6,13 @@
     <textarea class="form-control" id="mainInput" rows="6" placeholder="Type or paste your text here..."></textarea>
 </div>
 <div class="mb-4 d-flex flex-wrap gap-3">
-    <button class="btn btn-primary" onclick="encodeText()">Encode</button>
-    <button class="btn btn-secondary" onclick="decodeText()">Decode</button>
-    <button class="btn btn-outline-dark" onclick="copyText()">Copy</button>
-    <button class="btn btn-outline-danger" onclick="clearText()">Clear</button>
-    <button class="btn btn-outline-success" onclick="downloadResult()">Download</button>
+    <button class="btn btn-primary" id="encodeBtn">Encode</button>
+    <button class="btn btn-secondary" id="decodeBtn">Decode</button>
+    <button class="btn btn-outline-dark" id="copyBtn">Copy</button>
+    <button class="btn btn-outline-danger" id="clearBtn">Clear</button>
+    <button class="btn btn-outline-success" id="downloadBtn">Download</button>
     <label class="btn btn-outline-info mb-0">
-        Upload <input type="file" hidden accept=".txt,.json" onchange="uploadFile(event)">
+        Upload <input type="file" hidden accept=".txt,.json" id="uploadInput">
     </label>
 </div>
 <div class="mb-4 d-flex flex-wrap gap-4 align-items-center">
@@ -42,50 +42,63 @@
 
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
-    function encodeText() {
-        const input = document.getElementById('mainInput');
-        const useBase64 = document.getElementById('useBase64').checked;
-        const encodeEachLine = document.getElementById('encodeEachLine').checked;
-        const chunk76 = document.getElementById('chunk76').checked;
-        const fullEncode = document.getElementById('fullEncode').checked;
+document.addEventListener('DOMContentLoaded', function() {
+    // Button elements
+    document.getElementById('encodeBtn').addEventListener('click', encodeText);
+    document.getElementById('decodeBtn').addEventListener('click', decodeText);
+    document.getElementById('copyBtn').addEventListener('click', copyText);
+    document.getElementById('clearBtn').addEventListener('click', clearText);
+    document.getElementById('downloadBtn').addEventListener('click', downloadResult);
+    document.getElementById('uploadInput').addEventListener('change', uploadFile);
 
-        let data = input.value;
-        if (!data) {
-            showToast("Please enter some text.", "warning");
-            return;
-        }
+    // Load history on DOM ready (not window.onload for CSP)
+    loadHistory();
+});
 
-        let result = "";
+function encodeText() {
+    const input = document.getElementById('mainInput');
+    const useBase64 = document.getElementById('useBase64').checked;
+    const encodeEachLine = document.getElementById('encodeEachLine').checked;
+    const chunk76 = document.getElementById('chunk76').checked;
+    const fullEncode = document.getElementById('fullEncode').checked;
 
-        if (encodeEachLine) {
-            const lines = data.split(/\r?\n/);
-            result = lines.map(line => encodeLine(line)).join('\n');
-        } else {
-            result = encodeLine(data);
-        }
-
-        if (chunk76) {
-            result = result.match(/.{1,76}/g).join('\n');
-        }
-
-        input.value = result;
-        addToHistory('Encoded');
+    let data = input.value;
+    if (!data) {
+        showToast("Please enter some text.", "warning");
+        return;
     }
 
-    function encodeLine(text) {
-        const useBase64 = document.getElementById('useBase64').checked;
-        const fullEncode = document.getElementById('fullEncode').checked;
+    let result = "";
 
-        if (useBase64) {
-            return btoa(text);
-        }
-
-        return fullEncode
-            ? Array.from(text).map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0')).join('')
-            : encodeURIComponent(text);
+    if (encodeEachLine) {
+        const lines = data.split(/\r?\n/);
+        result = lines.map(line => encodeLine(line)).join('\n');
+    } else {
+        result = encodeLine(data);
     }
 
-    function decodeText() {
+    if (chunk76 && result.length > 0) {
+        result = result.match(/.{1,76}/g).join('\n');
+    }
+
+    input.value = result;
+    addToHistory('Encoded');
+}
+
+function encodeLine(text) {
+    const useBase64 = document.getElementById('useBase64').checked;
+    const fullEncode = document.getElementById('fullEncode').checked;
+
+    if (useBase64) {
+        return btoa(text);
+    }
+
+    return fullEncode
+        ? Array.from(text).map(c => '%' + c.charCodeAt(0).toString(16).padStart(2, '0')).join('')
+        : encodeURIComponent(text);
+}
+
+function decodeText() {
     const input = document.getElementById('mainInput');
     const useBase64 = document.getElementById('useBase64').checked;
     const decodeEachLine = document.getElementById('encodeEachLine').checked;
@@ -113,50 +126,50 @@
     }
 }
 
-    function copyText() {
-        const input = document.getElementById('mainInput');
-        if (!input.value.trim()) {
-            showToast("Nothing to copy!", "danger");
-            return;
-        }
-        navigator.clipboard.writeText(input.value).then(() => {
-            showToast("Copied to clipboard!", "success");
-        });
+function copyText() {
+    const input = document.getElementById('mainInput');
+    if (!input.value.trim()) {
+        showToast("Nothing to copy!", "danger");
+        return;
     }
+    navigator.clipboard.writeText(input.value).then(() => {
+        showToast("Copied to clipboard!", "success");
+    });
+}
 
-    function clearText() {
-        document.getElementById('mainInput').value = '';
-        showToast("Cleared input.", "info");
+function clearText() {
+    document.getElementById('mainInput').value = '';
+    showToast("Cleared input.", "info");
+}
+
+function downloadResult() {
+    const text = document.getElementById('mainInput').value;
+    if (!text.trim()) {
+        showToast("Nothing to download.", "warning");
+        return;
     }
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'encoded-output.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast("Download started.", "success");
+}
 
-    function downloadResult() {
-        const text = document.getElementById('mainInput').value;
-        if (!text.trim()) {
-            showToast("Nothing to download.", "warning");
-            return;
-        }
-        const blob = new Blob([text], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'encoded-output.txt';
-        a.click();
-        URL.revokeObjectURL(url);
-        showToast("Download started.", "success");
-    }
+function uploadFile(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        document.getElementById('mainInput').value = event.target.result;
+        showToast("File uploaded.", "success");
+    };
+    reader.readAsText(file);
+}
 
-    function uploadFile(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function (event) {
-            document.getElementById('mainInput').value = event.target.result;
-            showToast("File uploaded.", "success");
-        };
-        reader.readAsText(file);
-    }
-
-    function addToHistory(action) {
+function addToHistory(action) {
     const log = document.getElementById('historyLog');
     const time = new Date().toLocaleTimeString();
     const inputText = document.getElementById('mainInput').value.slice(0, 100).replace(/\n/g, ' ');
@@ -173,7 +186,5 @@ function loadHistory() {
     const history = JSON.parse(localStorage.getItem('toolHistory')) || [];
     log.innerHTML = history.map(entry => `<div>${entry}</div>`).join('');
 }
-
-window.onload = loadHistory;
 </script>
 @endpush
