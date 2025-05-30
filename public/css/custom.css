@@ -262,6 +262,12 @@ footer a:hover {
 }
 .drag-drop-area {
     cursor: pointer;
+    position: relative;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .drag-drop-area.bg-info {
     background-color: #cff4fc !important;
@@ -295,15 +301,6 @@ footer a:hover {
     width: 36px;
     height: 36px;
     padding: 0;
-}
-.drag-drop-area {
-    cursor: pointer;
-    position: relative;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 @media (max-width: 767.98px) {
     .row.g-2 > [class*="col-"] {
