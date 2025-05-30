@@ -260,3 +260,53 @@ footer a:hover {
         font-size: 0.95rem;
     }
 }
+.drag-drop-area {
+    cursor: pointer;
+}
+.drag-drop-area.bg-info {
+    background-color: #cff4fc !important;
+}
+.drag-drop-area.bg-opacity-10 {
+    opacity: 0.7;
+}
+.quality-range {
+    width: 120px;
+}
+.resize-input {
+    width: 90px;
+    display: inline-block;
+}
+.converted-image img {
+    max-width: 160px;
+    cursor: pointer;
+}
+.list-group-item.reorder-thumb {
+    cursor: grab;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+.watermark-controls input[type="color"] {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+}
+.drag-drop-area {
+    cursor: pointer;
+    position: relative;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+@media (max-width: 767.98px) {
+    .row.g-2 > [class*="col-"] {
+        margin-bottom: 0.75rem;
+    }
+}
