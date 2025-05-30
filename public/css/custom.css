@@ -269,6 +269,25 @@ footer a:hover {
     justify-content: center;
     flex-direction: column;
 }
+.drag-drop-label {
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.file-input-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    cursor: pointer;
+}
 .drag-drop-area.bg-info {
     background-color: #cff4fc !important;
 }
@@ -297,13 +316,24 @@ footer a:hover {
     display: flex;
     align-items: center;
 }
-.watermark-controls input[type="color"] {
-    width: 36px;
-    height: 36px;
+.watermark-controls input[type="color"], .watermark-color-input {
+    width: 36px !important;
+    height: 36px !important;
     padding: 0;
+}
+.watermark-fontsize-input {
+    width: 80px;
+    display: inline-block;
+}
+.conversion-progress-wrapper {
+    max-width: 320px;
 }
 @media (max-width: 767.98px) {
     .row.g-2 > [class*="col-"] {
         margin-bottom: 0.75rem;
     }
+}
+#conversionProgressBar {
+    width: 0%;
+    transition: width 0.3s;
 }
