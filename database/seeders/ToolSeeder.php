@@ -11,10 +11,11 @@ class ToolSeeder extends Seeder
     {
         $pages = [  
             [
+                // <meta name="description" content="Convert images to JPG, PNG, WebP, BMP, GIF, and more instantly with Toolzy’s free Image Converter. Batch process, reorder, resize, add watermarks, and preview images—all securely in your browser with no uploads or signups required. Fast, private, and easy to use.">
                 'page_name' => 'image-converter',
                 'category' => 'Image Tools',
                 'meta_title' => 'Online Image Converter - Toolzy',
-                'meta_description' => 'Convert images to different formats (JPG, PNG, WebP, BMP, and more) instantly with Toolzy’s free Image Converter. Fast, secure, and easy to use.',
+                'meta_description' => 'Convert images to JPG, PNG, WebP, BMP, GIF, and more instantly with Toolzy’s free Image Converter. Batch process, reorder, resize, add watermarks, and preview images—all securely in your browser with no uploads or signups required. Fast, private, and easy to use.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
                     '@graph' => [
@@ -23,7 +24,7 @@ class ToolSeeder extends Seeder
                             '@id' => url('/tools/image-converter'),
                             'name' => 'Online Image Converter - Toolzy',
                             'url' => url('/tools/image-converter'),
-                            'description' => 'Toolzy’s Online Image Converter lets you convert images between popular formats like JPG, PNG, WebP, and BMP with ease. No signup required.',
+                            'description' => 'Convert images to JPG, PNG, WebP, BMP, GIF, and more instantly with Toolzy’s free Image Converter. Batch process, reorder, resize, add watermarks, and preview images—all securely in your browser with no uploads or signups required. Fast, private, and easy to use.',
                             'inLanguage' => 'en',
                             'mainEntityOfPage' => url('/tools/image-converter')
                         ],
@@ -71,7 +72,7 @@ class ToolSeeder extends Seeder
                             "name"=> "Image Converter",
                             "operatingSystem"=> "All",
                             "applicationCategory"=> "UtilitiesApplication",
-                            "description"=> "Toolzy’s Online Image Converter lets you convert images between popular formats like JPG, PNG, WebP, and BMP with ease. No signup required.",
+                            "description"=> "Convert images to JPG, PNG, WebP, BMP, GIF, and more instantly with Toolzy’s free Image Converter. Batch process, reorder, resize, add watermarks, and preview images—all securely in your browser with no uploads or signups required. Fast, private, and easy to use.",
                             "offers"=> [
                             "@type"=> "Offer",
                             "price"=> "0",
