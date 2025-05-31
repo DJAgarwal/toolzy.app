@@ -145,6 +145,19 @@
             </div>
         </div>
     </footer>
+    <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="imagePreviewLabel">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <img id="imagePreviewModalImg" src="" alt="Preview" class="img-fluid rounded shadow">
+        </div>
+        </div>
+    </div>
+    </div>
     <div aria-live="polite" aria-atomic="true" class="position-fixed top-0 end-0 p-3 z-3 m-h-80">
         <div id="liveToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">

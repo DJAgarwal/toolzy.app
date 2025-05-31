@@ -42,7 +42,7 @@
     <div class="col-12 col-md-auto mb-2 mb-md-0 align-self-center">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="removeBg">
-            <label class="form-check-label" for="removeBg">Remove Background (PNG only)</label>
+            <label class="form-check-label" for="removeBg">Remove Background(PNG)</label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="addWatermark">
@@ -90,21 +90,6 @@
 <div id="resultContainer" class="mt-4 d-none">
     <h5 class="mb-3">Converted Images:</h5>
     <div id="convertedImages" class="d-flex flex-wrap gap-3 justify-content-center"></div>
-</div>
-
-<!-- Image Preview Modal -->
-<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="imagePreviewLabel">Image Preview</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body text-center">
-        <img id="imagePreviewModalImg" src="" alt="Preview" class="img-fluid rounded shadow">
-      </div>
-    </div>
-  </div>
 </div>
 @endsection
 @push('scripts')

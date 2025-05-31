@@ -295,10 +295,10 @@ footer a:hover {
     opacity: 0.7;
 }
 .quality-range {
-    width: 120px;
+    width: 105px;
 }
 .resize-input {
-    width: 90px;
+    width: 85px;
     display: inline-block;
 }
 .converted-image img {
