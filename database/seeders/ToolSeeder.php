@@ -11,7 +11,6 @@ class ToolSeeder extends Seeder
     {
         $pages = [  
             [
-                // <meta name="description" content="Convert images to JPG, PNG, WebP, BMP, GIF, and more instantly with Toolzy’s free Image Converter. Batch process, reorder, resize, add watermarks, and preview images—all securely in your browser with no uploads or signups required. Fast, private, and easy to use.">
                 'page_name' => 'image-converter',
                 'category' => 'Image Tools',
                 'meta_title' => 'Online Image Converter - Toolzy',
@@ -86,7 +85,7 @@ class ToolSeeder extends Seeder
                 'page_name' => 'image-compressor',
                 'category' => 'Image Tools',
                 'meta_title' => 'Online Image Compressor - Toolzy',
-                'meta_description' => 'Compress images online for free with Toolzy. Reduce image file sizes without losing quality. Supports JPEG, PNG, WebP and more.',
+                'meta_description' => 'Compress images online instantly with Toolzy. Reduce JPG, PNG, WebP, and AVIF file sizes without quality loss. Fast, free, secure, no uploads—works 100% in your browser. Perfect for web, social, and government forms.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
                     '@graph' => [
@@ -95,7 +94,7 @@ class ToolSeeder extends Seeder
                             '@id' => url('/tools/image-compressor'),
                             'name' => 'Online Image Compressor - Toolzy',
                             'url' => url('/tools/image-compressor'),
-                            'description' => 'Toolzy’s Image Compressor helps you reduce image file size online quickly and efficiently. Compress multiple images while maintaining quality. Ideal for web use, email, and uploads.',
+                            'description' => 'Compress images online instantly with Toolzy. Reduce JPG, PNG, WebP, and AVIF file sizes without quality loss. Fast, free, secure, no uploads—works 100% in your browser. Perfect for web, social, and government forms.',
                             'inLanguage' => 'en',
                             'mainEntityOfPage' => url('/tools/image-compressor')
                         ],
@@ -143,7 +142,7 @@ class ToolSeeder extends Seeder
                             "name"=> "Image Compressor",
                             "operatingSystem"=> "All",
                             "applicationCategory"=> "UtilitiesApplication",
-                            "description"=> "Toolzy’s Image Compressor helps you reduce image file size online quickly and efficiently. Compress multiple images while maintaining quality. Ideal for web use, email, and uploads.",
+                            "description"=> "Compress images online instantly with Toolzy. Reduce JPG, PNG, WebP, and AVIF file sizes without quality loss. Fast, free, secure, no uploads—works 100% in your browser. Perfect for web, social, and government forms.",
                             "offers"=> [
                             "@type"=> "Offer",
                             "price"=> "0",

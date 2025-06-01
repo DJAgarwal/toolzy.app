@@ -2,15 +2,16 @@
 
 @section('content')
 <div class="mb-4">
-    <div id="dragDropArea" class="border rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative">
-        <label for="imageInput" class="form-label fw-semibold w-100 mb-0 drag-drop-label">
-            <span>Select Images or Drag &amp; Drop Here</span>
-            <input type="file" id="imageInput" accept="image/*,.heic,.avif,.svg,.bmp,.tiff,.gif" class="form-control d-inline-block w-auto file-input-cover" multiple tabindex="-1" />
-        </label>
-        <div class="form-text text-success mt-2">
-            <strong>All processing is done on-device (in your browser). No uploads required.</strong>
-        </div>
-    </div>
+  <label id="dragDropArea" for="imageInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
+      <span>Select Images or Drag &amp; Drop Here</span>
+      <input type="file" id="imageInput" accept="image/*,.heic,.avif,.svg,.bmp,.tiff,.gif" class="form-control d-inline-block w-auto file-input-cover" multiple tabindex="-1" />
+      <div class="form-text text-success mt-2">
+          <strong>All processing is done on your device. No files are uploaded on server.</strong>
+      </div>
+      <div class="form-text text-secondary mt-1">
+          <strong>Allowed extensions: jpg, jpeg, png, webp, avif, heic, avif, svg, bmp, tiff, gif</strong>
+      </div>
+  </label>
 </div>
 <div class="mb-4 row g-2 align-items-center">
     <div class="col-12 col-md-auto mb-2 mb-md-0">
@@ -19,11 +20,6 @@
             <option value="jpeg">JPG</option>
             <option value="png">PNG</option>
             <option value="webp">WebP</option>
-            <option value="bmp">BMP</option>
-            <option value="gif">GIF</option>
-            <option value="tiff">TIFF</option>
-            <option value="svg">SVG</option>
-            <option value="heic">HEIC</option>
             <option value="avif">AVIF</option>
         </select>
     </div>
@@ -83,10 +79,6 @@
         <div class="progress-bar" id="conversionProgressBar" role="progressbar"></div>
     </div>
 </div>
-<div id="reorderContainer" class="mb-3 d-none">
-    <h6>Reorder Images (drag to reorder):</h6>
-    <ul id="reorderList" class="list-group flex-row flex-wrap gap-2"></ul>
-</div>
 <div id="resultContainer" class="mt-4 d-none">
     <h5 class="mb-3">Converted Images:</h5>
     <div id="convertedImages" class="d-flex flex-wrap gap-3 justify-content-center"></div>
@@ -98,7 +90,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Drag and drop
     const dragDropArea = document.getElementById('dragDropArea');
     const imageInput = document.getElementById('imageInput');
+    const formatSelect = document.getElementById('formatSelect');
+    const qualityInput = document.getElementById('quality');
+    const qualityValueSpan = document.getElementById('qualityValue');
+    const removeBg = document.getElementById('removeBg');
+    const addWatermark = document.getElementById('addWatermark');
+    const watermarkControls = document.querySelector('.watermark-controls');
+    const watermarkText = document.getElementById('watermarkText');
+    const watermarkColor = document.getElementById('watermarkColor');
+    const watermarkFontSize = document.getElementById('watermarkFontSize');
+    const watermarkImageInput = document.getElementById('watermarkImage');
+    const resizeWidth = document.getElementById('resizeWidth');
+    const resizeHeight = document.getElementById('resizeHeight');
+    const bulkDownloadBtn = document.getElementById('bulkDownloadBtn');
+    const convertImageBtn = document.getElementById('convertImageBtn');
+    const convertedImages = document.getElementById('convertedImages');
 
+    // Modal preview
+    convertedImages.addEventListener('click', function(e) {
+        if (e.target.tagName === 'IMG') {
+            showModalPreview(e.target.src);
+        }
+    });
+
+    function showModalPreview(src) {
+        document.getElementById('imagePreviewModalImg').src = src;
+        const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('imagePreviewModal'));
+        modal.show();
+    }
+
+    // Show/hide watermark controls
+    addWatermark.addEventListener('change', function() {
+        watermarkControls.classList.toggle('d-none', !this.checked);
+    });
+
+    // Quality value display
+    qualityInput.addEventListener('input', function() {
+        qualityValueSpan.innerText = this.value;
+    });
+
+    // Drag & drop behavior
     dragDropArea.addEventListener('click', () => imageInput.click());
     dragDropArea.addEventListener('dragover', e => {
         e.preventDefault();
@@ -114,28 +145,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/') || /\.(heic|avif|svg|bmp|tiff|gif)$/i.test(f.name));
         if (files.length) {
             imageInput.files = new FileListShim(files);
-            setupReorderList(files);
+            batchConvertImages();
         }
     });
 
     imageInput.addEventListener('change', function() {
         if (imageInput.files.length) {
-            setupReorderList(Array.from(imageInput.files));
+            batchConvertImages();
         }
     });
 
-    // Quality value display
-    document.getElementById('quality').addEventListener('input', function() {
-        document.getElementById('qualityValue').innerText = this.value;
+    convertImageBtn.addEventListener('click', function() {
+        batchConvertImages();
     });
-
-    // Watermark controls
-    document.getElementById('addWatermark').addEventListener('change', function() {
-        document.querySelector('.watermark-controls').classList.toggle('d-none', !this.checked);
-    });
-
-    document.getElementById('convertImageBtn').addEventListener('click', batchConvertImages);
-    document.getElementById('bulkDownloadBtn').addEventListener('click', downloadAllAsZip);
 
     // FileList shim for drag & drop
     window.FileListShim = function(files) {
@@ -144,65 +166,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return dataTransfer.files;
     };
 
-    // Modal preview
-    document.getElementById('convertedImages').addEventListener('click', function(e) {
-        if (e.target.tagName === 'IMG') {
-            showModalPreview(e.target.src);
-        }
-    });
+    // Bulk download
+    bulkDownloadBtn.addEventListener('click', downloadAllAsZip);
 
-    // Reordering
-    let dragSrcEl = null;
-    function setupReorderList(files) {
-        const reorderContainer = document.getElementById('reorderContainer');
-        const reorderList = document.getElementById('reorderList');
-        reorderList.innerHTML = '';
-        Array.from(files).forEach((file, idx) => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item reorder-thumb';
-            li.setAttribute('draggable', true);
-            li.setAttribute('data-idx', idx);
-            li.textContent = file.name;
-            li.addEventListener('dragstart', function(e) {
-                dragSrcEl = this;
-                e.dataTransfer.effectAllowed = 'move';
-                e.dataTransfer.setData('text/plain', this.getAttribute('data-idx'));
-                this.style.opacity = '0.5';
-            });
-            li.addEventListener('dragend', function() {
-                this.style.opacity = '';
-            });
-            li.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'move';
-            });
-            li.addEventListener('drop', function(e) {
-                e.stopPropagation();
-                if (dragSrcEl !== this) {
-                    const srcIdx = parseInt(dragSrcEl.getAttribute('data-idx'), 10);
-                    const tgtIdx = parseInt(this.getAttribute('data-idx'), 10);
-                    reorderFiles(srcIdx, tgtIdx);
-                }
-                return false;
-            });
-            reorderList.appendChild(li);
-        });
-        reorderContainer.classList.remove('d-none');
-    }
-
-    function reorderFiles(fromIdx, toIdx) {
-        let files = Array.from(imageInput.files);
-        const moved = files.splice(fromIdx, 1)[0];
-        files.splice(toIdx, 0, moved);
-        imageInput.files = FileListShim(files);
-        setupReorderList(files);
-    }
-
-    // Modal preview function
-    function showModalPreview(src) {
-        const modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
-        document.getElementById('imagePreviewModalImg').src = src;
-        modal.show();
+    function clearResults() {
+        document.getElementById('convertedImages').innerHTML = '';
+        document.getElementById('resultContainer').classList.add('d-none');
+        bulkDownloadBtn.classList.add('d-none');
     }
 });
 
@@ -273,26 +243,24 @@ function loadImageAsync(file) {
     });
 }
 
+// Uses browser-image-compression for final export!
 async function convertSingleImage(file, options) {
+    // Step 1: Prepare canvas with resize, watermark, background removal
     return new Promise(resolve => {
         const reader = new FileReader();
         reader.onload = function(e) {
             const img = new Image();
             img.onload = async function() {
-                // Resize
                 let drawWidth = options.width && options.width > 0 ? options.width : img.width;
                 let drawHeight = options.height && options.height > 0 ? options.height : img.height;
 
-                // Prepare canvas
                 const canvas = document.createElement('canvas');
                 canvas.width = drawWidth;
                 canvas.height = drawHeight;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0, drawWidth, drawHeight);
 
-                // Background removal (placeholder, requires server-side or advanced JS lib for real bg removal)
                 if (options.removeBg && options.format === 'png') {
-                    // Simple placeholder: remove pure white background
                     const imgData = ctx.getImageData(0, 0, drawWidth, drawHeight);
                     for (let i = 0; i < imgData.data.length; i += 4) {
                         if (imgData.data[i] > 240 && imgData.data[i+1] > 240 && imgData.data[i+2] > 240) {
@@ -302,11 +270,9 @@ async function convertSingleImage(file, options) {
                     ctx.putImageData(imgData, 0, 0);
                 }
 
-                // Watermark
                 if (options.addWatermark) {
                     ctx.save();
                     if (options.watermarkImage) {
-                        // Draw image watermark at bottom right
                         const wmImg = options.watermarkImage;
                         const w = wmImg.width * 0.25;
                         const h = wmImg.height * 0.25;
@@ -328,22 +294,26 @@ async function convertSingleImage(file, options) {
                     ctx.restore();
                 }
 
-                // Export to selected format
-                let mime = getMimeType(options.format);
-                let dataURL;
-                if (['jpeg', 'png', 'webp'].includes(options.format)) {
-                    dataURL = canvas.toDataURL(mime, options.quality);
-                } else {
-                    // For BMP, GIF, TIFF, SVG, HEIC, AVIF, fallback to PNG dataURL and update extension/mime
-                    dataURL = canvas.toDataURL('image/png');
-                }
+                // Step 2: Convert canvas to blob
+                canvas.toBlob(async function(baseBlob) {
+                    // Step 3: Use browser-image-compression for final export
+                    const outType = getMimeType(options.format);
+                    const compressedBlob = await imageCompression(baseBlob, {
+                        fileType: outType,
+                        initialQuality: options.quality,
+                        useWebWorker: true,
+                    });
+                    const reader2 = new FileReader();
+                    reader2.onload = function(e2) {
+                        const dataURL = e2.target.result;
+                        const ext = options.format;
+                        const baseName = file.name.replace(/\.[^.]+$/, '');
+                        const downloadName = `${baseName}_converted.${ext}`;
+                        resolve({dataURL, downloadName, base64: dataURL});
+                    };
+                    reader2.readAsDataURL(compressedBlob);
+                }, getMimeType(options.format), options.quality);
 
-                // File name
-                const ext = options.format;
-                const baseName = file.name.replace(/\.[^.]+$/, '');
-                const downloadName = `${baseName}_converted.${ext}`;
-
-                resolve({dataURL, downloadName, base64: dataURL});
             };
             img.src = e.target.result;
         };
@@ -360,7 +330,7 @@ function getMimeType(format) {
         case 'gif': return 'image/gif';
         case 'tiff': return 'image/tiff';
         case 'svg': return 'image/svg+xml';
-        case 'heic': return 'image/heic'; // Most browsers won't support this
+        case 'heic': return 'image/heic';
         case 'avif': return 'image/avif';
         default: return 'image/png';
     }
@@ -393,17 +363,10 @@ function displayResults(results, format) {
             showToast('Base64 copied to clipboard!', 'success');
         };
 
-        const directLinkBtn = document.createElement('a');
-        directLinkBtn.href = result.dataURL;
-        directLinkBtn.target = '_blank';
-        directLinkBtn.className = 'btn btn-outline-info btn-sm mb-1 me-1';
-        directLinkBtn.innerText = 'Direct Link';
-
         col.appendChild(img);
         col.appendChild(document.createElement('br'));
         col.appendChild(dlBtn);
         col.appendChild(base64Btn);
-        col.appendChild(directLinkBtn);
 
         container.appendChild(col);
     });
@@ -412,7 +375,6 @@ function displayResults(results, format) {
     document.getElementById('bulkDownloadBtn').classList.toggle('d-none', results.length < 2);
 }
 
-// Helper to convert data URL to Blob (NO fetch, no CSP issue)
 function dataURLtoBlob(dataurl) {
     let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
@@ -447,5 +409,6 @@ function downloadAllAsZip() {
     });
 }
 </script>
+<script src="{{ asset('js/browser-image-compression.js') }}" nonce="{{ $cspNonce }}"></script>
 <script src="{{ asset('js/jszip.min.js') }}" nonce="{{ $cspNonce }}"></script>
 @endpush
