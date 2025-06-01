@@ -2,23 +2,26 @@
 
 @section('content')
 <div class="mb-3">
-    <label id="dragDropArea" for="pdfFiles" class="form-label fw-semibold border rounded p-3 text-center text-muted drag-drop-area w-100">
+    <label id="dragDropArea" for="pdfFiles" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
         <span>Select or Drag &amp; Drop PDF Files Here</span>
-        <input type="file" id="pdfFiles" class="form-control file-input-cover" multiple accept="application/pdf" hidden />
-        <div class="form-text">You can upload and merge multiple PDF files. Drag-and-drop supported.</div>
+        <input type="file" id="pdfFiles" class="form-control d-inline-block w-auto file-input-cover" multiple accept="application/pdf" hidden />
+        <div class="form-text text-success mt-2">
+            <strong>All actions are done on your device. No files are uploaded to the server.</strong>
+        </div>
+        <div class="form-text">You can upload and merge multiple PDF files.</div>
     </label>
-</div>
-<div class="mb-3 d-flex align-items-center gap-2 flex-wrap">
-    <div class="input-group w-auto">
-        <span class="input-group-text">Output Name</span>
-        <input type="text" id="outputName" class="form-control" value="merged.pdf" />
-    </div>
-    <button class="btn btn-secondary ms-2" id="resetBtn">Reset</button>
 </div>
 <div class="mb-3 table-responsive">
     <table class="table align-middle mb-0" id="pdfTable">
         <tbody id="pdfTbody" class="sortable-table"></tbody>
     </table>
+</div>
+<div class="mb-3 d-flex align-items-center gap-2 flex-wrap d-none" id="outputControls">
+    <div class="input-group w-auto">
+        <span class="input-group-text">Output Name</span>
+        <input type="text" id="outputName" class="form-control" value="merged.pdf" />
+    </div>
+    <button class="btn btn-secondary ms-2" id="resetBtn">Reset</button>
 </div>
 <div class="mb-3 d-flex gap-2 align-items-center flex-wrap">
     <button class="btn btn-primary" id="mergePDFsBtn">Merge PDFs</button>
@@ -56,8 +59,22 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdn.jsdelivr.net/npm/pdfjs-dis
 </script>
 <script nonce="{{ $cspNonce }}">
 document.addEventListener('DOMContentLoaded', function() {
-    // ... your DOM element lookups ...
-    let pdfList = []; // [{file, url, thumb, size, name, pages}]
+    // DOM lookups
+    const dragDropArea = document.getElementById('dragDropArea');
+    const pdfFiles = document.getElementById('pdfFiles');
+    const pdfTbody = document.getElementById('pdfTbody');
+    const mergePDFsBtn = document.getElementById('mergePDFsBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const progressBarWrap = document.getElementById('progressBarWrap');
+    const progressBar = document.getElementById('progressBar');
+    const downloadLink = document.getElementById('downloadLink');
+    const mergedPdfLink = document.getElementById('mergedPdfLink');
+    const outputName = document.getElementById('outputName');
+    const pdfPreviewModal = document.getElementById('pdfPreviewModal');
+    const pdfPreviewCanvas = document.getElementById('pdfPreviewCanvas');
+    const pdfPreviewFileName = document.getElementById('pdfPreviewFileName');
+    const outputControls = document.getElementById('outputControls');
+    let pdfList = [];
 
     // DRAG & DROP
     dragDropArea.addEventListener('click', () => pdfFiles.click());
@@ -80,11 +97,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     async function handleFiles(files) {
+        let added = false;
         for (const file of files) {
             if (!file.type.match(/pdf/)) continue;
             if (pdfList.some(p=>p.name===file.name && p.size===file.size)) continue;
-
-            // Only read the file for thumbnail/preview
             let pages = 0, thumb = "";
             try {
                 const arrayBuffer = await file.arrayBuffer();
@@ -109,6 +125,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: file.name,
                 pages
             });
+            added = true;
+        }
+        if (pdfList.length > 0) {
+            outputControls.classList.remove('d-none');
         }
         renderTable();
     }
@@ -139,14 +159,14 @@ document.addEventListener('DOMContentLoaded', function() {
             nameTd.textContent = pdf.name;
             tr.appendChild(nameTd);
 
-            // Size
-            const sizeTd = document.createElement('td');
-            sizeTd.textContent = humanFileSize(pdf.size);
-            tr.appendChild(sizeTd);
+            // // Size
+            // const sizeTd = document.createElement('td');
+            // sizeTd.textContent = "Size: ".humanFileSize(pdf.size);
+            // tr.appendChild(sizeTd);
 
             // Pages
             const pagesTd = document.createElement('td');
-            pagesTd.textContent = pdf.pages;
+            pagesTd.textContent = "Pages: "+pdf.pages;
             tr.appendChild(pagesTd);
 
             // Remove button
@@ -159,6 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (pdf.url) URL.revokeObjectURL(pdf.url);
                 pdfList.splice(idx,1);
                 renderTable();
+                if (pdfList.length === 0) {
+                    outputControls.classList.add('d-none');
+                }
             });
             remTd.appendChild(remBtn);
             tr.appendChild(remTd);
@@ -198,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showPreviewModal(pdf) {
-        // Always read a fresh ArrayBuffer from the File for preview
         pdf.file.arrayBuffer().then(arrayBuffer => {
             return pdfjsLib.getDocument({data: new Uint8Array(arrayBuffer)}).promise;
         }).then(doc => {
@@ -218,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function mergePDFs() {
         if (!pdfList.length) {
-            alert('Please select at least one PDF file.');
+            showToast('Please select at least one PDF file.', 'danger');
             return;
         }
         progressBarWrap.classList.remove('d-none');
@@ -232,7 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const pdf = pdfList[i];
             progressBar.style.width = Math.round((i/pdfList.length)*100) + "%";
             progressBar.textContent = `Merging: ${pdf.name}`;
-            // Always read a fresh ArrayBuffer from the File for pdf-lib
             const arrayBuffer = await pdf.file.arrayBuffer();
             const libDoc = await PDFLib.PDFDocument.load(new Uint8Array(arrayBuffer));
             const copiedPages = await mergedPdf.copyPages(libDoc, libDoc.getPageIndices());
@@ -266,6 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         outputName.value = 'merged.pdf';
         downloadLink.classList.add('d-none');
         progressBarWrap.classList.add('d-none');
+        outputControls.classList.add('d-none');
     });
 
     function humanFileSize(size) {

@@ -122,9 +122,9 @@ footer a:hover {
   overflow: hidden;
   transition: height 0.3s ease;
 } */
-#liveToast {
+/* #liveToast {
   min-height: 64px;
-}
+} */
 .hero-gradient {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   display: flex;
