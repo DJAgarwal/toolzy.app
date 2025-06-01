@@ -34,8 +34,14 @@ class Cors
         $response->headers->set('Access-Control-Allow-Origin', env('ORIGIN_BASE_PATH'));
         $response->headers->set('Access-Control-Allow-Headers', 'Content-Type, X-Auth-Token, Authorization, Origin');
         $response->headers->set('Access-Control-Allow-Methods', 'POST, GET, PATCH, OPTIONS, PUT, DELETE');
-        
-        $response->headers->set('Content-Security-Policy', "default-src 'self' https://cloudflareinsights.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; style-src 'self' 'nonce-{$nonce}'; connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; img-src 'self' https://www.google-analytics.com data: blob:; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';");
+        $response->headers->set('Content-Security-Policy', 
+            "default-src 'self' https://cloudflareinsights.com; " .
+            "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; " .
+            "style-src 'self' https://cdnjs.cloudflare.com 'nonce-{$nonce}'; " .
+            "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; " .
+            "img-src 'self' https://www.google-analytics.com data: blob:; " .
+            "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+        );
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
         $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('X-Frame-Options', 'DENY');
