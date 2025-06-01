@@ -171,7 +171,7 @@ class ToolSeeder extends Seeder
                 'page_name' => 'pdf-file-merger',
                 'category' => 'PDF & Document Tools',
                 'meta_title' => 'Online PDF File Merger - Toolzy',
-                'meta_description' => 'Easily merge multiple PDF files into one with Toolzy’s free online PDF File Merger. Fast, secure, and no watermark. Combine PDFs in seconds.',
+                'meta_description' => 'Easily merge multiple PDF files into one with Toolzy’s free online PDF File Merger. Fast, secure, private and no watermark. Combine PDFs in seconds.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
                     '@graph' =>[
@@ -180,7 +180,7 @@ class ToolSeeder extends Seeder
                             '@id' => url('/tools/pdf-file-merger'),
                             'name' => 'Online PDF File Merger - Toolzy',
                             'url' => url('/tools/pdf-file-merger'),
-                            'description' => 'Toolzy’s PDF File Merger allows you to easily combine multiple PDF documents into one seamless file. No installation, no watermark, 100% free.',
+                            'description' => 'Toolzy’s PDF File Merger allows you to easily combine multiple PDF documents into one seamless file. No installation, no watermark, private and 100% free.',
                             'inLanguage' => 'en',
                             'mainEntityOfPage' => url('/tools/pdf-file-merger')
                         ],
@@ -228,7 +228,7 @@ class ToolSeeder extends Seeder
                             "name"=> "Pdf File Merger",
                             "operatingSystem"=> "All",
                             "applicationCategory"=> "UtilitiesApplication",
-                            "description"=> "Toolzy’s PDF File Merger allows you to easily combine multiple PDF documents into one seamless file. No installation, no watermark, 100% free.",
+                            "description"=> "Toolzy’s PDF File Merger allows you to easily combine multiple PDF documents into one seamless file. No installation, no watermark, private and 100% free.",
                             "offers"=> [
                             "@type"=> "Offer",
                             "price"=> "0",
