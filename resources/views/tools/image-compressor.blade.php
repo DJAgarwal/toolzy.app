@@ -61,10 +61,6 @@
 </div>
 @endsection
 
-@push('styles')
-<!-- Add your preferred CSS here, e.g. for .fresh-row, .fresh-thumb, .fresh-info, .fresh-actions, .fresh-size-badge, .fresh-saved, .compression-message, .progress-bar-custom -->
-@endpush
-
 @push('scripts')
 <script nonce="{{ $cspNonce }}">
 const dragDropArea = document.getElementById('dragDropArea');
@@ -89,6 +85,7 @@ const formatWebpWrap = document.getElementById('formatWebpWrap');
 const formatAvifWrap = document.getElementById('formatAvifWrap');
 
 let imageFiles = []; // [{file, name, src, ext, originalSize, outputs:{jpeg,png,webp,avif}}]
+let compressingCount = 0; // Track compressing tasks
 
 function humanFileSize(size) {
     if (!size && size !== 0) return '';
@@ -97,15 +94,38 @@ function humanFileSize(size) {
     return (size/1024/1024).toFixed(2) + ' MB';
 }
 
-function showProgress(percent) {
-    compressionProgressBarWrapper.classList.remove('d-none');
-    compressionMsg.classList.remove('d-none');
-    compressionProgressBar.style.width = percent + '%';
+// NEW: Only hide progress when ALL visible tasks are done/error
+function updateProgressBar() {
+    const totalTasks = getTotalCompressTasks();
+    const doneTasks = getDoneCompressTasks();
+    const isActive = totalTasks > 0 && doneTasks < totalTasks;
+    if (isActive) {
+        compressionProgressBarWrapper.classList.remove('d-none');
+        compressionMsg.classList.remove('d-none');
+        compressionProgressBar.style.width = (doneTasks / totalTasks * 100) + '%';
+    } else {
+        compressionProgressBarWrapper.classList.add('d-none');
+        compressionMsg.classList.add('d-none');
+        compressionProgressBar.style.width = '0%';
+    }
 }
-function hideProgress() {
-    compressionProgressBarWrapper.classList.add('d-none');
-    compressionMsg.classList.add('d-none');
-    compressionProgressBar.style.width = '0%';
+function getTotalCompressTasks() {
+    // Count all outputs for all files that are actively visible (based on convert/checkboxes/ext)
+    let count = 0;
+    imageFiles.forEach(imgObj => {
+        getUsedFormatsForRow(imgObj).forEach(fmt => { count++; });
+    });
+    return count;
+}
+function getDoneCompressTasks() {
+    let count = 0;
+    imageFiles.forEach(imgObj => {
+        getUsedFormatsForRow(imgObj).forEach(fmt => {
+            const o = imgObj.outputs[fmt];
+            if (o.status === 'done' || o.status === 'error') count++;
+        });
+    });
+    return count;
 }
 
 dragDropArea.setAttribute('role', 'button');
@@ -181,6 +201,7 @@ function handleFiles(files) {
     });
     renderList();
     renderBulkButtons();
+    updateProgressBar();
 }
 
 function getExtFromType(type) {
@@ -211,6 +232,7 @@ function autoCompressAll() {
 async function compressImage(idx) {
     const imgObj = imageFiles[idx];
     const formats = getUsedFormatsForRow(imgObj);
+    let didChange = false;
     for (const fmt of ['jpeg','png','webp','avif']) {
         const o = imgObj.outputs[fmt];
         if (!formats.includes(fmt)) {
@@ -220,7 +242,9 @@ async function compressImage(idx) {
         // If already compressed and file didn't change, skip
         if (o.status === 'done' && o.blob && o.size === o.blob.size) continue;
         o.status = 'pending';
+        didChange = true;
         renderList();
+        updateProgressBar();
         let options = {
             initialQuality: 0.8,
             useWebWorker: true,
@@ -231,7 +255,6 @@ async function compressImage(idx) {
             options.lossless = true;
         }
         try {
-            showProgress(20);
             const compressedBlob = await imageCompression(imgObj.file, options);
             if (o.url) URL.revokeObjectURL(o.url);
             o.blob = compressedBlob;
@@ -246,9 +269,11 @@ async function compressImage(idx) {
             o.size = null;
             o.saved = null;
         }
-        hideProgress();
+        renderList();
+        updateProgressBar();
     }
-    renderList();
+    // After all compressions for this image, update progress
+    updateProgressBar();
     renderBulkButtons();
 }
 
@@ -383,6 +408,7 @@ formatWebpWrap.classList.add('d-none');
 formatAvifWrap.classList.add('d-none');
 renderBulkButtons();
 renderList();
+updateProgressBar();
 </script>
 <script src="{{ asset('js/jszip.min.js') }}" nonce="{{ $cspNonce }}"></script>
 <script src="{{ asset('js/browser-image-compression.js') }}" nonce="{{ $cspNonce }}"></script>
