@@ -50,10 +50,15 @@
 </div>
 
 <!-- Image Results Fresh List -->
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <div></div>
+    <button type="button" class="btn btn-outline-danger btn-sm d-none" id="clearListBtn">Clear List</button>
+</div>
 <div id="imageResultList" class="d-flex flex-column gap-3"></div>
 
 <!-- Bulk Download Buttons -->
 <div class="d-flex flex-wrap gap-2 justify-content-end mt-4 mb-2 d-none" id="bulkDownloadRow">
+    <button type="button" class="btn btn-outline-dark" id="bulkZipAllBtn">Download All</button>
     <button type="button" class="btn btn-outline-info d-none" id="bulkZipJpegBtn">Download All (JPG)</button>
     <button type="button" class="btn btn-outline-success d-none" id="bulkZipPngBtn">Download All (PNG)</button>
     <button type="button" class="btn btn-outline-warning d-none" id="bulkZipWebpBtn">Download All (WEBP)</button>
@@ -70,10 +75,12 @@ const compressionProgressBarWrapper = document.getElementById('compressionProgre
 const compressionProgressBar = document.getElementById('compressionProgressBar');
 const compressionMsg = document.getElementById('compressionMsg');
 const bulkDownloadRow = document.getElementById('bulkDownloadRow');
+const bulkZipAllBtn = document.getElementById('bulkZipAllBtn');
 const bulkZipJpegBtn = document.getElementById('bulkZipJpegBtn');
 const bulkZipPngBtn = document.getElementById('bulkZipPngBtn');
 const bulkZipWebpBtn = document.getElementById('bulkZipWebpBtn');
 const bulkZipAvifBtn = document.getElementById('bulkZipAvifBtn');
+const clearListBtn = document.getElementById('clearListBtn');
 
 // Format selectors
 const convertImagesChk = document.getElementById('convertImagesChk');
@@ -85,7 +92,6 @@ const formatWebpWrap = document.getElementById('formatWebpWrap');
 const formatAvifWrap = document.getElementById('formatAvifWrap');
 
 let imageFiles = []; // [{file, name, src, ext, originalSize, outputs:{jpeg,png,webp,avif}}]
-let compressingCount = 0; // Track compressing tasks
 
 function humanFileSize(size) {
     if (!size && size !== 0) return '';
@@ -94,7 +100,6 @@ function humanFileSize(size) {
     return (size/1024/1024).toFixed(2) + ' MB';
 }
 
-// NEW: Only hide progress when ALL visible tasks are done/error
 function updateProgressBar() {
     const totalTasks = getTotalCompressTasks();
     const doneTasks = getDoneCompressTasks();
@@ -110,7 +115,6 @@ function updateProgressBar() {
     }
 }
 function getTotalCompressTasks() {
-    // Count all outputs for all files that are actively visible (based on convert/checkboxes/ext)
     let count = 0;
     imageFiles.forEach(imgObj => {
         getUsedFormatsForRow(imgObj).forEach(fmt => { count++; });
@@ -174,6 +178,7 @@ function handleFiles(files) {
     const acceptedTypes = [
         'image/jpeg','image/png','image/webp','image/avif'
     ];
+    let added = false;
     Array.from(files).forEach(file => {
         if (
             acceptedTypes.includes(file.type) && !imageFiles.some(f => f.name === file.name && f.file.size === file.size)
@@ -195,13 +200,20 @@ function handleFiles(files) {
                     }
                 });
                 compressImage(imageFiles.length - 1);
+                renderList();
+                renderBulkButtons();
+                updateProgressBar();
+                updateClearListBtn();
             };
             reader.readAsDataURL(file);
+            added = true;
         }
     });
+    // Ensure clear/download buttons are restored even if no file was added (file with same name/size)
     renderList();
     renderBulkButtons();
     updateProgressBar();
+    updateClearListBtn();
 }
 
 function getExtFromType(type) {
@@ -214,11 +226,9 @@ function getExtFromType(type) {
 
 function getUsedFormatsForRow(imgObj) {
     if (convertImagesChk.checked) {
-        // Only show checked formats
         const checked = formatCheckboxes.filter(cb => cb.checked).map(cb => cb.value);
         return checked.length ? checked : [];
     } else {
-        // Only the original file extension
         return [imgObj.ext];
     }
 }
@@ -232,7 +242,6 @@ function autoCompressAll() {
 async function compressImage(idx) {
     const imgObj = imageFiles[idx];
     const formats = getUsedFormatsForRow(imgObj);
-    let didChange = false;
     for (const fmt of ['jpeg','png','webp','avif']) {
         const o = imgObj.outputs[fmt];
         if (!formats.includes(fmt)) {
@@ -242,7 +251,6 @@ async function compressImage(idx) {
         // If already compressed and file didn't change, skip
         if (o.status === 'done' && o.blob && o.size === o.blob.size) continue;
         o.status = 'pending';
-        didChange = true;
         renderList();
         updateProgressBar();
         let options = {
@@ -272,9 +280,9 @@ async function compressImage(idx) {
         renderList();
         updateProgressBar();
     }
-    // After all compressions for this image, update progress
     updateProgressBar();
     renderBulkButtons();
+    updateClearListBtn();
 }
 
 function renderList() {
@@ -343,13 +351,22 @@ function renderList() {
 }
 
 function renderBulkButtons() {
-    // Only show for convert mode and for checked formats
-    const showBulk = imageFiles.length > 0 && convertImagesChk.checked && formatCheckboxes.some(cb => cb.checked);
-    bulkDownloadRow.classList.toggle('d-none', !showBulk);
-    bulkZipJpegBtn.classList.toggle('d-none', !formatCheckboxes.find(cb => cb.value === 'jpeg').checked);
-    bulkZipPngBtn.classList.toggle('d-none', !formatCheckboxes.find(cb => cb.value === 'png').checked);
-    bulkZipWebpBtn.classList.toggle('d-none', !formatCheckboxes.find(cb => cb.value === 'webp').checked);
-    bulkZipAvifBtn.classList.toggle('d-none', !formatCheckboxes.find(cb => cb.value === 'avif').checked);
+    const hasFiles = imageFiles.length > 0;
+    bulkDownloadRow.classList.toggle('d-none', !hasFiles);
+
+    // Download All always visible if files exist
+    bulkZipAllBtn.classList.toggle('d-none', !hasFiles);
+
+    // Format-specific buttons only if convert is checked and that format is selected
+    const showConvert = convertImagesChk.checked;
+    bulkZipJpegBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'jpeg').checked));
+    bulkZipPngBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'png').checked));
+    bulkZipWebpBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'webp').checked));
+    bulkZipAvifBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'avif').checked));
+}
+
+function updateClearListBtn() {
+    clearListBtn.classList.toggle('d-none', imageFiles.length === 0);
 }
 
 function getDownloadBtnClass(fmt) {
@@ -394,10 +411,52 @@ function bulkDownload(fmt) {
         link.click();
     });
 }
+function bulkDownloadAll() {
+    if (typeof JSZip === 'undefined') {
+        alert('JSZip library not loaded. Bulk download not available.');
+        return;
+    }
+    const zip = new JSZip();
+    imageFiles.forEach(imgObj => {
+        getUsedFormatsForRow(imgObj).forEach(fmt => {
+            const o = imgObj.outputs[fmt];
+            if (o && o.blob) {
+                zip.file(getCompressedName(imgObj.name, fmt), o.blob);
+            }
+        });
+    });
+    zip.generateAsync({ type: 'blob' }).then(function(content) {
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(content);
+        link.download = `compressed-images-all.zip`;
+        link.click();
+    });
+}
 bulkZipJpegBtn.addEventListener('click', () => bulkDownload('jpeg'));
 bulkZipPngBtn.addEventListener('click', () => bulkDownload('png'));
 bulkZipWebpBtn.addEventListener('click', () => bulkDownload('webp'));
 bulkZipAvifBtn.addEventListener('click', () => bulkDownload('avif'));
+bulkZipAllBtn.addEventListener('click', () => bulkDownloadAll());
+
+clearListBtn.addEventListener('click', () => {
+    imageFiles.forEach(imgObj => {
+        Object.values(imgObj.outputs).forEach(o => {
+            if (o.url) URL.revokeObjectURL(o.url);
+        });
+    });
+    imageFiles = [];
+    renderList();
+    renderBulkButtons();
+    updateProgressBar();
+    updateClearListBtn();
+    // Reset checkboxes if you want (optional)
+    // convertImagesChk.checked = false;
+    // toLabel.classList.add('d-none');
+    // formatJpegWrap.classList.add('d-none');
+    // formatPngWrap.classList.add('d-none');
+    // formatWebpWrap.classList.add('d-none');
+    // formatAvifWrap.classList.add('d-none');
+});
 
 // On page load, hide format checkboxes
 convertImagesChk.checked = false;
@@ -409,6 +468,7 @@ formatAvifWrap.classList.add('d-none');
 renderBulkButtons();
 renderList();
 updateProgressBar();
+updateClearListBtn();
 </script>
 <script src="{{ asset('js/jszip.min.js') }}" nonce="{{ $cspNonce }}"></script>
 <script src="{{ asset('js/browser-image-compression.js') }}" nonce="{{ $cspNonce }}"></script>
