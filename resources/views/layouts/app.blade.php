@@ -54,6 +54,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="manifest" href="{{ asset('manifest.json') }}" crossorigin="anonymous">
+    @stack('styles')
 </head>
 <body class="d-flex flex-column min-vh-100" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70" tabindex="0">
     {{-- Header --}}
