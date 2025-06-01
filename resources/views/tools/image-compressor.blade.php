@@ -15,6 +15,14 @@
   </label>
 </div>
 
+<!-- Target Size KB Option -->
+<div class="mb-2 d-flex align-items-center gap-2">
+  <label for="targetSizeKb" class="mb-0">Target Size (KB):</label>
+  <input type="number" min="1" step="1" id="targetSizeKb" class="form-control w-auto" placeholder="Optional">
+  <button type="button" class="btn btn-outline-primary btn-sm" id="applyTargetSizeBtn">Apply</button>
+  <small class="text-muted ms-2">(Leave blank for default quality)</small>
+</div>
+
 <!-- Convert Images Checkbox & Format Selection -->
 <div class="mb-3 d-flex flex-wrap align-items-center gap-3" id="formatCheckboxesRow">
     <div class="form-check me-3">
@@ -81,6 +89,8 @@ const bulkZipPngBtn = document.getElementById('bulkZipPngBtn');
 const bulkZipWebpBtn = document.getElementById('bulkZipWebpBtn');
 const bulkZipAvifBtn = document.getElementById('bulkZipAvifBtn');
 const clearListBtn = document.getElementById('clearListBtn');
+const targetSizeKbInput = document.getElementById('targetSizeKb');
+const applyTargetSizeBtn = document.getElementById('applyTargetSizeBtn');
 
 // Format selectors
 const convertImagesChk = document.getElementById('convertImagesChk');
@@ -91,7 +101,8 @@ const formatPngWrap = document.getElementById('formatPngWrap');
 const formatWebpWrap = document.getElementById('formatWebpWrap');
 const formatAvifWrap = document.getElementById('formatAvifWrap');
 
-let imageFiles = []; // [{file, name, src, ext, originalSize, outputs:{jpeg,png,webp,avif}}]
+let imageFiles = []; // [{file, name, src, originalSize, outputs:{jpeg,png,webp,avif}}]
+let appliedTargetSize = null;
 
 function humanFileSize(size) {
     if (!size && size !== 0) return '';
@@ -154,7 +165,20 @@ fileInput.addEventListener('change', (e) => {
     handleFiles(e.target.files);
 });
 
-// Show/hide format checkboxes based on Convert Images
+applyTargetSizeBtn.addEventListener('click', () => {
+    appliedTargetSize = getTargetSize();
+    // Force all relevant outputs to idle so recompression happens
+    imageFiles.forEach(imgObj => {
+        getUsedFormatsForRow(imgObj).forEach(fmt => {
+            imgObj.outputs[fmt].status = 'idle';
+        });
+    });
+    autoCompressAll();
+    renderList();
+    renderBulkButtons();
+    updateProgressBar();
+});
+
 convertImagesChk.addEventListener('change', () => {
     const show = convertImagesChk.checked;
     toLabel.classList.toggle('d-none', !show);
@@ -174,11 +198,15 @@ formatCheckboxes.forEach(cb =>
     })
 );
 
+function getTargetSize() {
+    const v = parseInt(targetSizeKbInput.value, 10);
+    return (!isNaN(v) && v > 0) ? v * 1024 : null;
+}
+
 function handleFiles(files) {
     const acceptedTypes = [
         'image/jpeg','image/png','image/webp','image/avif'
     ];
-    let added = false;
     Array.from(files).forEach(file => {
         if (
             acceptedTypes.includes(file.type) && !imageFiles.some(f => f.name === file.name && f.file.size === file.size)
@@ -206,10 +234,8 @@ function handleFiles(files) {
                 updateClearListBtn();
             };
             reader.readAsDataURL(file);
-            added = true;
         }
     });
-    // Ensure clear/download buttons are restored even if no file was added (file with same name/size)
     renderList();
     renderBulkButtons();
     updateProgressBar();
@@ -242,40 +268,94 @@ function autoCompressAll() {
 async function compressImage(idx) {
     const imgObj = imageFiles[idx];
     const formats = getUsedFormatsForRow(imgObj);
+    const targetSize = appliedTargetSize;
+
     for (const fmt of ['jpeg','png','webp','avif']) {
         const o = imgObj.outputs[fmt];
         if (!formats.includes(fmt)) {
             o.status = 'idle';
             continue;
         }
-        // If already compressed and file didn't change, skip
-        if (o.status === 'done' && o.blob && o.size === o.blob.size) continue;
         o.status = 'pending';
         renderList();
         updateProgressBar();
-        let options = {
-            initialQuality: 0.8,
-            useWebWorker: true,
-            fileType: getOutputType(fmt),
-        };
-        if (fmt === 'png') {
-            delete options.initialQuality;
-            options.lossless = true;
-        }
-        try {
-            const compressedBlob = await imageCompression(imgObj.file, options);
-            if (o.url) URL.revokeObjectURL(o.url);
-            o.blob = compressedBlob;
-            o.url = URL.createObjectURL(compressedBlob);
-            o.size = compressedBlob.size;
-            o.saved = ((1 - compressedBlob.size / imgObj.originalSize) * 100);
-            o.status = 'done';
-        } catch (e) {
-            o.status = 'error';
-            o.blob = null;
-            o.url = null;
-            o.size = null;
-            o.saved = null;
+
+        if (!targetSize || fmt === 'png') {
+            let options = {
+                initialQuality: 0.8,
+                useWebWorker: true,
+                fileType: getOutputType(fmt),
+            };
+            if (fmt === 'png') {
+                delete options.initialQuality;
+                options.lossless = true;
+            }
+            try {
+                const compressedBlob = await imageCompression(imgObj.file, options);
+                if (o.url) URL.revokeObjectURL(o.url);
+                o.blob = compressedBlob;
+                o.url = URL.createObjectURL(compressedBlob);
+                o.size = compressedBlob.size;
+                o.saved = ((1 - compressedBlob.size / imgObj.originalSize) * 100);
+                o.status = 'done';
+            } catch (e) {
+                o.status = 'error';
+                o.blob = null;
+                o.url = null;
+                o.size = null;
+                o.saved = null;
+            }
+        } else {
+            let minQ = 0.3, maxQ = 0.95, bestBlob = null, bestQ = 0.8, tries = 8;
+            for (let i = 0; i < tries; i++) {
+                let quality = (minQ + maxQ) / 2;
+                let options = {
+                    initialQuality: quality,
+                    useWebWorker: true,
+                    fileType: getOutputType(fmt),
+                };
+                try {
+                    const testBlob = await imageCompression(imgObj.file, options);
+                    if (testBlob.size <= targetSize) {
+                        bestBlob = testBlob;
+                        bestQ = quality;
+                        minQ = quality;
+                    } else {
+                        maxQ = quality;
+                    }
+                } catch (e) {
+                    break;
+                }
+            }
+            if (bestBlob) {
+                if (o.url) URL.revokeObjectURL(o.url);
+                o.blob = bestBlob;
+                o.url = URL.createObjectURL(bestBlob);
+                o.size = bestBlob.size;
+                o.saved = ((1 - bestBlob.size / imgObj.originalSize) * 100);
+                o.status = 'done';
+            } else {
+                let options = {
+                    initialQuality: minQ,
+                    useWebWorker: true,
+                    fileType: getOutputType(fmt),
+                };
+                try {
+                    const compressedBlob = await imageCompression(imgObj.file, options);
+                    if (o.url) URL.revokeObjectURL(o.url);
+                    o.blob = compressedBlob;
+                    o.url = URL.createObjectURL(compressedBlob);
+                    o.size = compressedBlob.size;
+                    o.saved = ((1 - compressedBlob.size / imgObj.originalSize) * 100);
+                    o.status = 'done';
+                } catch (e) {
+                    o.status = 'error';
+                    o.blob = null;
+                    o.url = null;
+                    o.size = null;
+                    o.saved = null;
+                }
+            }
         }
         renderList();
         updateProgressBar();
@@ -291,7 +371,6 @@ function renderList() {
         const row = document.createElement('div');
         row.className = 'fresh-row';
 
-        // Thumbnail
         const img = document.createElement('img');
         img.src = imgObj.src;
         img.alt = imgObj.name;
@@ -299,7 +378,6 @@ function renderList() {
         img.loading = 'lazy';
         row.appendChild(img);
 
-        // Info
         const info = document.createElement('div');
         info.className = 'fresh-info';
         const filename = document.createElement('span');
@@ -313,7 +391,6 @@ function renderList() {
         info.appendChild(origSize);
         row.appendChild(info);
 
-        // Actions
         const actions = document.createElement('div');
         actions.className = 'fresh-actions';
         getUsedFormatsForRow(imgObj).forEach(fmt => {
@@ -353,11 +430,7 @@ function renderList() {
 function renderBulkButtons() {
     const hasFiles = imageFiles.length > 0;
     bulkDownloadRow.classList.toggle('d-none', !hasFiles);
-
-    // Download All always visible if files exist
     bulkZipAllBtn.classList.toggle('d-none', !hasFiles);
-
-    // Format-specific buttons only if convert is checked and that format is selected
     const showConvert = convertImagesChk.checked;
     bulkZipJpegBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'jpeg').checked));
     bulkZipPngBtn.classList.toggle('d-none', !(showConvert && formatCheckboxes.find(cb => cb.value === 'png').checked));
@@ -449,16 +522,8 @@ clearListBtn.addEventListener('click', () => {
     renderBulkButtons();
     updateProgressBar();
     updateClearListBtn();
-    // Reset checkboxes if you want (optional)
-    // convertImagesChk.checked = false;
-    // toLabel.classList.add('d-none');
-    // formatJpegWrap.classList.add('d-none');
-    // formatPngWrap.classList.add('d-none');
-    // formatWebpWrap.classList.add('d-none');
-    // formatAvifWrap.classList.add('d-none');
 });
 
-// On page load, hide format checkboxes
 convertImagesChk.checked = false;
 toLabel.classList.add('d-none');
 formatJpegWrap.classList.add('d-none');
