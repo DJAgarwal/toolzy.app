@@ -19,6 +19,13 @@ class PageController extends Controller
             $data['tool'] = Lang::get('tools.' . $page_name);
             $data['isToolPage'] = true;
         }
+        \Log::info('Page hit', [
+            'ip' => substr(request()->ip(), 0, 7) . '...', // partial IP for privacy
+            'user_agent' => request()->userAgent(),
+            'path' => request()->path(),
+            'referer' => request()->header('referer'),
+            'timestamp' => now()->toDateTimeString(),
+        ]);
         return view($viewFolder . '.' . $page_name, $data);
     }
 }

@@ -20,6 +20,13 @@ class ToolsController extends Controller
     {
         $data = PageHelper::pageMetadataAndBreadcrumbs('tools');
         $tools = Tool::all()->groupBy('category');
+        \Log::info('Page hit', [
+            'ip' => substr(request()->ip(), 0, 7) . '...', // partial IP for privacy
+            'user_agent' => request()->userAgent(),
+            'path' => request()->path(),
+            'referer' => request()->header('referer'),
+            'timestamp' => now()->toDateTimeString(),
+        ]);
         return view('static.tools', array_merge($data, ['tools' => $tools]));
     }
 

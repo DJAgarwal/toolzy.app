@@ -20,7 +20,13 @@ class HomeController extends Controller
         } else {
             $tools = Tool::paginate(9);
         }
-
+\Log::info('Page hit', [
+            'ip' => substr(request()->ip(), 0, 7) . '...', // partial IP for privacy
+            'user_agent' => request()->userAgent(),
+            'path' => request()->path(),
+            'referer' => request()->header('referer'),
+            'timestamp' => now()->toDateTimeString(),
+        ]);
         return view('static.home', array_merge($data, ['tools' => $tools]));
     }
 }
