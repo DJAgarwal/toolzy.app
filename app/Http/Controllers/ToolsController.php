@@ -20,12 +20,25 @@ class ToolsController extends Controller
     {
         $data = PageHelper::pageMetadataAndBreadcrumbs('tools');
         $tools = Tool::all()->groupBy('category');
+        $botKeywords = [
+            'bot', 'crawl', 'spider', 'slurp', 'facebook', 'meta-externalagent',
+            'headless', 'okhttp', 'go-http-client', 'secscan', 'python-requests',
+            'wget', 'curl', 'node-fetch'
+        ];
+        $userAgent = request()->userAgent();
+        $isBot = false;
+        foreach ($botKeywords as $keyword) {
+            if (stripos($userAgent, $keyword) !== false) {
+                $isBot = true;
+                break;
+            }
+        }
+        $type = $isBot ? 'bot' : 'human';
+
         \Log::info('Page hit', [
-            'ip' => substr(request()->ip(), 0, 7) . '...', // partial IP for privacy
-            'user_agent' => request()->userAgent(),
+            'type' => $type,
             'path' => request()->path(),
             'referer' => request()->header('referer'),
-            'timestamp' => now()->toDateTimeString(),
         ]);
         return view('static.tools', array_merge($data, ['tools' => $tools]));
     }
