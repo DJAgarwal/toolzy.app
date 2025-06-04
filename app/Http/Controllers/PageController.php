@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Helpers\PageHelper;
 use Lang;
+use Illuminate\Support\Facades\View;
 
 class PageController extends Controller
 {
@@ -26,6 +27,10 @@ class PageController extends Controller
             'referer' => request()->header('referer'),
             'timestamp' => now()->toDateTimeString(),
         ]);
-        return view($viewFolder . '.' . $page_name, $data);
+        $viewName = $viewFolder . '.' . $page_name;
+        if (!View::exists($viewName)) {
+            abort(404);
+        }
+        return view($viewName, $data);
     }
 }

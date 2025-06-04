@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, follow">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <style nonce="{{ $cspNonce }}">
         body {
             margin: 0;
             background-color: #ffffff; /* Toolzy's background color */
@@ -27,10 +28,10 @@
         }
 
         .image-container img {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            height: 100%;
+            /* border-radius: 12px; */
+            /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
         }
         .message h1 {
             font-size: 28px;
@@ -61,16 +62,13 @@
     </style>
 </head>
 <body>
-
     <div class="image-container">
         <img src="{{ asset('images/404.webp') }}" alt="404 Page not found">
     </div>
-
     <div class="message">
         <h1>Oops! Page not found</h1>
         <p>It seems you've wandered off the path. Let’s get you back home.</p>
         <a href="{{ url('/') }}" class="home-button">Back to Home</a>
     </div>
-
 </body>
 </html>
