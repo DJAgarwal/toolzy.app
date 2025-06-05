@@ -37,6 +37,7 @@ class ToolsController extends Controller
 
         \Log::info('Page hit', [
             'type' => $type,
+            'userAgent' => $userAgent,
             'path' => request()->path(),
             'referer' => request()->header('referer'),
         ]);
