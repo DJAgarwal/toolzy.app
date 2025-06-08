@@ -66,11 +66,11 @@
 </div>
 <div class="mb-4" id="batchResults" style="display:none">
     <h5>Batch Results</h5>
-    <div class="row row-cols-1 row-cols-md-4 g-4" id="batchResultsGrid" aria-label="Batch QR Results"></div>
+    <div class="d-flex flex-wrap gap-3" id="batchResultsGrid" aria-label="Batch QR Results"></div>
 </div>
 <div class="mb-4" id="qrHistorySection">
     <h5>History</h5>
-    <div class="row row-cols-1 row-cols-md-4 g-4" id="qrHistoryGrid" aria-label="QR Code History"></div>
+    <div class="d-flex flex-wrap gap-3" id="qrHistoryGrid" aria-label="QR Code History"></div>
 </div>
 @endsection
 
@@ -81,6 +81,57 @@ let qrCode = null;
 let qrLogoImage = null;
 const qrHistoryKey = 'qrCodeHistory-v2';
 
+// --- CARD BUILDER FOR BATCH & HISTORY ---
+function buildQrCard({qrcode, text, size, extraBtn=null}) {
+    const card = document.createElement('div');
+    card.className = 'p-2 border rounded bg-white text-center d-flex flex-column align-items-center shadow-sm';
+    card.style.width = (size + 20) + 'px';
+    card.style.minWidth = '180px';
+    card.style.maxWidth = '100%';
+
+    const qrDiv = document.createElement('div');
+    qrDiv.style.width = size + 'px';
+    qrDiv.style.height = size + 'px';
+    qrDiv.style.margin = '0 auto';
+    qrcode.append(qrDiv);
+    card.appendChild(qrDiv);
+
+    const small = document.createElement('div');
+    small.className = 'small mt-2 text-break';
+    small.style.whiteSpace = 'pre-wrap';
+    small.style.wordBreak = 'break-all';
+    small.innerText = text;
+    card.appendChild(small);
+
+    const btnGroup = document.createElement('div');
+    btnGroup.className = 'btn-group mt-2 flex-wrap justify-content-center';
+    btnGroup.style.flexWrap = 'wrap';
+
+    // Download PNG
+    const dlBtn = document.createElement('button');
+    dlBtn.className = 'btn btn-outline-dark btn-sm';
+    dlBtn.innerText = 'PNG';
+    dlBtn.setAttribute('aria-label', 'Download PNG');
+    dlBtn.addEventListener('click', () => qrcode.download({name: 'qr-batch', extension: 'png'}));
+    btnGroup.appendChild(dlBtn);
+
+    // Download SVG
+    const svgBtn = document.createElement('button');
+    svgBtn.className = 'btn btn-outline-secondary btn-sm';
+    svgBtn.innerText = 'SVG';
+    svgBtn.setAttribute('aria-label', 'Download SVG');
+    svgBtn.addEventListener('click', () => qrcode.download({name: 'qr-batch', extension: 'svg'}));
+    btnGroup.appendChild(svgBtn);
+
+    // Optional extra button (e.g., Edit for history)
+    if (extraBtn) btnGroup.appendChild(extraBtn);
+
+    card.appendChild(btnGroup);
+
+    return card;
+}
+
+// --- CORE UTILS ---
 function getQrOptions(extra={}) {
     const text = document.getElementById('qrContent').value.trim();
     const size = parseInt(document.getElementById('qrSize').value);
@@ -112,6 +163,7 @@ function getQrOptions(extra={}) {
     };
 }
 
+// --- QR PREVIEW ---
 function renderQRCodePreview(options=null) {
     const text = document.getElementById('qrContent').value.trim();
     const container = document.getElementById("qrCodePreview");
@@ -126,6 +178,7 @@ function renderQRCodePreview(options=null) {
     qrCode.append(container);
 }
 
+// --- HISTORY ---
 function addToHistory() {
     const text = document.getElementById('qrContent').value.trim();
     if (!text) return;
@@ -162,7 +215,7 @@ function renderHistory() {
         grid.innerHTML = '<div class="text-muted">No QR codes in history.</div>';
         return;
     }
-    history.forEach((item, idx) => {
+    history.forEach((item) => {
         const options = {
             width: item.size,
             height: item.size,
@@ -174,35 +227,11 @@ function renderHistory() {
             qrOptions: { errorCorrectionLevel: 'H' }
         };
         const qrcode = new QRCodeStyling(options);
-        const col = document.createElement('div');
-        col.className = 'col';
-        const card = document.createElement('div');
-        card.className = 'card p-2 text-center';
-        card.tabIndex = 0;
-        card.setAttribute('aria-label', 'History QR Code');
-        card.style.width = 'auto'; // <-- Ensure width is auto so QR is not clipped
-
-        const qrDiv = document.createElement('div');
-        qrDiv.style.width = item.size + 'px';
-        qrDiv.style.height = item.size + 'px';
-        qrDiv.style.margin = '0 auto';
-        qrcode.append(qrDiv);
-
-        card.appendChild(qrDiv);
-
-        const small = document.createElement('div');
-        small.className = 'small mt-2 text-break';
-        small.style.whiteSpace = 'pre-wrap';
-        small.innerText = item.text;
-        card.appendChild(small);
-
-        const btnGroup = document.createElement('div');
-        btnGroup.className = 'btn-group mt-2';
-        const regenBtn = document.createElement('button');
-        regenBtn.className = 'btn btn-outline-primary btn-sm';
-        regenBtn.innerText = 'Edit';
-        regenBtn.setAttribute('aria-label', 'Load QR to edit');
-        regenBtn.addEventListener('click', () => {
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-outline-primary btn-sm';
+        editBtn.innerText = 'Edit';
+        editBtn.setAttribute('aria-label', 'Load QR to edit');
+        editBtn.addEventListener('click', () => {
             document.getElementById('qrContent').value = item.text;
             document.getElementById('qrSize').value = item.size;
             document.getElementById('colorDark').value = item.colorDark;
@@ -213,14 +242,32 @@ function renderHistory() {
             livePreviewAndHistory();
             document.getElementById('qrContent').focus();
         });
-        btnGroup.appendChild(regenBtn);
-        card.appendChild(btnGroup);
 
-        col.appendChild(card);
-        grid.appendChild(col);
+        const card = buildQrCard({qrcode, text: item.text, size: item.size, extraBtn: editBtn});
+        grid.appendChild(card);
     });
 }
 
+// --- BATCH GENERATE ---
+function batchGenerate() {
+    const lines = document.getElementById('batchInput').value.split('\n').map(l=>l.trim()).filter(Boolean);
+    const batchGrid = document.getElementById('batchResultsGrid');
+    batchGrid.innerHTML = '';
+    if (!lines.length) {
+        showToast('No input for batch generation.', 'danger');
+        return;
+    }
+    const baseOptions = getQrOptions({data:''});
+    lines.forEach((line, idx) => {
+        const options = {...baseOptions, data: line};
+        const qrcode = new QRCodeStyling(options);
+        const card = buildQrCard({qrcode, text: line, size: baseOptions.width});
+        batchGrid.appendChild(card);
+    });
+    document.getElementById('batchResults').style.display = '';
+}
+
+// --- ACTION BUTTONS ---
 function downloadQRCode(format = 'png') {
     if (!qrCode) {
         showToast('Generate a QR Code first.', 'danger');
@@ -256,10 +303,8 @@ function copyQRCode() {
         showToast('Generate a QR Code first.', 'danger');
     }
 }
-
 function printQRCode() {
     const container = document.getElementById("qrCodePreview");
-    // Try to extract the rendered QR code as an image
     const canvasEl = container.querySelector("canvas");
     const svgEl = container.querySelector("svg");
 
@@ -276,7 +321,6 @@ function printQRCode() {
             win.print();
         };
     } else if (svgEl) {
-        // Convert SVG to a data URL
         const svgData = new XMLSerializer().serializeToString(svgEl);
         const svgBlob = new Blob([svgData], {type: 'image/svg+xml'});
         const url = URL.createObjectURL(svgBlob);
@@ -295,65 +339,13 @@ function printQRCode() {
     }
 }
 
-// This function is called on every action that should refresh both preview & history
+// --- LIVE PREVIEW & HISTORY ---
 function livePreviewAndHistory() {
     renderQRCodePreview();
     addToHistory();
 }
 
-function batchGenerate() {
-    const lines = document.getElementById('batchInput').value.split('\n').map(l=>l.trim()).filter(Boolean);
-    const batchGrid = document.getElementById('batchResultsGrid');
-    batchGrid.innerHTML = '';
-    if (!lines.length) {
-        showToast('No input for batch generation.', 'danger');
-        return;
-    }
-    const baseOptions = getQrOptions({data:''});
-    lines.forEach((line, idx) => {
-        const options = {...baseOptions, data: line};
-        const qrcode = new QRCodeStyling(options);
-        const col = document.createElement('div');
-        col.className = 'col-md-4';
-        const card = document.createElement('div');
-        card.className = 'card p-2 text-center';
-        card.tabIndex = 0;
-        card.setAttribute('aria-label', 'Batch QR Code');
-        const qrDiv = document.createElement('div');
-        qrDiv.style.width = baseOptions.width + 'px';
-        qrDiv.style.height = baseOptions.height + 'px';
-        qrcode.append(qrDiv);
-
-        card.appendChild(qrDiv);
-        const small = document.createElement('div');
-        small.className = 'small mt-2 text-break';
-        small.style.whiteSpace = 'pre-wrap';
-        small.innerText = line;
-        card.appendChild(small);
-
-        // Download/copy buttons for each
-        const btnGroup = document.createElement('div');
-        btnGroup.className = 'btn-group mt-2';
-        const dlBtn = document.createElement('button');
-        dlBtn.className = 'btn btn-outline-dark btn-sm';
-        dlBtn.innerText = 'PNG';
-        dlBtn.setAttribute('aria-label', 'Download PNG');
-        dlBtn.addEventListener('click', () => qrcode.download({name: 'qr-batch-'+(idx+1), extension: 'png'}));
-        const svgBtn = document.createElement('button');
-        svgBtn.className = 'btn btn-outline-secondary btn-sm';
-        svgBtn.innerText = 'SVG';
-        svgBtn.setAttribute('aria-label', 'Download SVG');
-        svgBtn.addEventListener('click', () => qrcode.download({name: 'qr-batch-'+(idx+1), extension: 'svg'}));
-        btnGroup.appendChild(dlBtn);
-        btnGroup.appendChild(svgBtn);
-        card.appendChild(btnGroup);
-
-        col.appendChild(card);
-        batchGrid.appendChild(col);
-    });
-    document.getElementById('batchResults').style.display = '';
-}
-
+// --- INIT ---
 document.addEventListener('DOMContentLoaded', function() {
     // Live preview & history update on all changes
     ['input', 'change'].forEach(evt => {
