@@ -494,3 +494,24 @@ footer a:hover {
     outline: 2px solid #007bff !important;
     background: #eaf6ff !important;
 }
+.color-input-round {
+    border: 3px solid #0d6efd;      /* Thick black border */
+    border-radius: 50%;          /* Fully round */
+    width: 2.5rem;               /* Adjust as needed */
+    height: 2.5rem;              /* Adjust as needed */
+    padding: 0;
+    background: none;
+    cursor: pointer;
+  }
+  .color-input-round::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 50%;
+  }
+  .color-input-round::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+  .color-input-round::-moz-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
