@@ -17,6 +17,7 @@ class Cors
     public function handle(Request $request, Closure $next)
     {
         $nonce = base64_encode(random_bytes(16));
+        \Illuminate\Support\Facades\Vite::useCspNonce($nonce);
         view()->share('cspNonce', $nonce);
         if ($request->isMethod('OPTIONS')) {
             return response('', 204)
