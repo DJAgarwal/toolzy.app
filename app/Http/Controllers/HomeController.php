@@ -41,6 +41,10 @@ $botKeywords = [
             'path' => request()->path(),
             'referer' => request()->header('referer'),
         ]);
+        if ($request->ajax()) {
+            return view('partials.tools_grid', ['tools' => $tools])->render();
+        }
+
         return view('static.home', array_merge($data, ['tools' => $tools]));
     }
 }

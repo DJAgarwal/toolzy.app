@@ -24,41 +24,9 @@
             </form>
         </div>
 
-        <!-- Tools Cards -->
-        <div class="row g-4">
-            @foreach ($tools as $tool)
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-lg hover-shadow transition-all">
-                    <div class="card-body text-center p-4 d-flex flex-column">
-                        <h3 class="card-title mb-3 fw-semibold">{{ $tool->meta_title }}</h3>
-                        <p class="card-text text-muted mb-4 small flex-grow-1">{{ $tool->meta_description }}</p>
-                        <a href="{{ url('/tools/' . $tool->page_name) }}" class="btn btn-outline-primary btn-lg w-100 mt-auto">Use Tool</a>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-        {{-- Pagination --}}
-        <div class="d-flex justify-content-center mt-4">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item {{ $tools->onFirstPage() ? 'disabled' : '' }}">
-                        <a class="page-link" href="{{ $tools->previousPageUrl() }}" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    @for ($i = 1; $i <= $tools->lastPage(); $i++)
-                        <li class="page-item {{ $tools->currentPage() == $i ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $tools->url($i) }}">{{ $i }}</a>
-                        </li>
-                    @endfor
-                    <li class="page-item {{ $tools->hasMorePages() ? '' : 'disabled' }}">
-                        <a class="page-link" href="{{ $tools->nextPageUrl() }}" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+        <!-- Tools Container -->
+        <div id="tools-container">
+            @include('partials.tools_grid')
         </div>
     </div>
 </div>
@@ -121,6 +89,83 @@
         e.preventDefault();
         document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
     });
+
+    // Live Search Logic
+    const searchInput = document.querySelector('#tool-search');
+    const toolsContainer = document.querySelector('#tools-container');
+    let debounceTimer;
+
+    const performSearch = (query, url = null) => {
+        if (!url) {
+            url = new URL(window.location.href);
+            if (query !== null) {
+                url.searchParams.set('search', query);
+                // Reset to first page on new search
+                url.searchParams.delete('page');
+            }
+        }
+
+        // Update URL without reloading
+        window.history.pushState({}, '', url);
+
+        // Show loading state
+        toolsContainer.style.opacity = '0.5';
+
+        fetch(url, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.text())
+        .then(html => {
+            toolsContainer.innerHTML = html;
+            toolsContainer.style.opacity = '1';
+            
+            // Scroll to tools section if it's a pagination or search click
+            if (url.searchParams.has('page') || (query && query.length > 0)) {
+                 document.querySelector('#tools').scrollIntoView({ behavior: 'smooth' });
+            }
+        })
+        .catch(error => {
+            console.error('Search error:', error);
+            toolsContainer.style.opacity = '1';
+        });
+    };
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        const query = this.value.trim();
+
+        if (query.length >= 3 || query.length === 0) {
+            debounceTimer = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        }
+    });
+
+    // Handle AJAX pagination
+    toolsContainer.addEventListener('click', function(e) {
+        const paginationLink = e.target.closest('.pagination a');
+        if (paginationLink) {
+            e.preventDefault();
+            performSearch(null, paginationLink.href);
+        }
+    });
+
+    // Handle form submission to prevent full page reload
+    document.querySelector('form[action="{{ route('home') }}"]').addEventListener('submit', function(e) {
+        e.preventDefault();
+        performSearch(searchInput.value.trim());
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search') || '';
+        searchInput.value = searchQuery;
+        performSearch(null, window.location.href);
+    });
+
     window.onload = function() {
         // Check if search query exists in the URL or if the page is not the first page
         const urlParams = new URLSearchParams(window.location.search);
