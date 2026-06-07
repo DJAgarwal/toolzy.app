@@ -10,7 +10,7 @@
         @if ($page->page_name !== '' && $page->page_name !== 'home')
         <url>
             <loc>{{ url($page->page_name) }}</loc>
-            <lastmod>{{ $page->updated_at->toAtomString() }}</lastmod>
+            <lastmod>{{ $page->updated_at?->toAtomString() ?? now()->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
@@ -19,7 +19,7 @@
     @foreach ($tools as $tool)
         <url>
             <loc>{{ url('/tools/' . ltrim($tool->page_name, '/')) }}</loc>
-            <lastmod>{{ $tool->updated_at->toAtomString() }}</lastmod>
+            <lastmod>{{ $tool->updated_at?->toAtomString() ?? now()->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>

@@ -30,6 +30,13 @@ footer a:hover {
 .max-width-600 {
   max-width: 600px;
 }
+.navbar-nav .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+}
+.navbar-nav .nav-link:hover {
+    color: #0d6efd !important;
+}
 .nav-item:not(:last-child) .nav-link::after {
     content: "|";
     margin-left: 10px;
@@ -116,12 +123,6 @@ footer a:hover {
 .navbar, .breadcrumb, .footer {
   width: 100%;
 }
-/* .collapse:not(.show) {
-  display: block !important;
-  height: 0;
-  overflow: hidden;
-  transition: height 0.3s ease;
-} */
 /* #liveToast {
   min-height: 64px;
 } */
@@ -494,6 +495,18 @@ footer a:hover {
     outline: 2px solid #007bff !important;
     background: #eaf6ff !important;
 }
+/* Fix Bootstrap collapse visibility collision with Tailwind 4 */
+.collapse.show {
+  visibility: visible !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse.collapse {
+    display: flex !important;
+    visibility: visible !important;
+  }
+}
+
 .color-input-round {
     border: 3px solid #0d6efd;      /* Thick black border */
     border-radius: 50%;          /* Fully round */

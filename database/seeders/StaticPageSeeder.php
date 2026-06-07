@@ -381,7 +381,7 @@ class StaticPageSeeder extends Seeder
             ],                                                                       
         ];
         foreach ($pages as $page) {
-            DB::table('static_pages')->updateOrInsert(
+            \App\Models\StaticPage::updateOrCreate(
                 ['page_name' => $page['page_name']],
                 $page
             );

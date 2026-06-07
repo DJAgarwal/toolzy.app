@@ -1078,7 +1078,7 @@ class ToolSeeder extends Seeder
             ],                                                                                   
         ];
         foreach ($pages as $page) {
-            DB::table('tools')->updateOrInsert(
+            \App\Models\Tool::updateOrCreate(
                 ['page_name' => $page['page_name']],
                 $page
             );
