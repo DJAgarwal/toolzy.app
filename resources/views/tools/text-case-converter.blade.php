@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-3">
     <textarea id="textInput" class="form-control" rows="8" placeholder="Enter your text here..."></textarea>
 </div>

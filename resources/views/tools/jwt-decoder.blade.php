@@ -1,13 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Trust Indicator -->
-<div class="alert alert-info d-flex align-items-center shadow-sm border-0 rounded-3 mb-4" role="alert">
-    <i class="bi bi-shield-check fs-3 me-3"></i>
-    <div>
-        <strong>Privacy First:</strong> This tool processes JWTs entirely in your browser. Your token is never sent to our servers.
-    </div>
-</div>
+<x-ui-trust-indicator />
 
 <!-- Input Section -->
 <div class="mb-4">

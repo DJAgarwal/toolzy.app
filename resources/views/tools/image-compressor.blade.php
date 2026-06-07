@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
   <label id="dragDropArea" for="fileInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
       <span>Select Images or Drag &amp; Drop Here</span>
       <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/avif"
              class="form-control d-inline-block w-auto file-input-cover" multiple tabindex="-1" hidden />
-      <div class="form-text text-success mt-2">
-          <strong>All compression is done on your device. No files are uploaded to the server.</strong>
-      </div>
       <div class="form-text text-secondary mt-1">
           <strong>Allowed: jpg, jpeg, png, webp, avif.</strong>
       </div>

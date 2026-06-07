@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
     <!-- Tabs for multi-note support -->
     <div id="noteTabs" class="nav nav-tabs mb-2" role="tablist" aria-label="Notes navigation"></div>

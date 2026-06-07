@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-3">
     <label id="dragDropArea" for="fileInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100" style="cursor:pointer;">
         <span id="dragDropText">Select or Drag &amp; Drop Text Files Here</span>
         <input type="file" id="fileInput" class="form-control d-inline-block w-auto file-input-cover" multiple accept=".txt,.js,.css,.html,.json,.md,.csv,.xml,.log" hidden />
-        <div class="form-text text-success mt-2">
-            <strong>All actions are done on your device. No files are uploaded to the server.</strong>
-        </div>
         <div class="form-text">You can upload and merge multiple text files (.txt, .js, .css, .html, .json, .md, .csv, .xml, .log).</div>
     </label>
 </div>

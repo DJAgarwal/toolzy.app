@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator message="We prioritize your privacy. Your files are processed securely and deleted automatically after conversion. We never store your data permanently." />
 <div class="mb-3">
     <label for="conversionType" class="form-label">Select Conversion Type:</label>
     <select class="form-select" id="conversionType">

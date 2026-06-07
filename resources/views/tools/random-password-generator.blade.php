@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
     <label for="passwordLength" class="form-label fw-semibold">Password Length: <span id="lengthValue" class="fw-bold">12</span></label>
     <input type="range" class="form-range" id="passwordLength" min="4" max="50" value="12">

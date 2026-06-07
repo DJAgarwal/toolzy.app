@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
     <label for="textInput" class="form-label fw-semibold">Enter Text or Lines (Bulk Supported):</label>
     <textarea class="form-control" id="textInput" rows="4" placeholder="Enter one or more lines of text..."></textarea>

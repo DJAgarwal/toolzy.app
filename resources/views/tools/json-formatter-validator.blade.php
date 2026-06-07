@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="mb-3">
+<x-ui-trust-indicator />
+<div class="mb-4">
     <label for="jsonInput" class="form-label fw-semibold">Enter JSON Data:</label>
     <textarea class="form-control" id="jsonInput" rows="10" placeholder="Paste your JSON data here..."></textarea>
 </div>

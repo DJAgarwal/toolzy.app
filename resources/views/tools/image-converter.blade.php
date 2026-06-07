@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
   <label id="dragDropArea" for="imageInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
       <span>Select Images or Drag &amp; Drop Here</span>
       <input type="file" id="imageInput" accept="image/*,.heic,.avif,.svg,.bmp,.tiff,.gif" class="form-control d-inline-block w-auto file-input-cover" multiple tabindex="-1" />
-      <div class="form-text text-success mt-2">
-          <strong>All processing is done on your device. No files are uploaded on server.</strong>
-      </div>
       <div class="form-text text-secondary mt-1">
           <strong>Allowed extensions: jpg, jpeg, png, webp, avif, heic, avif, svg, bmp, tiff, gif</strong>
       </div>

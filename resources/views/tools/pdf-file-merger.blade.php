@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-3">
     <label id="dragDropArea" for="pdfFiles" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
         <span>Select or Drag &amp; Drop PDF Files Here</span>
         <input type="file" id="pdfFiles" class="form-control d-inline-block w-auto file-input-cover" multiple accept="application/pdf" hidden />
-        <div class="form-text text-success mt-2">
-            <strong>All actions are done on your device. No files are uploaded to the server.</strong>
-        </div>
         <div class="form-text">You can upload and merge multiple PDF files.</div>
     </label>
 </div>

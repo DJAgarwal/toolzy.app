@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
     <label for="qrContent" class="form-label fw-semibold">Enter Text or URL:</label>
     <input type="text" class="form-control" id="qrContent" placeholder="Enter text or URL" aria-label="QR Code Content" autocomplete="off">

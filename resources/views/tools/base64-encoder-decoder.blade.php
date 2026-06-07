@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<x-ui-trust-indicator />
 <div class="mb-4">
     <label for="mainInput" class="form-label fw-semibold">Enter or Paste Text / Base64:</label>
     <textarea class="form-control" id="mainInput" rows="10" placeholder="Enter your text here..."></textarea>
