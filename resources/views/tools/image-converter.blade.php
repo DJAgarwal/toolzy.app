@@ -409,6 +409,6 @@ function downloadAllAsZip() {
     });
 }
 </script>
-<script src="{{ asset('js/browser-image-compression.js') }}" nonce="{{ $cspNonce }}"></script>
-<script src="{{ asset('js/jszip.min.js') }}" nonce="{{ $cspNonce }}"></script>
+<script src="{{ asset('js/browser-image-compression.js') }}" nonce="{{ $cspNonce }}" defer></script>
+<script src="{{ asset('js/jszip.min.js') }}" nonce="{{ $cspNonce }}" defer></script>
 @endpush

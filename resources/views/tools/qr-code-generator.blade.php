@@ -75,7 +75,7 @@
 @endsection
 
 @push('scripts')
-<script nonce="{{ $cspNonce }}" src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+<script nonce="{{ $cspNonce }}" src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js" defer></script>
 <script nonce="{{ $cspNonce }}">
 let qrCode = null;
 let qrLogoImage = null;
@@ -179,6 +179,12 @@ function renderQRCodePreview(options=null) {
 }
 
 // --- HISTORY ---
+let historyTimeout = null;
+function debouncedAddToHistory() {
+    clearTimeout(historyTimeout);
+    historyTimeout = setTimeout(addToHistory, 1000);
+}
+
 function addToHistory() {
     const text = document.getElementById('qrContent').value.trim();
     if (!text) return;
@@ -187,7 +193,13 @@ function addToHistory() {
     const colorLight = document.getElementById('colorLight').value;
     const dotType = document.getElementById('dotType').value;
     const eyeType = document.getElementById('eyeType').value;
-    const logo = qrLogoImage;
+    let logo = qrLogoImage;
+
+    // Don't store logo in history if it's too big (> 100KB) to save localStorage space
+    if (logo && logo.length > 102400) {
+        logo = null;
+    }
+
     let history = [];
     try {
         history = JSON.parse(localStorage.getItem(qrHistoryKey)) || [];
@@ -342,7 +354,7 @@ function printQRCode() {
 // --- LIVE PREVIEW & HISTORY ---
 function livePreviewAndHistory() {
     renderQRCodePreview();
-    addToHistory();
+    debouncedAddToHistory();
 }
 
 // --- INIT ---

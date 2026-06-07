@@ -16,7 +16,7 @@
 
     {{-- SEO Meta --}}
     <meta name="description" content="{{ $metaDescription ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.' }}">
-    <meta name="keywords" content="online tools, free tools, Toolzy, calculator, converter, generators, productivity tools, web utilities">
+    <meta name="keywords" content="{{ $metaKeywords ?? 'online tools, free tools, Toolzy, calculator, converter, generators, productivity tools, web utilities' }}">
     <meta name="author" content="Toolzy">
     <meta http-equiv="content-language" content="en">
     <meta name="geo.region" content="IN">

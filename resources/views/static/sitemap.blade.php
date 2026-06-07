@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>{{ url('/') }}</loc>
-        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <lastmod>{{ $pages->where('page_name', 'home')->first()?->updated_at?->toAtomString() ?? now()->toAtomString() }}</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -10,7 +10,7 @@
         @if ($page->page_name !== '' && $page->page_name !== 'home')
         <url>
             <loc>{{ url($page->page_name) }}</loc>
-            <lastmod>{{ now()->toAtomString() }}</lastmod>
+            <lastmod>{{ $page->updated_at->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>
@@ -19,7 +19,7 @@
     @foreach ($tools as $tool)
         <url>
             <loc>{{ url('/tools/' . ltrim($tool->page_name, '/')) }}</loc>
-            <lastmod>{{ now()->toAtomString() }}</lastmod>
+            <lastmod>{{ $tool->updated_at->toAtomString() }}</lastmod>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
         </url>

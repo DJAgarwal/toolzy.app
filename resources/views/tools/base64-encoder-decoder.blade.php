@@ -70,13 +70,24 @@ function encodeBase64() {
     let result;
 
     if (eachLine) {
-        result = text.split('\n').map(line => btoa(line)).join('\n');
+        result = text.split('\n').map(line => {
+            try {
+                return b64EncodeUnicode(line);
+            } catch (e) {
+                return "Error";
+            }
+        }).join('\n');
     } else {
-        result = btoa(text);
+        try {
+            result = b64EncodeUnicode(text);
+        } catch (e) {
+            return showToast('Encoding failed.', 'danger');
+        }
     }
 
-    if (wrap76) {
-        result = result.match(/.{1,76}/g).join('\n');
+    if (wrap76 && result !== "Error") {
+        const matches = result.match(/.{1,76}/g);
+        if (matches) result = matches.join('\n');
     }
 
     textarea.value = result;
@@ -94,16 +105,34 @@ function decodeBase64() {
         let result;
 
         if (eachLine) {
-            result = text.split('\n').map(line => atob(line)).join('\n');
+            result = text.split('\n').map(line => {
+                try {
+                    return b64DecodeUnicode(line.trim());
+                } catch (e) {
+                    return "Error";
+                }
+            }).join('\n');
         } else {
-            result = atob(text.replace(/\n/g, ''));
+            result = b64DecodeUnicode(text.replace(/\s/g, ''));
         }
 
         textarea.value = result;
         addToHistory("Decoded");
-    } catch {
+    } catch (e) {
         showToast('Invalid Base64 input.', 'danger');
     }
+}
+
+function b64EncodeUnicode(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
+
+function b64DecodeUnicode(str) {
+    return decodeURIComponent(Array.prototype.map.call(atob(str), function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
 }
 
 function copyToClipboard() {
