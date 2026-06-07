@@ -20,27 +20,7 @@ class PageController extends Controller
             $data['tool'] = Lang::get('tools.' . $page_name);
             $data['isToolPage'] = true;
         }
-        $botKeywords = [
-            'bot', 'crawl', 'spider', 'slurp', 'facebook', 'meta-externalagent',
-            'headless', 'okhttp', 'go-http-client', 'secscan', 'python-requests',
-            'wget', 'curl', 'node-fetch'
-        ];
-        $userAgent = request()->userAgent();
-        $isBot = false;
-        foreach ($botKeywords as $keyword) {
-            if (stripos($userAgent, $keyword) !== false) {
-                $isBot = true;
-                break;
-            }
-        }
-        $type = $isBot ? 'bot' : 'human';
 
-        \Log::info('Page hit', [
-            'type' => $type,
-            'userAgent' => $userAgent,
-            'path' => request()->path(),
-            'referer' => request()->header('referer'),
-        ]);
         $viewName = $viewFolder . '.' . $page_name;
         if (!View::exists($viewName)) {
             abort(404);

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {{-- Preconnect and DNS-Prefetch for Performance --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://static.cloudflareinsights.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
     {{-- Dynamic JSON-LD Schema Injection --}}
     @if (!empty($jsonld))<script nonce="{{ $cspNonce }}" type="application/ld+json">{!! $jsonld !!}</script>@endif
 
     {{-- Custom Styles --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="theme-color" content="#0d6efd">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -27,21 +35,21 @@
     <link rel="canonical" href="{{ $canonical ?? url()->current() }}" />
 
     {{-- Open Graph / Social Sharing --}}
-    <meta property="og:title" content="{{ $og['title'] ?? '' }}">
-    <meta property="og:description" content="{{ $og['description'] ?? '' }}">
-    <meta property="og:url" content="{{ $og['url'] ?? '' }}">
+    <meta property="og:title" content="{{ $og['title'] ?? ($metaTitle ?? config('app.name', 'Toolzy')) }}">
+    <meta property="og:description" content="{{ $og['description'] ?? ($metaDescription ?? 'Simplify your daily tasks with Toolzy’s free online tools.') }}">
+    <meta property="og:url" content="{{ $og['url'] ?? url()->current() }}">
     <meta property="og:type" content="{{ $og['type'] ?? 'website' }}">
-    <meta property="og:image" content="{{ $og['image'] ?? '' }}">
-    <meta property="og:locale" content="{{ $og['locale'] ?? '' }}">
-    <meta property="og:site_name" content="{{ $og['site_name'] ?? '' }}">
+    <meta property="og:image" content="{{ $og['image'] ?? asset('images/logo.webp') }}">
+    <meta property="og:locale" content="{{ $og['locale'] ?? 'en_US' }}">
+    <meta property="og:site_name" content="{{ $og['site_name'] ?? 'Toolzy' }}">
 
     {{-- Twitter Cards --}}
     <meta name="twitter:card" content="{{ $twitter['card'] ?? 'summary_large_image' }}">
-    <meta name="twitter:title" content="{{ $twitter['title'] ?? '' }}">
-    <meta name="twitter:description" content="{{ $twitter['description'] ?? '' }}">
-    <meta name="twitter:image" content="{{ $twitter['image'] ?? '' }}">
-    <meta name="twitter:creator" content="{{ $twitter['creator'] ?? '' }}">
-    <meta name="twitter:site" content="{{ $twitter['site'] ?? '' }}">
+    <meta name="twitter:title" content="{{ $twitter['title'] ?? ($metaTitle ?? config('app.name', 'Toolzy')) }}">
+    <meta name="twitter:description" content="{{ $twitter['description'] ?? ($metaDescription ?? 'Simplify your daily tasks with Toolzy’s free online tools.') }}">
+    <meta name="twitter:image" content="{{ $twitter['image'] ?? asset('images/logo.webp') }}">
+    <meta name="twitter:creator" content="{{ $twitter['creator'] ?? '@Toolzy' }}">
+    <meta name="twitter:site" content="{{ $twitter['site'] ?? '@Toolzy' }}">
 
     {{-- Title --}}
     <title>{{ $metaTitle ?? config('app.name', 'Toolzy') }}</title>
@@ -62,6 +70,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
             <div class="container">
                 <a class="navbar-brand fw-bold text-primary fs-4 d-flex align-items-center" href="{{ url('/') }}">
+                    <img src="{{ asset('images/logo.webp') }}" alt="Toolzy Logo" width="32" height="32" class="me-2 d-inline-block align-top" loading="eager">
                     Toolzy
                 </a>
                 

@@ -9,10 +9,12 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $pages = StaticPage::all();
-        $tools = Tool::all();
+        return \Cache::remember('sitemap_xml', 86400, function () {
+            $pages = StaticPage::select('page_name', 'updated_at')->get();
+            $tools = Tool::select('page_name', 'updated_at')->get();
 
-        return response()->view('static.sitemap', compact('pages', 'tools'))
-            ->header('Content-Type', 'application/xml');
+            return response()->view('static.sitemap', compact('pages', 'tools'))
+                ->header('Content-Type', 'application/xml');
+        });
     }
 }
