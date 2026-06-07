@@ -1019,6 +1019,77 @@ class ToolSeeder extends Seeder
                         ]
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            [
+                'page_name' => 'jwt-decoder',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'JWT Decoder & Validator Online - Toolzy',
+                'meta_description' => 'Decode and validate JWT tokens instantly in your browser. View claims, expiration dates, headers, payloads, and verify signatures securely without uploading data.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/jwt-decoder'),
+                            'name' => 'JWT Decoder & Validator Online - Toolzy',
+                            'url' => url('/tools/jwt-decoder'),
+                            'description' => 'Decode and validate JWT tokens instantly in your browser. View claims, expiration dates, headers, payloads, and verify signatures securely without uploading data.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/jwt-decoder')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "JWT Decoder",
+                                    "item"=> url('/tools/jwt-decoder')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "JWT Decoder & Validator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Decode and validate JWT tokens instantly in your browser. View claims, expiration dates, headers, payloads, and verify signatures securely without uploading data.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],                                                                                   
         ];
         foreach ($pages as $page) {

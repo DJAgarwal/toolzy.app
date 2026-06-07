@@ -435,5 +435,35 @@ return [
             ],
         ],
     ],
+    'jwt-decoder' => [
+        'question' => 'What is a JWT Decoder & Validator?',
+        'description' => [
+            'A JWT Decoder & Validator is an essential developer tool used to inspect and verify JSON Web Tokens (JWT). JWTs are a standard for securely sharing information between a client and a server, often used for authentication and authorization in modern web applications.',
+            'Our tool allows you to paste any JWT and instantly see its decoded Header and Payload in a readable format. It also performs critical checks, such as verifying the expiration time (exp), token age, and issued-at (iat) timestamps. This helps developers debug authentication issues and ensure tokens are correctly structured and secure.',
+            'Security is our top priority. Unlike other online decoders, Toolzy processes your JWT entirely within your browser. This means your sensitive tokens and secrets are never transmitted to our servers, keeping your data private and secure.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Is it safe to decode my JWT on Toolzy?',
+                'answer' => 'Yes! Toolzy’s JWT Decoder is built with privacy in mind. All decoding and validation happen locally in your browser using vanilla JavaScript. Your tokens are never uploaded or stored on our servers.'
+            ],
+            [
+                'question' => 'Can I verify the signature of my JWT?',
+                'answer' => 'Yes, our tool supports signature verification for HS256 and RS256 algorithms. Simply provide your secret key or public key in the verification section to confirm the token’s integrity.'
+            ],
+            [
+                'question' => 'What happens if my JWT is expired?',
+                'answer' => 'The tool automatically checks the "exp" claim in the payload. If the token is past its expiration time, a warning will be displayed, and the token status will be marked as "Expired".'
+            ],
+            [
+                'question' => 'Does this tool support all JWT algorithms?',
+                'answer' => 'It can decode any standard JWT regardless of the algorithm. For signature verification, we currently support HS256 and RS256, with more algorithms planned for future updates.'
+            ],
+            [
+                'question' => 'Why should I use this instead of jwt.io?',
+                'answer' => 'While jwt.io is a great resource, Toolzy offers a lightweight, fast, and privacy-focused alternative integrated directly into your favorite suite of online tools. Our decoder is designed to be simple, clean, and 100% browser-based.'
+            ],
+        ],
+    ],
 
 ];
