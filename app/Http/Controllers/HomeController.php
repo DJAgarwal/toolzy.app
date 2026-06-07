@@ -20,27 +20,6 @@ class HomeController extends Controller
         } else {
             $tools = Tool::paginate(9);
         }
-$botKeywords = [
-            'bot', 'crawl', 'spider', 'slurp', 'facebook', 'meta-externalagent',
-            'headless', 'okhttp', 'go-http-client', 'secscan', 'python-requests',
-            'wget', 'curl', 'node-fetch'
-        ];
-        $userAgent = request()->userAgent();
-        $isBot = false;
-        foreach ($botKeywords as $keyword) {
-            if (stripos($userAgent, $keyword) !== false) {
-                $isBot = true;
-                break;
-            }
-        }
-        $type = $isBot ? 'bot' : 'human';
-
-        \Log::info('Page hit', [
-            'type' => $type,
-            'userAgent' => $userAgent,
-            'path' => request()->path(),
-            'referer' => request()->header('referer'),
-        ]);
         if ($request->ajax()) {
             return view('partials.tools_grid', ['tools' => $tools])->render();
         }

@@ -377,35 +377,6 @@ return [
             ],
         ],
     ],
-    'pdf-converter' => [
-        'question' => 'What is PDF Converter?',
-        'description' => [
-            'Toolzy’s PDF Converter is a versatile online tool that allows you to convert PDF files to various formats and vice versa. Whether you want to turn a JPG image into a PDF, convert a PDF into editable Word or Excel documents, or extract images from a PDF, this tool makes it fast, secure, and easy.',
-            'With support for multiple file types, Toolzy’s PDF Converter is ideal for students, professionals, and anyone who frequently works with digital documents. No software installation is required — just upload, convert, and download your file in seconds.'
-        ],
-        'faqs' => [
-            [
-                'question' => 'What file types can I convert using this PDF Converter?',
-                'answer' => 'You can convert PDFs to JPG, PNG, Word (DOCX), Excel (XLSX), and vice versa. Toolzy is constantly expanding its features to support more file formats in the future.'
-            ],
-            [
-                'question' => 'Is it safe to upload my documents to Toolzy?',
-                'answer' => 'Yes, Toolzy prioritizes user privacy. Your uploaded files are never stored permanently and are deleted shortly after conversion to ensure your data stays secure.'
-            ],
-            [
-                'question' => 'Do I need to install any software?',
-                'answer' => 'No, Toolzy’s PDF Converter is entirely web-based. You don’t need to download or install anything. Just visit the page, upload your file, and convert it instantly.'
-            ],
-            [
-                'question' => 'Can I convert multiple PDFs at once?',
-                'answer' => 'Currently, Toolzy supports one file per conversion to keep things simple and fast. However, batch conversion support is coming soon.'
-            ],
-            [
-                'question' => 'Is this tool free to use?',
-                'answer' => 'Yes, Toolzy’s PDF Converter is completely free with no hidden costs. You can use it as many times as you need without signing up.'
-            ],
-        ],
-    ],
     'image-compressor' => [
         'question' => 'What is an Image Compressor?',
         'description' => [

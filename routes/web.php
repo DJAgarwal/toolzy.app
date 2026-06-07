@@ -12,7 +12,5 @@ Route::get('/robots.txt', function () {
 })->name('robots');
 Route::get('/robots', fn () => redirect()->route('robots'));
 Route::get('/tools', [ToolsController::class, 'index'])->name('tools.index');
-Route::post('/tools/pdf-converter/convert', [ToolsController::class, 'pdfConverter'])->name('tools.pdf-converter.convert');
-
 Route::get('/tools/{slug}', [PageController::class, 'show'])->where('slug', '[a-z0-9\-]+')->name('tools.show');
 Route::get('/{slug}', [PageController::class, 'show'])->where('slug', '[a-z0-9\-]+')->name('page.show');
