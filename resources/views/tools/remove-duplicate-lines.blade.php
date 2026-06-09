@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@push('styles')
+<style nonce="{{ $cspNonce }}">
+    #uniquePreview {
+        resize: vertical;
+    }
+</style>
+@endpush
+
 @section('content')
 <x-ui-trust-indicator />
 <div class="mb-3">
@@ -46,7 +54,7 @@
 
 <div class="mb-3">
     <label for="uniquePreview" class="form-label fw-semibold">Preview (Unique Lines):</label>
-    <textarea id="uniquePreview" class="form-control bg-light" rows="8" readonly style="resize:vertical"></textarea>
+    <textarea id="uniquePreview" class="form-control bg-light" rows="8" readonly></textarea>
 </div>
 @endsection
 

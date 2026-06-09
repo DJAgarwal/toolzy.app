@@ -1,9 +1,24 @@
 @extends('layouts.app')
 
+@push('styles')
+<style nonce="{{ $cspNonce }}">
+    #dragDropArea {
+        cursor: pointer;
+    }
+    #filePreviewText {
+        max-height: 400px;
+        overflow: auto;
+    }
+    .drag-handle {
+        cursor: move;
+    }
+</style>
+@endpush
+
 @section('content')
 <x-ui-trust-indicator />
 <div class="mb-3">
-    <label id="dragDropArea" for="fileInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100" style="cursor:pointer;">
+    <label id="dragDropArea" for="fileInput" class="border fw-semibold rounded p-3 mt-2 text-center text-muted drag-drop-area position-relative w-100">
         <span id="dragDropText">Select or Drag &amp; Drop Text Files Here</span>
         <input type="file" id="fileInput" class="form-control d-inline-block w-auto file-input-cover" multiple accept=".txt,.js,.css,.html,.json,.md,.csv,.xml,.log" hidden />
         <div class="form-text">You can upload and merge multiple text files (.txt, .js, .css, .html, .json, .md, .csv, .xml, .log).</div>
@@ -61,7 +76,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body text-center">
-            <pre id="filePreviewText" class="bg-light rounded p-3 text-start" style="max-height:400px;overflow:auto"></pre>
+            <pre id="filePreviewText" class="bg-light rounded p-3 text-start"></pre>
             <div id="filePreviewFileName" class="mt-2 text-secondary small"></div>
         </div>
         </div>
@@ -123,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Drag handle
             const dragTd = document.createElement('td');
-            dragTd.innerHTML = '<span style="cursor:move;" title="Drag to reorder">&#9776;</span>';
+            dragTd.innerHTML = '<span class="drag-handle" title="Drag to reorder">&#9776;</span>';
             tr.appendChild(dragTd);
 
             // Name
@@ -307,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Drag and Drop for dragDropArea
-    ['dragenter', 'dragover'].forEach(eventName => {
+    ;['dragenter', 'dragover'].forEach(eventName => {
         dragDropArea.addEventListener(eventName, (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -316,7 +331,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    ['dragleave', 'drop'].forEach(eventName => {
+    ;['dragleave', 'drop'].forEach(eventName => {
         dragDropArea.addEventListener(eventName, (e) => {
             e.preventDefault();
             e.stopPropagation();

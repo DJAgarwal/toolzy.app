@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@push('styles')
+<style nonce="{{ $cspNonce }}">
+    #batchResults {
+        display: none;
+    }
+</style>
+@endpush
+
 @section('content')
 <x-ui-trust-indicator />
 <div class="mb-4">
@@ -65,7 +73,7 @@
     <button class="btn btn-outline-secondary" id="downloadQRCodeSvgBtn" aria-label="Download QR Code SVG">Download SVG</button>
     <button class="btn btn-outline-info" id="printQRCodeBtn" aria-label="Print QR Code">Print</button>
 </div>
-<div class="mb-4" id="batchResults" style="display:none">
+<div class="mb-4" id="batchResults">
     <h5>Batch Results</h5>
     <div class="d-flex flex-wrap gap-3" id="batchResultsGrid" aria-label="Batch QR Results"></div>
 </div>

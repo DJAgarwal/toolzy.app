@@ -38,10 +38,10 @@ class LogVisits
 
         Log::info('Page hit', [
             'type' => $type,
-            'userAgent' => $userAgent,
+            // 'userAgent' => $userAgent,
             'path' => $request->path(),
             'referer' => $request->header('referer'),
-            'ip' => $request->ip(),
+            // 'ip' => $request->ip(),
         ]);
 
         return $next($request);

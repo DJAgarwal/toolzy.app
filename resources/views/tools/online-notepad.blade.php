@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@push('styles')
+<style nonce="{{ $cspNonce }}">
+    #filenameInput {
+        max-width: 200px;
+    }
+</style>
+@endpush
+
 @section('content')
 <x-ui-trust-indicator />
 <div class="mb-4">
@@ -17,7 +25,7 @@
     <button class="btn btn-outline-success" id="printNoteBtn" aria-label="Print note">Print Note</button>
     <button class="btn btn-outline-danger" id="clearNoteBtn" aria-label="Clear note">Clear Note</button>
     <label for="filenameInput" class="visually-hidden">Filename</label>
-    <input type="text" id="filenameInput" class="form-control w-auto" style="max-width:200px;" value="my-note.txt" title="Filename" aria-label="Filename">
+    <input type="text" id="filenameInput" class="form-control w-auto" value="my-note.txt" title="Filename" aria-label="Filename">
     <button class="btn btn-outline-primary" id="downloadNoteBtn" aria-label="Download note">Download Note</button>
 </div>
 <div class="mt-2 text-muted small">

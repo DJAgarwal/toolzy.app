@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
          $middleware->append(Cors::class);
-        //  $middleware->append(\App\Http\Middleware\LogVisits::class);
+         $middleware->append(\App\Http\Middleware\LogVisits::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

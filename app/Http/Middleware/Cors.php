@@ -27,7 +27,7 @@ class Cors
                 ->header('X-XSS-Protection', '1; mode=block')
                 ->header('Referrer-Policy', 'strict-origin-when-cross-origin')
                 ->header('Permissions-Policy', 'geolocation=(self), microphone=()')
-                ->header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none';");
+                ->header('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; form-action 'self'; base-uri 'self'; object-src 'none';");
             }
 
         $response = $next($request);
@@ -38,7 +38,7 @@ class Cors
         $response->headers->set('Content-Security-Policy', 
             "default-src 'self' https://cloudflareinsights.com; " .
             "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; " .
-            "style-src 'self' https://cdnjs.cloudflare.com 'nonce-{$nonce}'; " .
+            "style-src 'self' https://cdnjs.cloudflare.com 'nonce-{$nonce}' 'unsafe-inline'; " .
             "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; " .
             "img-src 'self' https://www.google-analytics.com data: blob:; " .
             "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
