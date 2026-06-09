@@ -1290,77 +1290,77 @@ class ToolSeeder extends Seeder
             //         ]
             //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             // ],
-            // [
-            //     'page_name' => 'json-csv-converter',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'Online Free JSON to CSV & CSV to JSON Converter -Toolzy',
-            //     'meta_description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/json-csv-converter'),
-            //                 'name' => 'Online Free JSON to CSV & CSV to JSON Converter -Toolzy',
-            //                 'url' => url('/tools/json-csv-converter'),
-            //                 'description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/json-csv-converter')
-            //             ],
-            //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
-            //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "JSON ↔ CSV Converter",
-            //                         "item"=> url('/tools/json-csv-converter')
-            //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "JSON ↔ CSV Converter",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'json-csv-converter',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online Free JSON to CSV & CSV to JSON Converter - Toolzy',
+                'meta_description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/json-csv-converter'),
+                            'name' => 'Online Free JSON to CSV & CSV to JSON Converter - Toolzy',
+                            'url' => url('/tools/json-csv-converter'),
+                            'description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/json-csv-converter')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "JSON ↔ CSV Converter",
+                                    "item"=> url('/tools/json-csv-converter')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "JSON ↔ CSV Converter",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             // [
             //     'page_name' => 'cron-generator',
             //     'category' => 'Developer & SEO Tools',
