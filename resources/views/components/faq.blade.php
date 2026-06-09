@@ -1,3 +1,4 @@
+@if(is_array($tool) && !empty($tool['faqs']))
 <h2 class="fw-semibold mb-3">Frequently Asked Questions (FAQ)</h2>
 <div class="accordion" id="faqAccordion">
     @foreach ($tool['faqs'] as $faq)
@@ -18,3 +19,4 @@
         </div>
     @endforeach
 </div>
+@endif
