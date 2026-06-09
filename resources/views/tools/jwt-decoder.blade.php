@@ -48,8 +48,8 @@
                 </div>
             </div>
             <div class="btn-group w-100">
-                <button class="btn btn-sm btn-outline-secondary" onclick="copyText('header-json', 'Header')">Copy</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="downloadJSON('header-json', 'jwt-header.json')">Download</button>
+                <button class="btn btn-sm btn-outline-secondary" id="copy-header-btn">Copy</button>
+                <button class="btn btn-sm btn-outline-secondary" id="download-header-btn">Download</button>
             </div>
         </div>
         <div class="col-md-6">
@@ -60,8 +60,8 @@
                 </div>
             </div>
             <div class="btn-group w-100">
-                <button class="btn btn-sm btn-outline-secondary" onclick="copyText('payload-json', 'Payload')">Copy</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="downloadJSON('payload-json', 'jwt-payload.json')">Download</button>
+                <button class="btn btn-sm btn-outline-secondary" id="copy-payload-btn">Copy</button>
+                <button class="btn btn-sm btn-outline-secondary" id="download-payload-btn">Download</button>
             </div>
         </div>
 
@@ -150,7 +150,7 @@
         
         <!-- Batch Download -->
         <div class="col-12 d-grid mt-4">
-            <button class="btn btn-outline-dark" onclick="downloadFullAnalysis()">
+            <button class="btn btn-outline-dark" id="download-full-analysis-btn">
                 <i class="bi bi-file-earmark-arrow-down me-1"></i> Download Full Analysis JSON
             </button>
         </div>
@@ -409,15 +409,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     verifyBtn.addEventListener('click', verifySignature);
 
-    window.copyText = function(id, label) {
+    const copyText = (id, label) => {
         navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => showToast(`${label} copied!`, 'success'));
     };
-    window.downloadJSON = function(id, filename) {
+    
+    const downloadJSON = (id, filename) => {
         const a = document.createElement('a');
         a.href = URL.createObjectURL(new Blob([document.getElementById(id).innerText], { type: 'application/json' }));
         a.download = filename; a.click();
     };
-    window.downloadFullAnalysis = function() {
+    
+    const downloadFullAnalysis = () => {
         const analysis = { 
             header: decodedHeader, 
             payload: decodedPayload,
@@ -431,6 +433,12 @@ document.addEventListener('DOMContentLoaded', () => {
         a.href = URL.createObjectURL(new Blob([JSON.stringify(analysis, null, 4)], { type: 'application/json' }));
         a.download = 'jwt-analysis.json'; a.click();
     };
+
+    document.getElementById('copy-header-btn').addEventListener('click', () => copyText('header-json', 'Header'));
+    document.getElementById('download-header-btn').addEventListener('click', () => downloadJSON('header-json', 'jwt-header.json'));
+    document.getElementById('copy-payload-btn').addEventListener('click', () => copyText('payload-json', 'Payload'));
+    document.getElementById('download-payload-btn').addEventListener('click', () => downloadJSON('payload-json', 'jwt-payload.json'));
+    document.getElementById('download-full-analysis-btn').addEventListener('click', downloadFullAnalysis);
 
     function dispatchAnalyticsEvent(name, data) {
         document.dispatchEvent(new CustomEvent('toolzy-event', { detail: { name, data } }));
