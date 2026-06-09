@@ -1361,77 +1361,77 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
-            // [
-            //     'page_name' => 'cron-generator',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'Cron Expression Generator & Validator - Free Online | Toolzy',
-            //     'meta_description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/cron-generator'),
-            //                 'name' => 'Cron Expression Generator & Validator - Free Online | Toolzy',
-            //                 'url' => url('/tools/cron-generator'),
-            //                 'description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/cron-generator')
-            //             ],
-            //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
-            //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "Cron Expression Generator",
-            //                         "item"=> url('/tools/cron-generator')
-            //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "Cron Expression Generator",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'cron-generator',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online Cron Expression Generator & Validator - Toolzy',
+                'meta_description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/cron-generator'),
+                            'name' => 'Online Cron Expression Generator & Validator - Toolzy',
+                            'url' => url('/tools/cron-generator'),
+                            'description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/cron-generator')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "Cron Expression Generator",
+                                    "item"=> url('/tools/cron-generator')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "Cron Expression Generator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             // [
             //     'page_name' => 'json-diff-checker',
             //     'category' => 'Developer & SEO Tools',

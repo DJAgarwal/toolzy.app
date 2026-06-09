@@ -486,6 +486,18 @@ return [
                 'question' => 'What is a cron expression?',
                 'answer' => 'A cron expression is a string consisting of five or six fields representing a set of times at which a command should be executed.'
             ],
+            [
+                'question' => 'What do the symbols like *, /, and - mean in a cron expression?',
+                'answer' => 'These are special operators: "*" means "every" (e.g., every minute), "/" specifies increments (e.g., "*/15" means every 15 minutes), and "-" defines a range (e.g., "1-5" for Monday through Friday). These symbols allow you to create complex schedules with simple strings.'
+            ],
+            [
+                'question' => 'What is the difference between 5-field and 6-field cron formats?',
+                'answer' => 'Traditional Unix cron uses 5 fields (Minute, Hour, Day of Month, Month, Day of Week). Some modern systems like Quartz or AWS Events use a 6th field for "Seconds" at the beginning or "Year" at the end. Toolzy generates the standard 5-field Unix format, which is compatible with most Linux crontabs and Laravel schedulers.'
+            ],
+            [
+                'question' => 'How can I check if my cron job is actually running?',
+                'answer' => 'On Linux, you can check the system logs (usually /var/log/syslog or /var/log/cron) or use the command "grep CRON /var/log/syslog". You can also redirect the output of your cron job to a log file (e.g., "* * * * * /path/to/script.sh >> /var/log/myjob.log 2>&1") to monitor its execution and errors.'
+            ],
         ],
     ],
     'hash-generator' => [
