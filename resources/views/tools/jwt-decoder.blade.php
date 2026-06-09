@@ -8,7 +8,7 @@
     <label for="jwt-input" class="form-label fw-semibold">JWT Input:</label>
     <div class="position-relative">
         <textarea id="jwt-input" class="form-control font-monospace p-3" rows="6" placeholder="Paste your JWT token here (header.payload.signature)..."></textarea>
-        <div class="position-absolute bottom-0 end-0 p-2 text-muted small" id="char-count" style="margin-bottom: 5px; margin-right: 5px;">0 characters</div>
+        <div class="position-absolute bottom-0 end-0 p-2 text-muted small" id="char-count">0 characters</div>
     </div>
 </div>
 
@@ -157,7 +157,11 @@
     </div>
 </div>
 
-<style>
+<style nonce="{{ $cspNonce }}">
+    #char-count {
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
     .json-code {
         font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
         font-size: 0.85rem;
