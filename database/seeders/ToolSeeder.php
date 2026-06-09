@@ -1503,77 +1503,77 @@ class ToolSeeder extends Seeder
             //         ]
             //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             // ],
-            // [
-            //     'page_name' => 'hash-generator',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Online | Toolzy',
-            //     'meta_description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/hash-generator'),
-            //                 'name' => 'Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Online | Toolzy',
-            //                 'url' => url('/tools/hash-generator'),
-            //                 'description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/hash-generator')
-            //             ],
-            //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
-            //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "Hash Generator",
-            //                         "item"=> url('/tools/hash-generator')
-            //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "Hash Generator & Checker",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'hash-generator',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Toolzy',
+                'meta_description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/hash-generator'),
+                            'name' => 'Online Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Toolzy',
+                            'url' => url('/tools/hash-generator'),
+                            'description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/hash-generator')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "Hash Generator",
+                                    "item"=> url('/tools/hash-generator')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "Hash Generator & Checker",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             // [
             //     'page_name' => 'sql-formatter',
             //     'category' => 'Developer & SEO Tools',

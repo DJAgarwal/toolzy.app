@@ -499,6 +499,18 @@ return [
                 'question' => 'Can I reverse a hash?',
                 'answer' => 'No, cryptographic hashes are one-way functions. You cannot derive the original input from the hash value alone.'
             ],
+            [
+                'question' => 'What is a hash collision?',
+                'answer' => 'A collision occurs when two different inputs result in the exact same hash value. While mathematically possible for any hash function (since the input space is infinite and the output space is finite), it is extremely difficult to achieve with modern algorithms like SHA-256. Older algorithms like MD5 and SHA-1 are now considered "broken" because researchers have found ways to generate collisions.'
+            ],
+            [
+                'question' => 'How does hashing ensure data integrity?',
+                'answer' => 'Hashing ensures data integrity by providing a unique digital fingerprint of the data. If even a single bit of the original data is changed, the resulting hash will be completely different. By comparing the hash of a received file with its original hash, you can verify that the file has not been tampered with or corrupted during transmission.'
+            ],
+            [
+                'question' => 'What is the difference between SHA-256 and SHA-512?',
+                'answer' => 'The primary difference is the length of the generated hash and the internal block size used during computation. SHA-256 produces a 256-bit hash, while SHA-512 produces a 512-bit hash. Generally, SHA-512 is more secure due to its longer length and can be faster on 64-bit systems, whereas SHA-256 is more common and widely supported across various platforms.'
+            ],
         ],
     ],
     'json-csv-converter' => [
