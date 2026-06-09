@@ -437,4 +437,147 @@ return [
         ],
     ],
 
+    'regex-tester' => [
+        'question' => 'What is Regex Tester and Validator?',
+        'description' => [
+            'Regex Tester and Validator is a live tool that allows you to test and debug regular expressions in your browser. Regular expressions are patterns used to match character combinations in strings, and they are essential for data validation, searching, and string manipulation.',
+            'Our tool provides real-time highlighting of matches, detailed capture group inspection, and common regex flags. Whether you are a developer debugging a complex pattern or a beginner learning the basics of regex, this tool provides a clear and interactive environment for all your regex testing needs.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What are regex flags?',
+                'answer' => 'Flags are optional parameters that modify how the regex engine searches for patterns. Common flags include "g" (global search), "i" (ignore case), "m" (multiline), and "s" (dotall, where dot matches newlines).'
+            ],
+            [
+                'question' => 'How can I see capture groups?',
+                'answer' => 'Our tool automatically detects capture groups and displays them in the "Match Details" section. You can see the full match and each individual group matched by your pattern.'
+            ],
+            [
+                'question' => 'Is my data secure?',
+                'answer' => 'Yes, all regex processing happens entirely within your browser. We do not send your patterns or test text to our servers, ensuring your data remains private and secure.'
+            ],
+        ],
+    ],
+    'uuid-generator' => [
+        'question' => 'What is a UUID Generator?',
+        'description' => [
+            'A UUID (Universally Unique Identifier) Generator is a tool used to create 128-bit numbers used to uniquely identify information in computer systems. These identifiers are designed to be unique across space and time, making them ideal for database keys, session identifiers, and transaction IDs.',
+            'Toolzy’s UUID Generator supports generating multiple UUIDs at once, with options for different versions (like v1 and v4) and formats. It ensures that every generated ID is compliant with RFC 4122 standards.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is the difference between UUID v1 and v4?',
+                'answer' => 'UUID v1 is generated using the host network address and the current time, making it unique but potentially revealing information about the source. UUID v4 is generated using random numbers, making it completely unpredictable.'
+            ],
+            [
+                'question' => 'Are UUIDs truly unique?',
+                'answer' => 'While the probability of generating two identical UUIDs is not zero, it is so infinitesimally small that for all practical purposes, they are considered unique.'
+            ],
+        ],
+    ],
+    'cron-generator' => [
+        'question' => 'What is a Cron Expression Generator?',
+        'description' => [
+            'A Cron Expression Generator is a utility that helps you create cron schedules for automated tasks (cron jobs) on Unix-like operating systems. Cron expressions can be complex and difficult to write manually; this tool provides a simple interface to build them.',
+            'By selecting minutes, hours, days, and months, you can generate a standard cron expression and see a human-readable description of when the task will run.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is a cron expression?',
+                'answer' => 'A cron expression is a string consisting of five or six fields representing a set of times at which a command should be executed.'
+            ],
+        ],
+    ],
+    'hash-generator' => [
+        'question' => 'What is a Hash Generator?',
+        'description' => [
+            'A Hash Generator is a tool that computes a cryptographic hash of a given input string or file. Hashes are "fingerprints" of data; any change to the input results in a completely different hash.',
+            'This tool supports common algorithms like MD5, SHA-1, SHA-256, and SHA-512, which are used for data integrity checks, password hashing, and digital signatures.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Can I reverse a hash?',
+                'answer' => 'No, cryptographic hashes are one-way functions. You cannot derive the original input from the hash value alone.'
+            ],
+        ],
+    ],
+    'json-csv-converter' => [
+        'question' => 'What is JSON to CSV Converter?',
+        'description' => [
+            'JSON to CSV Converter is a tool that transforms structured JSON data into a flat CSV (Comma Separated Values) format, which is ideal for use in spreadsheet applications like Excel or Google Sheets.',
+            'The tool also supports converting CSV back to JSON, making it easy to migrate data between different systems and formats.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Does it support nested JSON?',
+                'answer' => 'Yes, the tool attempts to flatten nested JSON objects into a relational format suitable for CSV rows using dot notation (e.g., user.name).'
+            ],
+            [
+                'question' => 'Is my data secure?',
+                'answer' => 'Yes, all processing is done entirely in your web browser. Your data is never sent to our servers, ensuring total privacy.'
+            ],
+            [
+                'question' => 'What happens to JSON arrays during conversion?',
+                'answer' => 'You can customize how arrays are handled using the Options panel. You can join them with commas, pipes, or keep them as a JSON string.'
+            ],
+            [
+                'question' => 'Can I convert large files?',
+                'answer' => 'Yes, you can upload JSON or CSV files up to several megabytes. Since processing happens in your browser, the limit depends on your device\'s memory.'
+            ],
+        ],
+    ],
+    'json-diff-checker' => [
+        'question' => 'What is JSON Diff Checker?',
+        'description' => [
+            'JSON Diff Checker is a developer tool that allows you to compare two JSON objects and identify the differences between them. It highlights added, modified, and removed fields.',
+            'This is extremely useful for debugging API responses, configuration changes, or tracking data versions.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Is it side-by-side?',
+                'answer' => 'Yes, the tool provides a clear side-by-side comparison with color-coded differences for easy identification.'
+            ],
+        ],
+    ],
+    'sql-formatter' => [
+        'question' => 'What is an SQL Formatter?',
+        'description' => [
+            'An SQL Formatter (or Beautifier) takes raw SQL queries and applies consistent indentation and capitalization to make them readable. It supports various SQL dialects like MySQL, PostgreSQL, and SQL Server.',
+            'Properly formatted SQL is easier to read, debug, and maintain, especially for large and complex queries.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Can it minify SQL?',
+                'answer' => 'Yes, the tool also provides a minification option to remove unnecessary spaces and comments, which can be useful for reducing query size in code.'
+            ],
+        ],
+    ],
+    'timestamp-converter' => [
+        'question' => 'What is a Unix Timestamp Converter?',
+        'description' => [
+            'A Unix Timestamp Converter is a tool that converts between Unix Epoch timestamps (the number of seconds since January 1, 1970) and human-readable dates.',
+            'This is an essential utility for developers working with databases, logs, and APIs that store time in Unix format.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is a Unix timestamp?',
+                'answer' => 'A Unix timestamp is a system for describing a point in time, defined as the number of seconds that have elapsed since 00:00:00 UTC on January 1, 1970.'
+            ],
+        ],
+    ],
+
+    'xml-formatter' => [
+        'question' => 'What is an XML Formatter?',
+        'description' => [
+            'An XML Formatter is a tool that takes raw, minified, or unformatted XML data and applies consistent indentation and line breaks to make it human-readable.',
+            'It also helps in identifying syntax errors by validating the XML structure during the formatting process.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'Does it support CDATA?',
+                'answer' => 'Yes, our XML Formatter correctly handles CDATA sections, ensuring they are preserved and properly indented within the XML structure.'
+            ],
+        ],
+    ],
+
 ];

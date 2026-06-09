@@ -1008,7 +1008,7 @@ class ToolSeeder extends Seeder
             [
                 'page_name' => 'jwt-decoder',
                 'category' => 'Developer & SEO Tools',
-                'meta_title' => 'JWT Decoder & Validator Online - Toolzy',
+                'meta_title' => 'Online JWT Decoder & Validator - Toolzy',
                 'meta_description' => 'Decode and validate JWT tokens instantly in your browser. View claims, expiration dates, headers, payloads, and verify signatures securely without uploading data.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
@@ -1016,7 +1016,7 @@ class ToolSeeder extends Seeder
                         [
                             '@type' => 'WebPage',
                             '@id' => url('/tools/jwt-decoder'),
-                            'name' => 'JWT Decoder & Validator Online - Toolzy',
+                            'name' => 'Online JWT Decoder & Validator - Toolzy',
                             'url' => url('/tools/jwt-decoder'),
                             'description' => 'Decode and validate JWT tokens instantly in your browser. View claims, expiration dates, headers, payloads, and verify signatures securely without uploading data.',
                             'inLanguage' => 'en',
@@ -1075,7 +1075,647 @@ class ToolSeeder extends Seeder
                         ]
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],                                                                                   
+            ],
+            [
+                'page_name' => 'regex-tester',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online Regex Tester and Validator - Live Regex Match Testing | Toolzy',
+                'meta_description' => 'Test regular expressions instantly in your browser. Validate regex patterns, highlight matches, inspect capture groups, and debug expressions with live results.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/regex-tester'),
+                            'name' => 'Online Regex Tester & Validator - Live Regex Match Testing | Toolzy',
+                            'url' => url('/tools/regex-tester'),
+                            'description' => 'Test regular expressions instantly in your browser. Validate regex patterns, highlight matches, inspect capture groups, and debug expressions with live results.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/regex-tester')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "Regex Tester & Validator",
+                                    "item"=> url('/tools/regex-tester')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "Regex Tester & Validator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Test regular expressions instantly in your browser. Validate regex patterns, highlight matches, inspect capture groups, and debug expressions with live results.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            [
+                'page_name' => 'uuid-generator',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online UUID v1 v4 Bulk Generator - Toolzy',
+                'meta_description' => 'Generate UUIDs instantly in your browser. Supports UUID v1 and v4, bulk generation, duplicate checking, export options, and developer-friendly formatting.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/uuid-generator'),
+                            'name' => 'Online UUID v1 v4 Bulk Generator - Toolzy',
+                            'url' => url('/tools/uuid-generator'),
+                            'description' => 'Generate UUIDs instantly in your browser. Supports UUID v1 and v4, bulk generation, duplicate checking, export options, and developer-friendly formatting.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/uuid-generator')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "UUID Generator",
+                                    "item"=> url('/tools/uuid-generator')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "UUID Generator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Generate UUIDs instantly in your browser. Supports UUID v1 and v4, bulk generation, duplicate checking, export options, and developer-friendly formatting.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+
+            // [
+            //     'page_name' => 'timestamp-converter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'Unix Timestamp Converter & Epoch Time Tool - Free Online | Toolzy',
+            //     'meta_description' => 'Convert Unix timestamps to human-readable dates and dates to timestamps instantly. Supports UTC, local time, milliseconds, timezone conversion, and analysis.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/timestamp-converter'),
+            //                 'name' => 'Unix Timestamp Converter & Epoch Time Tool - Free Online | Toolzy',
+            //                 'url' => url('/tools/timestamp-converter'),
+            //                 'description' => 'Convert Unix timestamps to human-readable dates and dates to timestamps instantly. Supports UTC, local time, milliseconds, timezone conversion, and analysis.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/timestamp-converter')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "Unix Timestamp Converter",
+            //                         "item"=> url('/tools/timestamp-converter')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "Unix Timestamp Converter",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Convert Unix timestamps to human-readable dates and dates to timestamps instantly. Supports UTC, local time, milliseconds, timezone conversion, and analysis.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'json-csv-converter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'Online Free JSON to CSV & CSV to JSON Converter -Toolzy',
+            //     'meta_description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/json-csv-converter'),
+            //                 'name' => 'Online Free JSON to CSV & CSV to JSON Converter -Toolzy',
+            //                 'url' => url('/tools/json-csv-converter'),
+            //                 'description' => 'Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/json-csv-converter')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "JSON ↔ CSV Converter",
+            //                         "item"=> url('/tools/json-csv-converter')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "JSON ↔ CSV Converter",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Convert JSON to CSV and CSV to JSON instantly in your browser. Supports nested objects, arrays, file uploads, data validation, and downloadable exports.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'cron-generator',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'Cron Expression Generator & Validator - Free Online | Toolzy',
+            //     'meta_description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/cron-generator'),
+            //                 'name' => 'Cron Expression Generator & Validator - Free Online | Toolzy',
+            //                 'url' => url('/tools/cron-generator'),
+            //                 'description' => 'Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/cron-generator')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "Cron Expression Generator",
+            //                         "item"=> url('/tools/cron-generator')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "Cron Expression Generator",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Build, validate, parse, and understand cron expressions instantly. Generate cron schedules, preview next run times, and convert cron syntax into human-readable descriptions.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'json-diff-checker',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'JSON Diff Checker & Compare Tool - Free Online | Toolzy',
+            //     'meta_description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/json-diff-checker'),
+            //                 'name' => 'JSON Diff Checker & Compare Tool - Free Online | Toolzy',
+            //                 'url' => url('/tools/json-diff-checker'),
+            //                 'description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/json-diff-checker')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "JSON Diff Checker",
+            //                         "item"=> url('/tools/json-diff-checker')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "JSON Diff Checker",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'hash-generator',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Online | Toolzy',
+            //     'meta_description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/hash-generator'),
+            //                 'name' => 'Hash Generator & Checker (MD5, SHA1, SHA256, SHA512) - Online | Toolzy',
+            //                 'url' => url('/tools/hash-generator'),
+            //                 'description' => 'Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/hash-generator')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "Hash Generator",
+            //                         "item"=> url('/tools/hash-generator')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "Hash Generator & Checker",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Generate and verify cryptographic hashes instantly. Supports MD5, SHA1, SHA256, SHA512, file hashing, checksum verification, and secure browser-based processing.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'sql-formatter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'SQL Formatter, Beautifier & Validator Online - Free | Toolzy',
+            //     'meta_description' => 'Format, beautify, minify, and validate SQL queries instantly in your browser. Supports MySQL, PostgreSQL, SQL Server, syntax highlighting, and query analysis.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/sql-formatter'),
+            //                 'name' => 'SQL Formatter, Beautifier & Validator Online - Free | Toolzy',
+            //                 'url' => url('/tools/sql-formatter'),
+            //                 'description' => 'Format, beautify, minify, and validate SQL queries instantly in your browser. Supports MySQL, PostgreSQL, SQL Server, syntax highlighting, and query analysis.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/sql-formatter')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "SQL Formatter",
+            //                         "item"=> url('/tools/sql-formatter')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "SQL Formatter & Validator",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Format, beautify, minify, and validate SQL queries instantly in your browser. Supports MySQL, PostgreSQL, SQL Server, syntax highlighting, and query analysis.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            // [
+            //     'page_name' => 'xml-formatter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
+            //     'meta_description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/xml-formatter'),
+            //                 'name' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
+            //                 'url' => url('/tools/xml-formatter'),
+            //                 'description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/xml-formatter')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "XML Formatter",
+            //                         "item"=> url('/tools/xml-formatter')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "XML Formatter & Validator",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],                                                                                   
         ];
         foreach ($pages as $page) {
             \App\Models\Tool::updateOrCreate(
