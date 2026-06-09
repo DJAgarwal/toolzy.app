@@ -171,9 +171,9 @@
         <div class="col-lg-4">
             <!-- Regex Explanation -->
             <div class="card mb-4 shadow-sm border-primary border-opacity-25">
-                <div class="card-header bg-primary bg-opacity-10 py-3 d-flex justify-content-between align-items-center">
+                <div class="card-header bg-opacity-10 py-3 d-flex justify-content-between align-items-center">
                     <h6 class="mb-0 fw-bold text-primary"><i class="bi bi-info-circle me-2"></i>Explanation</h6>
-                    <button id="copyExplanation" class="btn btn-sm btn-link text-decoration-none p-0" title="Copy Explanation"><i class="bi bi-clipboard"></i></button>
+                    <button id="copyExplanation" class="btn btn-sm btn-outline-primary" title="Copy Explanation"><i class="bi bi-clipboard"></i></button>
                 </div>
                 <div class="card-body small" id="regexExplanation">
                     <div class="text-muted italic">Enter a valid regex pattern to see the explanation.</div>
@@ -476,7 +476,7 @@ const RegexTool = (function() {
     };
 
     const examples = [
-        { name: 'Email Address', pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$', flags: 'g', text: 'Contact us at support@toolzy.app or sales@example.com for more info.' },
+        { name: 'Email Address', pattern: '[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}', flags: 'g', text: 'Contact us at support@toolzy.app or sales@example.com for more info.' },
         { name: 'URL', pattern: 'https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)', flags: 'gi', text: 'Visit https://toolzy.app or http://google.com?q=regex' },
         { name: 'Phone Number', pattern: '(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?', flags: 'g', text: 'Call us: +1 (555) 123-4567 or 123.456.7890' },
         { name: 'IPv4 Address', pattern: '\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b', flags: 'g', text: 'Localhost is 127.0.0.1, Google DNS: 8.8.8.8' },
@@ -484,7 +484,7 @@ const RegexTool = (function() {
         { name: 'Date (YYYY-MM-DD)', pattern: '\\b\\d{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])\\b', flags: 'g', text: 'Today is 2026-06-07. Event starts 2026-12-25.' },
         { name: 'Credit Card', pattern: '\\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})\\b', flags: 'g', text: 'Visa: 4111111111111111, MasterCard: 5500000000000004' },
         { name: 'Password Strength', pattern: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$', flags: 'g', text: 'StrongP@ss123' },
-        { name: 'JWT Token', pattern: '^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$', flags: 'g', text: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' },
+        { name: 'JWT Token', pattern: '[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*', flags: 'g', text: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' },
         { name: 'HTML Tags', pattern: '<([a-z1-6]+)([^>]*)>(.*?)<\\/\\1>', flags: 'gi', text: '<div>Hello <b>World</b></div>' }
     ];
 
