@@ -1079,7 +1079,7 @@ class ToolSeeder extends Seeder
             [
                 'page_name' => 'regex-tester',
                 'category' => 'Developer & SEO Tools',
-                'meta_title' => 'Online Regex Tester and Validator - Live Regex Match Testing | Toolzy',
+                'meta_title' => 'Online Live Regex Match Tester and Validator - Toolzy',
                 'meta_description' => 'Test regular expressions instantly in your browser. Validate regex patterns, highlight matches, inspect capture groups, and debug expressions with live results.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
@@ -1087,7 +1087,7 @@ class ToolSeeder extends Seeder
                         [
                             '@type' => 'WebPage',
                             '@id' => url('/tools/regex-tester'),
-                            'name' => 'Online Regex Tester & Validator - Live Regex Match Testing | Toolzy',
+                            'name' => 'Online Live Regex Match Tester and Validator - Toolzy',
                             'url' => url('/tools/regex-tester'),
                             'description' => 'Test regular expressions instantly in your browser. Validate regex patterns, highlight matches, inspect capture groups, and debug expressions with live results.',
                             'inLanguage' => 'en',
