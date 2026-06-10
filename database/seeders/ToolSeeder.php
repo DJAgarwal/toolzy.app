@@ -1644,37 +1644,109 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
+            [
+                'page_name' => 'xml-formatter',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online XML Formatter, Validator & Beautifier - Toolzy',
+                'meta_description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/xml-formatter'),
+                            'name' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
+                            'url' => url('/tools/xml-formatter'),
+                            'description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/xml-formatter')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "XML Formatter",
+                                    "item"=> url('/tools/xml-formatter')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "XML Formatter & Validator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                                                   
             // [
-            //     'page_name' => 'xml-formatter',
+            //     'page_name' => 'css-formatter',
             //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'Online XML Formatter, Validator & Beautifier - Toolzy',
-            //     'meta_description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //     'meta_title' => 'CSS Formatter, Beautifier & Minifier - Free Online CSS Tool | Toolzy',
+            //     'meta_description' => 'Format, beautify, minify, and analyze CSS instantly in your browser. Improve readability, reduce file size, validate structure, and optimize stylesheets.',
             //     'json_ld' => json_encode([
             //         '@context' => 'https://schema.org',
             //         '@graph' => [
             //             [
             //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/xml-formatter'),
-            //                 'name' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
-            //                 'url' => url('/tools/xml-formatter'),
-            //                 'description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //                 '@id' => url('/tools/css-formatter'),
+            //                 'name' => 'CSS Formatter, Beautifier & Minifier - Toolzy',
+            //                 'url' => url('/tools/css-formatter'),
+            //                 'description' => 'A comprehensive CSS tool to format, minify, and analyze stylesheets directly in your browser.',
             //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/xml-formatter')
+            //                 'mainEntityOfPage' => url('/tools/css-formatter')
             //             ],
             //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
+            //                 '@type' => 'SoftwareApplication',
+            //                 'name' => 'CSS Formatter & Minifier',
+            //                 'operatingSystem' => 'All',
+            //                 'applicationCategory' => 'DeveloperApplication',
+            //                 'description' => 'Format, beautify, minify, and analyze CSS instantly in your browser.',
+            //                 'offers' => [
+            //                     '@type' => 'Offer',
+            //                     'price' => '0',
+            //                     'priceCurrency' => 'USD'
             //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
+            //                 'publisher' => [
+            //                     '@type' => 'Organization',
+            //                     'name' => 'Toolzy',
+            //                     'url' => url('/')
             //                 ]
             //             ],
             //             [
@@ -1695,26 +1767,74 @@ class ToolSeeder extends Seeder
             //                     [
             //                         "@type"=> "ListItem",
             //                         "position"=> 3,
-            //                         "name"=> "XML Formatter",
-            //                         "item"=> url('/tools/xml-formatter')
+            //                         "name"=> "CSS Formatter",
+            //                         "item"=> url('/tools/css-formatter')
             //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "XML Formatter & Validator",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
             //                 ]
             //             ]
             //         ]
             //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],                                                                                   
+            // ],
+            // [
+            //     'page_name' => 'html-formatter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'HTML Formatter, Beautifier & Minifier - Free Online HTML Tool | Toolzy',
+            //     'meta_description' => 'Format, beautify, minify, validate, and analyze HTML instantly in your browser. Improve readability, reduce file size, inspect structure, and optimize markup.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/html-formatter'),
+            //                 'name' => 'HTML Formatter, Beautifier & Minifier - Toolzy',
+            //                 'url' => url('/tools/html-formatter'),
+            //                 'description' => 'A comprehensive HTML tool to format, minify, and analyze web markup directly in your browser.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/html-formatter')
+            //             ],
+            //             [
+            //                 '@type' => 'SoftwareApplication',
+            //                 'name' => 'HTML Formatter & Minifier',
+            //                 'operatingSystem' => 'All',
+            //                 'applicationCategory' => 'DeveloperApplication',
+            //                 'description' => 'Format, beautify, minify, and analyze HTML instantly in your browser.',
+            //                 'offers' => [
+            //                     '@type' => 'Offer',
+            //                     'price' => '0',
+            //                     'priceCurrency' => 'USD'
+            //                 ],
+            //                 'publisher' => [
+            //                     '@type' => 'Organization',
+            //                     'name' => 'Toolzy',
+            //                     'url' => url('/')
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "HTML Formatter",
+            //                         "item"=> url('/tools/html-formatter')
+            //                     ]
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],                                                                                 
         ];
         foreach ($pages as $page) {
             \App\Models\Tool::updateOrCreate(
