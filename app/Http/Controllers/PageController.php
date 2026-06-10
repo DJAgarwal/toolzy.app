@@ -15,6 +15,10 @@ class PageController extends Controller
         $page_name = $slug === '' ? 'home' : $slug;
         $data = PageHelper::pageMetadataAndBreadcrumbs($slug);
 
+        if (!$data) {
+            abort(404);
+        }
+
         $viewFolder = $data['page_type'] === 'tools' ? 'tools' : 'static';
         if ($viewFolder === 'tools') {
             $data['tool'] = Lang::get('tools.' . $page_name);

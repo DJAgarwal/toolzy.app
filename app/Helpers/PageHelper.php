@@ -30,13 +30,20 @@ class PageHelper
                 $jsonLd = json_decode($jsonLd, true);
             }
             
+            if (!is_array($jsonLd)) {
+                $jsonLd = [];
+            }
+            
             $breadcrumbList = collect($jsonLd['@graph'] ?? [])->firstWhere('@type', 'BreadcrumbList');
-            $uiBreadcrumbs = collect($breadcrumbList['itemListElement'] ?? [])->map(function ($item) {
-                return [
-                    'name' => $item['name'],
-                    'url' => $item['item'],
-                ];
-            })->toArray();
+            $uiBreadcrumbs = [];
+            if ($breadcrumbList && isset($breadcrumbList['itemListElement'])) {
+                $uiBreadcrumbs = collect($breadcrumbList['itemListElement'])->map(function ($item) {
+                    return [
+                        'name' => $item['name'] ?? 'Unknown',
+                        'url' => $item['item'] ?? '#',
+                    ];
+                })->toArray();
+            }
 
             return [
                 'page_type' => $page_type,
