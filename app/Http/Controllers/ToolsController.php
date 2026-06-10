@@ -19,6 +19,6 @@ class ToolsController extends Controller
     {
         $data = PageHelper::pageMetadataAndBreadcrumbs('tools');
         $tools = Tool::all()->groupBy('category');
-        return view('static.tools', array_merge($data, ['tools' => $tools]));
+        return response()->view('static.tools', array_merge($data, ['tools' => $tools]))->header('Content-Type', 'text/html; charset=UTF-8');
     }
 }

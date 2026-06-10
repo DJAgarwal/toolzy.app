@@ -21,9 +21,9 @@ class HomeController extends Controller
             $tools = Tool::paginate(9);
         }
         if ($request->ajax()) {
-            return view('partials.tools_grid', ['tools' => $tools])->render();
+            return response(view('partials.tools_grid', ['tools' => $tools])->render())->header('Content-Type', 'text/html; charset=UTF-8');
         }
 
-        return view('static.home', array_merge($data, ['tools' => $tools]));
+        return response()->view('static.home', array_merge($data, ['tools' => $tools]))->header('Content-Type', 'text/html; charset=UTF-8');
     }
 }

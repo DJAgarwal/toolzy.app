@@ -29,6 +29,6 @@ class PageController extends Controller
         if (!View::exists($viewName)) {
             abort(404);
         }
-        return view($viewName, $data);
+        return response()->view($viewName, $data)->header('Content-Type', 'text/html; charset=UTF-8');
     }
 }

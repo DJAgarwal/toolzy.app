@@ -16,11 +16,7 @@
                     </div>
                 </div>
                 <div class="card-body p-0 position-relative">
-                    <textarea id="xmlInput" class="form-control border-0 font-monospace p-3" rows="12" placeholder='<!-- Paste your XML here... -->
-<?xml version="1.0" encoding="UTF-8"?>
-<root>
-    <item id="1">Hello World</item>
-</root>'></textarea>
+                    <textarea id="xmlInput" class="form-control border-0 font-monospace p-3" rows="12" placeholder="Paste your XML here..."></textarea>
                 </div>
                 <div class="card-footer bg-light py-2">
                     <div class="d-flex justify-content-between align-items-center">
@@ -401,6 +397,9 @@ const XMLTool = (function() {
     }
 
     function processXML(xml, mode, opts) {
+        // Sanitize input: remove any stray PHP tags that might have leaked from the server
+        xml = xml.replace(/<\?php[\s\S]*?\?>/gi, '').trim();
+        
         const parser = new DOMParser();
         const doc = parser.parseFromString(xml, 'text/xml');
         
@@ -704,7 +703,7 @@ const XMLTool = (function() {
     }
 
     function loadExample() {
-        elements.input.value = `<?xml version="1.0" encoding="UTF-8"?>
+        elements.input.value = `{!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
 <catalog xmlns:ext="http://example.com/ext">
     <product id="P001" category="Electronics">
         <name>Smartphone X Pro</name>
