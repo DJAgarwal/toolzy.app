@@ -62,7 +62,7 @@ class ToolSeeder extends Seeder
                                     "@type"=> "ListItem",
                                     "position"=> 3,
                                     "name"=> "Image Converter",
-                                    "item"=> url('tools/image-converter')
+                                    "item"=> url('/tools/image-converter')
                                 ]
                             ]
                         ],
@@ -659,12 +659,12 @@ class ToolSeeder extends Seeder
                     '@graph' =>[
                         [
                             '@type' => 'WebPage',
-                            '@id' => url('/word-character-counter'),
+                            '@id' => url('/tools/word-character-counter'),
                             'name' => 'Online Word and Character Counter - Toolzy',
-                            'url' => url('/word-character-counter'),
+                            'url' => url('/tools/word-character-counter'),
                             'description' => 'Toolzy’s Word and Character Counter helps you calculate word and character counts instantly. Useful for writers, editors, and anyone in need of text analysis.',
                             'inLanguage' => 'en',
-                            'mainEntityOfPage' => url('/word-character-counter')
+                            'mainEntityOfPage' => url('/tools/word-character-counter')
                         ],
                         [
                             '@type' => 'Organization',
@@ -730,12 +730,12 @@ class ToolSeeder extends Seeder
                     '@graph' =>[
                         [
                             '@type' => 'WebPage',
-                            '@id' => url('tools/text-case-converter'),
+                            '@id' => url('/tools/text-case-converter'),
                             'name' => 'Online Text Case Converter - Toolzy',
-                            'url' => url('tools/text-case-converter'),
+                            'url' => url('/tools/text-case-converter'),
                             'description' => 'Use Toolzy’s Text Case Converter to quickly switch your text between uppercase, lowercase, capitalized case, sentence case, and toggle case. Simplify your text formatting easily.',
                             'inLanguage' => 'en',
-                            'mainEntityOfPage' => url('tools/text-case-converter')
+                            'mainEntityOfPage' => url('/tools/text-case-converter')
                         ],
                         [
                             '@type' => 'Organization',
