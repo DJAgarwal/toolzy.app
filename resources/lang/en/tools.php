@@ -611,6 +611,18 @@ return [
                 'question' => 'What is a Unix timestamp?',
                 'answer' => 'A Unix timestamp is a system for describing a point in time, defined as the number of seconds that have elapsed since 00:00:00 UTC on January 1, 1970.'
             ],
+            [
+                'question' => 'How do I convert milliseconds to seconds?',
+                'answer' => 'To convert milliseconds to seconds, divide the value by 1000. Our tool automatically detects if you\'ve entered milliseconds (13 digits) and handles the conversion for you.'
+            ],
+            [
+                'question' => 'What is the difference between UTC and GMT?',
+                'answer' => 'UTC (Coordinated Universal Time) is the scientific time standard, while GMT (Greenwich Mean Time) is a time zone. For most practical and development purposes, they are identical.'
+            ],
+            [
+                'question' => 'Can I convert ISO 8601 dates to timestamps?',
+                'answer' => 'Yes, you can use the "Human Date" section to pick a date and time, which will instantly generate the corresponding Unix timestamp in both seconds and milliseconds.'
+            ],
         ],
     ],
 
