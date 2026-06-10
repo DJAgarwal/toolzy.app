@@ -586,6 +586,18 @@ return [
                 'question' => 'Can it minify SQL?',
                 'answer' => 'Yes, the tool also provides a minification option to remove unnecessary spaces and comments, which can be useful for reducing query size in code.'
             ],
+            [
+                'question' => 'Which SQL dialects are supported?',
+                'answer' => 'Our formatter supports a wide range of dialects including Standard SQL, MySQL, PostgreSQL, SQLite, SQL Server (T-SQL), and Oracle.'
+            ],
+            [
+                'question' => 'Does it detect syntax errors?',
+                'answer' => 'Yes, the tool performs structural validation and will flag common issues like unbalanced parentheses or unclosed quotes.'
+            ],
+            [
+                'question' => 'Is it safe for sensitive queries?',
+                'answer' => 'Absolutely. All processing is done locally in your browser. Your SQL queries are never sent to our servers or stored anywhere.'
+            ],
         ],
     ],
     'timestamp-converter' => [
