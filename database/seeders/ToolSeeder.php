@@ -1644,77 +1644,77 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
-            [
-                'page_name' => 'xml-formatter',
-                'category' => 'Developer & SEO Tools',
-                'meta_title' => 'Online XML Formatter, Validator & Beautifier - Toolzy',
-                'meta_description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
-                'json_ld' => json_encode([
-                    '@context' => 'https://schema.org',
-                    '@graph' => [
-                        [
-                            '@type' => 'WebPage',
-                            '@id' => url('/tools/xml-formatter'),
-                            'name' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
-                            'url' => url('/tools/xml-formatter'),
-                            'description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
-                            'inLanguage' => 'en',
-                            'mainEntityOfPage' => url('/tools/xml-formatter')
-                        ],
-                        [
-                            '@type' => 'Organization',
-                            'name' => 'Toolzy',
-                            'url' => url('/'),
-                            'logo' => url('/images/logo.webp'),
-                            'contactPoint' => [
-                                '@type' => 'ContactPoint',
-                                'contactType' => 'Customer Support',
-                                'email' => 'dheerajagarwal1995@gmail.com',
-                                'availableLanguage' => 'en'
-                            ],
-                            'sameAs' => [
-                                'https://twitter.com/Toolzy',
-                                'https://facebook.com/Toolzy'
-                            ]
-                        ],
-                        [
-                            "@type"=> "BreadcrumbList",
-                            "itemListElement"=> [
-                                [
-                                    "@type"=> "ListItem",
-                                    "position"=> 1,
-                                    "name"=> "Home",
-                                    "item"=> url('/')
-                                ],
-                                [
-                                    "@type"=> "ListItem",
-                                    "position"=> 2,
-                                    "name"=> "Tools",
-                                    "item"=> url('/tools')
-                                ],
-                                [
-                                    "@type"=> "ListItem",
-                                    "position"=> 3,
-                                    "name"=> "XML Formatter",
-                                    "item"=> url('/tools/xml-formatter')
-                                ]
-                            ]
-                        ],
-                        [
-                            "@type"=> "SoftwareApplication",
-                            "name"=> "XML Formatter & Validator",
-                            "operatingSystem"=> "All",
-                            "applicationCategory"=> "DeveloperApplication",
-                            "description"=> "Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.",
-                            "offers"=> [
-                                "@type"=> "Offer",
-                                "price"=> "0",
-                                "priceCurrency"=> "USD"
-                            ]
-                        ]
-                    ]
-                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],                                                                                   
+            // [
+            //     'page_name' => 'xml-formatter',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'Online XML Formatter, Validator & Beautifier - Toolzy',
+            //     'meta_description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/xml-formatter'),
+            //                 'name' => 'XML Formatter, Validator & Beautifier Online - Free | Toolzy',
+            //                 'url' => url('/tools/xml-formatter'),
+            //                 'description' => 'Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/xml-formatter')
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ],
+            //                 'sameAs' => [
+            //                     'https://twitter.com/Toolzy',
+            //                     'https://facebook.com/Toolzy'
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "XML Formatter",
+            //                         "item"=> url('/tools/xml-formatter')
+            //                     ]
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "SoftwareApplication",
+            //                 "name"=> "XML Formatter & Validator",
+            //                 "operatingSystem"=> "All",
+            //                 "applicationCategory"=> "DeveloperApplication",
+            //                 "description"=> "Format, beautify, validate, minify, and analyze XML documents instantly. Supports XML validation, tree view visualization, and downloadable exports.",
+            //                 "offers"=> [
+            //                     "@type"=> "Offer",
+            //                     "price"=> "0",
+            //                     "priceCurrency"=> "USD"
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],                                                                                   
         ];
         foreach ($pages as $page) {
             \App\Models\Tool::updateOrCreate(
