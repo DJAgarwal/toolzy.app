@@ -613,6 +613,18 @@ return [
                 'question' => 'Does it support CDATA?',
                 'answer' => 'Yes, our XML Formatter correctly handles CDATA sections, ensuring they are preserved and properly indented within the XML structure.'
             ],
+            [
+                'question' => 'Does it validate XML for errors?',
+                'answer' => 'Yes, our tool uses a browser-based DOM parser to ensure your XML is well-formed. If there are syntax errors, it will highlight exactly where the problem is.'
+            ],
+            [
+                'question' => 'Is my XML data secure?',
+                'answer' => 'Yes, your data never leaves your computer. All formatting and analysis are performed locally in your browser, ensuring maximum privacy.'
+            ],
+            [
+                'question' => 'Can I generate XPaths from the tree view?',
+                'answer' => 'Absolutely! By using the XML Tree Explorer, you can click on any tag to instantly generate and copy its absolute XPath.'
+            ],
         ],
     ],
 
