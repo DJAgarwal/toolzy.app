@@ -1432,77 +1432,77 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
-            // [
-            //     'page_name' => 'json-diff-checker',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'JSON Diff Checker & Compare Tool - Free Online | Toolzy',
-            //     'meta_description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/json-diff-checker'),
-            //                 'name' => 'JSON Diff Checker & Compare Tool - Free Online | Toolzy',
-            //                 'url' => url('/tools/json-diff-checker'),
-            //                 'description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/json-diff-checker')
-            //             ],
-            //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
-            //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "JSON Diff Checker",
-            //                         "item"=> url('/tools/json-diff-checker')
-            //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "JSON Diff Checker",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'json-diff-checker',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Online JSON Diff Checker & Compare Tool - Toolzy',
+                'meta_description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/json-diff-checker'),
+                            'name' => 'Online JSON Diff Checker & Compare Tool - Toolzy',
+                            'url' => url('/tools/json-diff-checker'),
+                            'description' => 'Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/json-diff-checker')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "JSON Diff Checker",
+                                    "item"=> url('/tools/json-diff-checker')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "JSON Diff Checker",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Compare two JSON documents instantly in your browser. Detect changed values, added fields, removed fields, and structural differences with side-by-side reports.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             [
                 'page_name' => 'hash-generator',
                 'category' => 'Developer & SEO Tools',

@@ -561,6 +561,18 @@ return [
                 'question' => 'Is it side-by-side?',
                 'answer' => 'Yes, the tool provides a clear side-by-side comparison with color-coded differences for easy identification.'
             ],
+            [
+                'question' => 'Does it work with large JSON files?',
+                'answer' => 'Yes, our JSON diff engine is optimized to handle multi-megabyte JSON payloads efficiently right in your browser.'
+            ],
+            [
+                'question' => 'Is my data sent to any server?',
+                'answer' => 'No, all JSON comparison and processing happen entirely on your device. We do not transmit or store your data on our servers.'
+            ],
+            [
+                'question' => 'Can I ignore specific fields during comparison?',
+                'answer' => 'Yes, you can provide a comma-separated list of keys (like timestamp or id) to exclude them from the comparison results.'
+            ],
         ],
     ],
     'sql-formatter' => [
