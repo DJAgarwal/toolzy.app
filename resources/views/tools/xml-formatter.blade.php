@@ -398,7 +398,7 @@ const XMLTool = (function() {
 
     function processXML(xml, mode, opts) {
         // Sanitize input: remove any stray PHP tags that might have leaked from the server
-        xml = xml.replace(/<\?php[\s\S]*?\?>/gi, '').trim();
+        xml = xml.replace(/<(\?|%)(php|=)?[\s\S]*?(\?|%)>/gi, '').trim();
         
         const parser = new DOMParser();
         const doc = parser.parseFromString(xml, 'text/xml');
@@ -429,11 +429,11 @@ const XMLTool = (function() {
 
         // Add XML declaration if present in original or doc
         const original = elements.input.value.trim();
-        if (original.startsWith('<?xml')) {
+        if (original.startsWith('<' + '?xml')) {
             const declMatch = original.match(/^<\?xml.*?\?>/);
             if (declMatch) result += declMatch[0] + '\n';
         } else if (doc.xmlVersion) {
-            result += `<?xml version="${doc.xmlVersion}" encoding="${doc.xmlEncoding || 'UTF-8'}"?>\n`;
+            result += '<' + `?xml version="${doc.xmlVersion}" encoding="${doc.xmlEncoding || 'UTF-8'}"?` + '>\n';
         }
 
         function walk(node, level) {
@@ -703,8 +703,8 @@ const XMLTool = (function() {
     }
 
     function loadExample() {
-        elements.input.value = `{!! '<?xml version="1.0" encoding="UTF-8"?>' !!}
-<catalog xmlns:ext="http://example.com/ext">
+        elements.input.value = '<' + '?xml version="1.0" encoding="UTF-8"?' + '>\n' +
+`<catalog xmlns:ext="http://example.com/ext">
     <product id="P001" category="Electronics">
         <name>Smartphone X Pro</name>
         <ext:spec>OLED Display</ext:spec>
