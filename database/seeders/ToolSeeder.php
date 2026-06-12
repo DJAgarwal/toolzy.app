@@ -1791,66 +1791,66 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],                                                                                   
-            // [
-            //     'page_name' => 'css-formatter',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'CSS Formatter, Beautifier & Minifier - Free Online CSS Tool | Toolzy',
-            //     'meta_description' => 'Format, beautify, minify, and analyze CSS instantly in your browser. Improve readability, reduce file size, validate structure, and optimize stylesheets.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/css-formatter'),
-            //                 'name' => 'CSS Formatter, Beautifier & Minifier - Toolzy',
-            //                 'url' => url('/tools/css-formatter'),
-            //                 'description' => 'A comprehensive CSS tool to format, minify, and analyze stylesheets directly in your browser.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/css-formatter')
-            //             ],
-            //             [
-            //                 '@type' => 'SoftwareApplication',
-            //                 'name' => 'CSS Formatter & Minifier',
-            //                 'operatingSystem' => 'All',
-            //                 'applicationCategory' => 'DeveloperApplication',
-            //                 'description' => 'Format, beautify, minify, and analyze CSS instantly in your browser.',
-            //                 'offers' => [
-            //                     '@type' => 'Offer',
-            //                     'price' => '0',
-            //                     'priceCurrency' => 'USD'
-            //                 ],
-            //                 'publisher' => [
-            //                     '@type' => 'Organization',
-            //                     'name' => 'Toolzy',
-            //                     'url' => url('/')
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "CSS Formatter",
-            //                         "item"=> url('/tools/css-formatter')
-            //                     ]
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'css-formatter',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'CSS Formatter, Beautifier & Minifier - Free Online CSS Tool | Toolzy',
+                'meta_description' => 'Format, beautify, minify, and analyze CSS instantly in your browser. Improve readability, reduce file size, validate structure, and optimize stylesheets.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/css-formatter'),
+                            'name' => 'CSS Formatter, Beautifier & Minifier - Toolzy',
+                            'url' => url('/tools/css-formatter'),
+                            'description' => 'A comprehensive CSS tool to format, minify, and analyze stylesheets directly in your browser.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/css-formatter')
+                        ],
+                        [
+                            '@type' => 'SoftwareApplication',
+                            'name' => 'CSS Formatter & Minifier',
+                            'operatingSystem' => 'All',
+                            'applicationCategory' => 'DeveloperApplication',
+                            'description' => 'Format, beautify, minify, and analyze CSS instantly in your browser.',
+                            'offers' => [
+                                '@type' => 'Offer',
+                                'price' => '0',
+                                'priceCurrency' => 'USD'
+                            ],
+                            'publisher' => [
+                                '@type' => 'Organization',
+                                'name' => 'Toolzy',
+                                'url' => url('/')
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "CSS Formatter",
+                                    "item"=> url('/tools/css-formatter')
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             [
                 'page_name' => 'html-formatter',
                 'category' => 'Developer & SEO Tools',
