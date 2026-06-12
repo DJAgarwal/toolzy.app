@@ -1851,66 +1851,66 @@ class ToolSeeder extends Seeder
             //         ]
             //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             // ],
-            // [
-            //     'page_name' => 'html-formatter',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'HTML Formatter, Beautifier & Minifier - Free Online HTML Tool | Toolzy',
-            //     'meta_description' => 'Format, beautify, minify, validate, and analyze HTML instantly in your browser. Improve readability, reduce file size, inspect structure, and optimize markup.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/html-formatter'),
-            //                 'name' => 'HTML Formatter, Beautifier & Minifier - Toolzy',
-            //                 'url' => url('/tools/html-formatter'),
-            //                 'description' => 'A comprehensive HTML tool to format, minify, and analyze web markup directly in your browser.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/html-formatter')
-            //             ],
-            //             [
-            //                 '@type' => 'SoftwareApplication',
-            //                 'name' => 'HTML Formatter & Minifier',
-            //                 'operatingSystem' => 'All',
-            //                 'applicationCategory' => 'DeveloperApplication',
-            //                 'description' => 'Format, beautify, minify, and analyze HTML instantly in your browser.',
-            //                 'offers' => [
-            //                     '@type' => 'Offer',
-            //                     'price' => '0',
-            //                     'priceCurrency' => 'USD'
-            //                 ],
-            //                 'publisher' => [
-            //                     '@type' => 'Organization',
-            //                     'name' => 'Toolzy',
-            //                     'url' => url('/')
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "HTML Formatter",
-            //                         "item"=> url('/tools/html-formatter')
-            //                     ]
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],
+            [
+                'page_name' => 'html-formatter',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'HTML Formatter, Beautifier & Minifier - Free Online HTML Tool | Toolzy',
+                'meta_description' => 'Format, beautify, minify, validate, and analyze HTML instantly in your browser. Improve readability, reduce file size, inspect structure, and optimize markup.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/html-formatter'),
+                            'name' => 'HTML Formatter, Beautifier & Minifier - Toolzy',
+                            'url' => url('/tools/html-formatter'),
+                            'description' => 'A comprehensive HTML tool to format, minify, and analyze web markup directly in your browser.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/html-formatter')
+                        ],
+                        [
+                            '@type' => 'SoftwareApplication',
+                            'name' => 'HTML Formatter & Minifier',
+                            'operatingSystem' => 'All',
+                            'applicationCategory' => 'DeveloperApplication',
+                            'description' => 'Format, beautify, minify, and analyze HTML instantly in your browser.',
+                            'offers' => [
+                                '@type' => 'Offer',
+                                'price' => '0',
+                                'priceCurrency' => 'USD'
+                            ],
+                            'publisher' => [
+                                '@type' => 'Organization',
+                                'name' => 'Toolzy',
+                                'url' => url('/')
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "HTML Formatter",
+                                    "item"=> url('/tools/html-formatter')
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
             [
                 'page_name' => 'lorem-ipsum-generator',
                 'category' => 'Developer & SEO Tools',
