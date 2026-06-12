@@ -1715,82 +1715,82 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
-            // [
-            //     'page_name' => 'javascript-formatter',
-            //     'category' => 'Developer & SEO Tools',
-            //     'meta_title' => 'JavaScript Formatter, Beautifier & Minifier - Free JS Tool | Toolzy',
-            //     'meta_description' => 'Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.',
-            //     'json_ld' => json_encode([
-            //         '@context' => 'https://schema.org',
-            //         '@graph' => [
-            //             [
-            //                 '@type' => 'WebPage',
-            //                 '@id' => url('/tools/javascript-formatter'),
-            //                 'name' => 'JavaScript Formatter, Beautifier & Minifier - Free JS Tool | Toolzy',
-            //                 'url' => url('/tools/javascript-formatter'),
-            //                 'description' => 'Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.',
-            //                 'inLanguage' => 'en',
-            //                 'mainEntityOfPage' => url('/tools/javascript-formatter')
-            //             ],
-            //             [
-            //                 '@type' => 'Organization',
-            //                 'name' => 'Toolzy',
-            //                 'url' => url('/'),
-            //                 'logo' => url('/images/logo.webp'),
-            //                 'contactPoint' => [
-            //                     '@type' => 'ContactPoint',
-            //                     'contactType' => 'Customer Support',
-            //                     'email' => 'dheerajagarwal1995@gmail.com',
-            //                     'availableLanguage' => 'en'
-            //                 ],
-            //                 'sameAs' => [
-            //                     'https://twitter.com/Toolzy',
-            //                     'https://facebook.com/Toolzy'
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "BreadcrumbList",
-            //                 "itemListElement"=> [
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 1,
-            //                         "name"=> "Home",
-            //                         "item"=> url('/')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 2,
-            //                         "name"=> "Tools",
-            //                         "item"=> url('/tools')
-            //                     ],
-            //                     [
-            //                         "@type"=> "ListItem",
-            //                         "position"=> 3,
-            //                         "name"=> "JavaScript Formatter",
-            //                         "item"=> url('/tools/javascript-formatter')
-            //                     ]
-            //                 ]
-            //             ],
-            //             [
-            //                 "@type"=> "SoftwareApplication",
-            //                 "name"=> "JavaScript Formatter & Minifier",
-            //                 "operatingSystem"=> "All",
-            //                 "applicationCategory"=> "DeveloperApplication",
-            //                 "description"=> "Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.",
-            //                 "offers"=> [
-            //                     "@type"=> "Offer",
-            //                     "price"=> "0",
-            //                     "priceCurrency"=> "USD"
-            //                 ],
-            //                 "publisher" => [
-            //                     "@type" => "Organization",
-            //                     "name" => "Toolzy",
-            //                     "url" => url('/')
-            //                 ]
-            //             ]
-            //         ]
-            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],                                                                                   
+            [
+                'page_name' => 'javascript-formatter',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'JavaScript Formatter, Beautifier & Minifier - Free JS Tool | Toolzy',
+                'meta_description' => 'Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/javascript-formatter'),
+                            'name' => 'JavaScript Formatter, Beautifier & Minifier - Free JS Tool | Toolzy',
+                            'url' => url('/tools/javascript-formatter'),
+                            'description' => 'Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/javascript-formatter')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "JavaScript Formatter",
+                                    "item"=> url('/tools/javascript-formatter')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "JavaScript Formatter & Minifier",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Format, beautify, minify, validate, and analyze JavaScript instantly in your browser. Improve readability, reduce file size, inspect code structure, and optimize scripts.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ],
+                            "publisher" => [
+                                "@type" => "Organization",
+                                "name" => "Toolzy",
+                                "url" => url('/')
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],                                                                                   
             // [
             //     'page_name' => 'css-formatter',
             //     'category' => 'Developer & SEO Tools',
@@ -1910,7 +1910,83 @@ class ToolSeeder extends Seeder
             //             ]
             //         ]
             //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            // ],                                                                                 
+            // ],
+            [
+                'page_name' => 'lorem-ipsum-generator',
+                'category' => 'Developer & SEO Tools',
+                'meta_title' => 'Lorem Ipsum & Free Placeholder Text Generator - Toolzy',
+                'meta_description' => 'Generate Lorem Ipsum placeholder text instantly. Create words, sentences, paragraphs, lists, HTML content, and realistic mock content directly in your browser.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/lorem-ipsum-generator'),
+                            'name' => 'Lorem Ipsum & Free Placeholder Text Generator - Toolzy',
+                            'url' => url('/tools/lorem-ipsum-generator'),
+                            'description' => 'Generate Lorem Ipsum placeholder text instantly. Create words, sentences, paragraphs, lists, HTML content, and realistic mock content directly in your browser.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/lorem-ipsum-generator')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "Lorem Ipsum Generator",
+                                    "item"=> url('/tools/lorem-ipsum-generator')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "Lorem Ipsum Generator",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Generate Lorem Ipsum placeholder text instantly. Create words, sentences, paragraphs, lists, HTML content, and realistic mock content directly in your browser.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ],
+                            "publisher" => [
+                                "@type" => "Organization",
+                                "name" => "Toolzy",
+                                "url" => url('/')
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
         ];
         foreach ($pages as $page) {
             \App\Models\Tool::updateOrCreate(

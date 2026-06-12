@@ -525,6 +525,106 @@ return [
             ],
         ],
     ],
+    'html-formatter' => [
+        'question' => 'What is an HTML Formatter & Minifier?',
+        'description' => [
+            'An HTML Formatter (or Beautifier) is a developer tool that takes messy, unformatted, or minified HTML code and reorganizes it with proper indentation and line breaks. This makes the document structure (DOM) much easier to read, audit, and debug.',
+            'In contrast, an HTML Minifier strips out all non-essential characters like extra spaces, tabs, and newlines to reduce the file size. This optimization is crucial for improving page load speeds and overall web performance.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is an HTML formatter?',
+                'answer' => 'An HTML formatter is a utility that cleans up markup code by applying consistent indentation and nesting rules, making it readable for humans while maintaining its functionality for browsers.'
+            ],
+            [
+                'question' => 'What is HTML minification?',
+                'answer' => 'HTML minification is the process of removing unnecessary whitespace, comments, and redundant characters from an HTML file to shrink its size without changing how the page looks or works.'
+            ],
+            [
+                'question' => 'Will minification break my HTML?',
+                'answer' => 'Generally, no. Our minifier is designed to safely remove redundant whitespace while preserving the integrity of your tags and content. However, we always recommend testing your site after applying heavy minification.'
+            ],
+            [
+                'question' => 'Why should I format HTML?',
+                'answer' => 'Formatting is essential for collaboration and maintenance. It helps you quickly spot unclosed tags, incorrect nesting, and structural errors that could lead to layout issues or SEO penalties.'
+            ],
+            [
+                'question' => 'Can I upload HTML files?',
+                'answer' => 'Yes! You can upload .html, .htm, or .txt files directly, or simply paste your code into the editor. We also support drag-and-drop for convenience.'
+            ],
+            [
+                'question' => 'Does this tool validate HTML?',
+                'answer' => 'Yes, it performs structural validation to detect common issues like unclosed tags, duplicate IDs, or malformed attributes, helping you ensure your markup is robust.'
+            ],
+            [
+                'question' => 'How does HTML affect SEO?',
+                'answer' => 'Clean, semantic HTML helps search engines understand your content hierarchy. Proper use of tags like <h1>, <header>, and <nav>, along with optimized file sizes (via minification), directly improves your SEO ranking.'
+            ],
+            [
+                'question' => 'What is semantic HTML?',
+                'answer' => 'Semantic HTML refers to using tags that describe their meaning (like <article>, <aside>, <section>) rather than just their appearance (like <div> or <span>). This improves accessibility and search engine readability.'
+            ],
+            [
+                'question' => 'Can I analyze HTML structure?',
+                'answer' => 'Absolutely. Our tool provides a collapsible DOM Tree View and a detailed Analysis section that breaks down tag usage, class distribution, and accessibility metrics.'
+            ],
+            [
+                'question' => 'Does Toolzy upload my code?',
+                'answer' => 'Never. All HTML processing, formatting, and analysis are performed locally in your browser. Your data is private and never leaves your computer.'
+            ],
+        ],
+    ],
+
+    'css-formatter' => [
+        'question' => 'What is a CSS Formatter & Minifier?',
+        'description' => [
+            'A CSS Formatter (or Beautifier) is a tool that takes unorganized or minified CSS and applies consistent spacing, indentation, and line breaks to make it readable. This is essential for debugging and collaborating on web projects.',
+            'Conversely, a CSS Minifier removes all unnecessary characters—like spaces, comments, and newlines—to reduce the file size as much as possible, which improves website loading speeds.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is a CSS formatter?',
+                'answer' => 'A CSS formatter is a tool that reorganizes CSS code into a clean, structured, and readable format by applying consistent indentation and spacing rules.'
+            ],
+            [
+                'question' => 'What is CSS minification?',
+                'answer' => 'CSS minification is the process of removing unnecessary characters (whitespace, comments, newlines) from a stylesheet to reduce its file size and improve web performance.'
+            ],
+            [
+                'question' => 'Will minification break my CSS?',
+                'answer' => 'No, standard minification only removes "non-functional" characters. The logic and behavior of your CSS remain identical, just packed into a smaller footprint.'
+            ],
+            [
+                'question' => 'Why should I format CSS?',
+                'answer' => 'Formatting CSS makes it easier for developers to read, audit, and maintain. It helps identify nesting issues, unused rules, and structural mistakes that are hard to see in compressed code.'
+            ],
+            [
+                'question' => 'How much size reduction can I expect?',
+                'answer' => 'Depending on the original formatting and comment density, minification typically reduces CSS file sizes by 20% to 50%.'
+            ],
+            [
+                'question' => 'Can I upload CSS files?',
+                'answer' => 'Yes, our tool supports file uploads (.css, .txt) as well as copy-pasting and drag-and-drop functionality.'
+            ],
+            [
+                'question' => 'Does this tool validate CSS?',
+                'answer' => 'Yes, it performs structural validation to identify common errors like missing braces, unclosed blocks, or malformed property structures.'
+            ],
+            [
+                'question' => 'What is CSS specificity?',
+                'answer' => 'Specificity is the weight applied to a CSS declaration based on its selector type (ID, class, element). Our tool analyzes specificity to help you avoid styling conflicts.'
+            ],
+            [
+                'question' => 'Are CSS variables supported?',
+                'answer' => 'Absolutely! Our tool fully supports modern CSS features, including custom properties (variables), media queries, and animations.'
+            ],
+            [
+                'question' => 'Does Toolzy upload my code?',
+                'answer' => 'No. All CSS processing happens entirely within your browser using JavaScript. Your code is never transmitted to or stored on our servers.'
+            ],
+        ],
+    ],
+
     'json-csv-converter' => [
         'question' => 'What is JSON to CSV Converter?',
         'description' => [
@@ -648,6 +748,108 @@ return [
             [
                 'question' => 'Can I generate XPaths from the tree view?',
                 'answer' => 'Absolutely! By using the XML Tree Explorer, you can click on any tag to instantly generate and copy its absolute XPath.'
+            ],
+        ],
+    ],
+
+    'javascript-formatter' => [
+        'question' => 'What is a JavaScript Formatter & Minifier?',
+        'description' => [
+            'A JavaScript Formatter (or Beautifier) is a developer tool that takes unorganized or minified JavaScript code and applies consistent spacing, indentation, and line breaks to make it readable. This is essential for debugging, auditing, and collaborating on web projects.',
+            'Conversely, a JavaScript Minifier removes all unnecessary characters—like spaces, comments, and newlines—to reduce the file size as much as possible, which improves website loading speeds and performance.',
+            'Toolzy’s JavaScript tool goes beyond basic formatting by offering deep code analysis, syntax validation, and complexity metrics, all processed securely right in your browser.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is a JavaScript formatter?',
+                'answer' => 'A JavaScript formatter is a utility that reorganizes JS code into a clean, structured, and readable format by applying consistent indentation and spacing rules, making it easier for humans to understand the logic.'
+            ],
+            [
+                'question' => 'What is JavaScript minification?',
+                'answer' => 'JavaScript minification is the process of removing unnecessary characters (whitespace, comments, newlines) from a script to reduce its file size and improve web performance without changing its functionality.'
+            ],
+            [
+                'question' => 'Will minification break my code?',
+                'answer' => 'No, standard minification only removes "non-functional" characters. The logic and behavior of your JavaScript remain identical, just packed into a smaller footprint. However, always ensure your code has proper semicolons for the safest minification.'
+            ],
+            [
+                'question' => 'Why should I format JavaScript?',
+                'answer' => 'Formatting JS makes it easier for developers to read, audit, and maintain. It helps identify nesting issues, unused variables, and structural mistakes that are difficult to spot in compressed code.'
+            ],
+            [
+                'question' => 'Does this tool execute my JavaScript?',
+                'answer' => 'Absolutely not. Toolzy uses a passive parser (Acorn) to analyze your code structure. Your JavaScript is never executed or injected into the DOM, ensuring complete security while you analyze your scripts.'
+            ],
+            [
+                'question' => 'Can I analyze ES6+ code?',
+                'answer' => 'Yes! Our tool supports modern JavaScript (ES6, ES7, and beyond), including arrow functions, classes, template literals, optional chaining, and async/await syntax.'
+            ],
+            [
+                'question' => 'How does syntax validation work?',
+                'answer' => 'The tool uses a high-performance parser to build an Abstract Syntax Tree (AST) of your code. If the parser encounters a structure that violates JavaScript rules, it will flag the error and provide the approximate location.'
+            ],
+            [
+                'question' => 'What is code complexity?',
+                'answer' => 'Code complexity refers to metrics like nesting depth and the number of logical paths (cyclomatic complexity). Higher complexity often means the code is harder to maintain and more prone to bugs.'
+            ],
+            [
+                'question' => 'Is my code uploaded to any server?',
+                'answer' => 'No. All JavaScript processing, formatting, minification, and analysis happen entirely within your browser. Your code never leaves your computer, ensuring 100% privacy.'
+            ],
+            [
+                'question' => 'Can I upload .js files?',
+                'answer' => 'Yes, you can upload .js, .mjs, .cjs, and .txt files directly, or simply drag and drop them into the editor for instant processing.'
+            ],
+        ],
+    ],
+
+    'lorem-ipsum-generator' => [
+        'question' => 'What is Lorem Ipsum and Why Is It Used?',
+        'description' => [
+            'Lorem Ipsum is a standard placeholder text used in the design, printing, and publishing industries. It has been the industry\'s standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
+            'The main purpose of using Lorem Ipsum is to provide a natural distribution of letters, making it look like readable English. This allows designers and developers to focus on the visual layout and user interface without being distracted by meaningful content.',
+            'Toolzy\'s Lorem Ipsum Generator offers advanced features beyond basic text generation, including HTML tags, realistic sample content (blog posts, product descriptions), and fictional placeholder data like names and emails for robust UI testing.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is Lorem Ipsum?',
+                'answer' => 'Lorem Ipsum is "dummy text" used by designers to fill spaces where real content will eventually be placed. It helps visualize how a layout will look without the distraction of readable text.'
+            ],
+            [
+                'question' => 'Why is Lorem Ipsum used?',
+                'answer' => 'It is used because it has a more-or-less normal distribution of letters, as opposed to using "Content here, content here", making it look like readable English for better design evaluation.'
+            ],
+            [
+                'question' => 'Can I generate HTML placeholder content?',
+                'answer' => 'Yes! Our tool can generate structured HTML including headings, paragraphs, lists, tables, and even complex components like cards and testimonials.'
+            ],
+            [
+                'question' => 'Can I generate realistic placeholder content?',
+                'answer' => 'Absolutely. Beyond traditional Latin, we offer generators for blog articles, news stories, product descriptions, and marketing copy that use real English words for a more realistic mockup.'
+            ],
+            [
+                'question' => 'Can I export generated text?',
+                'answer' => 'Yes, you can download your generated content in multiple formats including TXT, HTML, Markdown (MD), and JSON.'
+            ],
+            [
+                'question' => 'Can I create large amounts of text?',
+                'answer' => 'Yes, our generator can instantly produce up to 10,000 words or 500 paragraphs, making it ideal for testing scroll performance and large-scale layouts.'
+            ],
+            [
+                'question' => 'What is the difference between Lorem Ipsum and real content?',
+                'answer' => 'Lorem Ipsum is scrambled Latin that doesn\'t mean anything. Real content has meaning. Using placeholder text is better during early design phases to keep stakeholders focused on the "how" rather than the "what".'
+            ],
+            [
+                'question' => 'Is this Lorem Ipsum generator free?',
+                'answer' => 'Yes, it is completely free to use. All content is generated locally in your browser, so there are no usage limits or hidden costs.'
+            ],
+            [
+                'question' => 'Does Toolzy store generated text?',
+                'answer' => 'No. All content generation happens entirely within your browser. We do not track, store, or transmit the text you generate to our servers.'
+            ],
+            [
+                'question' => 'Can developers use this for testing?',
+                'answer' => 'Definitely. Developers use our tool to generate various data types (names, emails, addresses) and UI labels (success/error messages) to test form validations and component states.'
             ],
         ],
     ],
