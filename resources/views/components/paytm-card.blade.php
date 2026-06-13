@@ -19,6 +19,7 @@
                              height="160" 
                              class="img-fluid d-block mx-auto rounded"
                              loading="lazy">
+                    @endif
                 </div>
                 <div class="text-muted small fw-semibold">
                     <i class="bi bi-qr-code-scan me-1 text-primary"></i> Scan to Pay
