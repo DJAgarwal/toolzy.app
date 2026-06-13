@@ -378,7 +378,60 @@ class StaticPageSeeder extends Seeder
                         ]
                     ]  
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-            ],                                                                       
+            ],
+            [
+                'page_name' => 'support-toolzy',
+                'meta_title' => 'Support Toolzy - Keep Free Developer Tools Available',
+                'meta_description' => 'Support Toolzy through Paytm or Ko-fi and help keep privacy-focused developer tools free, browser-based, and actively maintained.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/support-toolzy'),
+                            'url' => url('/support-toolzy'),
+                            'name' => 'Support Toolzy - Keep Free Developer Tools Available',
+                            'description' => 'Support Toolzy through Paytm or Ko-fi and help keep privacy-focused developer tools free, browser-based, and actively maintained.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/support-toolzy')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'description' => 'Toolzy offers free and unlimited online tools for everyone — simple, fast, and reliable.',
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            '@type' => 'BreadcrumbList',
+                            'itemListElement' => [
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 1,
+                                    'name' => 'Home',
+                                    'item' => url('/')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 2,
+                                    'name' => 'Support Toolzy',
+                                    'item' => url('/support-toolzy')
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
         ];
         foreach ($pages as $page) {
             \App\Models\StaticPage::updateOrCreate(
