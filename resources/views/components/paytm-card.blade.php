@@ -19,14 +19,6 @@
                              height="160" 
                              class="img-fluid d-block mx-auto rounded"
                              loading="lazy">
-                    @else
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=002970&data={{ urlencode(config('donation.paytm.qr_data')) }}" 
-                             alt="UPI QR Code to support Toolzy" 
-                             width="160" 
-                             height="160" 
-                             class="img-fluid d-block mx-auto rounded"
-                             loading="lazy">
-                    @endif
                 </div>
                 <div class="text-muted small fw-semibold">
                     <i class="bi bi-qr-code-scan me-1 text-primary"></i> Scan to Pay
