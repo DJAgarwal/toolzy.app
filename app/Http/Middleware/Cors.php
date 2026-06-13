@@ -40,7 +40,7 @@ class Cors
             "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; " .
             "style-src 'self' https://cdnjs.cloudflare.com 'nonce-{$nonce}' 'unsafe-inline'; " .
             "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com https://www.google.com; " .
-            "img-src 'self' https://www.google-analytics.com data: blob:; " .
+            "img-src 'self' https://www.google-analytics.com https://api.qrserver.com data: blob:; " .
             "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         );
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
