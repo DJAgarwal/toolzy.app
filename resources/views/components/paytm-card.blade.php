@@ -12,14 +12,12 @@
             <!-- QR Code Section -->
             <div class="text-center bg-light p-3 rounded-4 mb-4 position-relative border border-dashed border-secondary-subtle">
                 <div class="d-inline-block p-2 bg-white rounded-3 shadow-sm mb-2">
-                    @if(config('donation.paytm.qr_image'))
                         <img src="{{ asset(config('donation.paytm.qr_image')) }}" 
                              alt="UPI QR Code to support Toolzy" 
                              width="160" 
                              height="160" 
                              class="img-fluid d-block mx-auto rounded"
                              loading="lazy">
-                    @endif
                 </div>
                 <div class="text-muted small fw-semibold">
                     <i class="bi bi-qr-code-scan me-1 text-primary"></i> Scan to Pay
