@@ -91,6 +91,9 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="{{ url('/contact') }}" @if(request()->is('contact')) aria-current="page" @endif>Request a Tool</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="{{ url('/support-toolzy') }}" @if(request()->is('support-toolzy')) aria-current="page" @endif>Donate</a>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -138,6 +141,7 @@
                 <a href="{{ url('/disclaimer') }}" class="footer-link text-uppercase">Disclaimer</a>
                 <a href="{{ url('/privacy-policy') }}" class="footer-link text-uppercase">Privacy Policy</a>
                 <a href="{{ url('/terms-and-conditions') }}" class="footer-link text-uppercase">Terms & Conditions</a>
+                <a href="{{ url('/support-toolzy') }}" class="footer-link text-uppercase">Support Toolzy</a>
             </nav>
             <!-- <div class="footer-social mb-3">
                 <a href="https://facebook.com" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"><path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/></svg></a>
@@ -191,8 +195,62 @@
     <script nonce="{{ $cspNonce }}" defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "55384888b8044d07825181ae0c517c3d"}'></script>
     @endif
     <script nonce="{{ $cspNonce }}" defer src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <x-donation-post-success />
     @stack('scripts')
     <script nonce="{{ $cspNonce }}">
+        function trackEvent(eventName, eventData = {}) {
+            const customEvent = new CustomEvent(eventName, { 
+                detail: {
+                    ...eventData,
+                    timestamp: new Date().toISOString()
+                }
+            });
+            window.dispatchEvent(customEvent);
+        }
+
+        // Global event delegation for tracking donation CTA clicks
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.donation-donate-btn') || e.target.closest('#support-toolzy-btn')) {
+                trackEvent('donation_cta_clicked');
+            }
+        });
+
+        function copyToClipboard(text, btnElementOrId, successMsg = 'Copied!') {
+            let btn = typeof btnElementOrId === 'string' ? document.getElementById(btnElementOrId) : btnElementOrId;
+            if (!btn) return;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showToast(successMsg, 'success');
+                
+                if (text.includes('@')) {
+                    trackEvent('upi_copied', { upi_id: text });
+                }
+                
+                const originalHTML = btn.innerHTML;
+                const originalWidth = btn.offsetWidth;
+                
+                btn.style.width = originalWidth + 'px';
+                btn.innerHTML = '<i class="bi bi-check-lg" aria-hidden="true"></i> Copied!';
+                btn.classList.add('btn-success');
+                btn.classList.remove('btn-primary', 'btn-outline-secondary');
+                btn.setAttribute('aria-label', successMsg);
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.style.width = '';
+                    btn.classList.remove('btn-success');
+                    if (typeof btnElementOrId === 'string' && btnElementOrId.includes('copy-upi')) {
+                        btn.classList.add('btn-primary');
+                    } else {
+                        btn.classList.add('btn-outline-secondary');
+                    }
+                    btn.removeAttribute('aria-label');
+                }, 2000);
+            }).catch(err => {
+                showToast('Copy failed. Please copy manually.', 'danger');
+            });
+        }
+
         function showToast(message, type = 'success') {
             const toastEl = document.getElementById('liveToast');
             const toastBody = document.getElementById('toastBody');

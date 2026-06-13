@@ -39,7 +39,7 @@ class Cors
             "default-src 'self' https://cloudflareinsights.com; " .
             "script-src 'self' https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com 'nonce-{$nonce}' 'strict-dynamic' 'unsafe-inline'; " .
             "style-src 'self' https://cdnjs.cloudflare.com 'nonce-{$nonce}' 'unsafe-inline'; " .
-            "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com; " .
+            "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com https://www.google.com; " .
             "img-src 'self' https://www.google-analytics.com data: blob:; " .
             "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         );

@@ -30,6 +30,9 @@ footer a:hover {
 .max-width-600 {
   max-width: 600px;
 }
+.max-width-720 {
+  max-width: 720px;
+}
 .navbar-nav .nav-link {
     color: #333 !important;
     font-weight: 500;
@@ -527,4 +530,91 @@ footer a:hover {
   .color-input-round::-moz-color-swatch {
     border: none;
     border-radius: 50%;
+  }
+  .support-trust-icon-wrapper {
+    width: 42px;
+    height: 42px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .paytm-card {
+    border-top: 5px solid #00baf2 !important;
+  }
+  .kofi-card {
+    border-top: 5px solid #FF5E5B !important;
+  }
+  .kofi-icon-container {
+    width: 70px;
+    height: 70px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .kofi-graphic-container {
+    min-height: 242px;
+  }
+  .kofi-btn {
+    background-color: #FF5E5B !important;
+    border: none !important;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .kofi-btn:hover {
+    background-color: #e04d4a !important;
+    transform: scale(1.02);
+  }
+
+  .widget-bg-large {
+    background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%) !important;
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+  }
+  .widget-bg-standard {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+  }
+  .widget-max-width-480 {
+    max-width: 480px;
+  }
+
+  .timeline-badge-wrapper {
+    width: 38px;
+    height: 38px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .roadmap-max-width-600 {
+    max-width: 600px;
+  }
+
+  /* Post Success Floating CTA */
+  .post-success-cta-card {
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  .post-success-heart-wrapper {
+    width: 44px;
+    height: 44px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .post-success-close-btn {
+    font-size: 0.75rem !important;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 576px) {
+    .post-success-cta-card {
+      left: 0 !important;
+      right: 0 !important;
+      margin: 10px !important;
+      max-width: calc(100% - 20px) !important;
+      bottom: 0 !important;
+    }
   }
