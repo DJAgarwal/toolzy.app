@@ -553,12 +553,12 @@ footer a:hover {
     justify-content: center;
   }
   .kofi-graphic-container {
-    min-height: 242px;
+    min-height: 242px; !important
   }
   .kofi-btn {
     background-color: #FF5E5B !important;
     border: none !important;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease; !important
   }
   .kofi-btn:hover {
     background-color: #e04d4a !important;
