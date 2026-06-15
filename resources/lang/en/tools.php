@@ -903,33 +903,33 @@ return [
             ]
         ]
     ],
-    // 'sql-index-recommendation' => [
-    //     'question' => 'What is a SQL Index and Why is it Important for Performance?',
-    //     'description' => [
-    //         'A SQL index is a database structure that improves the speed of data retrieval operations on a database table. Think of it like a book index: instead of reading every page to find a topic, you look it up in the index and jump straight to the relevant page. Without indexes, the database must perform a "full table scan," reading every single row to find the data you need, which is extremely slow for large datasets.',
-    //         'Our SQL Index Recommendation Tool analyzes your queries to identify the best indexing strategies. It detects which columns are used for filtering (WHERE), joining (JOIN), grouping (GROUP BY), and sorting (ORDER BY). By recommending composite indexes, covering indexes, and detecting anti-patterns like "SELECT *", this tool helps you achieve professional-level database optimization with minimal effort.'
-    //     ],
-    //     'faqs' => [
-    //         [
-    //             'question' => 'What is a composite index?',
-    //             'answer' => 'A composite index (or multi-column index) is an index built on multiple columns. It is particularly effective for queries that filter by multiple criteria or queries that filter by one set of columns and sort by another. The order of columns in a composite index matters significantly.'
-    //         ],
-    //         [
-    //             'question' => 'What is a covering index?',
-    //             'answer' => 'A covering index is a special type of index that contains all the columns required by a query (both in the SELECT and WHERE clauses). When a covering index exists, the database can satisfy the entire query by reading only the index, without ever having to look at the actual table data, which provides a massive performance boost.'
-    //         ],
-    //         [
-    //             'question' => 'Why is "SELECT *" bad for performance?',
-    //             'answer' => 'Using "SELECT *" forces the database to retrieve all columns from the table, increasing I/O load and network bandwidth usage. It also prevents the database from using covering indexes, as the index would need to contain every single column in the table to "cover" the query.'
-    //         ],
-    //         [
-    //             'question' => 'How does this tool calculate the complexity score?',
-    //             'answer' => 'The complexity score is based on several factors, including the number of tables involved, the complexity of JOIN conditions, the presence of GROUP BY or ORDER BY clauses, and the number of filtering conditions. Higher scores indicate queries that are harder for the database engine to optimize and execute.'
-    //         ],
-    //         [
-    //             'question' => 'What are SQL anti-patterns?',
-    //             'answer' => 'SQL anti-patterns are common query-writing habits that lead to poor performance or maintenance issues. Examples include using leading wildcards (LIKE "%term"), applying functions to indexed columns in the WHERE clause, or using extremely large OFFSET values for pagination.'
-    //         ],
-    //     ],
-    // ],
+    'sql-index-recommendation' => [
+        'question' => 'What is a SQL Index and Why is it Important for Performance?',
+        'description' => [
+            'A SQL index is a database structure that improves the speed of data retrieval operations on a database table. Think of it like a book index: instead of reading every page to find a topic, you look it up in the index and jump straight to the relevant page. Without indexes, the database must perform a "full table scan," reading every single row to find the data you need, which is extremely slow for large datasets.',
+            'Our SQL Index Recommendation Tool analyzes your queries to identify the best indexing strategies. It detects which columns are used for filtering (WHERE), joining (JOIN), grouping (GROUP BY), and sorting (ORDER BY). By recommending composite indexes, covering indexes, and detecting anti-patterns like "SELECT *", this tool helps you achieve professional-level database optimization with minimal effort.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is a composite index?',
+                'answer' => 'A composite index (or multi-column index) is an index built on multiple columns. It is particularly effective for queries that filter by multiple criteria or queries that filter by one set of columns and sort by another. The order of columns in a composite index matters significantly.'
+            ],
+            [
+                'question' => 'What is a covering index?',
+                'answer' => 'A covering index is a special type of index that contains all the columns required by a query (both in the SELECT and WHERE clauses). When a covering index exists, the database can satisfy the entire query by reading only the index, without ever having to look at the actual table data, which provides a massive performance boost.'
+            ],
+            [
+                'question' => 'Why is "SELECT *" bad for performance?',
+                'answer' => 'Using "SELECT *" forces the database to retrieve all columns from the table, increasing I/O load and network bandwidth usage. It also prevents the database from using covering indexes, as the index would need to contain every single column in the table to "cover" the query.'
+            ],
+            [
+                'question' => 'How does this tool calculate the complexity score?',
+                'answer' => 'The complexity score is based on several factors, including the number of tables involved, the complexity of JOIN conditions, the presence of GROUP BY or ORDER BY clauses, and the number of filtering conditions. Higher scores indicate queries that are harder for the database engine to optimize and execute.'
+            ],
+            [
+                'question' => 'What are SQL anti-patterns?',
+                'answer' => 'SQL anti-patterns are common query-writing habits that lead to poor performance or maintenance issues. Examples include using leading wildcards (LIKE "%term"), applying functions to indexed columns in the WHERE clause, or using extremely large OFFSET values for pagination.'
+            ],
+        ],
+    ],
 ];
