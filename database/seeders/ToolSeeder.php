@@ -2066,26 +2066,26 @@ class ToolSeeder extends Seeder
             [
                 'page_name' => 'sql-index-recommendation',
                 'category' => 'Developer & SEO Tools',
-                'meta_title' => 'SQL Index Recommendation Tool - Optimize Queries Online | Toolzy',
-                'meta_description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions instantly. Supports MySQL, MariaDB, and PostgreSQL.',
+                'meta_title' => 'AI SQL Index Recommendation - Optimize Queries Instantly - Toolzy',
+                'meta_description' => 'Leverage AI-driven analysis to optimize your SQL queries. Get intelligent index recommendations, performance insights, and automated optimization suggestions instantly. Supports MySQL, MariaDB, and PostgreSQL.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
                     '@graph' => [
                         [
                             '@type' => 'WebPage',
                             '@id' => url('/tools/sql-index-recommendation'),
-                            'name' => 'SQL Index Recommendation Tool - Toolzy',
+                            'name' => 'AI SQL Index Recommendation Tool - Toolzy',
                             'url' => url('/tools/sql-index-recommendation'),
-                            'description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions instantly.',
+                            'description' => 'Leverage AI-driven analysis to optimize your SQL queries. Get intelligent index recommendations, performance insights, and automated optimization suggestions instantly.',
                             'inLanguage' => 'en',
                             'mainEntityOfPage' => url('/tools/sql-index-recommendation')
                         ],
                         [
                             '@type' => 'SoftwareApplication',
-                            'name' => 'SQL Index Recommendation Tool',
+                            'name' => 'AI SQL Index Recommendation Tool',
                             'operatingSystem' => 'All',
                             'applicationCategory' => 'DeveloperApplication',
-                            'description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions.',
+                            'description' => 'Advanced AI-powered analysis for SQL queries to provide intelligent index recommendations and performance optimizations.',
                             'offers' => [
                                 '@type' => 'Offer',
                                 'price' => '0',
@@ -2115,7 +2115,7 @@ class ToolSeeder extends Seeder
                                 [
                                     "@type"=> "ListItem",
                                     "position"=> 3,
-                                    "name"=> "SQL Index Recommendation",
+                                    "name"=> "AI SQL Index Recommendation",
                                     "item"=> url('/tools/sql-index-recommendation')
                                 ]
                             ]
