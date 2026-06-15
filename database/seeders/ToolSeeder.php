@@ -1987,6 +1987,142 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
+            [
+                'page_name' => 'text-whitespace-remover',
+                'category' => 'Text Utilities',
+                'meta_title' => 'Remove Spaces From Text - Free Whitespace Remover & Cleaner | Toolzy',
+                'meta_description' => 'Remove spaces, tabs, line breaks, and extra whitespace from text instantly. Clean copied content, normalize formatting, and process text directly in your browser.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/text-whitespace-remover'),
+                            'name' => 'Remove Spaces From Text - Free Whitespace Remover & Cleaner | Toolzy',
+                            'url' => url('/tools/text-whitespace-remover'),
+                            'description' => 'Remove spaces, tabs, line breaks, and extra whitespace from text instantly. Clean copied content, normalize formatting, and process text directly in your browser.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/text-whitespace-remover')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            "@type"=> "BreadcrumbList",
+                            "itemListElement"=> [
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 1,
+                                    "name"=> "Home",
+                                    "item"=> url('/')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 2,
+                                    "name"=> "Tools",
+                                    "item"=> url('/tools')
+                                ],
+                                [
+                                    "@type"=> "ListItem",
+                                    "position"=> 3,
+                                    "name"=> "Text Whitespace Remover & Cleaner",
+                                    "item"=> url('/tools/text-whitespace-remover')
+                                ]
+                            ]
+                        ],
+                        [
+                            "@type"=> "SoftwareApplication",
+                            "name"=> "Text Whitespace Remover & Cleaner",
+                            "operatingSystem"=> "All",
+                            "applicationCategory"=> "DeveloperApplication",
+                            "description"=> "Remove spaces, tabs, line breaks, and extra whitespace from text instantly. Clean copied content, normalize formatting, and process text directly in your browser.",
+                            "offers"=> [
+                                "@type"=> "Offer",
+                                "price"=> "0",
+                                "priceCurrency"=> "USD"
+                            ],
+                            "publisher" => [
+                                "@type" => "Organization",
+                                "name" => "Toolzy",
+                                "url" => url('/')
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
+            // [
+            //     'page_name' => 'sql-index-recommendation',
+            //     'category' => 'Developer & SEO Tools',
+            //     'meta_title' => 'SQL Index Recommendation Tool - Optimize Queries Online | Toolzy',
+            //     'meta_description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions instantly. Supports MySQL, MariaDB, and PostgreSQL.',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/sql-index-recommendation'),
+            //                 'name' => 'SQL Index Recommendation Tool - Toolzy',
+            //                 'url' => url('/tools/sql-index-recommendation'),
+            //                 'description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions instantly.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/sql-index-recommendation')
+            //             ],
+            //             [
+            //                 '@type' => 'SoftwareApplication',
+            //                 'name' => 'SQL Index Recommendation Tool',
+            //                 'operatingSystem' => 'All',
+            //                 'applicationCategory' => 'DeveloperApplication',
+            //                 'description' => 'Analyze SQL queries and get intelligent index recommendations, performance insights, and optimization suggestions.',
+            //                 'offers' => [
+            //                     '@type' => 'Offer',
+            //                     'price' => '0',
+            //                     'priceCurrency' => 'USD'
+            //                 ],
+            //                 'publisher' => [
+            //                     '@type' => 'Organization',
+            //                     'name' => 'Toolzy',
+            //                     'url' => url('/')
+            //                 ]
+            //             ],
+            //             [
+            //                 "@type"=> "BreadcrumbList",
+            //                 "itemListElement"=> [
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 1,
+            //                         "name"=> "Home",
+            //                         "item"=> url('/')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 2,
+            //                         "name"=> "Tools",
+            //                         "item"=> url('/tools')
+            //                     ],
+            //                     [
+            //                         "@type"=> "ListItem",
+            //                         "position"=> 3,
+            //                         "name"=> "SQL Index Recommendation",
+            //                         "item"=> url('/tools/sql-index-recommendation')
+            //                     ]
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
         ];
         foreach ($pages as $page) {
             \App\Models\Tool::updateOrCreate(

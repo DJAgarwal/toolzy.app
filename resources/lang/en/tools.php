@@ -853,5 +853,83 @@ return [
             ],
         ],
     ],
-
+    'text-whitespace-remover' => [
+        'question' => 'What is a Text Whitespace Remover & Cleaner?',
+        'description' => [
+            'A Text Whitespace Remover & Cleaner is a high-performance utility designed to strip, normalize, and format whitespaces (spaces, tabs, and line breaks) from raw text. Whether you are cleaning up copied text, formatting code, sanitizing CSV files, or parsing heavy system log files, this tool helps you clean up messy formatting issues instantly in the browser.',
+            'This tool processes everything locally. It supports complex operations like converting tabs to custom spaces, removing duplicate blank lines, trimming line ends, converting line breaks to spaces, or normalizing irregular layouts into neat standardized structures. It is ideal for developers, data analysts, content creators, and copywriters.',
+            'With the built-in Difference Viewer, you can see exactly which spaces or formatting characters were cleaned up side-by-side. You can also import local files, apply pre-configured formatting presets, perform find-and-replace actions before cleaning, and download your results in various formats—all with zero data sent to external servers.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'How do I remove spaces from text?',
+                'answer' => 'To remove spaces, paste your text into the input area, select the "Remove All Spaces" option under the cleanup checklist, and the processed text will immediately update to show the text with all spaces and tabs deleted.'
+            ],
+            [
+                'question' => 'How do I remove extra spaces?',
+                'answer' => 'If you have text with double or multiple spaces between words, check the "Remove Extra Spaces" option. This normalizes multiple consecutive spaces into a single space, keeping the text readable while cleaning up alignment issues.'
+            ],
+            [
+                'question' => 'How do I remove line breaks?',
+                'answer' => 'Check the "Remove All Line Breaks" option to join multiple lines of text into a single continuous block. If you want to replace line breaks with spaces instead of joining them directly, use the "Convert Line Breaks To Spaces" option.'
+            ],
+            [
+                'question' => 'What is whitespace?',
+                'answer' => 'In computer science and typesetting, whitespace refers to any character or series of characters that represent horizontal or vertical space. This includes standard spaces, tab characters, line feeds (newlines), carriage returns, and non-breaking spaces.'
+            ],
+            [
+                'question' => 'Can I clean large text files?',
+                'answer' => 'Yes. Our tool is optimized to handle large log files, database exports, and documents up to 100,000+ characters quickly and without browser freezing. You can drag and drop your .txt, .csv, .log, or .json file directly into the editor.'
+            ],
+            [
+                'question' => 'Can I remove tabs?',
+                'answer' => 'Yes, you can check "Remove Tabs" to remove them entirely, or select "Convert Tabs To Spaces" and choose your preferred indentation size (2, 4, or 8 spaces).'
+            ],
+            [
+                'question' => 'Can I normalize formatting?',
+                'answer' => 'Yes, the "Normalize Whitespace" option compresses all sequential whitespace characters—including tabs and line breaks—into a single space, standardizing the text structure instantly.'
+            ],
+            [
+                'question' => 'Does Toolzy upload my text?',
+                'answer' => 'No. Toolzy prioritizes user privacy. All text cleanup operations, file imports, and reports are processed locally in your browser using JavaScript. No text is ever uploaded, stored, or transmitted to any server.'
+            ],
+            [
+                'question' => 'Can developers use this for code cleanup?',
+                'answer' => 'Yes, developers can use the "Developer Cleanup" preset or custom options to trim trailing whitespace, normalize indentations, and clean up duplicate blank lines in source code, scripts, or configuration files.'
+            ],
+            [
+                'question' => 'Is this whitespace remover free?',
+                'answer' => 'Yes, the tool is 100% free with no registration, usage limits, or locked features.'
+            ]
+        ]
+    ],
+    // 'sql-index-recommendation' => [
+    //     'question' => 'What is a SQL Index and Why is it Important for Performance?',
+    //     'description' => [
+    //         'A SQL index is a database structure that improves the speed of data retrieval operations on a database table. Think of it like a book index: instead of reading every page to find a topic, you look it up in the index and jump straight to the relevant page. Without indexes, the database must perform a "full table scan," reading every single row to find the data you need, which is extremely slow for large datasets.',
+    //         'Our SQL Index Recommendation Tool analyzes your queries to identify the best indexing strategies. It detects which columns are used for filtering (WHERE), joining (JOIN), grouping (GROUP BY), and sorting (ORDER BY). By recommending composite indexes, covering indexes, and detecting anti-patterns like "SELECT *", this tool helps you achieve professional-level database optimization with minimal effort.'
+    //     ],
+    //     'faqs' => [
+    //         [
+    //             'question' => 'What is a composite index?',
+    //             'answer' => 'A composite index (or multi-column index) is an index built on multiple columns. It is particularly effective for queries that filter by multiple criteria or queries that filter by one set of columns and sort by another. The order of columns in a composite index matters significantly.'
+    //         ],
+    //         [
+    //             'question' => 'What is a covering index?',
+    //             'answer' => 'A covering index is a special type of index that contains all the columns required by a query (both in the SELECT and WHERE clauses). When a covering index exists, the database can satisfy the entire query by reading only the index, without ever having to look at the actual table data, which provides a massive performance boost.'
+    //         ],
+    //         [
+    //             'question' => 'Why is "SELECT *" bad for performance?',
+    //             'answer' => 'Using "SELECT *" forces the database to retrieve all columns from the table, increasing I/O load and network bandwidth usage. It also prevents the database from using covering indexes, as the index would need to contain every single column in the table to "cover" the query.'
+    //         ],
+    //         [
+    //             'question' => 'How does this tool calculate the complexity score?',
+    //             'answer' => 'The complexity score is based on several factors, including the number of tables involved, the complexity of JOIN conditions, the presence of GROUP BY or ORDER BY clauses, and the number of filtering conditions. Higher scores indicate queries that are harder for the database engine to optimize and execute.'
+    //         ],
+    //         [
+    //             'question' => 'What are SQL anti-patterns?',
+    //             'answer' => 'SQL anti-patterns are common query-writing habits that lead to poor performance or maintenance issues. Examples include using leading wildcards (LIKE "%term"), applying functions to indexed columns in the WHERE clause, or using extremely large OFFSET values for pagination.'
+    //         ],
+    //     ],
+    // ],
 ];
