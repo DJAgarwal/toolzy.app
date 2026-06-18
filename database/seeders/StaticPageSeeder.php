@@ -433,11 +433,26 @@ class StaticPageSeeder extends Seeder
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
         ];
-        foreach ($pages as $page) {
-            \App\Models\StaticPage::updateOrCreate(
-                ['page_name' => $page['page_name']],
-                $page
-            );
+        $urls = [];
+        \App\Models\StaticPage::withoutEvents(function () use ($pages, &$urls) {
+            foreach ($pages as $page) {
+                \App\Models\StaticPage::updateOrCreate(
+                    ['page_name' => $page['page_name']],
+                    $page
+                );
+                
+                $urls[] = match ($page['page_name']) {
+                    'home' => url('/'),
+                    'tools' => url('/tools'),
+                    default => url('/' . $page['page_name']),
+                };
+            }
+        });
+
+        if (!empty($urls)) {
+            foreach (array_chunk($urls, 100) as $batch) {
+                \App\Jobs\SubmitIndexNowJob::dispatch($batch);
+            }
         }
     }
 }

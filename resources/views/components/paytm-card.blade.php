@@ -27,7 +27,7 @@
             <!-- Payment details -->
             <div class="mb-4">
                 <!-- UPI ID -->
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label for="upi-id-input" class="form-label small fw-bold text-uppercase text-muted tracking-wider mb-1">UPI ID</label>
                     <div class="input-group">
                         <input type="text" id="upi-id-input" class="form-control bg-light border-0 fw-semibold text-dark rounded-start-3" 
@@ -37,10 +37,10 @@
                             <i class="bi bi-clipboard me-1" id="copy-upi-icon" aria-hidden="true"></i> <span id="copy-upi-text">Copy</span>
                         </button>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Paytm Number -->
-                <div>
+                <!-- <div>
                     <label class="form-label small fw-bold text-uppercase text-muted tracking-wider mb-1">Paytm Number / Mobile</label>
                     <div class="d-flex align-items-center justify-content-between p-3 bg-light rounded-3">
                         <span class="fw-semibold text-dark fs-5">{{ config('donation.paytm.number') }}</span>
@@ -49,7 +49,7 @@
                             <i class="bi bi-copy me-1" aria-hidden="true"></i> Copy Number
                         </button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
 

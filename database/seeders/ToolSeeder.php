@@ -2124,11 +2124,21 @@ class ToolSeeder extends Seeder
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
         ];
-        foreach ($pages as $page) {
-            \App\Models\Tool::updateOrCreate(
-                ['page_name' => $page['page_name']],
-                $page
-            );
+        $urls = [];
+        \App\Models\Tool::withoutEvents(function () use ($pages, &$urls) {
+            foreach ($pages as $page) {
+                \App\Models\Tool::updateOrCreate(
+                    ['page_name' => $page['page_name']],
+                    $page
+                );
+                $urls[] = url('/tools/' . $page['page_name']);
+            }
+        });
+
+        if (!empty($urls)) {
+            foreach (array_chunk($urls, 100) as $batch) {
+                \App\Jobs\SubmitIndexNowJob::dispatch($batch);
+            }
         }
     }
 }
