@@ -423,27 +423,6 @@
     </div>
 </div>
 
-<!-- Structured Data (SoftwareApplication) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Text Whitespace Remover & Cleaner",
-  "operatingSystem": "All",
-  "applicationCategory": "DeveloperApplication",
-  "description": "Remove spaces, tabs, line breaks, and extra whitespace from text instantly. Clean copied content, normalize formatting, and process text directly in your browser.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Toolzy",
-    "url": "{{ url('/') }}"
-  }
-}
-</script>
 @endsection
 
 @push('scripts')
