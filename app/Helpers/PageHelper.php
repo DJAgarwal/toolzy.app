@@ -33,6 +33,10 @@ class PageHelper
             if (!is_array($jsonLd)) {
                 $jsonLd = [];
             }
+
+            $pageUrl = $page_type === 'tools'
+                ? url()->to('/tools/' . ltrim($page_name, '/'))
+                : url()->to($page_name === 'home' ? '/' : $page_name);
             
             $breadcrumbList = collect($jsonLd['@graph'] ?? [])->firstWhere('@type', 'BreadcrumbList');
             $uiBreadcrumbs = [];
@@ -50,11 +54,11 @@ class PageHelper
                 'metaTitle' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
                 'metaDescription' => $metadata->meta_description ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.',
                 'metaKeywords' => $metadata->meta_keywords ?? 'online tools, free tools, Toolzy, calculators, converters, productivity tools, web utilities',
-                'canonical' => url()->to($slug === 'home' ? '/' : $slug),
+                'canonical' => $pageUrl,
                 'og' => [
                     'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
                     'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
-                    'url' => url()->to($slug === 'home' ? '/' : $slug),
+                    'url' => $pageUrl,
                     'image' => asset('images/logo.webp'),
                     'locale' => 'en_US',
                     'site_name' => 'Toolzy',
