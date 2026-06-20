@@ -51,12 +51,12 @@ class PageHelper
 
             return [
                 'page_type' => $page_type,
-                'metaTitle' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
+                'metaTitle' => $metadata->meta_title ?? 'Toolzy - Free Online Tools, Converters & Utilities',
                 'metaDescription' => $metadata->meta_description ?? 'Toolzy offers a collection of free online tools to simplify your daily tasks — fast, easy, and accessible for everyone.',
                 'metaKeywords' => $metadata->meta_keywords ?? 'online tools, free tools, Toolzy, calculators, converters, productivity tools, web utilities',
                 'canonical' => $pageUrl,
                 'og' => [
-                    'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
+                    'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools, Converters & Utilities',
                     'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
                     'url' => $pageUrl,
                     'image' => asset('images/logo.webp'),
@@ -66,7 +66,7 @@ class PageHelper
                 ],
                 'twitter' => [
                     'card' => 'summary_large_image',
-                    'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools for Everyone',
+                    'title' => $metadata->meta_title ?? 'Toolzy - Free Online Tools, Converters & Utilities',
                     'description' => $metadata->meta_description ?? 'Simplify your daily tasks with Toolzy’s free calculators, converters, and web utilities.',
                     'image' => asset('images/logo.webp'),
                     'creator' => '@Toolzy',

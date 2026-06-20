@@ -274,7 +274,7 @@ class StaticPageSeeder extends Seeder
             ],
             [
                 'page_name' => 'home',
-                'meta_title' => 'Toolzy - Free Online Tools for Image Conversion, PDF Editing & More',
+                'meta_title' => 'Toolzy - Free Online Tools, Converters & Utilities',
                 'meta_description' => 'Explore a variety of free online tools on Toolzy: image conversions, PDF editing, and much more — all available at your fingertips.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',

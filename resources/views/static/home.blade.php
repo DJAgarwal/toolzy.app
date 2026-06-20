@@ -2,8 +2,8 @@
 @section('content')
 <div class="py-5 hero-gradient">
     <div class="container text-center">
-        <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy</h1>
-        <p class="hero-lead">Free, fast, and reliable tools to simplify your digital tasks — no signups, no nonsense.</p>
+        <h1 class="display-5 fw-bold mb-3">Welcome to Toolzy: Free Online Tools, Converters & Utilities</h1>
+        <p class="hero-lead">Free, fast, and reliable online tools, converters and utilities to simplify your digital tasks — no signups, no nonsense.</p>
         <a href="#tools" class="btn btn-primary btn-lg mt-3" id="explore-tools-btn">
             <i class="bi bi-search"></i> Explore Tools
         </a>
