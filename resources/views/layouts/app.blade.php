@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     {{-- Preconnect and DNS-Prefetch for Performance --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://static.cloudflareinsights.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
@@ -14,7 +12,19 @@
     {{-- Custom Styles --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}?v={{ filemtime(public_path('css/custom.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}?v={{ filemtime(public_path('css/custom.css')) }}" media="print" data-async-style="true">
+    <script nonce="{{ $cspNonce }}">
+        document.querySelectorAll('link[data-async-style]').forEach(function(link) {
+            if (link.sheet) {
+                link.media = 'all';
+                return;
+            }
+
+            link.addEventListener('load', function() {
+                link.media = 'all';
+            }, { once: true });
+        });
+    </script>
     {{-- Essential Meta Tags --}}
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">

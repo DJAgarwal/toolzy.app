@@ -9,5 +9,15 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
+        {
+            name: 'bootstrap-icons-font-display-swap',
+            generateBundle(_, bundle) {
+                for (const asset of Object.values(bundle)) {
+                    if (asset.type === 'asset' && asset.fileName.endsWith('.css')) {
+                        asset.source = asset.source.toString().replaceAll('font-display:block', 'font-display:swap');
+                    }
+                }
+            },
+        },
     ],
 });
