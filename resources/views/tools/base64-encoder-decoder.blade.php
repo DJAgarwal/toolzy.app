@@ -17,30 +17,30 @@
     </div>
 </div>
 <div class="mb-4 d-flex flex-wrap gap-2">
-    <button class="btn btn-success" id="encodeBase64Btn">Encode</button>
-    <button class="btn btn-secondary" id="decodeBase64Btn">Decode</button>
-    <button class="btn btn-outline-primary" id="copyToClipboardBtn">Copy</button>
-    <button class="btn btn-outline-dark" id="downloadResultBtn">Download (.txt)</button>
-    <label class="btn btn-outline-info mb-0">
+    <button type="button" class="btn btn-success" id="encodeBase64Btn">Encode</button>
+    <button type="button" class="btn btn-secondary" id="decodeBase64Btn">Decode</button>
+    <button type="button" class="btn btn-outline-primary" id="copyToClipboardBtn">Copy</button>
+    <button type="button" class="btn btn-outline-dark" id="downloadResultBtn">Download (.txt)</button>
+    <label for="uploadTextFileInput" class="btn btn-outline-secondary mb-0">
         Upload Text File
-        <input type="file" id="uploadTextFileInput" hidden accept=".txt,.json">
+        <input type="file" id="uploadTextFileInput" class="visually-hidden" accept=".txt,.json">
     </label>
 </div>
 <hr>
 <div class="mb-4">
-    <label class="form-label fw-semibold">Encode Any File to Base64:</label>
+    <label for="encodeFileInput" class="form-label fw-semibold">Encode Any File to Base64:</label>
     <input type="file" class="form-control" id="encodeFileInput" accept="*/*">
 </div>
 <div class="mb-4">
-    <label class="form-label fw-semibold">Decode Base64 Text to File:</label>
+    <label for="decodedFileName" class="form-label fw-semibold">Decode Base64 Text to File:</label>
     <div class="input-group">
         <input type="text" class="form-control" id="decodedFileName" placeholder="e.g. image.png">
-        <button class="btn btn-outline-secondary" id="decodeBase64ToFileBtn">Download</button>
+        <button type="button" class="btn btn-outline-secondary" id="decodeBase64ToFileBtn">Download</button>
     </div>
 </div>
 <hr class="my-4">
 <div class="mb-3">
-    <label class="form-label fw-semibold">History Log(Stays after leaving the page):</label>
+    <div class="form-label fw-semibold">History Log(Stays after leaving the page):</div>
     <div id="historyLog" class="bg-light p-3 border rounded small history-log"></div>
 </div>
 @endsection
