@@ -320,32 +320,50 @@ return [
         ],
     ],
     'pdf-file-merger' => [
-        'question' => 'What is PDF File Merger?',
+        'question' => 'What is PDF File Merger and How Does It Work?',
         'description' => [
-            'A PDF File Merger is a tool that allows you to combine multiple PDF documents into a single, organized file. This is especially useful when dealing with multiple reports, invoices, eBooks, or scanned pages that need to be kept together.',
-            'Toolzy’s PDF File Merger is a fast, secure, and easy-to-use solution that works right in your browser. It requires no installation or registration and supports merging multiple PDFs with just a few clicks.'
+            'A PDF File Merger is an essential document utility that allows you to combine multiple PDF documents into a single, organized file. This is highly useful for professionals, students, and businesses who deal with a high volume of paperwork daily. Whether you need to group monthly invoices, combine multiple report chapters, consolidate scanned receipts, or organize academic articles, merging your PDF files into a single document makes them much easier to manage, view, email, and print.',
+            'Toolzy’s PDF File Merger is a premium, web-based tool designed to make document compilation seamless and secure. Unlike other online converters that require you to upload your confidential files to their cloud servers, Toolzy processes all files 100% locally in your web browser. Using cutting-edge Javascript libraries, your PDFs are read, arranged, and merged directly on your own computer, smartphone, or tablet. Your data never leaves your device, ensuring complete privacy, data compliance, and absolute protection against unauthorized access or server leaks.',
+            'Our online PDF merger offers a clean, user-friendly interface that lets you drag and drop files from your desktop or mobile storage instantly. Once loaded, you can preview the cover page of each document to ensure you have the correct files and sequence. You can easily drag and drop rows to reorder the PDF files as you see fit. There are no watermarks added to your output document, no file size limitations, no daily limits, and absolutely no registration or email subscriptions required to access the full capabilities of this tool.',
+            'Whether you are compiling a corporate presentation, organizing school assignments, or stitching tax documents together, Toolzy provides a completely free, fast, and secure environment. It works out-of-the-box on Windows, macOS, Linux, Android, and iOS browsers, providing a desktop-class utility experience on any device.'
         ],
         'faqs' => [
             [
-                'question' => 'Is Toolzy’s PDF File Merger free to use?',
-                'answer' => 'Yes, Toolzy’s PDF File Merger is completely free to use. You can merge multiple PDF files online without any cost or watermark.'
+                'question' => 'Is Toolzy’s PDF File Merger completely free to use?',
+                'answer' => 'Yes, Toolzy’s PDF File Merger is 100% free with no hidden charges, trial periods, or premium upgrades. You can combine multiple PDF files online as many times as you want without having to deal with annoying watermarks, file size restrictions, page limit caps, or daily caps.'
             ],
             [
-                'question' => 'Is it safe to upload my PDF files?',
-                'answer' => 'Absolutely. Toolzy does not store or access your files. All uploaded PDFs are processed securely and deleted shortly after merging.'
+                'question' => 'Is it safe to merge confidential or sensitive PDF documents here?',
+                'answer' => 'Absolutely. Toolzy’s PDF File Merger runs entirely within your local web browser. None of your files are ever uploaded, transferred, or stored on our servers or any external storage. This client-side processing ensures that your private financial statements, contract agreements, medical records, and legal files remain strictly confidential and safe on your device.'
             ],
             [
-                'question' => 'How many PDF files can I merge at once?',
-                'answer' => 'You can merge as many PDF files as you like in a single session. Just select all the files you want to combine, and Toolzy will take care of the rest.'
+                'question' => 'How does browser-based PDF merging protect my privacy?',
+                'answer' => 'Standard online PDF tools require uploading your files to remote servers where they are queued, processed, and cached. This introduces significant privacy and compliance concerns. Toolzy leverages modern Web APIs to perform the operations on your device. The merger software runs locally in your browser sandbox, meaning the file processing takes place in your local RAM without communicating any file data over the internet.'
             ],
             [
-                'question' => 'Do I need to install any software?',
-                'answer' => 'No installation is required. Toolzy’s PDF File Merger works entirely online through your web browser on desktop or mobile devices.'
+                'question' => 'Is there a limit to the number of PDF files or total file size I can merge?',
+                'answer' => 'No. Toolzy does not impose any artificial limitations on the number of PDFs you can upload or the size of individual files. You can merge 2 files, 15 files, or 50 files at once. The only physical limit is the system memory (RAM) and CPU performance of your device, which reads and compiles the documents.'
             ],
             [
-                'question' => 'Will the order of PDF files be maintained?',
-                'answer' => 'Yes, Toolzy merges PDF files in the exact order you upload or arrange them. You can drag and drop files to rearrange their sequence before merging.'
+                'question' => 'Do I need to sign up, register, or download any software?',
+                'answer' => 'No registration or user accounts are required. There is no need to enter your email address or credit card details. You also do not need to install any executable software, browser add-ons, or application extensions. Just load the page and begin combining your PDFs immediately.'
             ],
+            [
+                'question' => 'Can I rearrange the order of PDF files before merging?',
+                'answer' => 'Yes, you can easily customize the sequence of the files. Once you drag and drop or select your PDFs, they will be listed in a table. You can click and drag any row in the list to rearrange the order of your documents. The final merged PDF will combine the files in the exact order shown from top to bottom.'
+            ],
+            [
+                'question' => 'Can I preview my files before clicking the merge button?',
+                'answer' => 'Yes. Our interface generates a real-time thumbnail preview of the first page of each uploaded PDF using a built-in PDF renderer. You can also click on the thumbnail to open a high-resolution preview modal, helping you double-check file names and contents to ensure the correct order before merging.'
+            ],
+            [
+                'question' => 'Does this PDF merger work on mobile phones and tablets?',
+                'answer' => 'Yes, the tool is fully responsive and mobile-friendly. It is optimized to run smoothly on iOS Safari, Android Chrome, and other mobile browsers, allowing you to select and merge files directly from your mobile files app or connected cloud drives like Google Drive, iCloud, and OneDrive.'
+            ],
+            [
+                'question' => 'Will the merged PDF lose quality or formatting?',
+                'answer' => 'No. Toolzy’s PDF File Merger stitches the page streams directly into a new document. It does not compress, re-encode, or flatten the files. All text formatting, embedded fonts, vector images, hyper-links, and high-resolution images are preserved exactly as they were in the original documents.'
+            ]
         ],
     ],
     'image-converter' => [
