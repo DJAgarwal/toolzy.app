@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container py-5">
-    <h1 class="mb-4">Contact Me | Request a Tool or Feature, Report an Issue & Get Support</h1>
+    <h1 class="mb-4">Contact Me | Request a Tool or Feature & Get It the Next Day</h1>
     <p>If there's a tool you'd like to see added to Toolzy, I'm all ears! Simply let me know, and I'll do my best to bring it to life for you — usually by the very next day!</p>
 
     <p class="mt-4">
