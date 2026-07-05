@@ -66,7 +66,7 @@ class StaticPageSeeder extends Seeder
             [
                 'page_name' => 'contact',
                 'meta_title' => 'Contact Us - Toolzy',
-                'meta_description' => 'Get in touch with Toolzy for any inquiries, feedback, or suggestions. We’d love to hear from you!',
+                'meta_description' => 'Have a tool request, feedback, or inquiry for Toolzy? Contact me directly at dheerajagarwal1995@gmail.com and get your requested tool built by the next day.',
                 'json_ld' => json_encode([
                     '@context' => 'https://schema.org',
                     '@graph' => [
