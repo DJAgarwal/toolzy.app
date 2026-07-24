@@ -1,0 +1,212 @@
+/**
+ * Laravel Eloquent Query Analyzer & Optimizer - Custom Stylesheet
+ * Toolzy (c) 2026 - Production Quality UI/UX
+ */
+
+/* Monaco Editor Container */
+.monaco-editor-container {
+    height: 380px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background-color: #1e1e1e;
+}
+
+.monaco-editor-fallback {
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 8px;
+    tab-size: 4;
+}
+
+/* Trust Banner */
+.trust-banner {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f8fafc;
+    border-left: 4px solid #10b981;
+    border-radius: 10px;
+}
+
+/* Score Gauges & Metric Cards */
+.score-circle-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto;
+}
+
+.score-circle-svg {
+    transform: rotate(-90deg);
+}
+
+.score-circle-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 10;
+}
+
+.score-circle-val {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-in-out, stroke 0.5s ease;
+}
+
+.score-circle-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.score-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* Severity Badges & Filter Tabs */
+.severity-badge-critical {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.severity-badge-high {
+    background-color: #ffedd5;
+    color: #9a3412;
+    border: 1px solid #fdba74;
+}
+
+.severity-badge-medium {
+    background-color: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fde047;
+}
+
+.severity-badge-low {
+    background-color: #e0f2fe;
+    color: #075985;
+    border: 1px solid #7dd3fc;
+}
+
+.severity-badge-info {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.issue-card {
+    border-left: 5px solid #cbd5e1;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.issue-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+.issue-card.severity-critical {
+    border-left-color: #ef4444;
+}
+
+.issue-card.severity-high {
+    border-left-color: #f97316;
+}
+
+.issue-card.severity-medium {
+    border-left-color: #eab308;
+}
+
+.issue-card.severity-low {
+    border-left-color: #06b6d4;
+}
+
+.issue-card.severity-info {
+    border-left-color: #64748b;
+}
+
+/* Code Diff View */
+.code-diff-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-radius: 8px;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 13.5px;
+    overflow-x: auto;
+}
+
+.diff-line-added {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: #6ee7b7;
+    border-left: 3px solid #10b981;
+}
+
+.diff-line-removed {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #fca5a5;
+    border-left: 3px solid #ef4444;
+}
+
+.diff-line-unchanged {
+    color: #94a3b8;
+}
+
+/* Option Checkboxes Pill Style */
+.category-pill {
+    cursor: pointer;
+    user-select: none;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+    font-weight: 5.500;
+    transition: all 0.2s ease;
+}
+
+.category-pill input:checked + span {
+    color: #ffffff !important;
+}
+
+/* Dark Mode Adjustments */
+[data-bs-theme="dark"] .trust-banner {
+    background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+}
+
+[data-bs-theme="dark"] .score-circle-bg {
+    stroke: #334155;
+}
+
+[data-bs-theme="dark"] .issue-card {
+    background-color: #0f172a;
+    color: #f8fafc;
+}
+
+/* CSP compliant utility classes */
+.spinner-3rem {
+    width: 3rem;
+    height: 3rem;
+}
+
+.progress-6px {
+    height: 6px;
+}
+
+.pre-scrollable-400 {
+    max-height: 400px;
+    overflow-y: auto;
+}
+

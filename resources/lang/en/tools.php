@@ -950,4 +950,103 @@ return [
             ],
         ],
     ],
+    // 'api-request-tester' => [
+    //     'question' => 'What is an API Request Tester & Performance Analyzer?',
+    //     'description' => [
+    //         'An API Request Tester & Performance Analyzer is an essential browser-based developer utility designed to craft, inspect, debug, and benchmark HTTP and REST API endpoints directly from your browser. Comparable to a lightweight browser-based version of Postman or Insomnia, it allows software engineers, QA testers, and backend developers to execute GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS requests with full control over query parameters, headers, body formats (JSON, XML, Form Data, Raw), and authentication mechanisms (Bearer Tokens, Basic Auth, API Keys, Custom Headers, and JWT).',
+    //         'Unlike traditional API clients that process traffic through remote proxy servers, Toolzy operates with a strict 100% client-side, zero-proxy privacy architecture. All requests originate directly from your web browser, ensuring that your API keys, credentials, tokens, payloads, and internal endpoint structures remain entirely private and never touch Toolzy servers.',
+    //         'In addition to request crafting, the tool features an integrated API Performance Analyzer that measures latency, response times, Time To First Byte (TTFB), payload sizes, and header compression ratios with high precision. With automated JSON/XML tree inspection, sandboxed HTML previews, cURL/Postman import and export capabilities, local request history, collections management, and automated code snippet generation across 10 programming languages, Toolzy provides an end-to-end API debugging environment for modern web development.'
+    //     ],
+    //     'faqs' => [
+    //         [
+    //             'question' => 'What is an API tester?',
+    //             'answer' => 'An API tester is a developer tool that allows you to construct HTTP requests (such as GET, POST, PUT, DELETE), send them to web servers or API endpoints, and inspect the HTTP status code, response body, response headers, and performance timing returned by the server. It simplifies debugging backend services, verifying authentication, and benchmarking response speed.'
+    //         ],
+    //         [
+    //             'question' => 'Can I test REST APIs with this tool?',
+    //             'answer' => 'Yes! Toolzy fully supports all standard HTTP methods used in RESTful architecture including GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. You can send JSON, XML, Form Data, or URL-encoded payloads, set custom headers, configure authentication, and view formatted responses.'
+    //         ],
+    //         [
+    //             'question' => 'Why do I get CORS (Cross-Origin Resource Sharing) errors?',
+    //             'answer' => 'CORS is a browser security mechanism that prevents web pages from making AJAX requests to a different domain unless the target server explicitly returns the Access-Control-Allow-Origin header allowing the request. Since Toolzy sends requests directly from your browser (and never proxies them through a server), your browser will enforce CORS rules. To test APIs blocked by CORS, ensure your API server includes the Access-Control-Allow-Origin header, test local endpoints configured with CORS, or use browser extensions that allow cross-origin requests for developer testing.'
+    //         ],
+    //         [
+    //             'question' => 'Does Toolzy proxy, store, or inspect my API requests?',
+    //             'answer' => 'Never. Toolzy operates on a strict zero-proxy, privacy-first model. Every API request is dispatched directly from your browser using the native Web Fetch API. No request body, header, URL, parameter, API key, or authorization token passes through or is stored on Toolzy servers.'
+    //         ],
+    //         [
+    //             'question' => 'Can I send Bearer tokens and custom headers?',
+    //             'answer' => 'Yes. The Authentication tab supports Bearer Token (JWT / OAuth2), Basic Auth (Base64 encoded username & password), API Keys (in header or query string), and Custom Headers. You can also view and decode JWT payloads directly within the tool.'
+    //         ],
+    //         [
+    //             'question' => 'Can I test JSON and XML APIs?',
+    //             'answer' => 'Yes. Toolzy features built-in JSON and XML formatters, syntax highlighting, collapsible interactive tree viewers, node search, path copying, and schema validation before sending requests.'
+    //         ],
+    //         [
+    //             'question' => 'Can I import cURL commands, Postman collections, and OpenAPI specs?',
+    //             'answer' => 'Yes! You can paste any standard cURL command (e.g. copied from Chrome DevTools or documentation) to instantly populate the HTTP method, URL, headers, and body. You can also import Postman Collection v2.1 JSON files and OpenAPI/Swagger specifications.'
+    //         ],
+    //         [
+    //             'question' => 'Can I export requests and collections?',
+    //             'answer' => 'Yes. You can export individual requests or full request collections to Postman v2.1 JSON, cURL commands, raw JSON, or clean Markdown API documentation for your team.'
+    //         ],
+    //         [
+    //             'question' => 'Is this tool secure for sensitive or internal testing?',
+    //             'answer' => 'Extremely secure. Because all processing happens inside your browser’s isolated JavaScript runtime and data is stored strictly in your browser’s LocalStorage, no third party or server can access your secrets, API keys, or data.'
+    //         ],
+    //         [
+    //             'question' => 'How does the Performance Analyzer measure API response timing?',
+    //             'answer' => 'The Performance Analyzer captures high-resolution timing using the browser’s performance.now() API and the PerformanceResourceTiming API. It measures total request duration, approximate TTFB, download latency, payload size, and compression efficiency.'
+    //         ],
+    //     ],
+    // ],
+    'laravel-eloquent-query-analyzer' => [
+        'question' => 'What is the Laravel Eloquent Query Analyzer & Optimizer?',
+        'description' => [
+            'The Laravel Eloquent Query Analyzer & Optimizer is an intelligent, browser-based static analysis tool designed for Laravel developers, database administrators, and software architects. It inspects your Laravel Eloquent models, relationship calls, and Query Builder statements to identify performance bottlenecks, N+1 query risks, missing eager loading, memory exhaustion points, unindexed query patterns, and security risks—all without executing your code.',
+            'Operating with a 100% client-side privacy architecture, your PHP code is analyzed locally inside your browser runtime using advanced regex pattern matching and tokenization. Your source code is never uploaded, stored, or executed on remote servers. The analyzer generates a detailed performance dashboard, severity-rated issue breakdown, side-by-side optimized code comparisons, and deep educational guides to help you write production-grade, lightning-fast Laravel queries.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is the Laravel N+1 problem?',
+                'answer' => 'The N+1 query problem occurs when an application executes 1 initial query to fetch parent records, and then executes N additional queries inside a loop to fetch related child records. For example, iterating over 100 users and calling $user->posts triggers 101 queries. This saturates database connections and delays page rendering. It is solved by eager loading relationships using User::with("posts")->get().'
+            ],
+            [
+                'question' => 'How do I optimize Eloquent queries?',
+                'answer' => 'To optimize Eloquent queries: 1) Eager load relationships with with() or loadMissing(), 2) Select only necessary columns using select(), 3) Paginate large result sets with paginate() or cursorPaginate(), 4) Perform aggregations in SQL (count(), sum()) instead of loading collections into PHP memory, 5) Use chunk() or cursor() for batch data processing, 6) Ensure database columns in where() and orderBy() are indexed, and 7) Use exists() instead of count() > 0 for existence checks.'
+            ],
+            [
+                'question' => 'Should I always use eager loading?',
+                'answer' => 'No. Eager loading is ideal when you know you will access the relationship for most or all items in a collection. However, eager loading massive relationships with thousands of child records can consume significant memory. For single-record lookups or conditional access, lazy eager loading (loadMissing()) or selecting specific relationship columns (with("posts:id,user_id,title")) is more efficient.'
+            ],
+            [
+                'question' => 'When should I use chunk()?',
+                'answer' => 'You should use chunk() or chunkById() when processing large datasets (e.g., thousands or millions of records) for batch jobs, exports, or data migrations. Unlike get() which loads all records into PHP memory at once, chunk() retrieves records in smaller slices (e.g., 500 at a time), keeping memory usage low and stable.'
+            ],
+            [
+                'question' => 'What is cursor pagination?',
+                'answer' => 'Cursor pagination (cursorPaginate()) uses an encoded "cursor" pointer based on indexed columns (usually id or created_at) instead of SQL OFFSET. Standard offset pagination (OFFSET 10000) forces the database to scan and discard 10,000 rows before returning results. Cursor pagination uses WHERE id > cursor LIMIT 15, delivering constant-time O(1) performance regardless of page depth.'
+            ],
+            [
+                'question' => 'Why avoid Model::all()?',
+                'answer' => 'Model::all() retrieves every single row and column from a database table without filtering or limits. As your database grows, Model::all() will cause severe memory bloat, high network latency between PHP and MySQL, and eventual Out-Of-Memory (OOM) application crashes in production.'
+            ],
+            [
+                'question' => 'How do indexes improve performance?',
+                'answer' => 'Database indexes create B-Tree or Hash data structures that allow the database engine to find specific rows in logarithmic time O(log N) instead of scanning every row linearly (O(N) full table scan). Indexes on foreign keys, filtered columns in WHERE, and sorted columns in ORDER BY dramatically accelerate query execution.'
+            ],
+            [
+                'question' => 'Can this tool analyze MongoDB queries?',
+                'answer' => 'Yes! When you select MongoDB (Laravel MongoDB package) as your database engine, the analyzer evaluates Mongo-specific patterns, suggesting projection (project()), document embedding strategies, avoiding expensive $lookup joins, and flagging server-side JavaScript injection risks ($where).'
+            ],
+            [
+                'question' => 'Does Toolzy upload my code?',
+                'answer' => 'No. Toolzy operates strictly in your browser. All code parsing, static analysis, pattern matching, diff generation, and report building are executed locally using client-side JavaScript. No source code or query text is ever sent over the network.'
+            ],
+            [
+                'question' => 'Does this tool execute PHP?',
+                'answer' => 'No. The tool never executes or evaluates your PHP code. It operates exclusively as a static code analysis parser that examines code syntax and structural patterns safely, eliminating any risk of executing unverified code.'
+            ]
+        ]
+    ]
 ];

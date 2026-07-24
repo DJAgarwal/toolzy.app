@@ -2123,6 +2123,166 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
+            // [
+            //     'page_name' => 'api-request-tester',
+            //     'category' => 'Developer Tools',
+            //     'meta_title' => 'API Request Tester & Performance Analyzer | Free REST API Testing Tool | Toolzy',
+            //     'meta_description' => 'Test REST APIs online with GET, POST, PUT, PATCH, DELETE, authentication, headers, response analysis, performance metrics, and code generation. Browser-based and privacy-focused.',
+            //     'meta_keywords' => 'API request tester, REST API tester, HTTP request tester, API inspector, API debugger, API response viewer, Postman alternative online, REST client, browser API client, cURL importer, API performance analyzer',
+            //     'json_ld' => json_encode([
+            //         '@context' => 'https://schema.org',
+            //         '@graph' => [
+            //             [
+            //                 '@type' => 'WebPage',
+            //                 '@id' => url('/tools/api-request-tester'),
+            //                 'name' => 'API Request Tester & Performance Analyzer | Free REST API Testing Tool | Toolzy',
+            //                 'url' => url('/tools/api-request-tester'),
+            //                 'description' => 'Test REST APIs online with GET, POST, PUT, PATCH, DELETE, authentication, headers, response analysis, performance metrics, and code generation. Browser-based and privacy-focused.',
+            //                 'inLanguage' => 'en',
+            //                 'mainEntityOfPage' => url('/tools/api-request-tester')
+            //             ],
+            //             [
+            //                 '@type' => 'SoftwareApplication',
+            //                 'name' => 'API Request Tester & Performance Analyzer',
+            //                 'operatingSystem' => 'Any',
+            //                 'applicationCategory' => 'DeveloperApplication',
+            //                 'url' => url('/tools/api-request-tester'),
+            //                 'description' => 'A browser-based REST API request client and performance analyzer. Test APIs with custom headers, authentication, payload formatters, local request history, and automated code generation.',
+            //                 'offers' => [
+            //                     '@type' => 'Offer',
+            //                     'price' => '0',
+            //                     'priceCurrency' => 'USD'
+            //                 ],
+            //                 'featureList' => [
+            //                     '100% Client-Side Direct Execution (Zero Proxy)',
+            //                     'REST API Request Crafting (GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS)',
+            //                     'Interactive Query Parameters & Headers Manager',
+            //                     'Multiple Auth Modes (Bearer, Basic, API Key, Custom, JWT Decoder)',
+            //                     'JSON & XML Formatters, Tree Viewers, & Schema Validation',
+            //                     'Sandboxed HTML Preview & File Viewer',
+            //                     'Real-time High-Resolution Performance Dashboard & Timing Breakdown',
+            //                     'cURL, Postman Collection, & OpenAPI Import / Export',
+            //                     'Code Snippet Generation for 10 Languages (cURL, JS Fetch, Axios, PHP, Python, Go, Java, C#)',
+            //                     'Local Request History & Collections Manager'
+            //                 ]
+            //             ],
+            //             [
+            //                 '@type' => 'Organization',
+            //                 'name' => 'Toolzy',
+            //                 'url' => url('/'),
+            //                 'logo' => url('/images/logo.webp'),
+            //                 'contactPoint' => [
+            //                     '@type' => 'ContactPoint',
+            //                     'contactType' => 'Customer Support',
+            //                     'email' => 'dheerajagarwal1995@gmail.com',
+            //                     'availableLanguage' => 'en'
+            //                 ]
+            //             ],
+            //             [
+            //                 '@type' => 'BreadcrumbList',
+            //                 'itemListElement' => [
+            //                     [
+            //                         '@type' => 'ListItem',
+            //                         'position' => 1,
+            //                         'name' => 'Home',
+            //                         'item' => url('/')
+            //                     ],
+            //                     [
+            //                         '@type' => 'ListItem',
+            //                         'position' => 2,
+            //                         'name' => 'Tools',
+            //                         'item' => url('/tools')
+            //                     ],
+            //                     [
+            //                         '@type' => 'ListItem',
+            //                         'position' => 3,
+            //                         'name' => 'API Request Tester & Performance Analyzer',
+            //                         'item' => url('/tools/api-request-tester')
+            //                     ]
+            //                 ]
+            //             ]
+            //         ]
+            //     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            // ],
+            [
+                'page_name' => 'laravel-eloquent-query-analyzer',
+                'category' => 'Developer Tools',
+                'meta_title' => 'Laravel Eloquent Query Analyzer & Optimizer | Improve Query Performance | Toolzy',
+                'meta_description' => 'Analyze Laravel Eloquent queries for N+1 problems, eager loading, indexing opportunities, inefficient patterns, memory usage, pagination, joins, and performance improvements—all in your browser.',
+                'meta_keywords' => 'Laravel Eloquent Query Analyzer, Laravel Query Optimizer, Laravel Performance Analyzer, Optimize Eloquent Queries, Laravel N+1 Detector, Laravel Database Performance Tool, Eloquent Analyzer, Laravel ORM Optimizer',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/laravel-eloquent-query-analyzer'),
+                            'name' => 'Laravel Eloquent Query Analyzer & Optimizer | Improve Query Performance | Toolzy',
+                            'url' => url('/tools/laravel-eloquent-query-analyzer'),
+                            'description' => 'Analyze Laravel Eloquent queries for N+1 problems, eager loading, indexing opportunities, inefficient patterns, memory usage, pagination, joins, and performance improvements—all in your browser.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/laravel-eloquent-query-analyzer')
+                        ],
+                        [
+                            '@type' => 'SoftwareApplication',
+                            'name' => 'Laravel Eloquent Query Analyzer & Optimizer',
+                            'operatingSystem' => 'Any',
+                            'applicationCategory' => 'DeveloperApplication',
+                            'url' => url('/tools/laravel-eloquent-query-analyzer'),
+                            'description' => 'A 100% browser-based static analysis tool for Laravel Eloquent queries, models, and relationships. Detect N+1 query bottlenecks, missing eager loading, unindexed queries, memory bloat, and pagination issues instantly.',
+                            'offers' => [
+                                '@type' => 'Offer',
+                                'price' => '0',
+                                'priceCurrency' => 'USD'
+                            ],
+                            'featureList' => [
+                                '100% Client-Side Static Analysis (Zero Code Execution / Upload)',
+                                'Laravel Eloquent Model & Relationship Inspection',
+                                'N+1 Query Bottleneck & Missing Eager Loading Detection',
+                                'Index Recommendations & Unindexed Query Pattern Warnings',
+                                'Memory Bloat & High-Volume Data Fetch Alerts',
+                                'Offset vs Cursor Pagination Performance Analysis',
+                                'Multi-Database Dialect Support (MySQL, PostgreSQL, SQLite, SQL Server, MongoDB)',
+                                'Side-by-Side Code Refactoring & Optimization Comparison'
+                            ]
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ]
+                        ],
+                        [
+                            '@type' => 'BreadcrumbList',
+                            'itemListElement' => [
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 1,
+                                    'name' => 'Home',
+                                    'item' => url('/')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 2,
+                                    'name' => 'Tools',
+                                    'item' => url('/tools')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 3,
+                                    'name' => 'Laravel Eloquent Query Analyzer',
+                                    'item' => url('/tools/laravel-eloquent-query-analyzer')
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
         ];
         $urls = [];
         \App\Models\Tool::withoutEvents(function () use ($pages, &$urls) {
