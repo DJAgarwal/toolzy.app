@@ -13,19 +13,19 @@
             <select id="envSelector" class="form-select form-select-sm border-secondary-subtle" style="max-width: 220px;" aria-label="Environment Selector">
                 <option value="Default">Environment: Default</option>
             </select>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#envModal">
+            <button type="button" class="btn btn-outline-secondary btn-sm text-nowrap d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#envModal">
                 <i class="bi bi-gear-fill me-1"></i> Variables
             </button>
         </div>
-        <div class="d-flex align-items-center gap-2">
-            <button type="button" id="loadSampleApiBtn" class="btn btn-outline-info btn-sm">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
+            <button type="button" id="loadSampleApiBtn" class="btn btn-outline-info btn-sm text-nowrap d-inline-flex align-items-center">
                 <i class="bi bi-lightning-charge-fill me-1"></i> Load Example API
             </button>
-            <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#importModal">
+            <button type="button" class="btn btn-outline-primary btn-sm text-nowrap d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#importModal">
                 <i class="bi bi-box-arrow-in-down me-1"></i> Import (cURL/Postman)
             </button>
             <div class="dropdown">
-                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary btn-sm dropdown-toggle text-nowrap d-inline-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-box-arrow-up me-1"></i> Export
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -52,9 +52,13 @@
 
                 <input type="url" id="requestUrlInput" class="form-control url-input-field" placeholder="https://api.example.com/users" value="https://jsonplaceholder.typicode.com/users/1" aria-label="API Endpoint URL" autocomplete="off">
 
-                <button id="sendRequestBtn" class="btn btn-primary px-4 fw-bold d-flex align-items-center" type="button">
+                <button id="sendRequestBtn" class="btn btn-primary px-3 px-md-4 fw-bold d-flex align-items-center" type="button">
                     <i class="bi bi-send-fill me-1"></i> Send
                     <span class="badge bg-white bg-opacity-25 ms-2 d-none d-md-inline" style="font-size: 0.7rem;">Ctrl+Enter</span>
+                </button>
+
+                <button id="saveRequestBtn" class="btn btn-outline-secondary px-3 fw-semibold d-flex align-items-center" type="button" data-bs-toggle="modal" data-bs-target="#saveCollectionModal" title="Save API request to a folder">
+                    <i class="bi bi-bookmark-plus me-1 text-primary"></i> Save
                 </button>
             </div>
         </div>
@@ -460,20 +464,96 @@
 
 {{-- Environment Modal --}}
 <div class="modal fade" id="envModal" tabindex="-1" aria-labelledby="envModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="envModalLabel"><i class="bi bi-gear-fill text-primary me-2"></i> Environment Variables</h5>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-sm">
+            <div class="modal-header bg-light py-2">
+                <h5 class="modal-title fw-bold text-dark fs-6" id="envModalLabel">
+                    <i class="bi bi-sliders text-primary me-2"></i> Environment Variables Manager
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="small text-muted">Define variables like <code>base_url</code> or <code>api_key</code> and use them anywhere as <code>&#123;&#123;base_url&#125;&#125;</code> in URLs, headers, or body payloads.</p>
-                <div id="envVarsContainer" class="p-2 border rounded bg-light">
-                    <p class="small text-muted mb-0">Active environment: <strong>Default</strong></p>
+                <p class="small text-muted mb-3">
+                    Define variables like <code>base_url</code>, <code>token</code>, or <code>api_key</code> and reuse them anywhere in your requests as <code>&#123;&#123;variable_name&#125;&#125;</code> (URL, Headers, Params, Body).
+                </p>
+                
+                {{-- Environment Toolbar --}}
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3 bg-light p-2 rounded border">
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="modalEnvSelect" class="small fw-semibold mb-0">Active Environment:</label>
+                        <select id="modalEnvSelect" class="form-select form-select-sm border-secondary-subtle" style="max-width: 220px;" aria-label="Modal Environment Select">
+                        </select>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-primary btn-sm" id="btnCreateNewEnv">
+                            <i class="bi bi-plus-circle me-1"></i> New Environment
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-sm" id="btnDeleteActiveEnv" title="Delete current environment">
+                            <i class="bi bi-trash me-1"></i> Delete Env
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Variables Table --}}
+                <div class="table-responsive border rounded mb-3" style="max-height: 320px; overflow-y: auto;">
+                    <table class="table table-bordered table-hover table-sm align-middle mb-0">
+                        <thead class="table-light sticky-top">
+                            <tr>
+                                <th style="width: 35%;">Variable Name (Key)</th>
+                                <th>Value</th>
+                                <th class="text-center" style="width: 60px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="envVarsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-primary btn-sm fw-bold" id="btnAddEnvVarRow">
+                        <i class="bi bi-plus-lg me-1"></i> Add Variable
+                    </button>
+                    <span class="small text-muted"><i class="bi bi-info-circle me-1"></i> Changes auto-save instantly</span>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Save to Collection Modal --}}
+<div class="modal fade" id="saveCollectionModal" tabindex="-1" aria-labelledby="saveCollectionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-sm">
+            <div class="modal-header bg-light py-2">
+                <h5 class="modal-title fw-bold text-dark fs-6" id="saveCollectionModalLabel">
+                    <i class="bi bi-bookmark-plus text-primary me-2"></i> Save API Request to Folder
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="saveReqNameInput" class="form-label small fw-semibold">Request Display Name</label>
+                    <input type="text" id="saveReqNameInput" class="form-control form-control-sm" placeholder="e.g. Send Login OTP">
+                </div>
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label for="saveReqFolderSelect" class="form-label small fw-semibold mb-0">Target Collection Folder</label>
+                        <button type="button" class="btn btn-link text-primary p-0 text-decoration-none" id="btnCreateFolderFromSaveModal" style="font-size: 0.78rem;">
+                            + Create New Folder
+                        </button>
+                    </div>
+                    <select id="saveReqFolderSelect" class="form-select form-select-sm">
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm fw-bold" id="confirmSaveToCollectionBtn">
+                    <i class="bi bi-folder-plus me-1"></i> Save to Folder
+                </button>
             </div>
         </div>
     </div>

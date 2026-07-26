@@ -102,6 +102,37 @@ document.addEventListener('DOMContentLoaded', function () {
     if (collectionsContainer && !collectionsContainer.dataset.listenerAttached) {
         collectionsContainer.dataset.listenerAttached = 'true';
         collectionsContainer.addEventListener('click', function (e) {
+            const delReqBtn = e.target.closest('.btn-delete-col-req');
+            if (delReqBtn) {
+                const colId = delReqBtn.getAttribute('data-col-id');
+                const reqId = delReqBtn.getAttribute('data-req-id');
+                window.CollectionManager.removeRequestFromCollection(colId, reqId);
+                renderCollectionsList();
+                if (window.showToast) window.showToast('API request removed from folder.', 'info');
+                return;
+            }
+
+            const delColBtn = e.target.closest('.btn-delete-col');
+            if (delColBtn) {
+                const colId = delColBtn.getAttribute('data-col-id');
+                if (confirm('Delete this collection folder and all its saved requests?')) {
+                    window.CollectionManager.deleteCollection(colId);
+                    renderCollectionsList();
+                    if (window.showToast) window.showToast('Folder deleted.', 'warning');
+                }
+                return;
+            }
+
+            const addReqBtn = e.target.closest('.btn-add-req-to-col');
+            if (addReqBtn) {
+                const colId = addReqBtn.getAttribute('data-col-id');
+                const compiledReq = window.RequestBuilder.getCompiledRequest();
+                window.CollectionManager.addRequestToCollection(colId, compiledReq);
+                renderCollectionsList();
+                if (window.showToast) window.showToast('Current API saved to folder!', 'success');
+                return;
+            }
+
             const item = e.target.closest('.btn-load-col-req');
             if (item) {
                 const colIdx = parseInt(item.getAttribute('data-col-idx'), 10);
@@ -109,7 +140,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 const cols = window.CollectionManager.getCollections();
                 if (cols[colIdx] && cols[colIdx].requests[reqIdx]) {
                     window.RequestBuilder.loadRequestState(cols[colIdx].requests[reqIdx]);
+                    if (window.showToast) window.showToast('Request loaded from folder.', 'info');
                 }
+            }
+        });
+    }
+
+    // Save to Collection Modal setup
+    const saveModalEl = document.getElementById('saveCollectionModal');
+    if (saveModalEl) {
+        saveModalEl.addEventListener('show.bs.modal', setupSaveCollectionModal);
+    }
+
+    const confirmSaveBtn = document.getElementById('confirmSaveToCollectionBtn');
+    if (confirmSaveBtn) {
+        confirmSaveBtn.addEventListener('click', handleConfirmSaveToCollection);
+    }
+
+    const createFolderInModalBtn = document.getElementById('btnCreateFolderFromSaveModal');
+    if (createFolderInModalBtn) {
+        createFolderInModalBtn.addEventListener('click', function () {
+            const name = prompt('Enter new folder name:');
+            if (name && name.trim()) {
+                const newCol = window.CollectionManager.addCollection(name.trim());
+                renderCollectionsList();
+                setupSaveCollectionModal();
+                const sel = document.getElementById('saveReqFolderSelect');
+                if (sel) sel.value = newCol.id;
             }
         });
     }
@@ -264,37 +321,281 @@ function renderCollectionsList() {
     if (!container) return;
 
     const collections = window.CollectionManager.getCollections();
+    if (collections.length === 0) {
+        container.innerHTML = `<div class="text-muted text-center py-4 small">No collection folders yet.<br>Click "+ New Folder" above to create one.</div>`;
+        return;
+    }
+
     container.innerHTML = collections.map((col, colIdx) => `
-        <div class="mb-3">
-            <div class="fw-bold small text-uppercase text-secondary mb-1 d-flex justify-content-between align-items-center">
-                <span><i class="bi bi-folder-fill text-warning me-1"></i> ${col.name}</span>
-                <span class="badge bg-light text-dark">${col.requests.length}</span>
+        <div class="mb-3 border rounded p-2 bg-light-subtle shadow-sm">
+            <div class="fw-bold small text-dark mb-2 d-flex justify-content-between align-items-center">
+                <span class="text-truncate me-1" title="${escapeHtml(col.name)}">
+                    <i class="bi bi-folder-fill text-warning me-1"></i> ${escapeHtml(col.name)} 
+                    <span class="badge bg-secondary rounded-pill ms-1">${col.requests.length}</span>
+                </span>
+                <div class="d-flex align-items-center gap-1">
+                    <button type="button" class="btn btn-outline-primary btn-xs py-0 px-1.5 btn-add-req-to-col" data-col-id="${col.id}" title="Save current request to this folder" style="font-size: 0.72rem;">
+                        <i class="bi bi-plus-lg"></i> Add
+                    </button>
+                    <button type="button" class="btn btn-outline-danger btn-xs py-0 px-1.5 btn-delete-col" data-col-id="${col.id}" title="Delete Folder" style="font-size: 0.72rem;">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </div>
             </div>
-            ${col.requests.length === 0 ? '<div class="small text-muted ps-3">Folder empty</div>' : ''}
+            ${col.requests.length === 0 ? '<div class="small text-muted ps-2 italic py-1" style="font-size: 0.8rem;">Folder empty. Click "+ Add" or "Save" above to add API requests.</div>' : ''}
+            <div class="list-group list-group-flush">
             ${col.requests.map((r, reqIdx) => `
-                <div class="ps-3 py-1 border-start border-2 border-primary small d-flex justify-content-between align-items-center hover-bg-light btn-load-col-req" style="cursor:pointer;" data-col-idx="${colIdx}" data-req-idx="${reqIdx}">
-                    <span><strong class="text-primary">${r.method}</strong> ${r.name}</span>
+                <div class="list-group-item list-group-item-action p-1.5 border-0 rounded mb-1 small d-flex justify-content-between align-items-center btn-load-col-req" style="cursor:pointer;" data-col-idx="${colIdx}" data-req-idx="${reqIdx}">
+                    <div class="text-truncate me-2">
+                        <span class="badge badge-method-${r.method} me-1" style="font-size:0.65rem;">${r.method}</span>
+                        <span class="fw-semibold text-dark text-truncate d-inline-block align-middle" style="max-width: 140px;" title="${escapeHtml(r.name)}">${escapeHtml(r.name)}</span>
+                    </div>
+                    <button type="button" class="btn btn-link text-danger btn-sm p-0 btn-delete-col-req" data-col-id="${col.id}" data-req-id="${r.id}" title="Remove API from folder"><i class="bi bi-x-circle"></i></button>
                 </div>
             `).join('')}
+            </div>
         </div>
     `).join('');
 }
 
+function setupSaveCollectionModal() {
+    const sel = document.getElementById('saveReqFolderSelect');
+    const nameIn = document.getElementById('saveReqNameInput');
+    if (!sel || !window.CollectionManager) return;
+
+    const collections = window.CollectionManager.getCollections();
+    if (collections.length === 0) {
+        window.CollectionManager.addCollection('My Saved APIs');
+        renderCollectionsList();
+    }
+
+    const updatedCols = window.CollectionManager.getCollections();
+    sel.innerHTML = updatedCols.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join('');
+
+    const compiledReq = window.RequestBuilder.getCompiledRequest();
+    if (nameIn) {
+        if (!nameIn.value || nameIn.value.trim() === '') {
+            let defaultName = compiledReq.url ? compiledReq.url.replace(/^https?:\/\//, '') : 'API Request';
+            if (defaultName.length > 35) defaultName = defaultName.substring(0, 35) + '...';
+            nameIn.value = `${compiledReq.method} ${defaultName}`;
+        }
+    }
+}
+
+function handleConfirmSaveToCollection() {
+    const sel = document.getElementById('saveReqFolderSelect');
+    const nameIn = document.getElementById('saveReqNameInput');
+    if (!sel || !window.CollectionManager) return;
+
+    const folderId = sel.value;
+    const reqName = nameIn ? nameIn.value.trim() : '';
+
+    if (!folderId) {
+        if (window.showToast) window.showToast('Please select or create a collection folder.', 'warning');
+        return;
+    }
+
+    const compiledReq = window.RequestBuilder.getCompiledRequest();
+    compiledReq.name = reqName || `${compiledReq.method} ${compiledReq.url}`;
+
+    window.CollectionManager.addRequestToCollection(folderId, compiledReq);
+    renderCollectionsList();
+
+    if (window.showToast) window.showToast('API request saved to folder successfully!', 'success');
+
+    const modalEl = document.getElementById('saveCollectionModal');
+    if (modalEl && window.bootstrap) {
+        const modal = window.bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
+    }
+}
+
 function renderEnvOptions() {
     const sel = document.getElementById('envSelector');
-    if (!sel || !window.EnvManager) return;
+    const modalSel = document.getElementById('modalEnvSelect');
+    if (!window.EnvManager) return;
 
     const envs = window.EnvManager.getEnvironments();
     const active = window.EnvManager.getActiveEnv();
 
-    sel.innerHTML = Object.keys(envs).map(name => `
+    const optionsHtml = Object.keys(envs).map(name => `
         <option value="${name}" ${name === active ? 'selected' : ''}>Environment: ${name}</option>
     `).join('');
 
-    sel.addEventListener('change', function () {
-        window.EnvManager.setActiveEnv(this.value);
-        if (window.showToast) window.showToast(`Environment switched to "${this.value}"`, 'info');
-    });
+    if (sel) {
+        sel.innerHTML = optionsHtml;
+        if (!sel.dataset.listenerAttached) {
+            sel.dataset.listenerAttached = 'true';
+            sel.addEventListener('change', function () {
+                window.EnvManager.setActiveEnv(this.value);
+                renderEnvOptions();
+                if (window.showToast) window.showToast(`Environment switched to "${this.value}"`, 'info');
+            });
+        }
+    }
+
+    if (modalSel) {
+        modalSel.innerHTML = Object.keys(envs).map(name => `
+            <option value="${name}" ${name === active ? 'selected' : ''}>${name}</option>
+        `).join('');
+
+        if (!modalSel.dataset.listenerAttached) {
+            modalSel.dataset.listenerAttached = 'true';
+            modalSel.addEventListener('change', function () {
+                window.EnvManager.setActiveEnv(this.value);
+                renderEnvOptions();
+                if (window.showToast) window.showToast(`Environment switched to "${this.value}"`, 'info');
+            });
+        }
+    }
+
+    const deleteEnvBtn = document.getElementById('btnDeleteActiveEnv');
+    if (deleteEnvBtn) {
+        deleteEnvBtn.disabled = (active === 'Default');
+    }
+
+    renderEnvVarsTable();
+    attachEnvModalEvents();
+}
+
+function renderEnvVarsTable() {
+    const tbody = document.getElementById('envVarsTableBody');
+    if (!tbody || !window.EnvManager) return;
+
+    const activeEnv = window.EnvManager.getActiveEnv();
+    const envs = window.EnvManager.getEnvironments();
+    const vars = envs[activeEnv] || {};
+    const keys = Object.keys(vars);
+
+    if (keys.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="3" class="text-muted text-center py-3 small">No environment variables defined for "${activeEnv}". Click "Add Variable" below.</td></tr>`;
+        return;
+    }
+
+    tbody.innerHTML = keys.map(key => `
+        <tr data-key="${escapeHtml(key)}">
+            <td>
+                <input type="text" class="form-control form-control-sm env-key-input font-monospace" data-old-key="${escapeHtml(key)}" value="${escapeHtml(key)}" placeholder="variable_name">
+            </td>
+            <td>
+                <input type="text" class="form-control form-control-sm env-val-input font-monospace" data-key="${escapeHtml(key)}" value="${escapeHtml(vars[key])}" placeholder="Value">
+            </td>
+            <td class="text-center">
+                <button type="button" class="btn btn-outline-danger btn-sm btn-delete-env-var" data-key="${escapeHtml(key)}" title="Delete Variable">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    `).join('');
+}
+
+function attachEnvModalEvents() {
+    const tbody = document.getElementById('envVarsTableBody');
+    if (tbody && !tbody.dataset.listenerAttached) {
+        tbody.dataset.listenerAttached = 'true';
+
+        tbody.addEventListener('change', function (e) {
+            const activeEnv = window.EnvManager.getActiveEnv();
+
+            if (e.target.classList.contains('env-key-input')) {
+                const oldKey = e.target.getAttribute('data-old-key');
+                const newKey = e.target.value.trim();
+                const row = e.target.closest('tr');
+                const valInput = row ? row.querySelector('.env-val-input') : null;
+                const val = valInput ? valInput.value : '';
+
+                if (oldKey && oldKey !== newKey) {
+                    window.EnvManager.removeVariable(activeEnv, oldKey);
+                }
+                if (newKey) {
+                    window.EnvManager.setVariable(activeEnv, newKey, val);
+                    e.target.setAttribute('data-old-key', newKey);
+                    if (valInput) valInput.setAttribute('data-key', newKey);
+                }
+            } else if (e.target.classList.contains('env-val-input')) {
+                const row = e.target.closest('tr');
+                const keyInput = row ? row.querySelector('.env-key-input') : null;
+                const key = keyInput ? keyInput.value.trim() : e.target.getAttribute('data-key');
+                if (key) {
+                    window.EnvManager.setVariable(activeEnv, key, e.target.value);
+                }
+            }
+        });
+
+        tbody.addEventListener('click', function (e) {
+            const delBtn = e.target.closest('.btn-delete-env-var');
+            if (delBtn) {
+                const key = delBtn.getAttribute('data-key');
+                const activeEnv = window.EnvManager.getActiveEnv();
+                if (key) {
+                    window.EnvManager.removeVariable(activeEnv, key);
+                    renderEnvVarsTable();
+                    if (window.showToast) window.showToast(`Variable "${key}" removed.`, 'info');
+                }
+            }
+        });
+    }
+
+    const addVarBtn = document.getElementById('btnAddEnvVarRow');
+    if (addVarBtn && !addVarBtn.dataset.listenerAttached) {
+        addVarBtn.dataset.listenerAttached = 'true';
+        addVarBtn.addEventListener('click', function () {
+            const activeEnv = window.EnvManager.getActiveEnv();
+            let newKey = 'new_var';
+            let count = 1;
+            const envs = window.EnvManager.getEnvironments();
+            const currentVars = envs[activeEnv] || {};
+
+            while (currentVars[newKey]) {
+                newKey = `new_var_${count++}`;
+            }
+
+            window.EnvManager.setVariable(activeEnv, newKey, '');
+            renderEnvVarsTable();
+
+            const lastInput = document.querySelector('#envVarsTableBody tr:last-child .env-key-input');
+            if (lastInput) {
+                lastInput.focus();
+                lastInput.select();
+            }
+        });
+    }
+
+    const createEnvBtn = document.getElementById('btnCreateNewEnv');
+    if (createEnvBtn && !createEnvBtn.dataset.listenerAttached) {
+        createEnvBtn.dataset.listenerAttached = 'true';
+        createEnvBtn.addEventListener('click', function () {
+            const name = prompt('Enter new Environment name (e.g., Staging, Production):');
+            if (name && name.trim()) {
+                const trimmed = name.trim();
+                window.EnvManager.addEnvironment(trimmed);
+                window.EnvManager.setActiveEnv(trimmed);
+                renderEnvOptions();
+                if (window.showToast) window.showToast(`Environment "${trimmed}" created & selected.`, 'success');
+            }
+        });
+    }
+
+    const deleteEnvBtn = document.getElementById('btnDeleteActiveEnv');
+    if (deleteEnvBtn && !deleteEnvBtn.dataset.listenerAttached) {
+        deleteEnvBtn.dataset.listenerAttached = 'true';
+        deleteEnvBtn.addEventListener('click', function () {
+            const active = window.EnvManager.getActiveEnv();
+            if (active === 'Default') {
+                alert('Cannot delete Default environment.');
+                return;
+            }
+            if (confirm(`Are you sure you want to delete environment "${active}"?`)) {
+                window.EnvManager.deleteEnvironment(active);
+                renderEnvOptions();
+                if (window.showToast) window.showToast(`Environment "${active}" deleted.`, 'warning');
+            }
+        });
+    }
+}
+
+function escapeHtml(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
 function handleImport() {
