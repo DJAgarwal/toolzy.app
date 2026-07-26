@@ -1,0 +1,203 @@
+/* API Request Tester & Performance Analyzer Styles - Toolzy */
+
+:root {
+    --api-get: #0d6efd;
+    --api-post: #198754;
+    --api-put: #fd7e14;
+    --api-patch: #20c997;
+    --api-delete: #dc3545;
+    --api-head: #6f42c1;
+    --api-options: #6c757d;
+    --api-bg-dark: #1e1e2e;
+    --api-card-border: rgba(0, 0, 0, 0.08);
+}
+
+/* Method Selector Badges */
+.method-select option[value="GET"], .badge-method-GET { background-color: var(--api-get) !important; color: #fff; }
+.method-select option[value="POST"], .badge-method-POST { background-color: var(--api-post) !important; color: #fff; }
+.method-select option[value="PUT"], .badge-method-PUT { background-color: var(--api-put) !important; color: #fff; }
+.method-select option[value="PATCH"], .badge-method-PATCH { background-color: var(--api-patch) !important; color: #fff; }
+.method-select option[value="DELETE"], .badge-method-DELETE { background-color: var(--api-delete) !important; color: #fff; }
+.method-select option[value="HEAD"], .badge-method-HEAD { background-color: var(--api-head) !important; color: #fff; }
+.method-select option[value="OPTIONS"], .badge-method-OPTIONS { background-color: var(--api-options) !important; color: #fff; }
+
+.method-badge {
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Trust Banner */
+.privacy-trust-banner {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border-left: 4px solid #0d6efd;
+    border-radius: 8px;
+    padding: 0.9rem 1.25rem;
+    box-shadow: 0 2px 6px rgba(13, 110, 253, 0.08);
+}
+
+/* Request Bar */
+.request-bar-input-group {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.url-input-field {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.95rem;
+}
+
+/* Response Status Indicators */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+.status-pill.status-2xx { background-color: #d1e7dd; color: #0f5132; }
+.status-pill.status-3xx { background-color: #cff4fc; color: #055160; }
+.status-pill.status-4xx { background-color: #fff3cd; color: #664d03; }
+.status-pill.status-5xx { background-color: #f8d7da; color: #842029; }
+.status-pill.status-error { background-color: #f8d7da; color: #842029; }
+
+/* Interactive Key-Value Tables */
+.kv-table th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    letter-spacing: 0.5px;
+}
+.kv-table td {
+    vertical-align: middle;
+}
+.kv-input {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+}
+
+/* Editor Container */
+.code-editor-container {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    min-height: 220px;
+    position: relative;
+    background-color: #f8f9fa;
+}
+
+.code-editor-textarea {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    tab-size: 2;
+    background-color: #ffffff;
+    color: #212529;
+    border-radius: 6px;
+    resize: vertical;
+}
+
+/* Response Tree View */
+.json-tree-container {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875rem;
+    background-color: #1e1e2e;
+    color: #cdd6f4;
+    padding: 1.25rem;
+    border-radius: 8px;
+    max-height: 550px;
+    overflow: auto;
+    line-height: 1.5;
+}
+.json-tree-node {
+    margin-left: 1.2rem;
+}
+.json-tree-toggle {
+    cursor: pointer;
+    user-select: none;
+    color: #89b4fa;
+    margin-right: 0.3rem;
+}
+.json-tree-key { color: #f38ba8; font-weight: 600; }
+.json-tree-string { color: #a6e3a1; }
+.json-tree-number { color: #fab387; }
+.json-tree-boolean { color: #cba6f7; font-weight: bold; }
+.json-tree-null { color: #f5e0dc; font-style: italic; }
+
+/* Performance Dashboard Waterfall */
+.perf-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+.perf-metric-box {
+    text-align: center;
+    padding: 0.85rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+.perf-metric-val {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #0d6efd;
+}
+.perf-metric-lbl {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+}
+
+.perf-waterfall-track {
+    height: 16px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+}
+.perf-stage-dns { background-color: #6f42c1; }
+.perf-stage-tcp { background-color: #fd7e14; }
+.perf-stage-ttfb { background-color: #0d6efd; }
+.perf-stage-download { background-color: #198754; }
+
+/* Code Snippet Box */
+.snippet-pre {
+    background-color: #1e1e2e;
+    color: #f8f9fa;
+    padding: 1.25rem;
+    border-radius: 8px;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85rem;
+    max-height: 420px;
+    overflow: auto;
+}
+
+/* History Sidebar & Collections */
+.history-item {
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all 0.15s ease-in-out;
+}
+.history-item:hover {
+    background-color: #f8f9fa;
+    border-left-color: #0d6efd;
+}
+
+/* Mobile Sticky Action Bar */
+@media (max-width: 767.98px) {
+    .mobile-sticky-send {
+        position: sticky;
+        bottom: 0;
+        z-index: 1020;
+        background: #ffffff;
+        padding: 0.75rem;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid #dee2e6;
+    }
+}

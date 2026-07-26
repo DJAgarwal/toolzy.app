@@ -43,7 +43,7 @@ class Cors
             "style-src-attr 'unsafe-inline'; " .
             "font-src 'self' https://cdnjs.cloudflare.com data:; " .
             "worker-src 'self' blob:; " .
-            "connect-src 'self' https://www.google-analytics.com https://cloudflareinsights.com https://www.google.com; " .
+            "connect-src 'self' http: https: ws: wss: https://www.google-analytics.com https://cloudflareinsights.com https://www.google.com; " .
             "img-src 'self' https://www.google-analytics.com data: blob:; " .
             "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         );

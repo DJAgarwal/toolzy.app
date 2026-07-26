@@ -950,56 +950,56 @@ return [
             ],
         ],
     ],
-    // 'api-request-tester' => [
-    //     'question' => 'What is an API Request Tester & Performance Analyzer?',
-    //     'description' => [
-    //         'An API Request Tester & Performance Analyzer is an essential browser-based developer utility designed to craft, inspect, debug, and benchmark HTTP and REST API endpoints directly from your browser. Comparable to a lightweight browser-based version of Postman or Insomnia, it allows software engineers, QA testers, and backend developers to execute GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS requests with full control over query parameters, headers, body formats (JSON, XML, Form Data, Raw), and authentication mechanisms (Bearer Tokens, Basic Auth, API Keys, Custom Headers, and JWT).',
-    //         'Unlike traditional API clients that process traffic through remote proxy servers, Toolzy operates with a strict 100% client-side, zero-proxy privacy architecture. All requests originate directly from your web browser, ensuring that your API keys, credentials, tokens, payloads, and internal endpoint structures remain entirely private and never touch Toolzy servers.',
-    //         'In addition to request crafting, the tool features an integrated API Performance Analyzer that measures latency, response times, Time To First Byte (TTFB), payload sizes, and header compression ratios with high precision. With automated JSON/XML tree inspection, sandboxed HTML previews, cURL/Postman import and export capabilities, local request history, collections management, and automated code snippet generation across 10 programming languages, Toolzy provides an end-to-end API debugging environment for modern web development.'
-    //     ],
-    //     'faqs' => [
-    //         [
-    //             'question' => 'What is an API tester?',
-    //             'answer' => 'An API tester is a developer tool that allows you to construct HTTP requests (such as GET, POST, PUT, DELETE), send them to web servers or API endpoints, and inspect the HTTP status code, response body, response headers, and performance timing returned by the server. It simplifies debugging backend services, verifying authentication, and benchmarking response speed.'
-    //         ],
-    //         [
-    //             'question' => 'Can I test REST APIs with this tool?',
-    //             'answer' => 'Yes! Toolzy fully supports all standard HTTP methods used in RESTful architecture including GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. You can send JSON, XML, Form Data, or URL-encoded payloads, set custom headers, configure authentication, and view formatted responses.'
-    //         ],
-    //         [
-    //             'question' => 'Why do I get CORS (Cross-Origin Resource Sharing) errors?',
-    //             'answer' => 'CORS is a browser security mechanism that prevents web pages from making AJAX requests to a different domain unless the target server explicitly returns the Access-Control-Allow-Origin header allowing the request. Since Toolzy sends requests directly from your browser (and never proxies them through a server), your browser will enforce CORS rules. To test APIs blocked by CORS, ensure your API server includes the Access-Control-Allow-Origin header, test local endpoints configured with CORS, or use browser extensions that allow cross-origin requests for developer testing.'
-    //         ],
-    //         [
-    //             'question' => 'Does Toolzy proxy, store, or inspect my API requests?',
-    //             'answer' => 'Never. Toolzy operates on a strict zero-proxy, privacy-first model. Every API request is dispatched directly from your browser using the native Web Fetch API. No request body, header, URL, parameter, API key, or authorization token passes through or is stored on Toolzy servers.'
-    //         ],
-    //         [
-    //             'question' => 'Can I send Bearer tokens and custom headers?',
-    //             'answer' => 'Yes. The Authentication tab supports Bearer Token (JWT / OAuth2), Basic Auth (Base64 encoded username & password), API Keys (in header or query string), and Custom Headers. You can also view and decode JWT payloads directly within the tool.'
-    //         ],
-    //         [
-    //             'question' => 'Can I test JSON and XML APIs?',
-    //             'answer' => 'Yes. Toolzy features built-in JSON and XML formatters, syntax highlighting, collapsible interactive tree viewers, node search, path copying, and schema validation before sending requests.'
-    //         ],
-    //         [
-    //             'question' => 'Can I import cURL commands, Postman collections, and OpenAPI specs?',
-    //             'answer' => 'Yes! You can paste any standard cURL command (e.g. copied from Chrome DevTools or documentation) to instantly populate the HTTP method, URL, headers, and body. You can also import Postman Collection v2.1 JSON files and OpenAPI/Swagger specifications.'
-    //         ],
-    //         [
-    //             'question' => 'Can I export requests and collections?',
-    //             'answer' => 'Yes. You can export individual requests or full request collections to Postman v2.1 JSON, cURL commands, raw JSON, or clean Markdown API documentation for your team.'
-    //         ],
-    //         [
-    //             'question' => 'Is this tool secure for sensitive or internal testing?',
-    //             'answer' => 'Extremely secure. Because all processing happens inside your browser’s isolated JavaScript runtime and data is stored strictly in your browser’s LocalStorage, no third party or server can access your secrets, API keys, or data.'
-    //         ],
-    //         [
-    //             'question' => 'How does the Performance Analyzer measure API response timing?',
-    //             'answer' => 'The Performance Analyzer captures high-resolution timing using the browser’s performance.now() API and the PerformanceResourceTiming API. It measures total request duration, approximate TTFB, download latency, payload size, and compression efficiency.'
-    //         ],
-    //     ],
-    // ],
+    'api-request-tester' => [
+        'question' => 'What is an API Request Tester & Performance Analyzer?',
+        'description' => [
+            'An API Request Tester & Performance Analyzer is an essential browser-based developer utility designed to craft, inspect, debug, and benchmark HTTP and REST API endpoints directly from your browser. Comparable to a lightweight browser-based version of Postman or Insomnia, it allows software engineers, QA testers, and backend developers to execute GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS requests with full control over query parameters, headers, body formats (JSON, XML, Form Data, Raw), and authentication mechanisms (Bearer Tokens, Basic Auth, API Keys, Custom Headers, and JWT).',
+            'Unlike traditional API clients that process traffic through remote proxy servers, Toolzy operates with a strict 100% client-side, zero-proxy privacy architecture. All requests originate directly from your web browser, ensuring that your API keys, credentials, tokens, payloads, and internal endpoint structures remain entirely private and never touch Toolzy servers.',
+            'In addition to request crafting, the tool features an integrated API Performance Analyzer that measures latency, response times, Time To First Byte (TTFB), payload sizes, and header compression ratios with high precision. With automated JSON/XML tree inspection, sandboxed HTML previews, cURL/Postman import and export capabilities, local request history, collections management, and automated code snippet generation across 10 programming languages, Toolzy provides an end-to-end API debugging environment for modern web development.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'What is an API tester?',
+                'answer' => 'An API tester is a developer tool that allows you to construct HTTP requests (such as GET, POST, PUT, DELETE), send them to web servers or API endpoints, and inspect the HTTP status code, response body, response headers, and performance timing returned by the server. It simplifies debugging backend services, verifying authentication, and benchmarking response speed.'
+            ],
+            [
+                'question' => 'Can I test REST APIs with this tool?',
+                'answer' => 'Yes! Toolzy fully supports all standard HTTP methods used in RESTful architecture including GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS. You can send JSON, XML, Form Data, or URL-encoded payloads, set custom headers, configure authentication, and view formatted responses.'
+            ],
+            [
+                'question' => 'Why do I get CORS (Cross-Origin Resource Sharing) errors?',
+                'answer' => 'CORS is a browser security mechanism that prevents web pages from making AJAX requests to a different domain unless the target server explicitly returns the Access-Control-Allow-Origin header allowing the request. Since Toolzy sends requests directly from your browser (and never proxies them through a server), your browser will enforce CORS rules. To test APIs blocked by CORS, ensure your API server includes the Access-Control-Allow-Origin header, test local endpoints configured with CORS, or use browser extensions that allow cross-origin requests for developer testing.'
+            ],
+            [
+                'question' => 'Does Toolzy proxy, store, or inspect my API requests?',
+                'answer' => 'Never. Toolzy operates on a strict zero-proxy, privacy-first model. Every API request is dispatched directly from your browser using the native Web Fetch API. No request body, header, URL, parameter, API key, or authorization token passes through or is stored on Toolzy servers.'
+            ],
+            [
+                'question' => 'Can I send Bearer tokens and custom headers?',
+                'answer' => 'Yes. The Authentication tab supports Bearer Token (JWT / OAuth2), Basic Auth (Base64 encoded username & password), API Keys (in header or query string), and Custom Headers. You can also view and decode JWT payloads directly within the tool.'
+            ],
+            [
+                'question' => 'Can I test JSON and XML APIs?',
+                'answer' => 'Yes. Toolzy features built-in JSON and XML formatters, syntax highlighting, collapsible interactive tree viewers, node search, path copying, and schema validation before sending requests.'
+            ],
+            [
+                'question' => 'Can I import cURL commands, Postman collections, and OpenAPI specs?',
+                'answer' => 'Yes! You can paste any standard cURL command (e.g. copied from Chrome DevTools or documentation) to instantly populate the HTTP method, URL, headers, and body. You can also import Postman Collection v2.1 JSON files and OpenAPI/Swagger specifications.'
+            ],
+            [
+                'question' => 'Can I export requests and collections?',
+                'answer' => 'Yes. You can export individual requests or full request collections to Postman v2.1 JSON, cURL commands, raw JSON, or clean Markdown API documentation for your team.'
+            ],
+            [
+                'question' => 'Is this tool secure for sensitive or internal testing?',
+                'answer' => 'Extremely secure. Because all processing happens inside your browser’s isolated JavaScript runtime and data is stored strictly in your browser’s LocalStorage, no third party or server can access your secrets, API keys, or data.'
+            ],
+            [
+                'question' => 'How does the Performance Analyzer measure API response timing?',
+                'answer' => 'The Performance Analyzer captures high-resolution timing using the browser’s performance.now() API and the PerformanceResourceTiming API. It measures total request duration, approximate TTFB, download latency, payload size, and compression efficiency.'
+            ],
+        ],
+    ],
     'laravel-eloquent-query-analyzer' => [
         'question' => 'What is the Laravel Eloquent Query Analyzer & Optimizer?',
         'description' => [
