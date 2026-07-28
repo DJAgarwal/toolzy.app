@@ -95,6 +95,9 @@
                     <li class="nav-item">
                         <a class="nav-link fs-5" href="{{ url('/support-toolzy') }}" @if(request()->is('support-toolzy')) aria-current="page" @endif>Donate</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="{{ url('/blog') }}" @if(request()->is('blog*')) aria-current="page" @endif>Blog</a>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -138,6 +141,7 @@
             </p>
             <nav class="footer-links d-flex flex-wrap justify-content-center gap-3 gap-md-4 mb-3">
                 <a href="{{ url('/about') }}" class="footer-link text-uppercase">About</a>
+                <a href="{{ url('/blog') }}" class="footer-link text-uppercase">Blog</a>
                 <a href="{{ url('/contact') }}" class="footer-link text-uppercase">Contact</a>
                 <a href="{{ url('/disclaimer') }}" class="footer-link text-uppercase">Disclaimer</a>
                 <a href="{{ url('/privacy-policy') }}" class="footer-link text-uppercase">Privacy Policy</a>

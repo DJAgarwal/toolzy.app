@@ -432,6 +432,73 @@ class StaticPageSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
+            [
+                'page_name' => 'blog',
+                'meta_title' => 'Toolzy Blog - Developer Guides, Tech Tutorials & Free Online Utilities',
+                'meta_description' => 'Discover expert technical guides, developer tutorials, and productivity tips on Toolzy. Learn how to optimize your digital workflow with free online converters, text tools, code formatters, and web utilities.',
+                'meta_keywords' => 'toolzy blog, developer guides, tech tutorials, productivity hacks, free online tools, web utility guides, code formatters, image converters, pdf tools, developer tools blog, web development tips',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'Blog',
+                            '@id' => url('/blog'),
+                            'url' => url('/blog'),
+                            'name' => 'Toolzy Blog - Tech Tutorials & Web Utility Guides',
+                            'description' => 'Discover expert technical guides, developer tutorials, and productivity tips on Toolzy. Learn how to optimize your digital workflow with free online converters, text tools, code formatters, and web utilities.',
+                            'inLanguage' => 'en',
+                            'about' => [
+                                'Developer Tools',
+                                'Web Utilities',
+                                'Online Converters',
+                                'Code Formatting',
+                                'Productivity Optimization'
+                            ],
+                            'publisher' => [
+                                '@type' => 'Organization',
+                                'name' => 'Toolzy',
+                                'url' => url('/'),
+                                'logo' => url('/images/logo.webp')
+                            ],
+                            'mainEntityOfPage' => url('/blog')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ],
+                            'description' => 'Toolzy offers free and unlimited online tools for developers, designers, and web creators — fast, secure, and privacy-focused.',
+                            'sameAs' => [
+                                'https://twitter.com/Toolzy',
+                                'https://facebook.com/Toolzy'
+                            ]
+                        ],
+                        [
+                            '@type' => 'BreadcrumbList',
+                            'itemListElement' => [
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 1,
+                                    'name' => 'Home',
+                                    'item' => url('/')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 2,
+                                    'name' => 'Blog',
+                                    'item' => url('/blog')
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
         ];
         $urls = [];
         \App\Models\StaticPage::withoutEvents(function () use ($pages, &$urls) {
