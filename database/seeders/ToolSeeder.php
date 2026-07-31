@@ -2283,6 +2283,126 @@ class ToolSeeder extends Seeder
                     ]
                 ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
             ],
+            [
+                'page_name' => 'instagram-video-downloader',
+                'category' => 'Media & Downloader Tools',
+                'meta_title' => 'Instagram Video Downloader - Download Instagram Reels & Videos Online | Toolzy',
+                'meta_description' => 'Download Instagram Reels and public Instagram videos online with Toolzy. Paste the Instagram link and download videos quickly using a clean and easy interface.',
+                'json_ld' => json_encode([
+                    '@context' => 'https://schema.org',
+                    '@graph' => [
+                        [
+                            '@type' => 'WebPage',
+                            '@id' => url('/tools/instagram-video-downloader'),
+                            'name' => 'Instagram Video Downloader - Download Instagram Reels & Videos Online | Toolzy',
+                            'url' => url('/tools/instagram-video-downloader'),
+                            'description' => 'Download Instagram Reels and public Instagram videos online with Toolzy. Paste the Instagram link and download videos quickly using a clean and easy interface.',
+                            'inLanguage' => 'en',
+                            'mainEntityOfPage' => url('/tools/instagram-video-downloader')
+                        ],
+                        [
+                            '@type' => 'Organization',
+                            'name' => 'Toolzy',
+                            'url' => url('/'),
+                            'logo' => url('/images/logo.webp'),
+                            'contactPoint' => [
+                                '@type' => 'ContactPoint',
+                                'contactType' => 'Customer Support',
+                                'email' => 'dheerajagarwal1995@gmail.com',
+                                'availableLanguage' => 'en'
+                            ]
+                        ],
+                        [
+                            '@type' => 'BreadcrumbList',
+                            'itemListElement' => [
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 1,
+                                    'name' => 'Home',
+                                    'item' => url('/')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 2,
+                                    'name' => 'Tools',
+                                    'item' => url('/tools')
+                                ],
+                                [
+                                    '@type' => 'ListItem',
+                                    'position' => 3,
+                                    'name' => 'Instagram Video Downloader',
+                                    'item' => url('/tools/instagram-video-downloader')
+                                ]
+                            ]
+                        ],
+                        [
+                            '@type' => 'SoftwareApplication',
+                            'name' => 'Instagram Video Downloader',
+                            'operatingSystem' => 'All',
+                            'applicationCategory' => 'UtilitiesApplication',
+                            'description' => 'Download Instagram Reels and public Instagram videos online with Toolzy. Paste the Instagram link and download videos quickly using a clean and easy interface.',
+                            'offers' => [
+                                '@type' => 'Offer',
+                                'price' => '0',
+                                'priceCurrency' => 'USD'
+                            ]
+                        ],
+                        [
+                            '@type' => 'FAQPage',
+                            'mainEntity' => [
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'How do I download an Instagram video?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'Copy the URL of the Instagram Reel or video, paste it into Toolzy Instagram Video Downloader, click Download Video, select your resolution, and save the MP4 file to your device.'
+                                    ]
+                                ],
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'Can I download Instagram Reels?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'Yes! Toolzy fully supports downloading public Instagram Reels in high definition.'
+                                    ]
+                                ],
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'Does this work on mobile?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'Yes, Toolzy Instagram Video Downloader is fully optimized for iOS, Android, and all modern mobile web browsers.'
+                                    ]
+                                ],
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'Do I need an account?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'No account or sign-up is required to download Instagram videos with Toolzy.'
+                                    ]
+                                ],
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'Are private videos supported?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'No, only publicly accessible Instagram Reels and videos are supported.'
+                                    ]
+                                ],
+                                [
+                                    '@type' => 'Question',
+                                    'name' => 'Is this tool free?',
+                                    'acceptedAnswer' => [
+                                        '@type' => 'Answer',
+                                        'text' => 'Yes, this tool is 100% free to use with unlimited downloads.'
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ],
         ];
         $urls = [];
         \App\Models\Tool::withoutEvents(function () use ($pages, &$urls) {

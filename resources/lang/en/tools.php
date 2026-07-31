@@ -1048,5 +1048,39 @@ return [
                 'answer' => 'No. The tool never executes or evaluates your PHP code. It operates exclusively as a static code analysis parser that examines code syntax and structural patterns safely, eliminating any risk of executing unverified code.'
             ]
         ]
+    ],
+    'instagram-video-downloader' => [
+        'question' => 'What is the Instagram Video Downloader & How Does It Work?',
+        'description' => [
+            'Toolzy’s Instagram Video Downloader is a fast, free, and secure online utility designed to help users download high-definition videos, Instagram Reels, and IGTV posts directly to their devices. Built with modern web technologies, this tool eliminates the need for third-party mobile applications, browser extensions, or account sign-ins.',
+            'Whether you need to save an inspiring Instagram Reel, archive educational video content, or store memorable public posts for offline viewing, Toolzy delivers a seamless experience. Simply paste any valid public Instagram video link into the input field, click "Download Video", and save the original full quality MP4 file directly to your desktop, tablet, or smartphone.',
+            'Our system respects user privacy and data security. The tool operates with zero data tracking, does not store downloaded files on remote servers, and strictly supports publicly accessible Instagram content. Experience lightning-fast metadata parsing and direct video downloads with Toolzy’s clean, ad-free interface.'
+        ],
+        'faqs' => [
+            [
+                'question' => 'How do I download an Instagram video?',
+                'answer' => 'Downloading an Instagram video with Toolzy is quick and simple: 1) Open Instagram and copy the URL of the Reel or video you wish to save. 2) Paste the copied link into Toolzy’s Instagram Video Downloader search bar. 3) Click the "Download Video" button to parse the media metadata. 4) Select your preferred video resolution and click Download to save the MP4 video file to your device.'
+            ],
+            [
+                'question' => 'Can I download Instagram Reels?',
+                'answer' => 'Yes! Toolzy fully supports downloading Instagram Reels from public accounts. Whether the link starts with /reel/, /p/, or /tv/, our parser automatically detects the video stream and provides the highest available quality for download.'
+            ],
+            [
+                'question' => 'Does this work on mobile?',
+                'answer' => 'Absolutely! Toolzy’s Instagram Video Downloader is 100% responsive and works perfectly across all modern mobile browsers including Safari on iOS, Chrome on Android, Samsung Internet, and Firefox Mobile. No application installation or root/jailbreak is required.'
+            ],
+            [
+                'question' => 'Do I need an account?',
+                'answer' => 'No. You do not need an Instagram account or a Toolzy account to use this service. The downloader works completely anonymously without requiring any personal details, credentials, or sign-ups.'
+            ],
+            [
+                'question' => 'Are private videos supported?',
+                'answer' => 'No. To respect content creators\' privacy and Instagram terms of service, Toolzy only supports downloading media from publicly accessible Instagram profiles. Videos from private accounts or private direct messages cannot be retrieved.'
+            ],
+            [
+                'question' => 'Is this tool free?',
+                'answer' => 'Yes, Toolzy’s Instagram Video Downloader is 100% free to use with unlimited downloads and no hidden subscription fees.'
+            ]
+        ]
     ]
 ];

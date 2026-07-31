@@ -15,4 +15,5 @@ return [
     'Online URL Encoder and Decoder - Toolzy',
     'Online Text to Slug Generator - Toolzy',
     'Online Remove Duplicate Lines from Text - Toolzy',
+    'Instagram Video Downloader - Download Instagram Reels & Videos Online | Toolzy',
 ];
