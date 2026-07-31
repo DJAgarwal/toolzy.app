@@ -3,10 +3,11 @@
 namespace App\Services\InstagramDownloader;
 
 use App\Services\InstagramDownloader\Contracts\InstagramRetrievalInterface;
+use App\Services\InstagramDownloader\Drivers\BtchDownloaderDriver;
 use App\Services\InstagramDownloader\Drivers\EmbedScraperDriver;
 use App\Services\InstagramDownloader\Drivers\OEmbedDriver;
+use App\Services\InstagramDownloader\Drivers\YtDlpDriver;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -21,7 +22,9 @@ class InstagramDownloaderService
     public function __construct(?array $drivers = null)
     {
         $this->drivers = $drivers ?? [
+            new BtchDownloaderDriver(),
             new EmbedScraperDriver(),
+            new YtDlpDriver(),
             new OEmbedDriver(),
         ];
     }
@@ -39,7 +42,6 @@ class InstagramDownloaderService
         }
 
         $path = $parsed['path'] ?? '/';
-        // Ensure trailing slash
         if (!str_ends_with($path, '/')) {
             $path .= '/';
         }
@@ -110,7 +112,7 @@ class InstagramDownloaderService
 
             return [
                 'success' => false,
-                'error' => 'Unable to fetch video media. The post might be private, deleted, or restricted by Instagram.',
+                'error' => 'Unable to fetch video media. The post might be private or deleted on Instagram.',
             ];
         });
     }
@@ -120,14 +122,16 @@ class InstagramDownloaderService
      */
     public function proxyDownload(string $videoUrl, string $shortcode): StreamedResponse|\Illuminate\Http\JsonResponse
     {
-        // SSRF Safety Check: Ensure target URL belongs to trusted Instagram CDN domains
         $host = parse_url($videoUrl, PHP_URL_HOST);
         if (!$host) {
             return response()->json(['error' => 'Invalid video stream URL'], 400);
         }
 
         $host = strtolower($host);
-        $allowedDomains = ['.cdninstagram.com', '.fbcdn.net', '.instagram.com', 'cdninstagram.com', 'fbcdn.net', 'instagram.com'];
+        $allowedDomains = [
+            '.cdninstagram.com', '.fbcdn.net', '.instagram.com', 'cdninstagram.com', 'fbcdn.net', 'instagram.com',
+            '.rapidcdn.app', 'rapidcdn.app', '.snapinst.app', 'snapinst.app', '.snapsave.app', 'snapsave.app', '.fastdl.app', 'fastdl.app'
+        ];
         $isAllowed = false;
 
         foreach ($allowedDomains as $domain) {
@@ -151,9 +155,8 @@ class InstagramDownloaderService
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-            curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/125.0.0.0 Safari/537.36');
+            curl_setopt($ch, CURLOPT_USERAGENT, 'TelegramBot (like TwitterBot)');
             
-            // Output directly to stdout stream
             curl_exec($ch);
             curl_close($ch);
         }, $filename, [

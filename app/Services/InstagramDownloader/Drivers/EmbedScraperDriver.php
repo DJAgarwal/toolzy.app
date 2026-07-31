@@ -8,35 +8,109 @@ use Illuminate\Support\Facades\Log;
 
 class EmbedScraperDriver implements InstagramRetrievalInterface
 {
-    /**
-     * User-Agent rotation list prioritized by bots that receive raw OpenGraph media payloads from Instagram.
-     */
     protected array $userAgents = [
-        'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)',
-        'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-        'Twitterbot/1.0',
         'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1',
     ];
 
     public function retrieve(string $shortcode, string $normalizedUrl): ?array
     {
-        // Strategy 1: Direct post/reel page scraping with bot User-Agent (Highest success rate)
-        $pageResult = $this->scrapeDirectPage($normalizedUrl, $shortcode);
-        if ($pageResult && !empty($pageResult['download_url'])) {
-            return $pageResult;
-        }
-
-        // Strategy 2: Embed iframe scraping
+        // Strategy 1: Embed Page Scraping with iframe navigation headers
         $embedResult = $this->scrapeEmbedPage($shortcode);
         if ($embedResult && !empty($embedResult['download_url'])) {
             return $embedResult;
+        }
+
+        // Strategy 2: Direct Page / OpenGraph Scraping
+        $pageResult = $this->scrapeDirectPage($normalizedUrl, $shortcode);
+        if ($pageResult && !empty($pageResult['download_url'])) {
+            return $pageResult;
         }
 
         return null;
     }
 
     /**
-     * Scrape Instagram direct post/reel page HTML using Bot User-Agents
+     * Scrape Instagram Embed iframe endpoint
+     */
+    protected function scrapeEmbedPage(string $shortcode): ?array
+    {
+        $embedUrl = "https://www.instagram.com/p/{$shortcode}/embed/captioned/";
+        
+        foreach ($this->userAgents as $ua) {
+            try {
+                $response = Http::withHeaders([
+                    'User-Agent' => $ua,
+                    'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language' => 'en-US,en;q=0.9',
+                    'Sec-Fetch-Dest' => 'iframe',
+                    'Sec-Fetch-Mode' => 'navigate',
+                    'Sec-Fetch-Site' => 'cross-site',
+                ])->timeout(4)->get($embedUrl);
+
+                if (!$response->successful()) {
+                    continue;
+                }
+
+                $html = $response->body();
+
+                if (str_contains($html, 'PolarisErrorRoot.entrypoint')) {
+                    continue;
+                }
+
+                $candidates = [];
+                if (preg_match_all('/(https?:[\\\\\/]+[^\s"\'<>]+\.mp4[^\s"\'<>]*)/i', $html, $matches)) {
+                    $candidates = $matches[1];
+                }
+
+                $videoUrl = $this->selectBestMuxedVideoUrl($candidates);
+
+                if (!$videoUrl) {
+                    if (preg_match('/"video_url":"([^"]+)"/', $html, $matches)) {
+                        $videoUrl = stripcslashes($matches[1]);
+                    } elseif (preg_match('/<video[^>]+src="([^"]+)"/i', $html, $matches)) {
+                        $videoUrl = html_entity_decode($matches[1]);
+                    }
+                }
+
+                $thumbnail = null;
+                if (preg_match('/"display_url":"([^"]+)"/', $html, $matches)) {
+                    $thumbnail = stripcslashes($matches[1]);
+                } elseif (preg_match('/class="EmbeddedMediaImage"[^>]+src="([^"]+)"/i', $html, $matches)) {
+                    $thumbnail = html_entity_decode($matches[1]);
+                }
+
+                $username = 'instagram_user';
+                if (preg_match('/"username":"([^"]+)"/', $html, $matches)) {
+                    $username = $matches[1];
+                } elseif (preg_match('/class="UsernameText"[^>]*>([^<]+)</i', $html, $matches)) {
+                    $username = trim($matches[1]);
+                }
+
+                $caption = null;
+                if (preg_match('/class="Caption"[^>]*>(.*?)<\/div>/is', $html, $matches)) {
+                    $caption = trim(strip_tags($matches[1]));
+                }
+
+                if ($videoUrl) {
+                    return $this->formatResult([
+                        'shortcode' => $shortcode,
+                        'video_url' => $videoUrl,
+                        'thumbnail' => $thumbnail,
+                        'username' => $username,
+                        'caption' => $caption,
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                Log::warning("EmbedScraperDriver embed error for shortcode {$shortcode}: " . $e->getMessage());
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Scrape Instagram direct post/reel page HTML
      */
     protected function scrapeDirectPage(string $normalizedUrl, string $shortcode): ?array
     {
@@ -47,7 +121,7 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
                     'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                     'Accept-Language' => 'en-US,en;q=0.9',
                     'Cache-Control' => 'no-cache',
-                ])->timeout(10)->get($normalizedUrl);
+                ])->timeout(4)->get($normalizedUrl);
 
                 if (!$response->successful()) {
                     continue;
@@ -55,15 +129,17 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
 
                 $html = $response->body();
 
-                // Extract all candidate MP4 links directly from page script / payload
+                if (str_contains($html, 'PolarisErrorRoot.entrypoint')) {
+                    continue;
+                }
+
                 $candidates = [];
-                if (preg_match_all('/(https?:\\\\?\/\\\\?\/[^\s"\'<>]+\.mp4[^\s"\'<>]*)/i', $html, $matches)) {
+                if (preg_match_all('/(https?:[\\\\\/]+[^\s"\'<>]+\.mp4[^\s"\'<>]*)/i', $html, $matches)) {
                     $candidates = $matches[1];
                 }
 
                 $videoUrl = $this->selectBestMuxedVideoUrl($candidates);
 
-                // OpenGraph Meta Fallback
                 if (!$videoUrl) {
                     if (preg_match('/<meta\s+property="og:video(?::secure_url)?"\s+content="([^"]+)"/i', $html, $m)) {
                         $videoUrl = html_entity_decode($m[1]);
@@ -72,19 +148,16 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
                     }
                 }
 
-                // OpenGraph Thumbnail
                 $thumbnail = null;
                 if (preg_match('/<meta\s+property="og:image(?::secure_url)?"\s+content="([^"]+)"/i', $html, $m)) {
                     $thumbnail = html_entity_decode($m[1]);
                 }
 
-                // OpenGraph Title / Caption
                 $title = null;
                 if (preg_match('/<meta\s+property="og:title"\s+content="([^"]+)"/i', $html, $m)) {
                     $title = html_entity_decode($m[1]);
                 }
 
-                // Extract Username from title (e.g., "9GAG: Go Fun The World on Instagram: ...")
                 $username = 'instagram_user';
                 if ($title && preg_match('/^([^•:]+?)(?:\s+on\s+Instagram|\s*[:•])/i', $title, $m)) {
                     $username = trim($m[1]);
@@ -108,81 +181,7 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
     }
 
     /**
-     * Scrape Instagram Embed iframe endpoint
-     */
-    protected function scrapeEmbedPage(string $shortcode): ?array
-    {
-        $embedUrl = "https://www.instagram.com/p/{$shortcode}/embed/captioned/";
-        
-        try {
-            $response = Http::withHeaders([
-                'User-Agent' => $this->userAgents[0],
-                'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Language' => 'en-US,en;q=0.9',
-            ])->timeout(8)->get($embedUrl);
-
-            if (!$response->successful()) {
-                return null;
-            }
-
-            $html = $response->body();
-
-            // Extract video URL from embed HTML
-            $candidates = [];
-            if (preg_match_all('/(https?:\\\\?\/\\\\?\/[^\s"\'<>]+\.mp4[^\s"\'<>]*)/i', $html, $matches)) {
-                $candidates = $matches[1];
-            }
-
-            $videoUrl = $this->selectBestMuxedVideoUrl($candidates);
-
-            if (!$videoUrl) {
-                if (preg_match('/"video_url":"([^"]+)"/', $html, $matches)) {
-                    $videoUrl = stripcslashes($matches[1]);
-                } elseif (preg_match('/<video[^>]+src="([^"]+)"/i', $html, $matches)) {
-                    $videoUrl = html_entity_decode($matches[1]);
-                }
-            }
-
-            // Extract Thumbnail
-            $thumbnail = null;
-            if (preg_match('/"display_url":"([^"]+)"/', $html, $matches)) {
-                $thumbnail = stripcslashes($matches[1]);
-            } elseif (preg_match('/<img[^>]+class="EmbeddedMediaImage"[^>]+src="([^"]+)"/i', $html, $matches)) {
-                $thumbnail = html_entity_decode($matches[1]);
-            }
-
-            // Extract Username
-            $username = 'instagram_user';
-            if (preg_match('/"username":"([^"]+)"/', $html, $matches)) {
-                $username = $matches[1];
-            } elseif (preg_match('/class="UsernameText"[^>]*>([^<]+)</i', $html, $matches)) {
-                $username = trim($matches[1]);
-            }
-
-            // Extract Caption
-            $caption = null;
-            if (preg_match('/class="Caption"[^>]*>(.*?)<\/div>/is', $html, $matches)) {
-                $caption = trim(strip_tags($matches[1]));
-            }
-
-            if ($videoUrl) {
-                return $this->formatResult([
-                    'shortcode' => $shortcode,
-                    'video_url' => $videoUrl,
-                    'thumbnail' => $thumbnail,
-                    'username' => $username,
-                    'caption' => $caption,
-                ]);
-            }
-        } catch (\Throwable $e) {
-            Log::warning("EmbedScraperDriver embed error for shortcode {$shortcode}: " . $e->getMessage());
-        }
-
-        return null;
-    }
-
-    /**
-     * Select the best candidate MP4 URL that contains both video and audio tracks.
+     * Select the best candidate MP4 URL.
      */
     protected function selectBestMuxedVideoUrl(array $candidates): ?string
     {
@@ -202,13 +201,12 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
 
             $score = 10;
 
-            // Progressive streams contain multiplexed Audio (AAC) + Video (H.264)
             if (str_contains($efg, 'xpv_progressive') || str_contains($efg, 'progressive_recipe') || str_contains($clean, 'progressive')) {
                 $score = 100;
             } elseif (str_contains($efg, 'dash_baseline')) {
-                $score = 5; // DASH video-only stream
+                $score = 5;
             } elseif (str_contains($efg, 'audio')) {
-                $score = 1; // Audio-only stream
+                $score = 1;
             }
 
             $scored[] = [
@@ -234,13 +232,11 @@ class EmbedScraperDriver implements InstagramRetrievalInterface
         $shortcode = $raw['shortcode'];
         $videoUrl = $raw['video_url'];
 
-        // Clean double slashes or escaping if present
         $videoUrl = str_replace(['\u0026', '&amp;'], '&', $videoUrl);
         $videoUrl = preg_replace('/(?:u003C|%3C|<).*$/i', '', $videoUrl);
         
         $thumbnail = !empty($raw['thumbnail']) ? str_replace(['\u0026', '&amp;'], '&', $raw['thumbnail']) : null;
 
-        // Formulate available resolution options
         $resolutions = [
             [
                 'label' => 'HD (1080p)',

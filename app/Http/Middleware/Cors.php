@@ -45,8 +45,8 @@ class Cors
             "font-src 'self' https://cdnjs.cloudflare.com data:; " .
             "worker-src 'self' blob:; " .
             "connect-src 'self' http: https: ws: wss: https://www.google-analytics.com https://cloudflareinsights.com https://www.google.com; " .
-            "img-src 'self' https://www.google-analytics.com https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com cdninstagram.com fbcdn.net instagram.com data: blob:; " .
-            "media-src 'self' blob: data: https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com cdninstagram.com fbcdn.net instagram.com; " .
+            "img-src 'self' https://www.google-analytics.com https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com https://*.rapidcdn.app https://rapidcdn.app https://*.snapinst.app https://snapinst.app https://*.snapsave.app https://snapsave.app https://*.fastdl.app https://fastdl.app cdninstagram.com fbcdn.net instagram.com data: blob:; " .
+            "media-src 'self' blob: data: https://*.cdninstagram.com https://*.fbcdn.net https://*.instagram.com https://*.rapidcdn.app https://rapidcdn.app https://*.snapinst.app https://snapinst.app https://*.snapsave.app https://snapsave.app https://*.fastdl.app https://fastdl.app cdninstagram.com fbcdn.net instagram.com; " .
             "object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         );
         $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
