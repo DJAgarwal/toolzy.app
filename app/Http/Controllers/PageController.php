@@ -18,6 +18,10 @@ class PageController extends Controller
         if (!$data) {
             abort(404);
         }
+        $currentPath = request()->path();
+        if ($data['page_type'] === 'tools' && !str_starts_with($currentPath, 'tools/')) {
+            return redirect()->to('/tools/' . $page_name, 301);
+        }
 
         $viewFolder = $data['page_type'] === 'tools' ? 'tools' : 'static';
         if ($viewFolder === 'tools') {
