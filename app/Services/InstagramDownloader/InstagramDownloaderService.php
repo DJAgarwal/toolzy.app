@@ -6,6 +6,7 @@ use App\Services\InstagramDownloader\Contracts\InstagramRetrievalInterface;
 use App\Services\InstagramDownloader\Drivers\BtchDownloaderDriver;
 use App\Services\InstagramDownloader\Drivers\EmbedScraperDriver;
 use App\Services\InstagramDownloader\Drivers\OEmbedDriver;
+use App\Services\InstagramDownloader\Drivers\PhpSnapSaveDriver;
 use App\Services\InstagramDownloader\Drivers\YtDlpDriver;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
@@ -22,6 +23,7 @@ class InstagramDownloaderService
     public function __construct(?array $drivers = null)
     {
         $this->drivers = $drivers ?? [
+            new PhpSnapSaveDriver(),
             new BtchDownloaderDriver(),
             new EmbedScraperDriver(),
             new YtDlpDriver(),
