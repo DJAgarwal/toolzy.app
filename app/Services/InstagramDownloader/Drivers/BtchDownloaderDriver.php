@@ -16,7 +16,17 @@ class BtchDownloaderDriver implements InstagramRetrievalInterface
                 return null;
             }
 
-            $process = new Process(['node', $nodeScript, $normalizedUrl]);
+            // Pass Windows system environment variables so Node.js CSPRNG/crypto initializes properly under Apache/XAMPP
+            $env = [
+                'SystemRoot' => getenv('SystemRoot') ?: 'C:\\WINDOWS',
+                'WINDIR' => getenv('WINDIR') ?: 'C:\\WINDOWS',
+                'PATH' => getenv('PATH') ?: 'C:\\WINDOWS\\system32;C:\\Program Files\\nodejs',
+                'PATHEXT' => getenv('PATHEXT') ?: '.COM;.EXE;.BAT;.CMD',
+                'TEMP' => getenv('TEMP') ?: 'C:\\WINDOWS\\Temp',
+                'TMP' => getenv('TMP') ?: 'C:\\WINDOWS\\Temp',
+            ];
+
+            $process = new Process(['node', $nodeScript, $normalizedUrl], null, $env);
             $process->setTimeout(15);
             $process->run();
 

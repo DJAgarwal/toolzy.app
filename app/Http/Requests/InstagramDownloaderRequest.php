@@ -35,15 +35,22 @@ class InstagramDownloaderRequest extends FormRequest
                     }
 
                     $host = strtolower($host);
-                    $allowedHosts = ['instagram.com', 'www.instagram.com', 'm.instagram.com'];
+                    $allowedHosts = [
+                        'instagram.com', 'www.instagram.com', 'm.instagram.com', 'v.instagram.com',
+                        'instagr.am', 'www.instagr.am', 'm.instagr.am', 'ddinstagram.com', 'www.ddinstagram.com'
+                    ];
                     
-                    if (!in_array($host, $allowedHosts, true)) {
-                        $fail('Only Instagram URLs (instagram.com) are supported. Links from YouTube, Facebook, or other platforms are not accepted.');
+                    if (!in_array($host, $allowedHosts, true) && !str_ends_with($host, '.instagram.com') && !str_ends_with($host, '.instagr.am')) {
+                        $fail('Only Instagram URLs (instagram.com / instagr.am) are supported.');
                         return;
                     }
 
                     $path = parse_url($value, PHP_URL_PATH) ?? '';
-                    if (!preg_match('#/(reel|p|tv)/([A-Za-z0-9_-]+)#i', $path)) {
+                    $hasShortcode = preg_match('#/(?:reels?|p|tv|share/reel|share/p|posts?)/([A-Za-z0-9_-]{5,})#i', $path) ||
+                                    preg_match('#/[^/]+/(?:reels?|p|tv)/([A-Za-z0-9_-]{5,})#i', $path) ||
+                                    preg_match('#/([A-Za-z0-9_-]{9,12})/?(?:embed)?/?$#i', $path);
+
+                    if (!$hasShortcode) {
                         $fail('Please provide a valid Instagram Reel, Post, or IGTV video URL (e.g., https://www.instagram.com/reel/shortcode/).');
                     }
                 },

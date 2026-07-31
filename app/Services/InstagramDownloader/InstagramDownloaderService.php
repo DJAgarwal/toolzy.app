@@ -54,10 +54,29 @@ class InstagramDownloaderService
      */
     public function extractShortcode(string $url): ?string
     {
-        $path = parse_url($url, PHP_URL_PATH) ?? '';
-        if (preg_match('#/(reel|p|tv)/([A-Za-z0-9_-]+)#i', $path, $matches)) {
-            return $matches[2];
+        $path = parse_url(trim($url), PHP_URL_PATH) ?? '';
+        
+        // Pattern 1: /reel/shortcode, /reels/shortcode, /p/shortcode, /tv/shortcode, /share/reel/shortcode, /share/p/shortcode
+        if (preg_match('#/(?:reels?|p|tv|share/reel|share/p|posts?)/([A-Za-z0-9_-]{5,})#i', $path, $matches)) {
+            if (strtolower($matches[1]) !== 'embed') {
+                return $matches[1];
+            }
         }
+        
+        // Pattern 2: /username/reel/shortcode or /username/p/shortcode
+        if (preg_match('#/[^/]+/(?:reels?|p|tv)/([A-Za-z0-9_-]{5,})#i', $path, $matches)) {
+            if (strtolower($matches[1]) !== 'embed') {
+                return $matches[1];
+            }
+        }
+
+        // Pattern 3: direct shortcode at end of path e.g. /DOFfDzzkt5m/
+        if (preg_match('#/([A-Za-z0-9_-]{9,12})/?(?:embed)?/?$#i', $path, $matches)) {
+            if (strtolower($matches[1]) !== 'embed') {
+                return $matches[1];
+            }
+        }
+
         return null;
     }
 
@@ -78,43 +97,51 @@ class InstagramDownloaderService
 
         $cacheKey = "ig_downloader_{$shortcode}";
 
-        return Cache::remember($cacheKey, 1800, function () use ($shortcode, $normalizedUrl) {
-            foreach ($this->drivers as $driver) {
-                try {
-                    $media = $driver->retrieve($shortcode, $normalizedUrl);
+        // Only return cached payload if it was a SUCCESSFUL retrieval
+        $cached = Cache::get($cacheKey);
+        if (is_array($cached) && !empty($cached['success'])) {
+            return $cached;
+        }
 
-                    if ($media && !empty($media['download_url'])) {
-                        return [
-                            'success' => true,
-                            'data' => [
-                                'shortcode' => $shortcode,
-                                'url' => $normalizedUrl,
-                                'thumbnail' => $media['thumbnail'] ?? null,
-                                'username' => $media['username'] ?? 'instagram_user',
-                                'caption' => $media['caption'] ?? 'Instagram Video',
-                                'download_url' => $media['download_url'],
-                                'resolutions' => $media['resolutions'] ?? [
-                                    [
-                                        'label' => 'HD (1080p)',
-                                        'quality' => '1080p',
-                                        'format' => 'MP4',
-                                        'url' => $media['download_url'],
-                                    ]
-                                ],
-                                'source' => $media['source'] ?? 'Service',
+        foreach ($this->drivers as $driver) {
+            try {
+                $media = $driver->retrieve($shortcode, $normalizedUrl);
+
+                if ($media && !empty($media['download_url'])) {
+                    $result = [
+                        'success' => true,
+                        'data' => [
+                            'shortcode' => $shortcode,
+                            'url' => $normalizedUrl,
+                            'thumbnail' => $media['thumbnail'] ?? null,
+                            'username' => $media['username'] ?? 'instagram_user',
+                            'caption' => $media['caption'] ?? 'Instagram Video',
+                            'download_url' => $media['download_url'],
+                            'resolutions' => $media['resolutions'] ?? [
+                                [
+                                    'label' => 'HD (1080p)',
+                                    'quality' => '1080p',
+                                    'format' => 'MP4',
+                                    'url' => $media['download_url'],
+                                ]
                             ],
-                        ];
-                    }
-                } catch (\Throwable $e) {
-                    Log::error("Instagram retrieval driver error ({$shortcode}): " . $e->getMessage());
-                }
-            }
+                            'source' => $media['source'] ?? 'Service',
+                        ],
+                    ];
 
-            return [
-                'success' => false,
-                'error' => 'Unable to fetch video media. The post might be private or deleted on Instagram.',
-            ];
-        });
+                    // Cache ONLY successful responses for 30 minutes
+                    Cache::put($cacheKey, $result, 1800);
+                    return $result;
+                }
+            } catch (\Throwable $e) {
+                Log::error("Instagram retrieval driver error ({$shortcode}): " . $e->getMessage());
+            }
+        }
+
+        return [
+            'success' => false,
+            'error' => 'Unable to fetch video media. The post might be private or deleted on Instagram.',
+        ];
     }
 
     /**

@@ -302,12 +302,21 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const parsed = new URL(rawUrl);
             const host = parsed.hostname.toLowerCase();
-            if (!['instagram.com', 'www.instagram.com', 'm.instagram.com'].includes(host)) {
-                showError('Only Instagram links (instagram.com) are supported. YouTube, Facebook, or other links are rejected.');
+            const allowedHosts = [
+                'instagram.com', 'www.instagram.com', 'm.instagram.com', 'v.instagram.com',
+                'instagr.am', 'www.instagr.am', 'm.instagr.am', 'ddinstagram.com', 'www.ddinstagram.com'
+            ];
+            if (!allowedHosts.includes(host) && !host.endsWith('.instagram.com') && !host.endsWith('.instagr.am')) {
+                showError('Only Instagram links (instagram.com / instagr.am) are supported.');
                 if (typeof trackEvent === 'function') trackEvent('validation_error', { reason: 'invalid_domain' });
                 return;
             }
-            if (!parsed.pathname.match(/\/(reel|p|tv)\/[A-Za-z0-9_-]+/i)) {
+            const path = parsed.pathname;
+            const hasShortcode = path.match(/\/(?:reels?|p|tv|share\/reel|share\/p|posts?)\/[A-Za-z0-9_-]{5,}/i) ||
+                                path.match(/\/[^\/]+\/(?:reels?|p|tv)\/[A-Za-z0-9_-]{5,}/i) ||
+                                path.match(/\/[A-Za-z0-9_-]{9,12}\/?(?:embed)?\/?$/i);
+
+            if (!hasShortcode) {
                 showError('Please enter a valid Instagram Reel, Post, or IGTV video URL (e.g., https://www.instagram.com/reel/shortcode/).');
                 if (typeof trackEvent === 'function') trackEvent('validation_error', { reason: 'invalid_path' });
                 return;
