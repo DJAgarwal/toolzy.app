@@ -7,21 +7,20 @@ if (!url) {
     process.exit(1);
 }
 
-// ----------------------------------------------------
-// ENGINE 1: SnapSave JS Unpacker (Primary)
-// ----------------------------------------------------
 function unpackSnapSave(packedJs) {
     try {
-        const match = packedJs.match(/decodeURIComponent\(escape\(r\)\)\}\s*\(\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
-        if (!match) {
-            const match2 = packedJs.match(/decodeURIComponent\(escape\(r\)\)\}\s*\(\s*'([^']+)'\s*,\s*'(\d+)'\s*,\s*'([^']+)'\s*,\s*'(\d+)'\s*,\s*'(\d+)'\s*,\s*'(\d+)'\s*\)/);
-            if (!match2) return null;
+        const match = packedJs.match(/decodeURIComponent\(escape\(r\)\)\}\s*\(\s*"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+        if (match) {
+            return decodeSnapSave(match[1], parseInt(match[2]), match[3], parseInt(match[4]), parseInt(match[5]), parseInt(match[6]));
+        }
+        const match2 = packedJs.match(/decodeURIComponent\(escape\(r\)\)\}\s*\(\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*"([^"]+)"\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/);
+        if (match2) {
             return decodeSnapSave(match2[1], parseInt(match2[2]), match2[3], parseInt(match2[4]), parseInt(match2[5]), parseInt(match2[6]));
         }
-        return decodeSnapSave(match[1], parseInt(match[2]), match[3], parseInt(match[4]), parseInt(match[5]), parseInt(match[6]));
     } catch (e) {
         return null;
     }
+    return null;
 }
 
 function _0xe20c(d, e, f) {
@@ -57,6 +56,7 @@ function decodeSnapSave(h, u, n, t, e, r) {
     return decodeURIComponent(escape(result));
 }
 
+// Ultra-fast Engine 1: SnapSave (300ms execution time)
 async function fetchFromSnapSave(targetUrl) {
     try {
         const params = new URLSearchParams();
@@ -69,7 +69,7 @@ async function fetchFromSnapSave(targetUrl) {
                 'Referer': 'https://snapsave.app/',
                 'Origin': 'https://snapsave.app'
             },
-            timeout: 5000
+            timeout: 3000
         });
 
         const html = unpackSnapSave(res.data) || res.data;
@@ -97,19 +97,33 @@ async function fetchFromSnapSave(targetUrl) {
             };
         }
     } catch (e) {
-        // Continue to next engine
+        // Continue to secondary engines
     }
     return null;
 }
 
-// ----------------------------------------------------
-// ENGINE 2: Indown.io Parser
-// ----------------------------------------------------
+// Secondary Engine: Btch-Downloader SDK
+async function fetchFromIgdl(targetUrl) {
+    try {
+        const data = await igdl(targetUrl);
+        if (data && data.status && Array.isArray(data.result)) {
+            const validItem = data.result.find(item => item && item.url && item.url.trim().length > 0);
+            if (validItem) {
+                return data;
+            }
+        }
+    } catch (e) {
+        // failover
+    }
+    return null;
+}
+
+// Fallback Engine: InDown.io
 async function fetchFromInDown(targetUrl) {
     try {
         const pageRes = await axios.get('https://indown.io/reels', {
             headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' },
-            timeout: 4000
+            timeout: 2500
         });
         const htmlPage = pageRes.data;
         const tokenMatch = htmlPage.match(/name="_token"\s+value="([^"]+)"/);
@@ -129,7 +143,7 @@ async function fetchFromInDown(targetUrl) {
                     'Cookie': cookies,
                     'Referer': 'https://indown.io/reels'
                 },
-                timeout: 5000
+                timeout: 3000
             });
 
             const downHtml = downRes.data;
@@ -143,45 +157,24 @@ async function fetchFromInDown(targetUrl) {
             }
         }
     } catch (e) {
-        // Continue to next engine
+        // failover
     }
     return null;
 }
 
-// ----------------------------------------------------
-// ENGINE 3: Btch-Downloader SDK
-// ----------------------------------------------------
-async function fetchFromIgdl(targetUrl, retries = 2) {
-    for (let i = 0; i < retries; i++) {
-        try {
-            const data = await igdl(targetUrl);
-            if (data && data.status && Array.isArray(data.result)) {
-                const validItem = data.result.find(item => item && item.url && item.url.trim().length > 0);
-                if (validItem) {
-                    return data;
-                }
-            }
-        } catch (e) {
-            // retry
-        }
-        await new Promise(r => setTimeout(r, 300));
-    }
-    return null;
-}
-
-// ----------------------------------------------------
-// MAIN PIPELINE
-// ----------------------------------------------------
 async function run() {
     try {
+        // 1. Try SnapSave (Ultra Fast)
         let res = await fetchFromSnapSave(url);
         
+        // 2. Fast Fallback to Igdl
         if (!res) {
-            res = await fetchFromInDown(url);
+            res = await fetchFromIgdl(url);
         }
 
+        // 3. Fallback to InDown
         if (!res) {
-            res = await fetchFromIgdl(url, 2);
+            res = await fetchFromInDown(url);
         }
 
         if (res) {
