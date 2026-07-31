@@ -2065,7 +2065,7 @@ class ToolSeeder extends Seeder
             ],
             [
                 'page_name' => 'sql-index-recommendation',
-                'category' => 'Developer & SEO Tools',
+                'category' => 'Advanced Developer Tools',
                 'meta_title' => 'AI SQL Index Recommendation - Optimize Queries Instantly - Toolzy',
                 'meta_description' => 'Leverage AI-driven analysis to optimize your SQL queries. Get intelligent index recommendations, performance insights, and automated optimization suggestions instantly. Supports MySQL, MariaDB, and PostgreSQL.',
                 'json_ld' => json_encode([
@@ -2125,7 +2125,7 @@ class ToolSeeder extends Seeder
             ],
             [
                 'page_name' => 'api-request-tester',
-                'category' => 'Developer Tools',
+                'category' => 'Advanced Developer Tools',
                 'meta_title' => 'API Request Tester & Performance Analyzer | Free REST API Testing Tool | Toolzy',
                 'meta_description' => 'Test REST APIs online with GET, POST, PUT, PATCH, DELETE, authentication, headers, response analysis, performance metrics, and code generation. Browser-based and privacy-focused.',
                 'meta_keywords' => 'API request tester, REST API tester, HTTP request tester, API inspector, API debugger, API response viewer, Postman alternative online, REST client, browser API client, cURL importer, API performance analyzer',
@@ -2206,7 +2206,7 @@ class ToolSeeder extends Seeder
             ],
             [
                 'page_name' => 'laravel-eloquent-query-analyzer',
-                'category' => 'Developer Tools',
+                'category' => 'Advanced Developer Tools',
                 'meta_title' => 'Laravel Eloquent Query Analyzer & Optimizer | Improve Query Performance | Toolzy',
                 'meta_description' => 'Analyze Laravel Eloquent queries for N+1 problems, eager loading, indexing opportunities, inefficient patterns, memory usage, pagination, joins, and performance improvements—all in your browser.',
                 'meta_keywords' => 'Laravel Eloquent Query Analyzer, Laravel Query Optimizer, Laravel Performance Analyzer, Optimize Eloquent Queries, Laravel N+1 Detector, Laravel Database Performance Tool, Eloquent Analyzer, Laravel ORM Optimizer',

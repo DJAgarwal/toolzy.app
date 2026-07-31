@@ -5,6 +5,7 @@ return [
     'Text Utilities',
     'Encoding & Conversion',
     'Developer Tools',
+    'Advanced Developer Tools',
     'Security',
     'Miscellaneous',
 ];
