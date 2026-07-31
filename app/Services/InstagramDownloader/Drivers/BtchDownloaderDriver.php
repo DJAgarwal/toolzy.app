@@ -17,18 +17,12 @@ class BtchDownloaderDriver implements InstagramRetrievalInterface
                 return null;
             }
 
-            // Pass Windows system environment variables so Node.js CSPRNG/crypto initializes properly under Apache/XAMPP
-            $env = [
-                'SystemRoot' => getenv('SystemRoot') ?: 'C:\\WINDOWS',
-                'WINDIR' => getenv('WINDIR') ?: 'C:\\WINDOWS',
-                'PATH' => getenv('PATH') ?: 'C:\\WINDOWS\\system32;C:\\Program Files\\nodejs',
-                'PATHEXT' => getenv('PATHEXT') ?: '.COM;.EXE;.BAT;.CMD',
-                'TEMP' => getenv('TEMP') ?: 'C:\\WINDOWS\\Temp',
-                'TMP' => getenv('TMP') ?: 'C:\\WINDOWS\\Temp',
-            ];
+            $nodeBinary = $this->findNodeBinary();
+            $env = $this->getExecutionEnvironment();
 
-            $process = new Process(['node', $nodeScript, $normalizedUrl], null, $env);
-            $process->setTimeout(10);
+            // Set working directory to Laravel base_path() so Node.js resolves node_modules on Linux & Windows
+            $process = new Process([$nodeBinary, $nodeScript, $normalizedUrl], base_path(), $env);
+            $process->setTimeout(12);
             $process->run();
 
             if (!$process->isSuccessful()) {
@@ -86,6 +80,56 @@ class BtchDownloaderDriver implements InstagramRetrievalInterface
         }
 
         return null;
+    }
+
+    /**
+     * Locate Node.js executable across Linux, cPanel, macOS, and Windows environments.
+     */
+    protected function findNodeBinary(): string
+    {
+        if (PHP_OS_FAMILY === 'Windows') {
+            return 'node';
+        }
+
+        $commonPaths = [
+            '/usr/local/bin/node',
+            '/usr/bin/node',
+            '/bin/node',
+            '/opt/cpanel/ea-nodejs20/bin/node',
+            '/opt/cpanel/ea-nodejs18/bin/node',
+            '/opt/cpanel/ea-nodejs16/bin/node',
+        ];
+
+        foreach ($commonPaths as $path) {
+            if (@file_exists($path) && @is_executable($path)) {
+                return $path;
+            }
+        }
+
+        return 'node';
+    }
+
+    /**
+     * Get platform-appropriate environment variables for child process execution.
+     */
+    protected function getExecutionEnvironment(): array
+    {
+        if (PHP_OS_FAMILY === 'Windows') {
+            return [
+                'SystemRoot' => getenv('SystemRoot') ?: 'C:\\WINDOWS',
+                'WINDIR' => getenv('WINDIR') ?: 'C:\\WINDOWS',
+                'PATH' => getenv('PATH') ?: 'C:\\WINDOWS\\system32;C:\\Program Files\\nodejs',
+                'PATHEXT' => getenv('PATHEXT') ?: '.COM;.EXE;.BAT;.CMD',
+                'TEMP' => getenv('TEMP') ?: 'C:\\WINDOWS\\Temp',
+                'TMP' => getenv('TMP') ?: 'C:\\WINDOWS\\Temp',
+            ];
+        }
+
+        $existingPath = getenv('PATH') ?: '';
+        return [
+            'PATH' => '/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:' . $existingPath,
+            'HOME' => getenv('HOME') ?: '/tmp',
+        ];
     }
 
     /**
